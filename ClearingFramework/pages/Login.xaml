@@ -1,0 +1,117 @@
+﻿<Page x:Class="Clearing.pages.Login"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="730" d:DesignWidth="874"
+      Title="Login">
+    <Page.Resources>
+        <Style x:Key="MyWaterMarkStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Border Background="{x:Null}" BorderThickness="0"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Background="{x:Null}" Margin="12,5,0,0" VerticalAlignment="Center" />
+                            <Label Margin="12,5,0,0" x:Name="WaterMarkLabel" Content="{TemplateBinding Tag}" VerticalAlignment="Center"
+                               Visibility="Collapsed" Foreground="Gray"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="Text" Value=""/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Visibility" TargetName="WaterMarkLabel" Value="Visible"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="DimGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Transparent" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.6" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Opacity" Value="0.2" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="#FF501B4A" >
+        <StackPanel Height="730" VerticalAlignment="Top" HorizontalAlignment="Center" MinWidth="874">
+            <Label x:Name="lblMessage" Content="" Margin="0,100,0,0" Foreground="WhiteSmoke"  Padding="30,0,0,0" />
+            <Label Content="MSX Clearing Workstation" HorizontalContentAlignment="Center"  Height="42" Margin="0,50,0,0" VerticalContentAlignment="Center"  Background="{x:Null}" Width="254" Foreground="White" FontSize="16"/>
+            <Grid Height="227" Width="254" Margin="0,15,0,0" Background="#33FFFFFF">
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,45,0,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
+                    <WrapPanel Height="48" Margin="0,0,0,0" Width="202" >
+                        <Image Height="26" Width="26" Source="/pics/2.png" Margin="6,10,0,0" OpacityMask="Black" Opacity="0.6"/>
+                        <TextBox x:Name="txtLoginName" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="141" Tag="Нэвтрэх нэр" Margin="0,8,0,0"/>
+                        <!--<TextBox x:Name="txtLoginName" Height="32" TextWrapping="Wrap" Text="Нэвтрэх нэр" Width="141" BorderThickness="0" VerticalContentAlignment="Center" Background="{x:Null}" Margin="12,5,0,0" Padding="0" Foreground="#7F000000"/>-->
+                    </WrapPanel>
+                </Border>
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,105,0,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
+                    <WrapPanel Height="48" Margin="0,0,0,0" Width="202">
+                        <Image Height="24" Width="26" Source="/pics/5.png" Margin="6,10,0,0" OpacityMask="Black" Opacity="0.6"/>
+                        <PasswordBox x:Name="txtLoginPass" Height="32" Width="141" BorderThickness="0" VerticalContentAlignment="Center" Background="{x:Null}" Margin="0,8,0,0" Padding="0" Foreground="#7F000000"/>
+                        <!--<TextBox x:Name="txtLoginPass" Height="32" TextWrapping="Wrap" Text="Нууц үг" Width="141" BorderThickness="0" VerticalContentAlignment="Center" Background="{x:Null}" Margin="12,5,0,0" Padding="0" Foreground="#7F000000"/>-->
+                    </WrapPanel>
+                </Border>
+                <Button x:Name="button1" Content="Нэвтрэх" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="0,165,0,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+            <Grid Height="42" Width="254" Margin="0,15,0,0" Background="#33FFFFFF">
+                <Button HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40" BorderBrush="{x:Null}" Margin="0,2,0,0">
+                    <Button.ToolTip >
+                        <ToolTip Foreground="White" Background="#E52B5877" BorderBrush="Transparent" BorderThickness=" 0,0,0,0">
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold"><Run Text="Stock"/></TextBlock>
+                                <TextBlock><Run Text="Компанийн хувьцаа"/></TextBlock>
+                            </StackPanel>
+                        </ToolTip>
+                    </Button.ToolTip>
+                    <StackPanel Background="{x:Null}" Width="22" Height="22" VerticalAlignment="Center">
+                        <Image Source="/pics/Setup.png" Height="22" Margin="0" HorizontalAlignment="Right" Width="22"/>
+                    </StackPanel>
+                </Button>
+                <Label Content="IP" HorizontalAlignment="Left" Margin="40,10,0,0" Height="25" VerticalAlignment="Top" Width="30" Foreground="#7FFFFFFF" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="10"/>
+                <TextBox x:Name="txtServer" Background="#B2FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Top" Height="18" Margin="60,13,91,0" TextWrapping="Wrap" Width="103" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Black">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+                <Label Content="Port" HorizontalAlignment="Left" Margin="163,10,0,0" Height="25" VerticalAlignment="Top" Width="30" Foreground="#7FFFFFFF" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="10"/>
+                <TextBox x:Name="txtPort" Background="#B2FFFFFF" HorizontalAlignment="Center" VerticalAlignment="Top" Height="18" Margin="198,13,16,0" TextWrapping="Wrap" Width="40" BorderBrush="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="Black">
+                    <TextBox.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

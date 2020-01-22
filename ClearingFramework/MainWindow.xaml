@@ -1,0 +1,185 @@
+﻿<Window x:Class="ClearingFramework.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clearing"
+        mc:Ignorable="d"
+        Title="MSX Clearing workstation" Height="768" Width="1024"
+        ResizeMode="CanResizeWithGrip" Foreground="#FF1E1E1E" MinWidth="1024" MinHeight="768" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" FontSize="10" WindowStyle="None">
+    <Window.Effect>
+        <DropShadowEffect Color="#FFC8C8C8" ShadowDepth="5"/>
+    </Window.Effect>
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+        CaptionHeight="3"
+        ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Background" Value="#FF04898B"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Transparent" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Opacity" Value="0.8"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                            </Trigger>
+                            <Trigger Property="Button.IsFocused" Value="True">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="Background" Value="#FF3EB9BB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Frame x:Name="MainFrame" Margin="146,30,-4,-4" NavigationUIVisibility="Hidden" Background="White"/>
+        <DockPanel Height="30" VerticalAlignment="Top" Margin="-4,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" MouseDown="rectangle2_MouseDown">
+            <DockPanel.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="-100" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Color="#FF04898B" Offset="0.007"/>
+                    <GradientStop Color="#FF501B4A" Offset="0.534"/>
+                </LinearGradientBrush>
+            </DockPanel.Background>
+            <Button Height="16" Margin="0,7,11,7" Width="16" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Click="Button_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="pics\close_.png"/>
+                </Button.Background>
+            </Button>
+            <Button Height="16" Margin="0,7,2,7" Width="16" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Click="Button_Click_12">
+                <Button.Background>
+                    <ImageBrush ImageSource="pics\maximize_.png"/>
+                </Button.Background>
+            </Button>
+            <Button Height="16" Margin="0,7,2,7" Width="16" DockPanel.Dock="Right" HorizontalAlignment="Right" Click="Button_Click_11" BorderThickness="0">
+                <Button.Background>
+                    <ImageBrush ImageSource="pics\minimize_.png"/>
+                </Button.Background>
+            </Button>
+            <Image HorizontalAlignment="Left" Margin="3,3,0,3" Source="pics\Logo_nt_white.png" Stretch="Fill" Width="20" Height="20"/>
+            <Label Content="MSX Clearing Workstation" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="192" Foreground="White" FontSize="12" Margin="0,0,0,0" VerticalContentAlignment="Center"/>
+        </DockPanel>
+        <Grid HorizontalAlignment="Left" Margin="-4,30,0,-4" Width="150" MaxWidth="200" Background="#FF3EB9BB">
+            <Button Height="30" Margin="4,20,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_1" BorderThickness="0,1,0,0">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Doghouse.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Эхлэл"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,50,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_2" BorderThickness="0,1,0,0">
+                <WrapPanel Width="143">
+
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Данс нээх"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,80,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_3" BorderThickness="0,1,0,0">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Math.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Гүйлгээ бүртгэх"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,110,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_4" BorderThickness="0,1,0,0">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Account card.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Дансны мэдээлэл"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,140,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_5" BorderThickness="0,1,0,0">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Typewriter.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Арилжааны дүн"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,170,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_6" BorderThickness="0,1,0,0">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Bank account.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Шимтгэл"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,200,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_7">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Conversion of currency.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Репо"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,230,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_8">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Coins.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="ҮЦ зээл"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,260,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_9">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Medal.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Барьцаа"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,0,0,50" FontSize="11" VerticalAlignment="Bottom" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Message attention.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Тусламж"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,0,0,20" FontSize="11" VerticalAlignment="Bottom" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_10">
+                <WrapPanel Width="143">
+                    <Image Source="pics\Export.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Гарах"/>
+                    </TextBlock>
+                    <Image Source="pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+        </Grid>
+
+    </Grid>
+</Window>
