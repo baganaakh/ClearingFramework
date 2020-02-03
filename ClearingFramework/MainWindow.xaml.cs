@@ -24,6 +24,7 @@ namespace ClearingFramework
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Content = new Start();
         }
         #region DocPanel
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -52,7 +53,7 @@ namespace ClearingFramework
 
         }
         #endregion
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        public void Button_Click_1(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new Start();
         }
@@ -99,7 +100,10 @@ namespace ClearingFramework
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Login();
+            App.Current.Properties["User_id"] = null;
+            Login login = new Login();
+            login.Show();
+            this.Close();
         }
 
     }

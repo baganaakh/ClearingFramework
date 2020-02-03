@@ -80,7 +80,7 @@
             <Label Content="MSX Clearing Workstation" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="192" Foreground="White" FontSize="12" Margin="0,0,0,0" VerticalContentAlignment="Center"/>
         </DockPanel>
         <Grid HorizontalAlignment="Left" Margin="-4,30,0,-4" Width="150" MaxWidth="200" Background="#FF3EB9BB">
-            <Button Height="30" Margin="4,20,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_1" BorderThickness="0,1,0,0">
+            <Button x:Name="start" Height="30" Margin="4,20,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_1" BorderThickness="0,1,0,0">
                 <WrapPanel Width="143">
                     <Image Source="pics\Doghouse.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">

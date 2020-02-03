@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="719dfe05a6b84af383adeacb1f196219" Name="Diagram1">
         <EntityTypeShape EntityType="ClearingModel.Account" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClearingModel.user" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

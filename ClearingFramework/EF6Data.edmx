@@ -17,13 +17,24 @@
           <Property Name="mail" Type="nvarchar" MaxLength="30" />
           <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
           <Property Name="accNum" Type="nvarchar" MaxLength="20" />
-          <Property Name="brokerCode" Type="nchar" MaxLength="20" />
+          <Property Name="brokerCode" Type="nvarchar" MaxLength="50" />
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="secAcc" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="uname" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="role" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityContainer Name="ClearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -31,6 +42,7 @@
       <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
+          <EntitySet Name="users" EntityType="ClearingModel.user" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -44,10 +56,20 @@
           <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="brokerCode" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="uname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -69,6 +91,17 @@
                 <ScalarProperty Name="idNum" ColumnName="idNum" />
                 <ScalarProperty Name="fname" ColumnName="fname" />
                 <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ClearingModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="uname" ColumnName="uname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

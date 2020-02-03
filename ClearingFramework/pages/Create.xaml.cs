@@ -4,6 +4,7 @@ using LinqToExcel.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Z.Dapper.Plus;
 using MessageBox = System.Windows.MessageBox;
 
 
@@ -202,7 +204,35 @@ namespace Clearing.pages
 
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;Persist Security Info=True;User ID=sa;Password=Qwerty123456";
+                DapperPlusManager.Entity<Account>().Table("Account");
 
+                DataTable dt = tableCollection[cboSheet.SelectedItem.ToString()];
+                List<Account> newAcct = ConvertToAccountReadings(dt) as List<Account>;
+
+                //exceldata.ItemsSource = ConvertToAccountReadings(dt);
+
+
+                if (newAcct != null)
+                {
+                    using (IDbConnection db = new SqlConnection(connectionString))
+                    {
+                        db.BulkInsert(newAcct);
+                    }
+                    MessageBox.Show("Finish !!!!!");
+                }
+                else
+                {
+                    MessageBox.Show("Finish !!!!!");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message");
+            }
         }
 
         private void cboSheet_SelectionChanged(object sender, SelectionChangedEventArgs e)

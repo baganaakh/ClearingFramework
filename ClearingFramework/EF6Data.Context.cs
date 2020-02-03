@@ -26,5 +26,6 @@ namespace ClearingFramework
         }
     
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<user> users { get; set; }
     }
 }
