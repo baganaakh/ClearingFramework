@@ -22,9 +22,30 @@
           <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="secAcc" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="accountDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="totalValue" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="oddValue" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="modified" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accid" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="transType" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="value" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="note" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="uname" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="uname" Type="nvarchar" MaxLength="30" Nullable="false" />
@@ -34,6 +55,8 @@
         </EntityType>
         <EntityContainer Name="ClearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="accountDetails" EntityType="Self.accountDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -42,6 +65,8 @@
       <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
+          <EntitySet Name="accountDetails" EntityType="ClearingModel.accountDetail" />
+          <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
           <EntitySet Name="users" EntityType="ClearingModel.user" />
         </EntityContainer>
         <EntityType Name="Account">
@@ -61,9 +86,30 @@
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="accountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalValue" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="oddValue" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accid" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="transType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="uname" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="uname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
@@ -91,6 +137,28 @@
                 <ScalarProperty Name="idNum" ColumnName="idNum" />
                 <ScalarProperty Name="fname" ColumnName="fname" />
                 <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accountDetails">
+            <EntityTypeMapping TypeName="ClearingModel.accountDetail">
+              <MappingFragment StoreEntitySet="accountDetails">
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="oddValue" ColumnName="oddValue" />
+                <ScalarProperty Name="totalValue" ColumnName="totalValue" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactions">
+            <EntityTypeMapping TypeName="ClearingModel.transaction">
+              <MappingFragment StoreEntitySet="transaction">
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="transType" ColumnName="transType" />
+                <ScalarProperty Name="accid" ColumnName="accid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

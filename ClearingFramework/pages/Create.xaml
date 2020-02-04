@@ -118,10 +118,6 @@
         <TabControl Grid.Row="2" Margin="10,4,10,21" x:Name="tabcontrol" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Нэгдсэн дансны мэдээлэл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
                 <Grid Margin="0,0,-4,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="555*"/>
-                        <ColumnDefinition Width="299*"/>
-                    </Grid.ColumnDefinitions>
                     <DataGrid x:Name="vwOmniAccBalance" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
                               FontSize="11" RenderTransformOrigin="0.5,0.5" CanUserDeleteRows="True" CanUserReorderColumns="False" BorderThickness="0" 

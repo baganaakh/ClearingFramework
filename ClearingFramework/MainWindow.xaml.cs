@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -100,11 +101,11 @@ namespace ClearingFramework
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
         {
+
             App.Current.Properties["User_id"] = null;
             Login login = new Login();
             login.Show();
             this.Close();
         }
-
     }
 }

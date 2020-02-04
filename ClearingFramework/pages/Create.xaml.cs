@@ -201,7 +201,7 @@ namespace Clearing.pages
             ex.Close();
         }
         #endregion
-
+        #region
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             try
@@ -209,8 +209,10 @@ namespace Clearing.pages
                 string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;Persist Security Info=True;User ID=sa;Password=Qwerty123456";
                 DapperPlusManager.Entity<Account>().Table("Account");
 
-                DataTable dt = tableCollection[cboSheet.SelectedItem.ToString()];
-                List<Account> newAcct = ConvertToAccountReadings(dt) as List<Account>;
+                List<Account> newAcct = vwOmniAccBalance.ItemsSource as List<Account>;
+
+                //DataTable dt = tableCollection[cboSheet.SelectedItem.ToString()];
+                //List<Account> newAcct = ConvertToAccountReadings(dt) as List<Account>;
 
                 //exceldata.ItemsSource = ConvertToAccountReadings(dt);
 
@@ -234,7 +236,8 @@ namespace Clearing.pages
                 MessageBox.Show(ex.Message, "Message");
             }
         }
-
+        #endregion
+        #region combos
         private void cboSheet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             exceltab.IsEnabled = true;
@@ -264,6 +267,7 @@ namespace Clearing.pages
                 }
             }
         }
+        #endregion
         public IEnumerable<Account> ConvertToAccountReadings(DataTable dataTable)
         {
             foreach (DataRow row in dataTable.Rows)
