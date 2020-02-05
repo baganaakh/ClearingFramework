@@ -146,7 +146,7 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Margin="0,5,10,0" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"  Click="FillGrid" Foreground="White" Grid.Column="1">
+                    <Button Margin="0,5,10,0" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"  Click="Button_Click_8" Foreground="White" Grid.Column="1">
                         <Button.Background>
                             <ImageBrush ImageSource="/pics/reload.png" Stretch="Uniform" Opacity="0.8"/>
                         </Button.Background>

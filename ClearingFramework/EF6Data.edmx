@@ -8,15 +8,17 @@
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="idNum" />
+            <PropertyRef Name="accNum" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="lname" Type="nvarchar" MaxLength="30" />
           <Property Name="fname" Type="nvarchar" MaxLength="30" />
-          <Property Name="idNum" Type="nvarchar" MaxLength="10" />
+          <Property Name="idNum" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="20" />
           <Property Name="mail" Type="nvarchar" MaxLength="30" />
           <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
-          <Property Name="accNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="accNum" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="brokerCode" Type="nvarchar" MaxLength="50" />
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
@@ -25,11 +27,12 @@
         <EntityType Name="accountDetails">
           <Key>
             <PropertyRef Name="id" />
+            <PropertyRef Name="accNum" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="accNum" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="totalValue" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="oddValue" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="totalValue" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="oddValue" Type="decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="transaction">
@@ -41,6 +44,7 @@
           <Property Name="transType" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="value" Type="decimal" Precision="18" Scale="4" Nullable="false" />
           <Property Name="note" Type="nvarchar" MaxLength="255" />
+          <Property Name="side" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -64,48 +68,11 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="users" EntityType="ClearingModel.user" />
           <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
           <EntitySet Name="accountDetails" EntityType="ClearingModel.accountDetail" />
           <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
-          <EntitySet Name="users" EntityType="ClearingModel.user" />
         </EntityContainer>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="idNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="accountDetail">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="totalValue" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="oddValue" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <EntityType Name="transaction">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accid" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="transType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="value" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="user">
           <Key>
             <PropertyRef Name="id" />
@@ -117,12 +84,64 @@
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="idNum" />
+            <PropertyRef Name="accNum" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="accountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="accNum" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="oddValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accid" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="transType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="value" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
+          <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ClearingModelStoreContainer" CdmEntityContainer="ClearingEntities">
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="ClearingModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="ClearingModel.Account">
               <MappingFragment StoreEntitySet="Account">
@@ -155,21 +174,11 @@
           <EntitySetMapping Name="transactions">
             <EntityTypeMapping TypeName="ClearingModel.transaction">
               <MappingFragment StoreEntitySet="transaction">
+                <ScalarProperty Name="side" ColumnName="side" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="transType" ColumnName="transType" />
                 <ScalarProperty Name="accid" ColumnName="accid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="ClearingModel.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="uname" ColumnName="uname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

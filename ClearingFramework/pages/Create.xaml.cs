@@ -33,10 +33,10 @@ namespace Clearing.pages
         public Create()
         {
             InitializeComponent();
-            FillGrid(null,null);
+            FillGrid();
         }
         long iid;
-        #region fill & new
+        #region fill, new & refresh
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             lName.Text = null;
@@ -49,7 +49,7 @@ namespace Clearing.pages
             brokCode.Text = null;
             linkAc.SelectedItem = null;
         }
-        private void FillGrid(object sender, RoutedEventArgs e)
+        private void FillGrid()
         {
             ClearingEntities CE = new ClearingEntities();
             //var data = from d in CE.Accounts select d;
@@ -57,6 +57,10 @@ namespace Clearing.pages
             //or
             var Accountss = CE.Accounts;
             vwOmniAccBalance.ItemsSource = Accountss.ToList();
+        }
+        private void Button_Click_8(object sender, RoutedEventArgs e)
+        {
+            FillGrid();
         }
         #endregion
         #region update
@@ -77,7 +81,7 @@ namespace Clearing.pages
                 acc.linkAcc = linkAc.Text;
                 context.SaveChanges();
             }
-            FillGrid(null, null);
+            FillGrid();
         }
         #endregion
         #region insert
@@ -89,6 +93,17 @@ namespace Clearing.pages
             }
             using (ClearingEntities context=new ClearingEntities())
             {
+                var exist = context.Accounts.Count(a => a.accNum == accountn.Text);
+                var idexist = context.Accounts.Count(a => a.idNum == idNumber.Text);
+                if(idexist != 0) { 
+                    MessageBox.Show("РД давтагдсан байна " + idNumber.Text.ToString() +" !!!") ;
+                    return;
+                }
+                else
+                if(exist != 0) { 
+                    MessageBox.Show("Account number exists " + accountn.Text.ToString() +" !!!") ;
+                    return;
+                }
                 Account acct = new Account
                 {
                     lname = lName.Text,
@@ -99,13 +114,19 @@ namespace Clearing.pages
                     secAcc = secAc.Text,
                     mail = email.Text,
                     brokerCode = brokCode.Text,
-                    //state = stat.SelectedValue.ToString(),
-                    linkAcc = linkAc.Text
+                    linkAcc = linkAc.Text,
+                    modified=DateTime.Now
                 };
+                accountDetail adetail = new accountDetail
+                {
+                    accNum = accountn.Text,
+                    modified=DateTime.Now
+                };
+
                 context.Accounts.Add(acct);
+                context.accountDetails.Add(adetail);
                 context.SaveChanges();
-                //context.Account acc=new 
-                FillGrid(null, null);
+                FillGrid();
             }
         }
         #endregion
@@ -119,7 +140,7 @@ namespace Clearing.pages
                 context.Accounts.Remove(acc);
                 context.SaveChanges();
             }
-            FillGrid(null, null);
+            FillGrid();
         }
         #endregion
         #region edit
@@ -141,8 +162,8 @@ namespace Clearing.pages
             }
         }
         #endregion
-
-            string filePath="";
+        #region excel
+        string filePath="";
         DataTableCollection tableCollection;
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
@@ -169,83 +190,12 @@ namespace Clearing.pages
                 }
             }
         }
-        #region youtube tut
-
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-            Excel excel = new Excel(@"book1.xlsx", 1);
-            excel.WriteToCell(0, 0, "Test3");
-            excel.SaveAs(@"Test2.xlsx");
-            excel.Close();
-            //OpenFileDialog ofd = new OpenFileDialog();
-            //if (ofd.ShowDialog() == true)
-            //{
-            //    filePath = ofd.FileName;
-            //}
-            ////if (ofd.ShowDialog().Equals(DialogResult.Cancel))
-            ////    return;
-            //Excel excel = new Excel(filePath, 1);
-            //MessageBox.Show(excel.ReadCell(0, 0));
-            //excel.Close();
-        }
-        private void funcOne(object sender, RoutedEventArgs e)
-        {
-            Excel ex = new Excel(@"1st.xlsx", 1);
-            //ex.CreateNewFile();
-            //ex.CreateNewSheet();
-            ex.SelectWorkSheet(2);
-            ex.WriteToCell(0, 0, "This is Sheet");
-            ex.DeleteWorkSheet(1);
-            ex.SaveAs(@"4th");
-            //ex.WriteToCell(0, 0, "freedom");
-            ex.Close();
-        }
-        #endregion
-        #region
-        private void Button_Click_7(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;Persist Security Info=True;User ID=sa;Password=Qwerty123456";
-                DapperPlusManager.Entity<Account>().Table("Account");
-
-                List<Account> newAcct = vwOmniAccBalance.ItemsSource as List<Account>;
-
-                //DataTable dt = tableCollection[cboSheet.SelectedItem.ToString()];
-                //List<Account> newAcct = ConvertToAccountReadings(dt) as List<Account>;
-
-                //exceldata.ItemsSource = ConvertToAccountReadings(dt);
-
-
-                if (newAcct != null)
-                {
-                    using (IDbConnection db = new SqlConnection(connectionString))
-                    {
-                        db.BulkInsert(newAcct);
-                    }
-                    MessageBox.Show("Finish !!!!!");
-                }
-                else
-                {
-                    MessageBox.Show("Finish !!!!!");
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Message");
-            }
-        }
-        #endregion
-        #region combos
         private void cboSheet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             exceltab.IsEnabled = true;
             exceltab.IsSelected = true;
             DataTable dt = tableCollection[cboSheet.SelectedItem.ToString()];
-            
             exceldata.ItemsSource = ConvertToAccountReadings(dt);
-            
             if (dt != null)
             {
                 List<Account> acct = new List<Account>();
@@ -267,7 +217,31 @@ namespace Clearing.pages
                 }
             }
         }
-        #endregion
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;Persist Security Info=True;User ID=sa;Password=Qwerty123456";
+                DapperPlusManager.Entity<Account>().Table("Account");
+                List<Account> newAcct = vwOmniAccBalance.ItemsSource as List<Account>;
+                if (newAcct != null)
+                {
+                    using (IDbConnection db = new SqlConnection(connectionString))
+                    {
+                        db.BulkInsert(newAcct);
+                    }
+                    MessageBox.Show("Inserted");
+                }
+                else
+                {
+                    MessageBox.Show("Fail !!!!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Message");
+            }
+        }
         public IEnumerable<Account> ConvertToAccountReadings(DataTable dataTable)
         {
             foreach (DataRow row in dataTable.Rows)
@@ -287,5 +261,7 @@ namespace Clearing.pages
                 };
             }
         }
+        #endregion
+        
     }
 }

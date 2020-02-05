@@ -11,13 +11,20 @@ namespace ClearingFramework
 {
     using System;
     using System.Collections.Generic;
-    
+
     public partial class accountDetail
     {
         public int id { get; set; }
         public string accNum { get; set; }
-        public decimal totalValue { get; set; }
-        public decimal oddValue { get; set; }
+        public Nullable<decimal> totalValue { get; set; }
+        public Nullable<decimal> oddValue { get; set; }
         public System.DateTime modified { get; set; }
+        public Nullable<decimal> possible
+        {
+            get
+            {
+                return totalValue - oddValue;
+            }
+        }
     }
 }

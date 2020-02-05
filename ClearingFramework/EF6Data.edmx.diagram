@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="719dfe05a6b84af383adeacb1f196219" Name="Diagram1">
-        <EntityTypeShape EntityType="ClearingModel.Account" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="ClearingModel.accountDetail" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="ClearingModel.transaction" Width="1.5" PointX="3.375" PointY="3.75" />
+      <Diagram DiagramId="719dfe05a6b84af383adeacb1f196219" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="ClearingModel.user" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClearingModel.Account" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClearingModel.accountDetail" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClearingModel.transaction" Width="1.5" PointX="2.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

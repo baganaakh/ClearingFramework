@@ -19,5 +19,6 @@ namespace ClearingFramework
         public string transType { get; set; }
         public decimal value { get; set; }
         public string note { get; set; }
+        public string side { get; set; }
     }
 }
