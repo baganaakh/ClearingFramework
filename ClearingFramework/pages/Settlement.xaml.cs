@@ -59,7 +59,7 @@ namespace Clearing.pages
             }
         }
         #endregion
-        #region бүртгэх
+        #region бүртгэх and sum to totalValue
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             decimal value= Decimal.Parse(trvalue.Text);
@@ -67,7 +67,7 @@ namespace Clearing.pages
             {
                 var tran = new transaction()
                 {
-                    accid = accountID,
+                    accNum = accountID,
                     transType = transType.Text,
                     value = Decimal.Parse(trvalue.Text),
                     note = trnote.Text,
@@ -96,6 +96,7 @@ namespace Clearing.pages
         #endregion
         #region excel
         DataTableCollection tableCollection;
+        #region insert excel file
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
         string filePath = "";
@@ -104,23 +105,38 @@ namespace Clearing.pages
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
-                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    try
                     {
-                        using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+                        using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
                         {
-                            DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                            using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                             {
-                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
-                            });
-                            tableCollection = result.Tables;
-                            cboSheet.Items.Clear();
-                            foreach (DataTable table in tableCollection)
+                                DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                                {
+                                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                                });
+                                tableCollection = result.Tables;
+                                cboSheet.Items.Clear();
+                                foreach (DataTable table in tableCollection)
                                 cboSheet.Items.Add(table.TableName);//add sheet to combobox
+                            }
                         }
                     }
+                    catch (System.IO.IOException ex)
+                    {
+                        MessageBox.Show("Сонгосон файлыг өөр процесс ашиглаж байна файлаа хадгалаад хаана уу \n" + ex.ToString());
+                        return;
+                    }
+                    catch (Exception)
+                    {
+                        throw;
+                    }
+                    
                 }
             }
         }
+        #endregion
+        #region select sheet's from combo and display into datatable
         private void cboSheet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             exceltab.IsEnabled = true;
@@ -133,7 +149,7 @@ namespace Clearing.pages
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     transaction acc = new transaction();
-                    acc.accid = dt.Rows[i]["accid"].ToString();
+                    acc.accNum = dt.Rows[i]["accNum"].ToString();
                     acc.transType = dt.Rows[i]["transType"].ToString();
                     acc.value = Convert.ToDecimal(dt.Rows[i]["value"]);
                     acc.note = dt.Rows[i]["note"].ToString();
@@ -142,15 +158,41 @@ namespace Clearing.pages
                 }
             }
         }
+        public IEnumerable<transaction> ConvertToAccountReadings(DataTable dataTable)
+        {
+            foreach (DataRow row in dataTable.Rows)
+            {
+                yield return new transaction
+                {
+                    accNum= row["accNum"].ToString(),
+                    transType = row["transType"].ToString(),
+                    value = Convert.ToDecimal(row["value"]),
+                    note = row["note"].ToString(),
+                    side = row["side"].ToString(),
+                };
+            }
+        }
+        #endregion
+        #region bulk insert from datatable
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             try
             {
                 string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;Persist Security Info=True;User ID=sa;Password=Qwerty123456";
                 DapperPlusManager.Entity<transaction>().Table("transaction");
-                List<transaction> newAcct = datagrid1.ItemsSource as List<transaction>;
+                IEnumerable<transaction> newAcct = exceldata.ItemsSource as IEnumerable<transaction>;
                 if (newAcct != null)
                 {
+                    using (ClearingEntities context = new ClearingEntities())
+                    {
+                        foreach (var i in newAcct)
+                        {
+                            accountDetail accdet = context.accountDetails.FirstOrDefault(r => r.accNum == i.accNum);
+                            if (accdet != null)
+                                accdet.totalValue += i.value;
+                            context.SaveChanges();
+                        }
+                    }
                     using (IDbConnection db = new SqlConnection(connectionString))
                     {
                         db.BulkInsert(newAcct);
@@ -167,20 +209,7 @@ namespace Clearing.pages
                 MessageBox.Show(ex.Message, "Message");
             }
         }
-        public IEnumerable<transaction> ConvertToAccountReadings(DataTable dataTable)
-        {
-            foreach (DataRow row in dataTable.Rows)
-            {
-                yield return new transaction
-                {
-                    accid= row["accid"].ToString(),
-                    transType = row["transType"].ToString(),
-                    value = Convert.ToDecimal(row["value"]),
-                    note = row["note"].ToString(),
-                    side = row["side"].ToString(),
-                };
-            }
-        }
+        #endregion
         #endregion
     }
 }

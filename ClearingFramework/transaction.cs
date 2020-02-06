@@ -15,7 +15,7 @@ namespace ClearingFramework
     public partial class transaction
     {
         public int id { get; set; }
-        public string accid { get; set; }
+        public string accNum { get; set; }
         public string transType { get; set; }
         public decimal value { get; set; }
         public string note { get; set; }

@@ -101,7 +101,6 @@ namespace ClearingFramework
 
         private void Button_Click_10(object sender, RoutedEventArgs e)
         {
-
             App.Current.Properties["User_id"] = null;
             Login login = new Login();
             login.Show();

@@ -11,7 +11,7 @@ namespace ClearingFramework
 {
     using System;
     using System.Collections.Generic;
-
+    
     public partial class accountDetail
     {
         public int id { get; set; }
@@ -19,12 +19,6 @@ namespace ClearingFramework
         public Nullable<decimal> totalValue { get; set; }
         public Nullable<decimal> oddValue { get; set; }
         public System.DateTime modified { get; set; }
-        public Nullable<decimal> possible
-        {
-            get
-            {
-                return totalValue - oddValue;
-            }
-        }
+        public string idNum { get; set; }
     }
 }
