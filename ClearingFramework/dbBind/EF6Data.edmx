@@ -71,9 +71,9 @@
       <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="users" EntityType="ClearingModel.user" />
-          <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
           <EntitySet Name="accountDetails" EntityType="ClearingModel.accountDetail" />
           <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
+          <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
         </EntityContainer>
         <EntityType Name="user">
           <Key>
@@ -85,25 +85,6 @@
           <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="idNum" />
-            <PropertyRef Name="accNum" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="accountDetail">
           <Key>
@@ -129,6 +110,25 @@
           <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="idNum" />
+            <PropertyRef Name="accNum" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -142,24 +142,6 @@
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="uname" ColumnName="uname" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="ClearingModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
-                <ScalarProperty Name="mail" ColumnName="mail" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="idNum" ColumnName="idNum" />
-                <ScalarProperty Name="fname" ColumnName="fname" />
-                <ScalarProperty Name="lname" ColumnName="lname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -184,6 +166,24 @@
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="transType" ColumnName="transType" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="ClearingModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="idNum" ColumnName="idNum" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

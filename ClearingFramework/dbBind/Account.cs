@@ -15,15 +15,16 @@ namespace ClearingFramework.dbBind
     public partial class Account
     {
         public long id { get; set; }
-        public long memberid { get; set; }
-        public Nullable<long> accNum { get; set; }
-        public string accType { get; set; }
-        public string LinkAcc { get; set; }
-        public Nullable<decimal> collateral { get; set; }
+        public string lname { get; set; }
+        public string fname { get; set; }
+        public string idNum { get; set; }
+        public string phone { get; set; }
+        public string mail { get; set; }
+        public string linkAcc { get; set; }
+        public string accNum { get; set; }
+        public string brokerCode { get; set; }
+        public Nullable<short> state { get; set; }
         public System.DateTime modified { get; set; }
-        public string mask { get; set; }
-        public Nullable<System.DateTime> startdate { get; set; }
-        public Nullable<System.DateTime> enddate { get; set; }
-        public short state { get; set; }
+        public string secAcc { get; set; }
     }
 }
