@@ -96,6 +96,180 @@
     <Compile Include="dbBind\accountDetail.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\pageDatabase\Account.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\accType.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\ActiveSession.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\algo.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\allowedtype.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\API.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Asset.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Board.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\BoardInstrument.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Calendar.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\ClearingAccount.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Contract.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\ctype.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\dayType.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\dbo_logs.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Deal.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Deal2.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\DealerAccount.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Dealtype.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\expireTable.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Fee.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\GroupRight.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\GroupUser.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Invoice.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\InvoiceDetail.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\isactive.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\IsDealer.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Margin.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\MarketMaker.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Member.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\mtype.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\netting.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Order.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\page.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>page.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\page.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\page.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>page.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Participant.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Ptype.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\RefPrice.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Right.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Security.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Session.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Setting.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\side.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Software.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\SpecialType.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Spread.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\State.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\stype.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\sysdiagram.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\TickSizeTable.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Tran.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\transType.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\Ttable.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\UserAccount.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageDatabase\UserGroup.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\user.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
@@ -233,6 +407,13 @@
     <None Include="dbBind\EF6Data.edmx.diagram">
       <DependentUpon>EF6Data.edmx</DependentUpon>
     </None>
+    <EntityDeploy Include="dbBind\pageDatabase\page.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>page.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="dbBind\pageDatabase\page.edmx.diagram">
+      <DependentUpon>page.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -287,6 +468,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EF6Data.edmx</DependentUpon>
       <LastGenOutput>EF6Data.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbBind\pageDatabase\page.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>page.edmx</DependentUpon>
+      <LastGenOutput>page.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbBind\pageDatabase\page.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>page.edmx</DependentUpon>
+      <LastGenOutput>page.cs</LastGenOutput>
     </Content>
     <Resource Include="pics\reload.png" />
   </ItemGroup>
