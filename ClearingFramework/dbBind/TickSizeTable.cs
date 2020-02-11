@@ -7,24 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClearingFramework
+namespace ClearingFramework.dbBind
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Account
+    public partial class TickSizeTable
     {
-        public long id { get; set; }
-        public string lname { get; set; }
-        public string fname { get; set; }
-        public string idNum { get; set; }
-        public string phone { get; set; }
-        public string mail { get; set; }
-        public string linkAcc { get; set; }
-        public string accNum { get; set; }
-        public string brokerCode { get; set; }
-        public Nullable<short> state { get; set; }
+        public int id { get; set; }
+        public long tableid { get; set; }
+        public decimal tick { get; set; }
+        public decimal price { get; set; }
+        public short state { get; set; }
         public System.DateTime modified { get; set; }
-        public string secAcc { get; set; }
+        public Nullable<long> timestamp { get; set; }
+        public string name { get; set; }
     }
 }

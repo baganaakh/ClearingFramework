@@ -90,17 +90,188 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="accountDetail.cs">
+    <Compile Include="dbBind\accountDetail.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\accType.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\ActiveSession.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\algo.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\allowedtype.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\API.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Asset.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Board.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\BoardInstrument.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Calendar.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\ClearingAccount.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Contract.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\ctype.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\dayType.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\dbo_logs.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Deal.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Deal2.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\DealerAccount.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Dealtype.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\expireTable.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Fee.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\GroupRight.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\GroupUser.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Invoice.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\InvoiceDetail.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\isactive.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\IsDealer.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Margin.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\MarketMaker.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Member.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\mtype.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\netting.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Order.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pageData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pageData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>pageData.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Participant.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Ptype.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\RefPrice.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Right.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Security.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Session.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Setting.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\side.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Software.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\SpecialType.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Spread.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\State.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\stype.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\sysdiagram.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\TickSizeTable.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Tran.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\transType.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Ttable.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\UserAccount.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\UserGroup.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="transaction.cs">
+    <Compile Include="dbBind\transaction.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
-    <Compile Include="user.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
+    <Compile Include="dbBind\user.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
     </Compile>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
@@ -110,29 +281,29 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Account.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
+    <Compile Include="dbBind\Account.cs">
+      <DependentUpon>pageData.tt</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="EF6Data.Context.cs">
+    <Compile Include="dbBind\EF6Data.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EF6Data.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF6Data.cs">
+    <Compile Include="dbBind\EF6Data.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF6Data.Designer.cs">
+    <Compile Include="dbBind\EF6Data.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EF6Data.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Excel.cs" />
+    <Compile Include="functions\Excel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -226,13 +397,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="EF6Data.edmx">
+    <EntityDeploy Include="dbBind\EF6Data.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>EF6Data.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="pages\Book1.xlsx" />
-    <None Include="EF6Data.edmx.diagram">
+    <None Include="dbBind\EF6Data.edmx.diagram">
       <DependentUpon>EF6Data.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="dbBind\pageData.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>pageData.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="dbBind\pageData.edmx.diagram">
+      <DependentUpon>pageData.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -279,15 +456,25 @@
     <Resource Include="pics\YES1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EF6Data.Context.tt">
+    <Content Include="dbBind\EF6Data.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>EF6Data.Context.cs</LastGenOutput>
       <DependentUpon>EF6Data.edmx</DependentUpon>
     </Content>
-    <Content Include="EF6Data.tt">
+    <Content Include="dbBind\EF6Data.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>EF6Data.edmx</DependentUpon>
       <LastGenOutput>EF6Data.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbBind\pageData.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>pageData.edmx</DependentUpon>
+      <LastGenOutput>pageData.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbBind\pageData.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>pageData.edmx</DependentUpon>
+      <LastGenOutput>pageData.cs</LastGenOutput>
     </Content>
     <Resource Include="pics\reload.png" />
   </ItemGroup>
@@ -315,7 +502,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="functions\" />
+    <Folder Include="excels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

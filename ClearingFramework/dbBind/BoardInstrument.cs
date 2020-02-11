@@ -7,18 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClearingFramework
+namespace ClearingFramework.dbBind
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class transaction
+    public partial class BoardInstrument
     {
         public int id { get; set; }
-        public string accNum { get; set; }
-        public string transType { get; set; }
-        public decimal value { get; set; }
-        public string note { get; set; }
-        public string side { get; set; }
+        public int boardid { get; set; }
+        public int instrumentid { get; set; }
+        public string state { get; set; }
+        public System.DateTime modified { get; set; }
     }
 }

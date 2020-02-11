@@ -250,7 +250,7 @@
                 <ComboBoxItem x:Name="cbi4" Content="Бэлнээр"/>
             </ComboBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="280,36,0,0" TextWrapping="Wrap" Text="Төлөв" Width="45" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
-            <ComboBox Name="stat" HorizontalAlignment="Left" Height="20" Margin="352,41,0,0"  Text="Гүйлгээний төрөл" Width="94" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
+            <ComboBox Name="stat" HorizontalAlignment="Left" Height="20" Margin="352,41,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
                 <ComboBoxItem x:Name="cbi7" Content="Банкаар"/>
                 <ComboBoxItem x:Name="cbi8" Content="Бэлнээр"/>
             </ComboBox>

@@ -7,17 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClearingFramework
+namespace ClearingFramework.dbBind
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class user
+    public partial class side
     {
-        public int id { get; set; }
-        public string uname { get; set; }
-        public string password { get; set; }
-        public System.DateTime modified { get; set; }
-        public string role { get; set; }
+        public short id { get; set; }
+        public string side1 { get; set; }
     }
 }

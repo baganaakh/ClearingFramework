@@ -1,4 +1,5 @@
 ﻿using ClearingFramework;
+using ClearingFramework.dbBind;
 using ExcelDataReader;
 using LinqToExcel.Extensions;
 using System;
