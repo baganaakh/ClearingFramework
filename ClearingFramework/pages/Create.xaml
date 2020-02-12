@@ -239,10 +239,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="236,10,0,0" TextWrapping="Wrap" Text="Брокерийн код" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
-            <ComboBox x:Name="brokCode" HorizontalAlignment="Left" Height="20" Margin="352,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
-                <ComboBoxItem x:Name="cbi1" Content="Банкаар"/>
-                <ComboBoxItem x:Name="cbi2" Content="Бэлнээр"/>
-            </ComboBox>
+            <ComboBox x:Name="brokCode" SelectionChanged="brokCode_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="code" SelectedValuePath="code" HorizontalAlignment="Left" Height="20" Margin="352,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
             <Label Content="Label" Margin="0,12,238,0" VerticalAlignment="Top" Height="164" HorizontalAlignment="Right" Width="4" Background="#FF7B5477"/>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="236,75,0,0" TextWrapping="Wrap" Text="Холбох данс" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
             <ComboBox Name="linkAc" HorizontalAlignment="Left" Height="20" Margin="352,75,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">

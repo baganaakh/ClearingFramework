@@ -1,10 +1,12 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.pageDatabase;
 using ExcelDataReader;
 using LinqToExcel.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -20,6 +22,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Z.Dapper.Plus;
+using Account = ClearingFramework.dbBind.Account;
 using MessageBox = System.Windows.MessageBox;
 
 
@@ -34,9 +37,11 @@ namespace Clearing.pages
         public Create()
         {
             InitializeComponent();
+            bindCombo();
             FillGrid();
         }
         long iid;
+        string pcode;
         #region fill, new & refresh
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
@@ -114,19 +119,20 @@ namespace Clearing.pages
                     accNum = accountn.Text,
                     secAcc = secAc.Text,
                     mail = email.Text,
-                    brokerCode = brokCode.Text,
+                    brokerCode = pcode,
                     linkAcc = linkAc.Text,
                     modified=DateTime.Now
                 };
                 accountDetail adetail = new accountDetail
                 {
                     accNum = accountn.Text,
+                    idNum= idNumber.Text,
                     modified=DateTime.Now
                 };
 
                 context.Accounts.Add(acct);
                 context.accountDetails.Add(adetail);
-                context.SaveChanges();
+                
                 FillGrid();
             }
         }
@@ -263,6 +269,27 @@ namespace Clearing.pages
             }
         }
         #endregion
-        
+        #region combos
+        public List<Member> mem { get; set; }
+        private void bindCombo()
+        {
+            demoEntities1 de = new demoEntities1();
+            var memid = de.Members.ToList();
+            mem = memid;
+            brokCode.ItemsSource = mem;
+        }
+        private void brokCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = brokCode.SelectedItem as Member;
+            try
+            {
+                pcode = item.code.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
+        #endregion
     }
 }

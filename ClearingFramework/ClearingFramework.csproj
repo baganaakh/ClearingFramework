@@ -270,6 +270,9 @@
     <Compile Include="dbBind\pageDatabase\UserGroup.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\Request.cs">
+      <DependentUpon>EF6Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\user.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
@@ -479,6 +482,7 @@
       <DependentUpon>page.edmx</DependentUpon>
       <LastGenOutput>page.cs</LastGenOutput>
     </Content>
+    <Resource Include="usefulCodes\debug.txt" />
     <Resource Include="pics\reload.png" />
   </ItemGroup>
   <ItemGroup>
