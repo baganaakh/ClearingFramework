@@ -25,21 +25,15 @@ namespace Clearing.pages
             InitializeComponent();
             FillGrid();
         }
+        #region fill
         private void FillGrid()
         {
             using (demoEntities1 context = new demoEntities1())
             {
-                var acc = context.Accounts.Where(r => r.accNum == 123).ToList();
+                var acc = context.Accounts.Where(r => r.accNum == "123").ToList();//static
                 unitedData.ItemsSource = acc;
             }
-
-            using(var context=new demoEntities1())
-            {
-                var query = from st in context.Accounts
-                            where st.accNum == 123
-                            select st;
-                var acct = query.FirstOrDefault<Account>();
-            }
         }
+        #endregion
     }
 }
