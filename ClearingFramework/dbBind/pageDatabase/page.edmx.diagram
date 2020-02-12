@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b794abed00ca452cbbcdfc96ec141eca" Name="Diagram1">
-        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.ActiveSession" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.algo" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.allowedtype" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
@@ -57,8 +56,9 @@
         <EntityTypeShape EntityType="demoModel.Ttable" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="20.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="20.75" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="demoModel.accType" Width="1.5" PointX="20.75" PointY="16.75" IsExpanded="true" />
         <AssociationConnector Association="demoModel.FK_boards_boards1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="0.75" PointY="21.75" />
+        <EntityTypeShape EntityType="demoModel.accType" Width="1.5" PointX="3.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

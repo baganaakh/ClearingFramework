@@ -89,6 +89,8 @@ namespace Clearing.pages
             ClearingEntities CE = new ClearingEntities();
             var requs = CE.Requests;
             datagrid1.ItemsSource = requs.ToList();
+            var trans = CE.transactions;
+            datagrid2.ItemsSource = trans.ToList();
         }
         private void trvalue_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

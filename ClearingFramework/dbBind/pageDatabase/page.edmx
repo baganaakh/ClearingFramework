@@ -4,26 +4,23 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="demoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="demoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="memberid" Type="bigint" Nullable="false" />
-          <Property Name="accNum" Type="bigint" />
+          <Property Name="accNum" Type="int" />
           <Property Name="accType" Type="nvarchar" MaxLength="20" />
           <Property Name="LinkAcc" Type="nvarchar" MaxLength="20" />
           <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="mask" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="mask" Type="nvarchar" MaxLength="20" />
           <Property Name="startdate" Type="date" />
           <Property Name="enddate" Type="date" />
           <Property Name="state" Type="smallint" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="accType">
           <Key>
             <PropertyRef Name="id" />
@@ -407,7 +404,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="dealer" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="ander" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="nominal" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -702,6 +699,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
         </Association>
         <EntityContainer Name="demoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="accType" EntityType="Self.accType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="algo" EntityType="Self.algo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="allowedtype" EntityType="Self.allowedtype" Schema="dbo" store:Type="Tables" />
@@ -753,39 +751,15 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="Ttable" EntityType="Self.Ttable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="accType" EntityType="Self.accType" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [accType].[id] AS [id], 
-    [accType].[accType] AS [accType]
-    FROM [dbo].[accType] AS [accType]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
             <End Role="Boards" EntitySet="Boards" />
             <End Role="Boards1" EntitySet="Boards" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="demoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="mask" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" Nullable="false" />
-          <Property Name="accNum" Type="Int64" />
-          <Property Name="accType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="LinkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-        </EntityType>
         <EntityType Name="ActiveSession">
           <Key>
             <PropertyRef Name="id" />
@@ -1164,7 +1138,7 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -1445,13 +1419,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="accType">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int16" Nullable="false" />
-          <Property Name="accType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         <Association Name="FK_boards_boards1">
           <End Role="Boards" Type="Self.Board" Multiplicity="1" />
           <End Role="Boards1" Type="Self.Board" Multiplicity="0..1" />
@@ -1465,7 +1432,6 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="demoEntities1" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSession" />
           <EntitySet Name="algoes" EntityType="Self.algo" />
           <EntitySet Name="allowedtypes" EntityType="Self.allowedtype" />
@@ -1517,35 +1483,42 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
           <EntitySet Name="Ttables" EntityType="Self.Ttable" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccount" />
           <EntitySet Name="UserGroups" EntityType="Self.UserGroup" />
-          <EntitySet Name="accTypes" EntityType="Self.accType" />
           <AssociationSet Name="FK_boards_boards1" Association="Self.FK_boards_boards1">
             <End Role="Boards" EntitySet="Boards" />
             <End Role="Boards1" EntitySet="Boards" />
           </AssociationSet>
+          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
+          <EntitySet Name="accTypes" EntityType="demoModel.accType" />
         </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" Nullable="false" />
+          <Property Name="accNum" Type="Int32" />
+          <Property Name="accType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LinkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="accType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int16" Nullable="false" />
+          <Property Name="accType1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="demoModelStoreContainer" CdmEntityContainer="demoEntities1">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="demoModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="accType" ColumnName="accType" />
-                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
-                <ScalarProperty Name="collateral" ColumnName="collateral" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="state" ColumnName="state" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ActiveSessions">
             <EntityTypeMapping TypeName="demoModel.ActiveSession">
               <MappingFragment StoreEntitySet="ActiveSessions">
@@ -2250,11 +2223,28 @@ warning 6002: The table/view 'demo.dbo.accType' does not have a primary key defi
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="demoModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="collateral" ColumnName="collateral" />
+                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
+                <ScalarProperty Name="accType" ColumnName="accType" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="accTypes">
             <EntityTypeMapping TypeName="demoModel.accType">
               <MappingFragment StoreEntitySet="accType">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="accType1" ColumnName="accType" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

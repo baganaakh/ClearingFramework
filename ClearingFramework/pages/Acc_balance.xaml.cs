@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ClearingFramework.dbBind.pageDatabase;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,6 +23,23 @@ namespace Clearing.pages
         public Acc_balance()
         {
             InitializeComponent();
+            FillGrid();
+        }
+        private void FillGrid()
+        {
+            using (demoEntities1 context = new demoEntities1())
+            {
+                var acc = context.Accounts.Where(r => r.accNum == 123).ToList();
+                unitedData.ItemsSource = acc;
+            }
+
+            using(var context=new demoEntities1())
+            {
+                var query = from st in context.Accounts
+                            where st.accNum == 123
+                            select st;
+                var acct = query.FirstOrDefault<Account>();
+            }
         }
     }
 }

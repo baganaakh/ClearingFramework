@@ -359,6 +359,54 @@
                     </Button>
                 </Grid>
             </TabItem>
+            <TabItem Header="Зарлага хийх хүсэлт" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
+                <Grid  Margin="0,0,-4,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="165*"/>
+                        <ColumnDefinition Width="689*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="datagrid2" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" HorizontalGridLinesBrush="White" 
+            			AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" FontSize="11" RenderTransformOrigin="0.5,0.5" 
+            			CanUserDeleteRows="False" CanUserReorderColumns="False" BorderThickness="0,1,0,0" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn/>
+                            <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding date}" ClipboardContentBinding="{x:Null}" Header="Огноо"/>
+                            <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding account}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
+                            <DataGridTextColumn MinWidth="100" Width ="0.6*"  Binding="{Binding balance}" ClipboardContentBinding="{x:Null}" Header="Боломжит үлдэгдэл ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="0.6*"  Binding="{Binding remain}" ClipboardContentBinding="{x:Null}" Header="Буцаах дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding pendingDay}" ClipboardContentBinding="{x:Null}" Header="Хүлээсэн хоног"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Татгалзах"  Margin="0,-29,0,0" HorizontalAlignment="Right" Width="74" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White" Grid.Column="1">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="6,6,6,6"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock><Run Text="Татгалзах"/></TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <Button Content="Зөвшөөрөх" Margin="0,-29,79,0" HorizontalAlignment="Right" Width="74" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White" Grid.Column="1">
+                        <Button.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="6,6,6,6"/>
+                            </Style>
+                        </Button.Resources>
+                        <Button.ToolTip>
+                            <ToolTip>
+                                <StackPanel>
+                                    <TextBlock><Run Text="Зөвшөөрөх"/></TextBlock>
+                                </StackPanel>
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                </Grid>
+            </TabItem>
             <TabItem Header="Exceldata" x:Name="exceltab" BorderThickness="0,0,0,0" IsEnabled="False" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
                 <Grid Margin="0,0,-4,0">
                     <Grid.ColumnDefinitions>

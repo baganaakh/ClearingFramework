@@ -101,7 +101,7 @@
         <TabControl Margin="10,10,10,4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Нэгдсэн дансны үлдэгдэл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
-                    <DataGrid Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" HorizontalGridLinesBrush="White" 
+                    <DataGrid x:Name="unitedData" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" HorizontalGridLinesBrush="White" 
                               AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" FontSize="10" RenderTransformOrigin="0.5,0.5" 
                               Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False">
                         <DataGrid.Columns>
