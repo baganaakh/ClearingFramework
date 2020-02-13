@@ -101,12 +101,12 @@ namespace Clearing.pages
             {
                 var exist = context.Accounts.Count(a => a.accNum == accountn.Text);
                 var idexist = context.Accounts.Count(a => a.idNum == idNumber.Text);
-                if(idexist != 0) { 
+                if(idexist != 0) {
                     MessageBox.Show("РД давтагдсан байна " + idNumber.Text.ToString() +" !!!") ;
                     return;
                 }
                 else
-                if(exist != 0) { 
+                if(exist != 0) {
                     MessageBox.Show("Account number exists " + accountn.Text.ToString() +" !!!") ;
                     return;
                 }

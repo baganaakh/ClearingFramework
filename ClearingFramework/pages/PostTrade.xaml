@@ -229,18 +229,18 @@
         <TabControl Margin="10,10,10,5" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Нээлттэй позици" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
-                    <DataGrid Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                    <DataGrid x:Name="unitedData" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" 
                               HorizontalContentAlignment="Stretch" FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,35,0,0" 
                               CanUserDeleteRows="False" CanUserReorderColumns="False">
                         <DataGrid.Columns>
-                            <DataGridTextColumn MinWidth="70" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
-                            <DataGridTextColumn MinWidth="80" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Авсан/зарсан"/>
-                            <DataGridTextColumn MinWidth="50" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Үнэт цаас"/>
-                            <DataGridTextColumn MinWidth="70" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
-                            <DataGridTextColumn MinWidth="70" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Үнийн дүн ₮"/>
+                            <DataGridTextColumn MinWidth="70" Width ="*" Binding="{Binding accNumber}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
+                            <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding sides}" ClipboardContentBinding="{x:Null}" Header="Авсан/зарсан"/>
+                            <DataGridTextColumn MinWidth="50" Width ="*" Binding="{Binding assetId}" ClipboardContentBinding="{x:Null}" Header="Үнэт цаас"/>
+                            <DataGridTextColumn MinWidth="70" Width ="*" Binding="{Binding qtys}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
+                            <DataGridTextColumn MinWidth="70" Width ="*" Binding="{Binding prices}" ClipboardContentBinding="{x:Null}" Header="Үнийн дүн ₮"/>
+                            <DataGridTextColumn MinWidth="90" Width ="*" Binding="{Binding fees}" ClipboardContentBinding="{x:Null}" Header="П.Х шимтгэл ₮"/>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Ашиг/Алд ₮"/>
-                            <DataGridTextColumn MinWidth="90" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="П.Х шимтгэл ₮"/>
                             <DataGridTextColumn MinWidth="90" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Дуудах дэнчин ₮"/>
                         </DataGrid.Columns>
                     </DataGrid>

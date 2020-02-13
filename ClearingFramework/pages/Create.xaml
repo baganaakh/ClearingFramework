@@ -179,7 +179,7 @@
                             <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding secAcc}" ClipboardContentBinding="{x:Null}" Header="ҮЦТХТ данс" IsReadOnly="True"/>
-                            
+
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -188,7 +188,7 @@
         <Grid Background="White" Margin="10,23,14,10">
             <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="166" Width="4" Background="#FF7B5477"/>
             <Label Content="Label" HorizontalAlignment="Left" Margin="218,10,0,0" VerticalAlignment="Top" Height="166" Width="4" Background="#FF7B5477"/>
-            <Button Content="Xls татах" Margin="0,145,10,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
+            <Button Content="Xls татах" Margin="0,96,25,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="6,6,6,6"/>
@@ -230,8 +230,8 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="16,135,0,0" TextWrapping="Wrap" Text="Данс #" Width="51" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="accountn" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,137,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="14,115,0,0" TextWrapping="Wrap" Text="Данс #" Width="51" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="accountn" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,116,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -259,40 +259,40 @@
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="29,46,0,0" TextWrapping="Wrap" Text="Нэр" Width="38" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="fName" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="29,36,0,0" TextWrapping="Wrap" Text="Нэр" Width="38" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="fName" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="29,75,0,0" TextWrapping="Wrap" Text="РД" Width="38" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="idNumber" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="29,63,0,0" TextWrapping="Wrap" Text="РД" Width="38" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="idNumber" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="29,105,0,0" TextWrapping="Wrap" Text="Утас" Width="38" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="phonee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="29,91,0,0" TextWrapping="Wrap" Text="Утас" Width="38" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="phonee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="259,105,0,0" TextWrapping="Wrap" Text="ҮЦТХТ данс" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="secAc" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="352,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="10,170,0,0" TextWrapping="Wrap" Text="ҮЦТХТ данс" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="secAc" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="103,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
                     </Style>
                 </TextBox.Resources>
             </TextBox>
-            <TextBox HorizontalAlignment="Left" Height="20" Margin="259,130,0,0" TextWrapping="Wrap" Text="Цахим хаяг" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="email" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="352,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="10,140,0,0" TextWrapping="Wrap" Text="Цахим хаяг" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="email" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -330,6 +330,38 @@
                 </Button.Resources>
             </Button>
             <TextBox HorizontalAlignment="Left" x:Name="chosen_Copy" Height="20" Margin="750,58,0,0" TextWrapping="Wrap" Text="Хуудас" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="218,184,0,0" TextWrapping="Wrap" Text="позиц оруулсан шимтгэл" Width="145" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="pozfee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="377,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="265,103,0,0" TextWrapping="Wrap" Text="Шимтгэл хувь" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="fee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="236,128,0,0" TextWrapping="Wrap" Text="дэнчин хувь" Width="82" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="denchinPercent" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="363,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+            <TextBox HorizontalAlignment="Left" Height="20" Margin="280,153,0,0" TextWrapping="Wrap" Text="хэлцэл шимтгэл" Width="93" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+            <TextBox x:Name="contractFee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="388,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
         </Grid>
     </Grid>
 </Page>

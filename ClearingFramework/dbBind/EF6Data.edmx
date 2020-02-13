@@ -21,6 +21,10 @@
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="secAcc" Type="nvarchar" MaxLength="20" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="denchinPercent" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="contractFee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="pozFee" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="accountDetails">
           <Key>
@@ -34,6 +38,60 @@
           <Property Name="oddValue" Type="decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="idNum" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="clearingDeal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="boardid" Type="smallint" />
+          <Property Name="dealno" Type="nvarchar" MaxLength="16" />
+          <Property Name="side" Type="smallint" />
+          <Property Name="memberid" Type="int" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="date" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dealType" Type="smallint" />
+        </EntityType>
+        <EntityType Name="deal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="boardid" Type="smallint" />
+          <Property Name="side" Type="smallint" />
+          <Property Name="memberid" Type="int" />
+          <Property Name="accountid" Type="bigint" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dealType" Type="smallint" />
+        </EntityType>
+        <EntityType Name="pozits">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="side" Type="nvarchar" MaxLength="20" />
+          <Property Name="assetCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="qty" Type="int" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="prosperity" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="callDenchin" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -71,6 +129,9 @@
         <EntityContainer Name="ClearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="accountDetails" EntityType="Self.accountDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clearingDeal" EntityType="Self.clearingDeal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deal" EntityType="Self.deal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pozits" EntityType="Self.pozits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
@@ -85,6 +146,9 @@
           <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
           <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
           <EntitySet Name="Requests" EntityType="ClearingModel.Request" />
+          <EntitySet Name="clearingDeals" EntityType="ClearingModel.clearingDeal" />
+          <EntitySet Name="deals" EntityType="ClearingModel.deal" />
+          <EntitySet Name="pozits" EntityType="ClearingModel.pozit" />
         </EntityContainer>
         <EntityType Name="user">
           <Key>
@@ -137,6 +201,10 @@
           <Property Name="state" Type="Int16" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -148,6 +216,60 @@
           <Property Name="remain" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="date" Type="DateTime" Precision="3" />
           <Property Name="pendingDay" Type="Int32" />
+        </EntityType>
+        <EntityType Name="clearingDeal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int16" />
+          <Property Name="dealno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="side" Type="Int16" />
+          <Property Name="memberid" Type="Int32" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="0" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dealType" Type="Int16" />
+        </EntityType>
+        <EntityType Name="deal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int16" />
+          <Property Name="side" Type="Int16" />
+          <Property Name="memberid" Type="Int32" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dealType" Type="Int16" />
+        </EntityType>
+        <EntityType Name="pozit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="assetCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="prosperity" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="callDenchin" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -193,6 +315,10 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="ClearingModel.Account">
               <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="pozFee" ColumnName="pozFee" />
+                <ScalarProperty Name="contractFee" ColumnName="contractFee" />
+                <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
                 <ScalarProperty Name="secAcc" ColumnName="secAcc" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
@@ -216,6 +342,63 @@
                 <ScalarProperty Name="remain" ColumnName="remain" />
                 <ScalarProperty Name="balance" ColumnName="balance" />
                 <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clearingDeals">
+            <EntityTypeMapping TypeName="ClearingModel.clearingDeal">
+              <MappingFragment StoreEntitySet="clearingDeal">
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
+                <ScalarProperty Name="m2m" ColumnName="m2m" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="dealno" ColumnName="dealno" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deals">
+            <EntityTypeMapping TypeName="ClearingModel.deal">
+              <MappingFragment StoreEntitySet="deal">
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
+                <ScalarProperty Name="m2m" ColumnName="m2m" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pozits">
+            <EntityTypeMapping TypeName="ClearingModel.pozit">
+              <MappingFragment StoreEntitySet="pozits">
+                <ScalarProperty Name="callDenchin" ColumnName="callDenchin" />
+                <ScalarProperty Name="prosperity" ColumnName="prosperity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetCode" ColumnName="assetCode" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

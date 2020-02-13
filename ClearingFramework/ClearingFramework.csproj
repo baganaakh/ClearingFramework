@@ -96,6 +96,12 @@
     <Compile Include="dbBind\accountDetail.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\clearingDeal.cs">
+      <DependentUpon>EF6Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\deal.cs">
+      <DependentUpon>EF6Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\pageDatabase\Account.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
@@ -269,6 +275,9 @@
     </Compile>
     <Compile Include="dbBind\pageDatabase\UserGroup.cs">
       <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\pozit.cs">
+      <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Request.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>

@@ -26,5 +26,9 @@ namespace ClearingFramework.dbBind
         public Nullable<short> state { get; set; }
         public System.DateTime modified { get; set; }
         public string secAcc { get; set; }
+        public Nullable<decimal> fee { get; set; }
+        public Nullable<decimal> denchinPercent { get; set; }
+        public Nullable<decimal> contractFee { get; set; }
+        public Nullable<decimal> pozFee { get; set; }
     }
 }
