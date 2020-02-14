@@ -12,16 +12,10 @@ namespace ClearingFramework.dbBind
     using System;
     using System.Collections.Generic;
     
-    public partial class pozit
+    public partial class lastPrice
     {
         public int id { get; set; }
-        public string accNum { get; set; }
-        public string side { get; set; }
-        public string assetCode { get; set; }
-        public Nullable<int> qty { get; set; }
-        public Nullable<decimal> price { get; set; }
-        public Nullable<decimal> fee { get; set; }
-        public Nullable<decimal> gainLoss { get; set; }
-        public Nullable<decimal> callDenchin { get; set; }
+        public Nullable<int> assetid { get; set; }
+        public Nullable<decimal> ePrice { get; set; }
     }
 }

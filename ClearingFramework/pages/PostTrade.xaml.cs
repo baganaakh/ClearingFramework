@@ -1,4 +1,5 @@
-﻿using ClearingFramework.dbBind.pageDatabase;
+﻿using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.pageDatabase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Account = ClearingFramework.dbBind.pageDatabase.Account;
 
 namespace Clearing.pages
 {
@@ -56,10 +58,31 @@ namespace Clearing.pages
                                             prices=i.price,
                                             fees=Convert.ToDecimal(i.fee)
                 });
+                using(var contx=new ClearingEntities())
+                {
+                    decimal lastPrice =Convert.ToDecimal(contx.lastPrices.Where(
+                                                            s => s.assetid == i.assetid)
+                                                        .FirstOrDefault<lastPrice>().ePrice);
+                    decimal gainloss = lastPrice * i.qty -i.price * i.qty;
+                    //decimal cdenchin=
+
+                    var std = new pozit()
+                    {
+                        accNum = query,
+                        side = side,
+                        assetCode = acode,
+                        qty = Convert.ToInt32(i.qty),
+                        price = i.price,
+                        fee = i.fee,
+                        gainLoss = gainloss,
+                        
+                    };
+                    contx.pozits.Add(std);
+                    contx.SaveChanges();
+                }
             }
                 unitedData.ItemsSource = data;
         }
-
         public class forItems
         {
             public forItems() { }

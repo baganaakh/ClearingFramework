@@ -80,6 +80,14 @@
           <Property Name="refPrice" Type="decimal" Precision="18" Scale="4" />
           <Property Name="dealType" Type="smallint" />
         </EntityType>
+        <EntityType Name="lastPrice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="ePrice" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
         <EntityType Name="pozits">
           <Key>
             <PropertyRef Name="id" />
@@ -90,7 +98,8 @@
           <Property Name="assetCode" Type="nvarchar" MaxLength="20" />
           <Property Name="qty" Type="int" />
           <Property Name="price" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="prosperity" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="gainLoss" Type="decimal" Precision="18" Scale="4" />
           <Property Name="callDenchin" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Request">
@@ -131,6 +140,7 @@
           <EntitySet Name="accountDetails" EntityType="Self.accountDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="clearingDeal" EntityType="Self.clearingDeal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deal" EntityType="Self.deal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lastPrice" EntityType="Self.lastPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pozits" EntityType="Self.pozits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
@@ -148,6 +158,7 @@
           <EntitySet Name="Requests" EntityType="ClearingModel.Request" />
           <EntitySet Name="clearingDeals" EntityType="ClearingModel.clearingDeal" />
           <EntitySet Name="deals" EntityType="ClearingModel.deal" />
+          <EntitySet Name="lastPrices" EntityType="ClearingModel.lastPrice" />
           <EntitySet Name="pozits" EntityType="ClearingModel.pozit" />
         </EntityContainer>
         <EntityType Name="user">
@@ -258,6 +269,14 @@
           <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="dealType" Type="Int16" />
         </EntityType>
+        <EntityType Name="lastPrice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="ePrice" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
         <EntityType Name="pozit">
           <Key>
             <PropertyRef Name="id" />
@@ -268,7 +287,8 @@
           <Property Name="assetCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="qty" Type="Int32" />
           <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="prosperity" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="gainLoss" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="callDenchin" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
       </Schema>
@@ -389,11 +409,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="lastPrices">
+            <EntityTypeMapping TypeName="ClearingModel.lastPrice">
+              <MappingFragment StoreEntitySet="lastPrice">
+                <ScalarProperty Name="ePrice" ColumnName="ePrice" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="pozits">
             <EntityTypeMapping TypeName="ClearingModel.pozit">
               <MappingFragment StoreEntitySet="pozits">
                 <ScalarProperty Name="callDenchin" ColumnName="callDenchin" />
-                <ScalarProperty Name="prosperity" ColumnName="prosperity" />
+                <ScalarProperty Name="gainLoss" ColumnName="gainLoss" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
                 <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="qty" ColumnName="qty" />
                 <ScalarProperty Name="assetCode" ColumnName="assetCode" />

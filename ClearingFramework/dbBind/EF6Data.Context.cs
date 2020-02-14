@@ -32,6 +32,7 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<clearingDeal> clearingDeals { get; set; }
         public virtual DbSet<deal> deals { get; set; }
+        public virtual DbSet<lastPrice> lastPrices { get; set; }
         public virtual DbSet<pozit> pozits { get; set; }
     }
 }

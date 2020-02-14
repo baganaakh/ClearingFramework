@@ -54,13 +54,15 @@ namespace Clearing.pages
             email.Text = null;
             brokCode.Text = null;
             linkAc.SelectedItem = null;
+            stat.SelectedItem = null;
+            fee.Text = null;
+            denchinPercent.Text = null;
+            contractFee.Text = null;
+            pozfee.Text = null;
         }
         private void FillGrid()
         {
             ClearingEntities CE = new ClearingEntities();
-            //var data = from d in CE.Accounts select d;
-            //vwOmniAccBalance.ItemsSource = data.ToList();
-            //or
             var Accountss = CE.Accounts;
             vwOmniAccBalance.ItemsSource = Accountss.ToList();
         }
@@ -85,6 +87,10 @@ namespace Clearing.pages
                 acc.brokerCode = brokCode.Text;
                 //state = stat.SelectedValue.To;String(),
                 acc.linkAcc = linkAc.Text;
+                acc.fee = Convert.ToDecimal(fee.Text);
+                acc.denchinPercent = Convert.ToDecimal(denchinPercent.Text);
+                acc.contractFee = Convert.ToDecimal(contractFee.Text);
+                acc.pozFee = Convert.ToDecimal(pozfee.Text);
                 context.SaveChanges();
             }
             FillGrid();
@@ -118,10 +124,15 @@ namespace Clearing.pages
                     phone = phonee.Text,
                     accNum = accountn.Text,
                     secAcc = secAc.Text,
+                    state=Convert.ToInt16(stat.SelectedIndex),
                     mail = email.Text,
                     brokerCode = pcode,
                     linkAcc = linkAc.Text,
-                    modified=DateTime.Now
+                    modified = DateTime.Now,
+                    fee = Convert.ToDecimal(fee.Text),
+                    denchinPercent = Convert.ToDecimal(denchinPercent.Text),
+                    contractFee = Convert.ToDecimal(contractFee.Text),
+                    pozFee= Convert.ToDecimal(pozfee.Text)
                 };
                 accountDetail adetail = new accountDetail
                 {
@@ -132,7 +143,7 @@ namespace Clearing.pages
 
                 context.Accounts.Add(acct);
                 context.accountDetails.Add(adetail);
-                
+                context.SaveChanges();
                 FillGrid();
             }
         }
@@ -166,6 +177,7 @@ namespace Clearing.pages
                 email.Text = acc.mail;
                 brokCode.Text = acc.brokerCode;
                 linkAc.SelectedItem = cbi7;
+                stat.SelectedIndex = Convert.ToInt32( acc.state);
             }
         }
         #endregion
