@@ -1,5 +1,6 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.pageDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,7 @@ namespace Clearing.pages
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            using(ClearingEntities context=new ClearingEntities())
+            using(demoEntities1 context=new demoEntities1())
             {
                 var query = context.users.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<user>();
                 App.Current.Properties["User_id"] = query.id;

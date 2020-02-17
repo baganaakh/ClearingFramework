@@ -273,6 +273,9 @@
     <Compile Include="dbBind\pageDatabase\Ttable.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\pageDatabase\user.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\pageDatabase\UserAccount.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
@@ -283,9 +286,6 @@
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Request.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\user.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
     <Compile Include="windows\Login.xaml.cs">

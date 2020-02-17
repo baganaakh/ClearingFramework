@@ -40,8 +40,16 @@ namespace Clearing.pages
             {
                 using (var context = new demoEntities1())
                 {
-                    query = context.Accounts.Where(s => s.id == i.accountid).FirstOrDefault<Account>().accNum;
-                    acode = context.Assets.Where(s => s.id == i.assetid).FirstOrDefault<Asset>().code;
+                    try
+                    {
+                        query = context.Accounts.Where(s => s.id == i.accountid).FirstOrDefault<Account>().accNum;
+                        acode = context.Assets.Where(s => s.id == i.assetid).FirstOrDefault<Asset>().code;
+                    }
+                    catch (System.NullReferenceException)
+                    {
+                        MessageBox.Show("Post trade хоосон байна");
+                        return;
+                    }
                     if (i.side == -1)
                     {
                         side = "Зарах";

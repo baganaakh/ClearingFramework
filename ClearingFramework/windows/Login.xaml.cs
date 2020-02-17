@@ -1,4 +1,4 @@
-﻿using ClearingFramework.dbBind;
+﻿using ClearingFramework.dbBind.pageDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,10 +27,17 @@ namespace ClearingFramework
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            using (ClearingEntities context = new ClearingEntities())
+            using (demoEntities1 context = new demoEntities1())
             {
                 var query = context.users.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<user>();
+                if(query == null)
+                {
+                    MessageBox.Show("Username doesn't match");
+                    return;
+                }
                 App.Current.Properties["User_id"] = query.id;
+                //var id = App.Current.Properties["User_id"];
+                App.Current.Properties["member_id"] = query.memId;
                 if (query.password == txtLoginPass.Password)
                 {
                     MainWindow mainWindow = new MainWindow();
@@ -41,6 +48,10 @@ namespace ClearingFramework
                     //((this.Parent) as Window).Content.Bu;
                     //parentWindow.
                     //dashboard.start.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                }
+                else
+                {
+                    MessageBox.Show("Password doesn't match");
                 }
             }
         }

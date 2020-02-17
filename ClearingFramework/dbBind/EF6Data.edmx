@@ -124,17 +124,6 @@
           <Property Name="note" Type="nvarchar" MaxLength="255" />
           <Property Name="side" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="uname" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="uname" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="role" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
         <EntityContainer Name="ClearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="accountDetails" EntityType="Self.accountDetails" Schema="dbo" store:Type="Tables" />
@@ -144,14 +133,12 @@
           <EntitySet Name="pozits" EntityType="Self.pozits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transaction" EntityType="Self.transaction" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="users" EntityType="ClearingModel.user" />
           <EntitySet Name="accountDetails" EntityType="ClearingModel.accountDetail" />
           <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
           <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
@@ -161,17 +148,6 @@
           <EntitySet Name="lastPrices" EntityType="ClearingModel.lastPrice" />
           <EntitySet Name="pozits" EntityType="ClearingModel.pozit" />
         </EntityContainer>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="uname" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="uname" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="role" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="accountDetail">
           <Key>
             <PropertyRef Name="id" />
@@ -297,17 +273,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ClearingModelStoreContainer" CdmEntityContainer="ClearingEntities">
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="ClearingModel.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="role" ColumnName="role" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="uname" ColumnName="uname" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="accountDetails">
             <EntityTypeMapping TypeName="ClearingModel.accountDetail">
               <MappingFragment StoreEntitySet="accountDetails">

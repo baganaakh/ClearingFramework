@@ -22,7 +22,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Z.Dapper.Plus;
-using Account = ClearingFramework.dbBind.Account;
+using Account1 = ClearingFramework.dbBind.Account;                  //clearing database nickname
+using Account2 = ClearingFramework.dbBind.pageDatabase.Account;     //page     database nickname
 using MessageBox = System.Windows.MessageBox;
 
 
@@ -41,7 +42,7 @@ namespace Clearing.pages
             FillGrid();
         }
         long iid;
-        string pcode;
+        string pcode,linkAcc;
         #region fill, new & refresh
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
@@ -76,7 +77,7 @@ namespace Clearing.pages
         {
             using(ClearingEntities context=new ClearingEntities())
             {
-                Account acc = context.Accounts.FirstOrDefault(r => r.id == iid);
+                Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iid);
                 acc.lname = lName.Text;
                 acc.fname = fName.Text;
                 acc.idNum = idNumber.Text;
@@ -86,7 +87,7 @@ namespace Clearing.pages
                 acc.mail = email.Text;
                 acc.brokerCode = brokCode.Text;
                 //state = stat.SelectedValue.To;String(),
-                acc.linkAcc = linkAc.Text;
+                acc.linkAcc = linkAcc;
                 acc.fee = Convert.ToDecimal(fee.Text);
                 acc.denchinPercent = Convert.ToDecimal(denchinPercent.Text);
                 acc.contractFee = Convert.ToDecimal(contractFee.Text);
@@ -99,7 +100,8 @@ namespace Clearing.pages
         #region insert
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (brokCode.SelectedValue == null && stat.SelectedValue == null && linkAc.SelectedValue == null)
+            if (brokCode.SelectedValue == null && stat.SelectedValue == null 
+                && linkAc.SelectedValue == null)
             {
                 MessageBox.Show("Combos are empty Please fill them");
             }
@@ -116,7 +118,7 @@ namespace Clearing.pages
                     MessageBox.Show("Account number exists " + accountn.Text.ToString() +" !!!") ;
                     return;
                 }
-                Account acct = new Account
+                Account1 acct = new Account1
                 {
                     lname = lName.Text,
                     fname = fName.Text,
@@ -127,7 +129,7 @@ namespace Clearing.pages
                     state=Convert.ToInt16(stat.SelectedIndex),
                     mail = email.Text,
                     brokerCode = pcode,
-                    linkAcc = linkAc.Text,
+                    linkAcc = linkAcc,
                     modified = DateTime.Now,
                     fee = Convert.ToDecimal(fee.Text),
                     denchinPercent = Convert.ToDecimal(denchinPercent.Text),
@@ -151,10 +153,10 @@ namespace Clearing.pages
         #region delete
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            long iiid = (vwOmniAccBalance.SelectedItem as Account).id;
+            long iiid = (vwOmniAccBalance.SelectedItem as Account1).id;
             using (ClearingEntities context=new ClearingEntities())
             {
-                Account acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
+                Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
                 context.Accounts.Remove(acc);
                 context.SaveChanges();
             }
@@ -164,10 +166,10 @@ namespace Clearing.pages
         #region edit
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            iid = (vwOmniAccBalance.SelectedItem as Account).id;
+            iid = (vwOmniAccBalance.SelectedItem as Account1).id;
             using (ClearingEntities context = new ClearingEntities())
             {
-                Account acc = context.Accounts.FirstOrDefault(r => r.id == iid);
+                Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iid);
                 lName.Text = acc.lname;
                 fName.Text = acc.fname;
                 idNumber.Text = acc.idNum;
@@ -186,19 +188,22 @@ namespace Clearing.pages
         DataTableCollection tableCollection;
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "Excel 97-2003|*.xls|Excel Workbook|*.xlsx" })
+            using (OpenFileDialog openFileDialog = new OpenFileDialog() 
+                    { Filter = "Excel 97-2003|*.xls|Excel Workbook|*.xlsx" })
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
                     chosen.Text = filePath;
-                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, 
+                                                    FileAccess.Read))
                     {
                         using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                         {
                             DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
                             {
-                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration() { UseHeaderRow = true }
+                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration() 
+                                { UseHeaderRow = true }
                             });
                             tableCollection = result.Tables;
                             cboSheet.Items.Clear();
@@ -217,10 +222,10 @@ namespace Clearing.pages
             exceldata.ItemsSource = ConvertToAccountReadings(dt);
             if (dt != null)
             {
-                List<Account> acct = new List<Account>();
+                List<Account1> acct = new List<Account1>();
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    Account acc = new Account();
+                    Account1 acc = new Account1();
                     acc.lname = dt.Rows[i]["lname"].ToString();
                     acc.fname = dt.Rows[i]["fname"].ToString();
                     acc.idNum = dt.Rows[i]["idNum"].ToString();
@@ -240,9 +245,10 @@ namespace Clearing.pages
         {
             try
             {
-                string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;Persist Security Info=True;User ID=sa;Password=Qwerty123456";
-                DapperPlusManager.Entity<Account>().Table("Account");
-                List<Account> newAcct = vwOmniAccBalance.ItemsSource as List<Account>;
+                string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;" +
+                    "Persist Security Info=True;User ID=sa;Password=Qwerty123456";
+                DapperPlusManager.Entity<Account1>().Table("Account");
+                List<Account1> newAcct = vwOmniAccBalance.ItemsSource as List<Account1>;
                 if (newAcct != null)
                 {
                     using (IDbConnection db = new SqlConnection(connectionString))
@@ -261,11 +267,11 @@ namespace Clearing.pages
                 MessageBox.Show(ex.Message, "Message");
             }
         }
-        public IEnumerable<Account> ConvertToAccountReadings(DataTable dataTable)
+        public IEnumerable<Account1> ConvertToAccountReadings(DataTable dataTable)
         {
             foreach (DataRow row in dataTable.Rows)
             {
-                yield return new Account
+                yield return new Account1
                 {
                     lname = row["lname"].ToString(),
                     fname = row["fname"].ToString(),
@@ -283,12 +289,19 @@ namespace Clearing.pages
         #endregion
         #region combos
         public List<Member> mem { get; set; }
+        public List<Account2> acc { get; set; }
         private void bindCombo()
         {
+            int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
             demoEntities1 de = new demoEntities1();
+            //var memid = de.Members.Where(s=>s.partid == partId).ToList();
             var memid = de.Members.ToList();
             mem = memid;
             brokCode.ItemsSource = mem;
+
+            var acclist = de.Accounts.Where(s => s.memberid == memId).ToList();
+            acc = acclist;
+            linkAc.ItemsSource = acc;
         }
         private void brokCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -302,6 +315,19 @@ namespace Clearing.pages
                 return;
             }
         }
+        private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = linkAc.SelectedItem as Account2;
+            try
+            {
+                linkAcc = item.id.ToString();
+            }
+            catch
+            {
+                return;
+            }
+        }
         #endregion
+
     }
 }

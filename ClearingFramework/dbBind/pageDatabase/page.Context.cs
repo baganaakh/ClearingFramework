@@ -78,5 +78,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public virtual DbSet<Ttable> Ttables { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
+        public virtual DbSet<user> users { get; set; }
     }
 }
