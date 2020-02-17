@@ -36,7 +36,7 @@ namespace Clearing.pages
             var dealList=deal1.ToList();
             string query, acode, side;
             List<object> data=new List<object>();
-            foreach (var i in deal1)
+            foreach (var i in dealList)
             {
                 using (var context = new demoEntities1())
                 {
@@ -50,29 +50,14 @@ namespace Clearing.pages
                         MessageBox.Show("Post trade хоосон байна");
                         return;
                     }
-                    if (i.side == -1)
-                    {
-                        side = "Зарах";
-                    }
-                    else
-                    {
-                        side = "Авах";
-                    }
+                    if (i.side == -1) {side = "Зарах";}
+                    else {side = "Авах";}
                 }
-                data.Add(new forItems() { accNumber = query, 
-                                            assetId = acode, 
-                                            sides = side,
-                                            qtys=i.qty,
-                                            prices=i.price,
-                                            fees=Convert.ToDecimal(i.fee)
-                });
+                data.Add(new forItems() { accNumber = query, assetId = acode, sides = side, qtys=i.qty, prices=i.price, fees=Convert.ToDecimal(i.fee) });
                 using(var contx=new ClearingEntities())
                 {
-                    decimal lastPrice =Convert.ToDecimal(contx.lastPrices.Where(
-                                                            s => s.assetid == i.assetid)
-                                                        .FirstOrDefault<lastPrice>().ePrice);
+                    decimal lastPrice =Convert.ToDecimal(contx.lastPrices.Where(s => s.assetid == i.assetid).FirstOrDefault<lastPrice>().ePrice);
                     decimal gainloss = lastPrice * i.qty -i.price * i.qty;
-                    //decimal cdenchin=
 
                     var std = new pozit()
                     {
@@ -87,6 +72,7 @@ namespace Clearing.pages
                     };
                     contx.pozits.Add(std);
                     contx.SaveChanges();
+                    var poz = contx.pozits.ToList();
                 }
             }
                 unitedData.ItemsSource = data;

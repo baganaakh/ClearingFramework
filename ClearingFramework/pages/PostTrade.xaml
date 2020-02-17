@@ -240,7 +240,7 @@
                             <DataGridTextColumn MinWidth="70" Width ="*" Binding="{Binding qtys}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
                             <DataGridTextColumn MinWidth="70" Width ="*" Binding="{Binding prices}" ClipboardContentBinding="{x:Null}" Header="Үнийн дүн ₮"/>
                             <DataGridTextColumn MinWidth="90" Width ="*" Binding="{Binding fees}" ClipboardContentBinding="{x:Null}" Header="П.Х шимтгэл ₮"/>
-                            <DataGridTextColumn MinWidth="80" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Ашиг/Алд ₮"/>
+                            <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding gainLoss}" ClipboardContentBinding="{x:Null}" Header="Ашиг/Алд ₮"/>
                             <DataGridTextColumn MinWidth="90" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Дуудах дэнчин ₮"/>
                         </DataGrid.Columns>
                     </DataGrid>

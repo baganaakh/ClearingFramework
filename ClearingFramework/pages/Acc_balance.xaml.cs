@@ -1,4 +1,6 @@
-﻿using ClearingFramework.dbBind.pageDatabase;
+﻿using ClearingFramework;
+using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.pageDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,8 +32,12 @@ namespace Clearing.pages
         {
             using (demoEntities1 context = new demoEntities1())
             {
-                var acc = context.Accounts.Where(r => r.accNum == "123").ToList();//static
+                var acc = context.Accounts.ToList();
                 unitedData.ItemsSource = acc;
+                
+                long memid= Convert.ToInt32(App.Current.Properties["member_id"]);
+                var acclist = context.Accounts.Where(s => s.memberid == memid).ToList();
+                tuhBalance.ItemsSource = acclist;
             }
         }
         #endregion
