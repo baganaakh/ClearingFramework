@@ -25,7 +25,6 @@ namespace ClearingFramework.dbBind.pageDatabase
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<accType> accTypes { get; set; }
         public virtual DbSet<ActiveSession> ActiveSessions { get; set; }
         public virtual DbSet<algo> algoes { get; set; }
@@ -79,5 +78,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     }
 }

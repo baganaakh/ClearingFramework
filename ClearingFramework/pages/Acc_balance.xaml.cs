@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Account2 = System.Collections.Generic.IEnumerable<ClearingFramework.dbBind.pageDatabase.Account>;
 
 namespace Clearing.pages
 {
@@ -33,11 +34,22 @@ namespace Clearing.pages
             using (demoEntities1 context = new demoEntities1())
             {
                 var acc = context.Accounts.ToList();
-                unitedData.ItemsSource = acc;
                 
                 long memid= Convert.ToInt32(App.Current.Properties["member_id"]);
-                var acclist = context.Accounts.Where(s => s.memberid == memid).ToList();
-                tuhBalance.ItemsSource = acclist;
+                //var level1 = context.Accounts.Where(s => s.memberid == memid && s.accType == 0);
+                //select * from demo.dbo.Account where accType = 3 and LinkAcc in (select accNum from demo.dbo.Account where  LinkAcc IN (select accNum from demo.dbo.Account where memberid= 20 and accType = 0) and accType = 2)
+                var memberAccountNums = context.Accounts
+                    .Where(x => x.memberid == memid && x.accType == 0)
+                    .Select(x => x.accNum).ToArray();
+                var linkAccountsNums = context.Accounts
+                    .Where(x => x.accType == 2 &&  memberAccountNums.Contains(x.accNum))
+                    .Select(x => x.accNum).ToArray();
+                var result = context.Accounts
+                    .Where(x => x.accType == 3 && linkAccountsNums.Contains(x.accNum))
+                    .ToList();
+                unitedData.ItemsSource = result;
+                tuhBalance.ItemsSource = result;
+
             }
         }
         #endregion

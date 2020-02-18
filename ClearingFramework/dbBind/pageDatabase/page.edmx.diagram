@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="b794abed00ca452cbbcdfc96ec141eca" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.accType" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.ActiveSession" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="demoModel.algo" Width="1.5" PointX="4.75" PointY="0.75" />
@@ -59,6 +58,7 @@
         <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="20.75" PointY="4.75" />
         <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="20.75" PointY="7.75" />
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="11.375" PointY="20.75" />
+        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="0.625" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

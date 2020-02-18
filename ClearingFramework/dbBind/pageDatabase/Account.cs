@@ -17,7 +17,7 @@ namespace ClearingFramework.dbBind.pageDatabase
         public long id { get; set; }
         public long memberid { get; set; }
         public string accNum { get; set; }
-        public string accType { get; set; }
+        public Nullable<short> accType { get; set; }
         public Nullable<long> LinkAcc { get; set; }
         public Nullable<decimal> collateral { get; set; }
         public System.DateTime modified { get; set; }
