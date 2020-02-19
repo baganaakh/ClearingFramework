@@ -42,7 +42,7 @@ namespace Clearing.pages
             FillGrid();
         }
         long iid;
-        string pcode,linkAcc;
+        string pcode;
         #region fill, new & refresh
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
@@ -87,7 +87,7 @@ namespace Clearing.pages
                 acc.mail = email.Text;
                 acc.brokerCode = brokCode.Text;
                 //state = stat.SelectedValue.To;String(),
-                acc.linkAcc = linkAcc;
+                acc.linkAcc = linkAc.SelectedValue.ToString();
                 acc.fee = Convert.ToDecimal(fee.Text);
                 acc.denchinPercent = Convert.ToDecimal(denchinPercent.Text);
                 acc.contractFee = Convert.ToDecimal(contractFee.Text);
@@ -129,7 +129,7 @@ namespace Clearing.pages
                     state=Convert.ToInt16(stat.SelectedIndex),
                     mail = email.Text,
                     brokerCode = pcode,
-                    linkAcc = linkAcc,
+                    linkAcc = linkAc.SelectedValue.ToString(),
                     modified = DateTime.Now,
                     fee = Convert.ToDecimal(fee.Text),
                     denchinPercent = Convert.ToDecimal(denchinPercent.Text),
@@ -299,7 +299,7 @@ namespace Clearing.pages
             mem = memid;
             brokCode.ItemsSource = mem;
 
-            var acclist = de.Accounts.Where(s => s.memberid == memId).ToList();
+            var acclist = de.Accounts.Where(s => s.memberid == memId && s.accType == 2).ToList();
             acc = acclist;
             linkAc.ItemsSource = acc;
         }
@@ -315,19 +315,6 @@ namespace Clearing.pages
                 return;
             }
         }
-        private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var item = linkAc.SelectedItem as Account2;
-            try
-            {
-                linkAcc = item.id.ToString();
-            }
-            catch
-            {
-                return;
-            }
-        }
         #endregion
-
     }
 }

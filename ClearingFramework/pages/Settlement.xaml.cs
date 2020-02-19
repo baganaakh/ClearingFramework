@@ -76,7 +76,7 @@ namespace Clearing.pages
                 };
                 accountDetail accdet= context.accountDetails.FirstOrDefault(r => r.accNum == accnum);
                 if (accdet != null)
-                    accdet.totalValue += value;
+                    accdet.totalNumber+= value;
                 context.transactions.Add(tran);
                 context.SaveChanges();
             }
@@ -194,7 +194,7 @@ namespace Clearing.pages
                         {
                             accountDetail accdet = context.accountDetails.FirstOrDefault(r => r.accNum == i.accNum);
                             if (accdet != null)
-                                accdet.totalValue += i.value;
+                                accdet.totalNumber+= i.value;
                             context.SaveChanges();
                         }
                     }

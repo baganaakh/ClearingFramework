@@ -16,9 +16,10 @@ namespace ClearingFramework.dbBind
     {
         public int id { get; set; }
         public string accNum { get; set; }
-        public Nullable<decimal> totalValue { get; set; }
-        public Nullable<decimal> oddValue { get; set; }
+        public Nullable<decimal> totalNumber { get; set; }
+        public Nullable<decimal> freezeValue { get; set; }
         public System.DateTime modified { get; set; }
         public string idNum { get; set; }
+        public Nullable<int> securityId { get; set; }
     }
 }

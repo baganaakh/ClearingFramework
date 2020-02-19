@@ -104,7 +104,7 @@
                     <DataGrid x:Name="unitedData" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" HorizontalGridLinesBrush="White" 
                               AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" FontSize="10" RenderTransformOrigin="0.5,0.5" 
                               Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False">
-                        <!--<DataGrid.Columns>
+                        <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
                             <DataGridTextColumn MinWidth="100" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Эхний үлдэгдэл ₮"/>
                             <DataGridTextColumn MinWidth="100" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Тусгаарласан ₮"/>
@@ -112,7 +112,7 @@
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Өглөг ₮"/>
                             <DataGridTextColumn MinWidth="100" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Боломжит ₮"/>
                             <DataGridTextColumn MinWidth="80" Width ="*"  Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв"/>
-                        </DataGrid.Columns>-->
+                        </DataGrid.Columns>
                     </DataGrid>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="19,10,0,0" TextWrapping="Wrap" Text="Нэгдсэн данс #" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="111,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">

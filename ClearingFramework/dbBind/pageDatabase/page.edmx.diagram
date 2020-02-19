@@ -36,7 +36,6 @@
         <EntityTypeShape EntityType="demoModel.Member" Width="1.5" PointX="2.75" PointY="14.75" />
         <EntityTypeShape EntityType="demoModel.mtype" Width="1.5" PointX="14.75" PointY="4.75" />
         <EntityTypeShape EntityType="demoModel.netting" Width="1.5" PointX="14.75" PointY="7.75" />
-        <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="14.75" PointY="11.75" />
         <EntityTypeShape EntityType="demoModel.Participant" Width="1.5" PointX="14.75" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.Ptype" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="demoModel.RefPrice" Width="1.5" PointX="16.75" PointY="3.75" />
@@ -58,7 +57,8 @@
         <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="20.75" PointY="4.75" />
         <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="20.75" PointY="7.75" />
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="11.375" PointY="20.75" />
-        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="0.625" PointY="0.625" />
+        <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="5.375" PointY="21.75" />
+        <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="7.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

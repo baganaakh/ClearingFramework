@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="719dfe05a6b84af383adeacb1f196219" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="ClearingModel.accountDetail" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="ClearingModel.transaction" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="ClearingModel.Account" Width="1.5" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="ClearingModel.Request" Width="1.5" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="ClearingModel.clearingDeal" Width="1.5" PointX="3.375" PointY="6.75" />
         <EntityTypeShape EntityType="ClearingModel.deal" Width="1.5" PointX="5.375" PointY="6.75" />
         <EntityTypeShape EntityType="ClearingModel.lastPrice" Width="1.5" PointX="0.75" PointY="8.125" />
-        <EntityTypeShape EntityType="ClearingModel.pozit" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ClearingModel.accountDetail" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ClearingModel.pozit" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

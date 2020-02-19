@@ -54,52 +54,52 @@ namespace ClearingFramework
 
         }
         #endregion
-        public void Button_Click_1(object sender, RoutedEventArgs e)
+        public void Button_Click_1(object sender, RoutedEventArgs e)    // Эхлэл 
         {
             MainFrame.Content = new Start();
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void Button_Click_2(object sender, RoutedEventArgs e)     // Данс нээх
         {
             MainFrame.Content = new Create();
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private void Button_Click_3(object sender, RoutedEventArgs e)    // гүйлгээ Бүртгэх
         {
             MainFrame.Content = new Settlement();
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void Button_Click_4(object sender, RoutedEventArgs e)    // Дансны мэдээлэл
         {
             MainFrame.Content = new Acc_balance();
         }
 
-        private void Button_Click_5(object sender, RoutedEventArgs e)
+        private void Button_Click_5(object sender, RoutedEventArgs e)    // Арилжааны дүн
         {
             MainFrame.Content = new PostTrade();
         }
 
-        private void Button_Click_6(object sender, RoutedEventArgs e)
+        private void Button_Click_6(object sender, RoutedEventArgs e)    // Шимтгэл
         {
             MainFrame.Content = new Fee();
         }
 
-        private void Button_Click_7(object sender, RoutedEventArgs e)
+        private void Button_Click_7(object sender, RoutedEventArgs e)    // Рэпо
         {
             MainFrame.Content = new Repo();
         }
 
-        private void Button_Click_8(object sender, RoutedEventArgs e)
+        private void Button_Click_8(object sender, RoutedEventArgs e)     // ҮЦ зээл
         {
             MainFrame.Content = new Lend();
         }
 
-        private void Button_Click_9(object sender, RoutedEventArgs e)
+        private void Button_Click_9(object sender, RoutedEventArgs e)    // Барьцаа
         {
             MainFrame.Content = new Collateral();
         }
 
-        private void Button_Click_10(object sender, RoutedEventArgs e)
+        private void Button_Click_10(object sender, RoutedEventArgs e)     // Гарах
         {
             App.Current.Properties["User_id"] = null;
             Login login = new Login();

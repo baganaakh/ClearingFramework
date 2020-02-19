@@ -34,10 +34,11 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="accNum" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="totalValue" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="oddValue" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="freezeValue" Type="decimal" Precision="18" Scale="4" />
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="idNum" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="securityId" Type="int" />
         </EntityType>
         <EntityType Name="clearingDeal">
           <Key>
@@ -139,28 +140,15 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="accountDetails" EntityType="ClearingModel.accountDetail" />
           <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
           <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
           <EntitySet Name="Requests" EntityType="ClearingModel.Request" />
           <EntitySet Name="clearingDeals" EntityType="ClearingModel.clearingDeal" />
           <EntitySet Name="deals" EntityType="ClearingModel.deal" />
           <EntitySet Name="lastPrices" EntityType="ClearingModel.lastPrice" />
+          <EntitySet Name="accountDetails" EntityType="ClearingModel.accountDetail" />
           <EntitySet Name="pozits" EntityType="ClearingModel.pozit" />
         </EntityContainer>
-        <EntityType Name="accountDetail">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="accNum" />
-            <PropertyRef Name="idNum" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="totalValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="oddValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="transaction">
           <Key>
             <PropertyRef Name="id" />
@@ -253,6 +241,20 @@
           <Property Name="assetid" Type="Int32" />
           <Property Name="ePrice" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
+        <EntityType Name="accountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="accNum" />
+            <PropertyRef Name="idNum" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="securityId" Type="Int32" />
+        </EntityType>
         <EntityType Name="pozit">
           <Key>
             <PropertyRef Name="id" />
@@ -273,18 +275,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ClearingModelStoreContainer" CdmEntityContainer="ClearingEntities">
-          <EntitySetMapping Name="accountDetails">
-            <EntityTypeMapping TypeName="ClearingModel.accountDetail">
-              <MappingFragment StoreEntitySet="accountDetails">
-                <ScalarProperty Name="idNum" ColumnName="idNum" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="oddValue" ColumnName="oddValue" />
-                <ScalarProperty Name="totalValue" ColumnName="totalValue" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="transactions">
             <EntityTypeMapping TypeName="ClearingModel.transaction">
               <MappingFragment StoreEntitySet="transaction">
@@ -379,6 +369,19 @@
               <MappingFragment StoreEntitySet="lastPrice">
                 <ScalarProperty Name="ePrice" ColumnName="ePrice" />
                 <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accountDetails">
+            <EntityTypeMapping TypeName="ClearingModel.accountDetail">
+              <MappingFragment StoreEntitySet="accountDetails">
+                <ScalarProperty Name="securityId" ColumnName="securityId" />
+                <ScalarProperty Name="idNum" ColumnName="idNum" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
+                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
