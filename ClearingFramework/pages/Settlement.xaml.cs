@@ -74,7 +74,7 @@ namespace Clearing.pages
                     note = trnote.Text,
                     side = "1"
                 };
-                accountDetail accdet= context.accountDetails.FirstOrDefault(r => r.accNum == accnum);
+                Account accdet= context.Accounts.FirstOrDefault(r => r.accNum == accnum);
                 if (accdet != null)
                     accdet.totalNumber+= value;
                 context.transactions.Add(tran);
@@ -192,7 +192,7 @@ namespace Clearing.pages
                     {
                         foreach (var i in newAcct)
                         {
-                            accountDetail accdet = context.accountDetails.FirstOrDefault(r => r.accNum == i.accNum);
+                            Account accdet = context.Accounts.FirstOrDefault(r => r.accNum == i.accNum);
                             if (accdet != null)
                                 accdet.totalNumber+= i.value;
                             context.SaveChanges();

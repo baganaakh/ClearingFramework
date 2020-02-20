@@ -94,6 +94,10 @@ namespace Clearing.pages
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = asset.SelectedItem as Asset;
+            int assId = item.id;
+            var idnum = CE.Accounts.Where(s => s.linkAcc == linkacs).ToArray();
+            var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).Select(s=>s.totalNumber);
+            remainder.Text = totNumber.ToString();
             try
             {
                 int iid = item.id;
@@ -102,7 +106,6 @@ namespace Clearing.pages
                 decimal ratio = item.ratio;
                 decimal lastPrice = ratio * eprice2;
                 exPrice.Text = lastPrice.ToString();
-
             }
             catch
             {
@@ -121,7 +124,7 @@ namespace Clearing.pages
                 var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.idNum).ToList();
                 foreach(var i in acclist)
                 {
-                    var detail = CE.accountDetails.Where(s => s.idNum == i).Select(s=> s.assetId).ToArray();
+                    var detail = CE.Accounts.Where(s => s.idNum == i).Select(s=> s.assetid).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
                     var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
                     assets.Add(asst);

@@ -15,13 +15,13 @@ namespace ClearingFramework.dbBind
     public partial class Account
     {
         public long id { get; set; }
+        public string accNum { get; set; }
+        public string idNum { get; set; }
         public string lname { get; set; }
         public string fname { get; set; }
-        public string idNum { get; set; }
         public string phone { get; set; }
         public string mail { get; set; }
         public string linkAcc { get; set; }
-        public string accNum { get; set; }
         public string brokerCode { get; set; }
         public Nullable<short> state { get; set; }
         public System.DateTime modified { get; set; }
@@ -30,5 +30,8 @@ namespace ClearingFramework.dbBind
         public Nullable<decimal> denchinPercent { get; set; }
         public Nullable<decimal> contractFee { get; set; }
         public Nullable<decimal> pozFee { get; set; }
+        public Nullable<decimal> totalNumber { get; set; }
+        public Nullable<decimal> freezeValue { get; set; }
+        public Nullable<int> assetid { get; set; }
     }
 }

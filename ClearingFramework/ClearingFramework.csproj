@@ -100,9 +100,6 @@
     <Compile Include="dbBind\Account.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\accountDetail.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\clearingDeal.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>

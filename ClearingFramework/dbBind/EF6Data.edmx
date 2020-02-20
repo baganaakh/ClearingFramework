@@ -10,13 +10,13 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accNum" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="idNum" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="lname" Type="nvarchar" MaxLength="30" />
           <Property Name="fname" Type="nvarchar" MaxLength="30" />
-          <Property Name="idNum" Type="nvarchar" MaxLength="10" Nullable="false" />
           <Property Name="phone" Type="nvarchar" MaxLength="20" />
           <Property Name="mail" Type="nvarchar" MaxLength="30" />
           <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
-          <Property Name="accNum" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="brokerCode" Type="nvarchar" MaxLength="50" />
           <Property Name="state" Type="smallint" />
           <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
@@ -25,20 +25,9 @@
           <Property Name="denchinPercent" Type="decimal" Precision="18" Scale="4" />
           <Property Name="contractFee" Type="decimal" Precision="18" Scale="4" />
           <Property Name="pozFee" Type="decimal" Precision="18" Scale="4" />
-        </EntityType>
-        <EntityType Name="accountDetails">
-          <Key>
-            <PropertyRef Name="id" />
-            <PropertyRef Name="accNum" />
-            <PropertyRef Name="idNum" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="accNum" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="totalNumber" Type="decimal" Precision="18" Scale="4" />
           <Property Name="freezeValue" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="idNum" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="assetId" Type="int" />
+          <Property Name="assetid" Type="int" />
         </EntityType>
         <EntityType Name="clearingDeal">
           <Key>
@@ -127,7 +116,6 @@
         </EntityType>
         <EntityContainer Name="ClearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="accountDetails" EntityType="Self.accountDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="clearingDeal" EntityType="Self.clearingDeal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deal" EntityType="Self.deal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lastPrice" EntityType="Self.lastPrice" Schema="dbo" store:Type="Tables" />
@@ -141,13 +129,12 @@
       <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
-          <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
           <EntitySet Name="Requests" EntityType="ClearingModel.Request" />
           <EntitySet Name="clearingDeals" EntityType="ClearingModel.clearingDeal" />
           <EntitySet Name="deals" EntityType="ClearingModel.deal" />
           <EntitySet Name="lastPrices" EntityType="ClearingModel.lastPrice" />
           <EntitySet Name="pozits" EntityType="ClearingModel.pozit" />
-          <EntitySet Name="accountDetails" EntityType="ClearingModel.accountDetail" />
+          <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
         </EntityContainer>
         <EntityType Name="transaction">
           <Key>
@@ -159,27 +146,6 @@
           <Property Name="value" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Request">
           <Key>
@@ -255,19 +221,29 @@
           <Property Name="gainLoss" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="callDenchin" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
-        <EntityType Name="accountDetail">
+        <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="accNum" />
-            <PropertyRef Name="idNum" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="assetId" Type="Int32" />
+          <Property Name="assetid" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -283,28 +259,6 @@
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="transType" ColumnName="transType" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="ClearingModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="pozFee" ColumnName="pozFee" />
-                <ScalarProperty Name="contractFee" ColumnName="contractFee" />
-                <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
-                <ScalarProperty Name="mail" ColumnName="mail" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="idNum" ColumnName="idNum" />
-                <ScalarProperty Name="fname" ColumnName="fname" />
-                <ScalarProperty Name="lname" ColumnName="lname" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -388,14 +342,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="accountDetails">
-            <EntityTypeMapping TypeName="ClearingModel.accountDetail">
-              <MappingFragment StoreEntitySet="accountDetails">
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="idNum" ColumnName="idNum" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="ClearingModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
                 <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
                 <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
+                <ScalarProperty Name="pozFee" ColumnName="pozFee" />
+                <ScalarProperty Name="contractFee" ColumnName="contractFee" />
+                <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
+                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="idNum" ColumnName="idNum" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

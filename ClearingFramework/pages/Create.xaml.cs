@@ -136,15 +136,7 @@ namespace Clearing.pages
                     contractFee = Convert.ToDecimal(contractFee.Text),
                     pozFee= Convert.ToDecimal(pozfee.Text)
                 };
-                accountDetail adetail = new accountDetail
-                {
-                    accNum = accountn.Text,
-                    idNum= idNumber.Text,
-                    modified=DateTime.Now
-                };
-
                 context.Accounts.Add(acct);
-                context.accountDetails.Add(adetail);
                 context.SaveChanges();
                 FillGrid();
             }
