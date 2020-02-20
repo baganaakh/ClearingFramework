@@ -7,10 +7,6 @@
       d:DesignHeight="730" d:DesignWidth="874"
       Title="Acc_balance">
     <Page.Resources>
-        <Style TargetType="ScrollBar">
-            <Setter Property="Background" Value="#FFE4DCE4" />
-            <Setter Property="BorderThickness" Value=" 0,0,0,0"/>
-        </Style>
         <Style TargetType="RepeatButton">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Background" Value="#FF967893" />

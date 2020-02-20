@@ -438,7 +438,7 @@
           <Property Name="qty" Type="int" />
           <Property Name="price" Type="decimal" Precision="18" Scale="4" />
           <Property Name="state" Type="smallint" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="dealType" Type="smallint" />
           <Property Name="connect" Type="nvarchar" MaxLength="20" />
           <Property Name="day" Type="int" />
@@ -480,10 +480,11 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="bigint" Nullable="false" />
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="refprice" Type="decimal" Precision="18" Scale="6" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="20" />
+          <Property Name="assetId" Type="int" />
         </EntityType>
         <EntityType Name="Rights">
           <Key>
@@ -792,7 +793,6 @@
           <EntitySet Name="nettings" EntityType="demoModel.netting" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="Ptypes" EntityType="demoModel.Ptype" />
-          <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
           <EntitySet Name="Rights" EntityType="demoModel.Right" />
           <EntitySet Name="Securities" EntityType="demoModel.Security" />
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
@@ -813,6 +813,7 @@
           <EntitySet Name="users" EntityType="demoModel.user" />
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Orders" EntityType="demoModel.Order" />
+          <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
         </EntityContainer>
         <EntityType Name="accType">
           <Key>
@@ -1251,15 +1252,6 @@
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ptype1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="RefPrice">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" />
-          <Property Name="refprice1" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Right">
           <Key>
             <PropertyRef Name="ID" />
@@ -1502,10 +1494,20 @@
           <Property Name="qty" Type="Int32" />
           <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="dealType" Type="Int16" />
           <Property Name="connect" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="day" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RefPrice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="refprice1" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="assetId" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1979,16 +1981,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="RefPrices">
-            <EntityTypeMapping TypeName="demoModel.RefPrice">
-              <MappingFragment StoreEntitySet="RefPrice">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="refprice1" ColumnName="refprice" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Rights">
             <EntityTypeMapping TypeName="demoModel.Right">
               <MappingFragment StoreEntitySet="Rights">
@@ -2252,6 +2244,17 @@
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
                 <ScalarProperty Name="side" ColumnName="side" />
                 <ScalarProperty Name="bid" ColumnName="bid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefPrices">
+            <EntityTypeMapping TypeName="demoModel.RefPrice">
+              <MappingFragment StoreEntitySet="RefPrice">
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="refprice1" ColumnName="refprice" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

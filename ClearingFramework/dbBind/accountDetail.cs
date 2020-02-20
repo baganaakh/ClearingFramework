@@ -20,6 +20,6 @@ namespace ClearingFramework.dbBind
         public Nullable<decimal> freezeValue { get; set; }
         public System.DateTime modified { get; set; }
         public string idNum { get; set; }
-        public Nullable<int> securityId { get; set; }
+        public Nullable<int> assetId { get; set; }
     }
 }

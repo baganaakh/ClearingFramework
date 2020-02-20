@@ -178,8 +178,12 @@ namespace Clearing.pages
                 secAc.Text = acc.secAcc;
                 email.Text = acc.mail;
                 brokCode.Text = acc.brokerCode;
-                linkAc.SelectedItem = cbi7;
+                linkAc.SelectedValue = acc.linkAcc;
                 stat.SelectedIndex = Convert.ToInt32( acc.state);
+                fee.Text = acc.fee.ToString();
+                denchinPercent.Text = acc.denchinPercent.ToString();
+                contractFee.Text = acc.contractFee.ToString();
+                pozfee.Text = acc.pozFee.ToString();
             }
         }
         #endregion
@@ -299,7 +303,7 @@ namespace Clearing.pages
             mem = memid;
             brokCode.ItemsSource = mem;
 
-            var acclist = de.Accounts.Where(s => s.memberid == memId && s.accType == 2).ToList();
+            var acclist = de.Accounts.Where(s => s.memberid == memId && s.accType == 3).ToList();
             acc = acclist;
             linkAc.ItemsSource = acc;
         }
@@ -316,5 +320,10 @@ namespace Clearing.pages
             }
         }
         #endregion
+
+        private void fee_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
     }
 }

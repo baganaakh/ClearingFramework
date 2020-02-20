@@ -58,7 +58,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public virtual DbSet<netting> nettings { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
         public virtual DbSet<Ptype> Ptypes { get; set; }
-        public virtual DbSet<RefPrice> RefPrices { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
         public virtual DbSet<Security> Securities { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
@@ -79,5 +78,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<RefPrice> RefPrices { get; set; }
     }
 }

@@ -245,7 +245,7 @@
             <ComboBox x:Name="brokCode" SelectionChanged="brokCode_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="code" SelectedValuePath="code" HorizontalAlignment="Left" Height="20" Margin="352,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
             <Label Content="Label" Margin="0,12,238,0" VerticalAlignment="Top" Height="164" HorizontalAlignment="Right" Width="4" Background="#FF7B5477"/>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="236,75,0,0" TextWrapping="Wrap" Text="Холбох данс" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
-            <ComboBox Name="linkAc" DisplayMemberPath="accNum" SelectedValuePath="accNum" HorizontalAlignment="Left" Height="20" Margin="352,75,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
+            <ComboBox Name="linkAc" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Height="20" Margin="352,75,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
             </ComboBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="280,36,0,0" TextWrapping="Wrap" Text="Төлөв" Width="45" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
             <ComboBox Name="stat" HorizontalAlignment="Left" Height="20" Margin="352,41,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
@@ -332,7 +332,7 @@
             </Button>
             <TextBox HorizontalAlignment="Left" x:Name="chosen_Copy" Height="20" Margin="750,58,0,0" TextWrapping="Wrap" Text="Хуудас" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="218,184,0,0" TextWrapping="Wrap" Text="позиц оруулсан шимтгэл" Width="145" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="pozfee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox PreviewTextInput="fee_PreviewTextInput" x:Name="pozfee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -340,7 +340,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="255,103,0,0" TextWrapping="Wrap" Text="Шимтгэл хувь" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="fee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox PreviewTextInput="fee_PreviewTextInput" x:Name="fee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -348,7 +348,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="236,128,0,0" TextWrapping="Wrap" Text="дэнчин хувь" Width="82" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="denchinPercent" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox PreviewTextInput="fee_PreviewTextInput" x:Name="denchinPercent" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -356,7 +356,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="232,153,0,0" TextWrapping="Wrap" Text="хэлцэл шимтгэл" Width="93" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox x:Name="contractFee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox PreviewTextInput="fee_PreviewTextInput" x:Name="contractFee" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="369,153,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>

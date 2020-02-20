@@ -41,6 +41,9 @@
   <PropertyGroup>
     <StartupObject>ClearingFramework.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
@@ -496,6 +499,8 @@
       <DependentUpon>page.edmx</DependentUpon>
       <LastGenOutput>page.cs</LastGenOutput>
     </Content>
+    <Resource Include="favicon.ico" />
+    <Resource Include="pics\favicon.ico" />
     <Resource Include="usefulCodes\debug.txt" />
     <Resource Include="pics\reload.png" />
   </ItemGroup>

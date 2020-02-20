@@ -78,7 +78,7 @@ namespace Clearing.pages
         public List<Member> members{ get; set; }
         private void bindCombo()
         {
-            var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accType == 2).ToList();
+            var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accType == 3).ToList();
             acc = acclist;
             linkAc.ItemsSource = acc;
 
@@ -91,20 +91,42 @@ namespace Clearing.pages
             membee.ItemsSource = members;
         }
 
-        private void linkAc_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var item = asset.SelectedItem as Asset;
+            try
+            {
+                int iid = item.id;
+                RefPrice eprice = DE.RefPrices.Where(s => s.assetId == iid).FirstOrDefault<RefPrice>();
+                decimal eprice2 = eprice.refprice1 / 100;
+                decimal ratio = item.ratio;
+                decimal lastPrice = ratio * eprice2;
+                exPrice.Text = lastPrice.ToString();
 
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = linkAc.SelectedItem as Account1;
+            var item = linkAc.SelectedItem as Account2;
+            //accnum=item.
             try
             {
-                linkacs = item.linkAcc.ToString();
-                accnum = item.accNum.ToString();
-                var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accType == 3 && s.accNum == accnum).ToList();
-                asset.ItemsSource = acclist;
+                linkacs = item.id.ToString();
+                List<Asset> assets = new List<Asset>();
+                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.idNum).ToList();
+                foreach(var i in acclist)
+                {
+                    var detail = CE.accountDetails.Where(s => s.idNum == i).Select(s=> s.assetId).ToArray();
+                    int ids = Convert.ToInt32(detail[0]);
+                    var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
+                    assets.Add(asst);
+                }
+                asset.ItemsSource = assets;
             }
             catch
             {

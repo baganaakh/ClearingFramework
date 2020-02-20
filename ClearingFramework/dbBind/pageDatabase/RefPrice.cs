@@ -18,5 +18,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public decimal refprice1 { get; set; }
         public System.DateTime modified { get; set; }
         public string name { get; set; }
+        public Nullable<int> assetId { get; set; }
     }
 }
