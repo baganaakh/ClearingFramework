@@ -178,6 +178,9 @@
     <Compile Include="dbBind\pageDatabase\GroupUser.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\pageDatabase\Interest.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\pageDatabase\Invoice.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>

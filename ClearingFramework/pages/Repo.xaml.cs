@@ -31,6 +31,7 @@ namespace Clearing.pages
             bindCombo();
         }
         string linkacs, accnum;
+        int assId;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         ClearingEntities CE = new ClearingEntities();
         demoEntities1 DE = new demoEntities1();
@@ -94,10 +95,15 @@ namespace Clearing.pages
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = asset.SelectedItem as Asset;
-            int assId = item.id;
-            var idnum = CE.Accounts.Where(s => s.linkAcc == linkacs).ToArray();
-            var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).Select(s=>s.totalNumber);
-            remainder.Text = totNumber.ToString();
+            assId = item.id;
+            var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).ToArray();
+            decimal sum=0,freezesum=0;
+            foreach(Account1 i in totNumber)
+            {
+                sum += Convert.ToDecimal( i.totalNumber);
+                freezesum += Convert.ToDecimal(i.freezeValue);
+            }
+            remainder.Text = sum.ToString();
             try
             {
                 int iid = item.id;
@@ -105,6 +111,7 @@ namespace Clearing.pages
                 decimal eprice2 = eprice.refprice1 / 100;
                 decimal ratio = item.ratio;
                 decimal lastPrice = ratio * eprice2;
+                possible.Text = (lastPrice * sum).ToString();
                 exPrice.Text = lastPrice.ToString();
             }
             catch
@@ -113,10 +120,10 @@ namespace Clearing.pages
             }
         }
 
+
         private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = linkAc.SelectedItem as Account2;
-            //accnum=item.
             try
             {
                 linkacs = item.id.ToString();
@@ -129,12 +136,39 @@ namespace Clearing.pages
                     var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
                     assets.Add(asst);
                 }
-                asset.ItemsSource = assets;
+                asset.ItemsSource = assets.Distinct();
             }
             catch
             {
                 throw;
             }
+        }
+
+        private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
+        #endregion
+
+        #region QTYSS textchanged
+        private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                TotalSum.Text = (Convert.ToInt32(qtyss.Text) * Convert.ToDecimal(exPrice.Text)).ToString();
+            }
+            catch (System.FormatException)
+            {
+                return;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+            Interest Interst = DE.Interests.Where(s => s.assetid == assId);
+            int Interst1=Interst.
+            ToPay.Text = (Convert.ToDecimal(TotalSum.Text)* ).ToString();
         }
         #endregion
     }

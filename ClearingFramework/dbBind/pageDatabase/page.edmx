@@ -307,6 +307,16 @@
           <Property Name="state" Type="smallint" Nullable="false" />
           <Property Name="modified" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="Interests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="interest" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="repoInterset" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="loanInterset" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
         <EntityType Name="InvoiceDetails">
           <Key>
             <PropertyRef Name="id" />
@@ -723,6 +733,7 @@
           <EntitySet Name="Fee" EntityType="Self.Fee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupRights" EntityType="Self.GroupRights" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupUsers" EntityType="Self.GroupUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interests" EntityType="Self.Interests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="isactive" EntityType="Self.isactive" Schema="dbo" store:Type="Tables" />
@@ -814,6 +825,7 @@
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
           <EntitySet Name="Orders" EntityType="demoModel.Order" />
           <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
+          <EntitySet Name="Interests" EntityType="demoModel.Interest" />
         </EntityContainer>
         <EntityType Name="accType">
           <Key>
@@ -1508,6 +1520,16 @@
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="assetId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="interest1" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="repoInterset" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="loanInterset" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2255,6 +2277,17 @@
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="refprice1" ColumnName="refprice" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interests">
+            <EntityTypeMapping TypeName="demoModel.Interest">
+              <MappingFragment StoreEntitySet="Interests">
+                <ScalarProperty Name="loanInterset" ColumnName="loanInterset" />
+                <ScalarProperty Name="repoInterset" ColumnName="repoInterset" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="interest1" ColumnName="interest" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
