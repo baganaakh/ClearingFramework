@@ -3,6 +3,7 @@ using ClearingFramework.dbBind;
 using ClearingFramework.dbBind.pageDatabase;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -30,7 +31,7 @@ namespace Clearing.pages
             FillGrid();
             bindCombo();
         }
-        string linkacs, accnum;
+        string linkacs, accnum,toId="0";
         int assId;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         ClearingEntities CE = new ClearingEntities();
@@ -44,10 +45,12 @@ namespace Clearing.pages
                 {
                     qty = Convert.ToInt32(qtyss.Text),
                     assetid = Convert.ToInt64(asset.SelectedValue),
-                    connect = membee.SelectedValue.ToString(),
+                    connect = toId,
                     accountid = Convert.ToInt64(linkAc.SelectedValue),
                     day = Convert.ToInt32(dayy.Text),
-                    modified = DateTime.Now
+                    modified = DateTime.Now,
+                    memberid= memId,
+                    state=0
                 };
                 context.Orders.Add(order);
                 context.SaveChanges();
@@ -58,13 +61,24 @@ namespace Clearing.pages
         #region fill
         private void FillGrid()
         {
-            totalOrder.ItemsSource = DE.Orders.ToList();
+            totalOrder.ItemsSource = DE.Orders.Where(s=> s.connect == "0" || s.connect == memId.ToString()).ToList();
+            OwnTable.ItemsSource = DE.Orders.Where(s=> s.memberid == memId).ToList();
+
         }
         #endregion
         #region Нийт захиалга зөвшөөрөх
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            Order value = (Order)totalOrder.SelectedItem;
+            if (null == value) return;
+            int id = Convert.ToInt32( value.id);
+            using (var contx=new demoEntities1())
+            {
+            Order statss = contx.Orders.FirstOrDefault(s=> s.id == id);
+            statss.state = 1;
+            contx.SaveChanges();
+            }
+            FillGrid();
         }
         #endregion
         #region өөрийн захиалга Цуцлах
@@ -83,13 +97,16 @@ namespace Clearing.pages
             acc = acclist;
             linkAc.ItemsSource = acc;
 
-            //var asslist = DE.Assets.ToList();
-            //assets = asslist;
-            //asset.ItemsSource = assets;
 
             var memlist = DE.Members.ToList();
             members = memlist;
+            var rem = members.Find(x => x.id == memId);
+            members.Remove(rem);
+            Member allItem = new Member() {name= "Бүгд", id= 0};
+            members.Add(allItem);
             membee.ItemsSource = members;
+            int indexx = members.Count();
+            membee.SelectedIndex = indexx-1;
         }
 
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -119,8 +136,6 @@ namespace Clearing.pages
                 throw;
             }
         }
-
-
         private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = linkAc.SelectedItem as Account2;
@@ -143,13 +158,33 @@ namespace Clearing.pages
                 throw;
             }
         }
-
         private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
+        private void dayy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem days = (ComboBoxItem)dayy.SelectedItem;
+            int days1 = Convert.ToInt32(days.Content);
+            var Interst = DE.Interests.Where(s => s.assetid == assId).FirstOrDefault<Interest>();
+            decimal Interst1 =Convert.ToDecimal( Interst.interest1);
+            Inter.Text = (Convert.ToDecimal(TotalSum.Text) * days1* Interst1).ToString();
+            ToPay.Text = (Convert.ToDecimal(TotalSum.Text)+ Convert.ToDecimal(Inter.Text) ).ToString();
+        }
+        private void membee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var item = membee.SelectedItem as Member;
+            try
+            {
+                toId = item.id.ToString();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return;
+            }
+        }
         #endregion
-
         #region QTYSS textchanged
         private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -166,9 +201,6 @@ namespace Clearing.pages
                 MessageBox.Show(ex.ToString());
                 return;
             }
-            Interest Interst = DE.Interests.Where(s => s.assetid == assId);
-            int Interst1=Interst.
-            ToPay.Text = (Convert.ToDecimal(TotalSum.Text)* ).ToString();
         }
         #endregion
     }
