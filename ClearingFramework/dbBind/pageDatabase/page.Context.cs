@@ -77,8 +77,8 @@ namespace ClearingFramework.dbBind.pageDatabase
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<user> users { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<RefPrice> RefPrices { get; set; }
         public virtual DbSet<Interest> Interests { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
     }
 }

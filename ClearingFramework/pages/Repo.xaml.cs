@@ -22,6 +22,7 @@ namespace Clearing.pages
 {
     /// <summary>
     /// Interaction logic for Repo.xaml
+    /// interst, refPrice, account-totalsum
     /// </summary>
     public partial class Repo : Page
     {
@@ -32,7 +33,7 @@ namespace Clearing.pages
             bindCombo();
         }
         string linkacs, accnum,toId="0";
-        int assId;
+        decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         ClearingEntities CE = new ClearingEntities();
         demoEntities1 DE = new demoEntities1();
@@ -43,14 +44,17 @@ namespace Clearing.pages
             {
                 Order order = new Order()
                 {
-                    qty = Convert.ToInt32(qtyss.Text),
-                    assetid = Convert.ToInt64(asset.SelectedValue),
-                    connect = toId,
                     accountid = Convert.ToInt64(linkAc.SelectedValue),
+                    assetid = Convert.ToInt64(asset.SelectedValue),
+                    qty = Convert.ToInt32(qtyss.Text),
                     day = Convert.ToInt32(dayy.Text),
+                    connect = toId,
                     modified = DateTime.Now,
-                    memberid= memId,
-                    state=0
+                    memberid = memId,
+                    state = 0,
+                    totSum = totSum,
+                    toPay = toPay,
+                    interests = inter
                 };
                 context.Orders.Add(order);
                 context.SaveChanges();
@@ -61,9 +65,13 @@ namespace Clearing.pages
         #region fill
         private void FillGrid()
         {
-            totalOrder.ItemsSource = DE.Orders.Where(s=> s.connect == "0" || s.connect == memId.ToString()).ToList();
-            OwnTable.ItemsSource = DE.Orders.Where(s=> s.memberid == memId).ToList();
-
+            demoEntities1 de = new demoEntities1();
+            List<Order> ord= de.Orders.Where(s => s.connect == "0" || s.connect == memId.ToString()).ToList();
+            totalOrder.ItemsSource = ord;
+            List<Order> ords = de.Orders.Where(s => s.memberid == memId).ToList();
+            OwnTable.ItemsSource = ords;
+            soldTable.ItemsSource= de.Orders.Where(s => s.memberid == memId && s.state == 1).ToList();
+            boughtTable.ItemsSource= de.Orders.Where(s => s.memberid != memId && s.state==1).ToList();
         }
         #endregion
         #region Нийт захиалга зөвшөөрөх
@@ -81,10 +89,19 @@ namespace Clearing.pages
             FillGrid();
         }
         #endregion
-        #region өөрийн захиалга Цуцлах
+        #region өөрийн захиалга Цуцлах Устгах
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-
+            Order value = (Order)OwnTable.SelectedItem;
+            if (null == value) return;
+            int id = Convert.ToInt32(value.id);
+            using (var contx = new demoEntities1())
+            {
+                Order statss = contx.Orders.FirstOrDefault(s => s.id == id);
+                contx.Orders.Remove(statss);
+                contx.SaveChanges();
+            }
+            FillGrid();
         }
         #endregion
         #region combos
@@ -97,7 +114,6 @@ namespace Clearing.pages
             acc = acclist;
             linkAc.ItemsSource = acc;
 
-
             var memlist = DE.Members.ToList();
             members = memlist;
             var rem = members.Find(x => x.id == memId);
@@ -108,9 +124,9 @@ namespace Clearing.pages
             int indexx = members.Count();
             membee.SelectedIndex = indexx-1;
         }
-
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            qtyss.IsEnabled = true;
             var item = asset.SelectedItem as Asset;
             assId = item.id;
             var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).ToArray();
@@ -124,7 +140,7 @@ namespace Clearing.pages
             try
             {
                 int iid = item.id;
-                RefPrice eprice = DE.RefPrices.Where(s => s.assetId == iid).FirstOrDefault<RefPrice>();
+                RefPrice eprice = DE.RefPrices.Where(s => s.assetId == iid).FirstOrDefault<RefPrice>(); //error if no refprice found releated to asset
                 decimal eprice2 = eprice.refprice1 / 100;
                 decimal ratio = item.ratio;
                 decimal lastPrice = ratio * eprice2;
@@ -138,6 +154,7 @@ namespace Clearing.pages
         }
         private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            asset.IsEnabled = true;
             var item = linkAc.SelectedItem as Account2;
             try
             {
@@ -165,11 +182,17 @@ namespace Clearing.pages
         private void dayy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem days = (ComboBoxItem)dayy.SelectedItem;
+            if (days == null)
+            {
+                return;
+            }
             int days1 = Convert.ToInt32(days.Content);
             var Interst = DE.Interests.Where(s => s.assetid == assId).FirstOrDefault<Interest>();
             decimal Interst1 =Convert.ToDecimal( Interst.interest1);
-            Inter.Text = (Convert.ToDecimal(TotalSum.Text) * days1* Interst1).ToString();
-            ToPay.Text = (Convert.ToDecimal(TotalSum.Text)+ Convert.ToDecimal(Inter.Text) ).ToString();
+            inter = Convert.ToDecimal(TotalSum.Text) * days1 * Interst1;
+            Inter.Text = inter.ToString();
+            toPay = Convert.ToDecimal(TotalSum.Text) + Convert.ToDecimal(Inter.Text);
+            ToPay.Text = toPay.ToString();
         }
         private void membee_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -188,9 +211,14 @@ namespace Clearing.pages
         #region QTYSS textchanged
         private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
         {
+            dayy.IsEnabled = true;
+            dayy.SelectedItem = null;
+            Inter.Text = null;
+            ToPay.Text = null;
             try
             {
-                TotalSum.Text = (Convert.ToInt32(qtyss.Text) * Convert.ToDecimal(exPrice.Text)).ToString();
+                totSum = Convert.ToInt32(qtyss.Text) * Convert.ToDecimal(exPrice.Text);
+                TotalSum.Text = totSum.ToString();
             }
             catch (System.FormatException)
             {

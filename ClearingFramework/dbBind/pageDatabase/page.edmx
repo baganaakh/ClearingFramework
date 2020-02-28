@@ -452,6 +452,9 @@
           <Property Name="dealType" Type="smallint" />
           <Property Name="connect" Type="nvarchar" MaxLength="20" />
           <Property Name="day" Type="int" />
+          <Property Name="totSum" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="toPay" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="interests" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Participants">
           <Key>
@@ -823,9 +826,9 @@
           <EntitySet Name="UserGroups" EntityType="demoModel.UserGroup" />
           <EntitySet Name="users" EntityType="demoModel.user" />
           <EntitySet Name="Accounts" EntityType="demoModel.Account" />
-          <EntitySet Name="Orders" EntityType="demoModel.Order" />
           <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
           <EntitySet Name="Interests" EntityType="demoModel.Interest" />
+          <EntitySet Name="Orders" EntityType="demoModel.Order" />
         </EntityContainer>
         <EntityType Name="accType">
           <Key>
@@ -1493,24 +1496,6 @@
           <Property Name="enddate" Type="DateTime" Precision="0" />
           <Property Name="state" Type="Int16" Nullable="false" />
         </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="bid" Type="Int64" />
-          <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="assetid" Type="Int64" />
-          <Property Name="qty" Type="Int32" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="dealType" Type="Int16" />
-          <Property Name="connect" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="day" Type="Int32" />
-        </EntityType>
         <EntityType Name="RefPrice">
           <Key>
             <PropertyRef Name="id" />
@@ -1530,6 +1515,27 @@
           <Property Name="assetid" Type="Int32" />
           <Property Name="repoInterset" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="loanInterset" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bid" Type="Int64" />
+          <Property Name="side" Type="Int16" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="dealType" Type="Int16" />
+          <Property Name="connect" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="totSum" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2251,25 +2257,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="demoModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="day" ColumnName="day" />
-                <ScalarProperty Name="connect" ColumnName="connect" />
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="bid" ColumnName="bid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RefPrices">
             <EntityTypeMapping TypeName="demoModel.RefPrice">
               <MappingFragment StoreEntitySet="RefPrice">
@@ -2288,6 +2275,28 @@
                 <ScalarProperty Name="repoInterset" ColumnName="repoInterset" />
                 <ScalarProperty Name="assetid" ColumnName="assetid" />
                 <ScalarProperty Name="interest1" ColumnName="interest" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="demoModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="interests" ColumnName="interests" />
+                <ScalarProperty Name="toPay" ColumnName="toPay" />
+                <ScalarProperty Name="totSum" ColumnName="totSum" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="connect" ColumnName="connect" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="bid" ColumnName="bid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

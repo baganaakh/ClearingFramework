@@ -57,9 +57,9 @@
         <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="20.75" PointY="7.75" />
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="11.375" PointY="20.75" />
         <EntityTypeShape EntityType="demoModel.Account" Width="1.5" PointX="5.375" PointY="21.75" />
-        <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="7.375" PointY="21.75" />
         <EntityTypeShape EntityType="demoModel.RefPrice" Width="1.5" PointX="21.375" PointY="10.75" />
         <EntityTypeShape EntityType="demoModel.Interest" Width="1.5" PointX="21.375" PointY="13.75" />
+        <EntityTypeShape EntityType="demoModel.Order" Width="1.5" PointX="7.375" PointY="21.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

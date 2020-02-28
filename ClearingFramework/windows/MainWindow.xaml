@@ -77,7 +77,7 @@
                 </Button.Background>
             </Button>
             <Image HorizontalAlignment="Left" Margin="3,3,0,3" Source="..\pics\Logo_nt_white.png" Stretch="Fill" Width="20" Height="20"/>
-            <Label Content="MSX Clearing Workstation" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="192" Foreground="White" FontSize="12" Margin="0,0,0,0" VerticalContentAlignment="Center"/>
+            <Label Name="topPanel" Content="MSX Clearing Workstation" HorizontalAlignment="Left" Height="30" VerticalAlignment="Center" Width="250" Foreground="White" FontSize="12" Margin="0,0,0,0" VerticalContentAlignment="Center"/>
         </DockPanel>
         <Grid HorizontalAlignment="Left" Margin="-4,30,0,-4" Width="150" MaxWidth="200" Background="#FF3EB9BB">
             <Button x:Name="start" Height="30" Margin="4,20,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" Click="Button_Click_1" BorderThickness="0,1,0,0">
