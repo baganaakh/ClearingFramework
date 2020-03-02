@@ -15,20 +15,23 @@ namespace ClearingFramework.dbBind.pageDatabase
     public partial class Deal
     {
         public long id { get; set; }
-        public short boardid { get; set; }
+        public Nullable<short> boardid { get; set; }
         public string dealno { get; set; }
-        public short side { get; set; }
-        public int memberid { get; set; }
-        public long accountid { get; set; }
-        public int assetid { get; set; }
-        public decimal qty { get; set; }
-        public decimal price { get; set; }
-        public decimal totalPrice { get; set; }
-        public short state { get; set; }
-        public System.DateTime modified { get; set; }
+        public Nullable<short> side { get; set; }
+        public Nullable<long> memberid { get; set; }
+        public Nullable<long> accountid { get; set; }
+        public Nullable<long> assetid { get; set; }
+        public Nullable<decimal> qty { get; set; }
+        public Nullable<decimal> price { get; set; }
+        public Nullable<decimal> totalPrice { get; set; }
+        public Nullable<short> state { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
         public Nullable<decimal> fee { get; set; }
         public Nullable<decimal> m2m { get; set; }
         public Nullable<decimal> refPrice { get; set; }
         public Nullable<short> dealType { get; set; }
+        public Nullable<int> day { get; set; }
+        public Nullable<decimal> interests { get; set; }
+        public Nullable<decimal> toPay { get; set; }
     }
 }

@@ -41,7 +41,7 @@ namespace ClearingFramework
                 if (query.password == txtLoginPass.Password)
                 {
                     MainWindow mainWindow = new MainWindow();
-                    mainWindow.topPanel.Content = "MSX Clearing Workstation   " +query.uname;
+                    mainWindow.topPanel.Content = "MSX Clearing Workstation   " +query.uname +" ID : "+ query.memId;
                     mainWindow.Show();
                     this.Close();
                     //Window parentWindow = Window.GetWindow(this).Button;

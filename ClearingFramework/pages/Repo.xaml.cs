@@ -40,33 +40,37 @@ namespace Clearing.pages
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using (demoEntities1 context = new demoEntities1())
+
+                using (demoEntities1 context = new demoEntities1())
             {
                 Order order = new Order()
                 {
                     accountid = Convert.ToInt64(linkAc.SelectedValue),
                     assetid = Convert.ToInt64(asset.SelectedValue),
+                    price=Convert.ToDecimal(exPrice.Text),
                     qty = Convert.ToInt32(qtyss.Text),
                     day = Convert.ToInt32(dayy.Text),
+                    totSum = totSum,
                     connect = toId,
                     modified = DateTime.Now,
                     memberid = memId,
                     state = 0,
-                    totSum = totSum,
                     toPay = toPay,
-                    interests = inter
+                    interests = inter,
+                    dealType=4
                 };
                 context.Orders.Add(order);
                 context.SaveChanges();
+           
                 FillGrid();
             }
         }
         #endregion
-        #region fill
+        #region datagrid fill
         private void FillGrid()
         {
             demoEntities1 de = new demoEntities1();
-            List<Order> ord= de.Orders.Where(s => s.connect == "0" || s.connect == memId.ToString()).ToList();
+            List<Order> ord= de.Orders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0) || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
             totalOrder.ItemsSource = ord;
             List<Order> ords = de.Orders.Where(s => s.memberid == memId).ToList();
             OwnTable.ItemsSource = ords;
@@ -79,6 +83,42 @@ namespace Clearing.pages
         {
             Order value = (Order)totalOrder.SelectedItem;
             if (null == value) return;
+            using(demoEntities1 contx=new demoEntities1())
+            {
+            Deal pageDeal1 = new Deal()
+                {
+                    accountid=Convert.ToInt32(linkAc_Copy.SelectedValuePath),
+                    assetid=value.assetid,
+                    day=value.day,
+                    interests=value.interests,
+                    modified=DateTime.Now,
+                    price=value.price,
+                    qty=value.qty,
+                    side=1,
+                    toPay=value.toPay,
+                    totalPrice=value.totSum,
+                    memberid=value.memberid,
+                    dealType=value.dealType,
+                };
+            Deal pageDeal2 = new Deal()
+                {
+                    accountid=value.accountid,
+                    assetid=value.assetid,
+                    day=value.day,
+                    interests=value.interests,
+                    modified=DateTime.Now,
+                    price=value.price,
+                    qty=value.qty,
+                    side=-1,
+                    toPay=value.toPay,
+                    totalPrice=value.totSum,
+                    memberid=value.memberid,
+                    dealType=value.dealType,
+                };
+            contx.Deals.Add(pageDeal1);
+            contx.Deals.Add(pageDeal2);
+            contx.SaveChanges();
+            }
             int id = Convert.ToInt32( value.id);
             using (var contx=new demoEntities1())
             {
@@ -104,7 +144,7 @@ namespace Clearing.pages
             FillGrid();
         }
         #endregion
-        #region combos
+        #region combos selection change 
         public List<Account2> acc { get; set; }
         public List<Asset> assets { get; set; }
         public List<Member> members{ get; set; }
@@ -113,7 +153,7 @@ namespace Clearing.pages
             var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accType == 3).ToList();
             acc = acclist;
             linkAc.ItemsSource = acc;
-
+            linkAc_Copy.ItemsSource = acc;
             var memlist = DE.Members.ToList();
             members = memlist;
             var rem = members.Find(x => x.id == memId);
@@ -123,34 +163,6 @@ namespace Clearing.pages
             membee.ItemsSource = members;
             int indexx = members.Count();
             membee.SelectedIndex = indexx-1;
-        }
-        private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            qtyss.IsEnabled = true;
-            var item = asset.SelectedItem as Asset;
-            assId = item.id;
-            var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).ToArray();
-            decimal sum=0,freezesum=0;
-            foreach(Account1 i in totNumber)
-            {
-                sum += Convert.ToDecimal( i.totalNumber);
-                freezesum += Convert.ToDecimal(i.freezeValue);
-            }
-            remainder.Text = sum.ToString();
-            try
-            {
-                int iid = item.id;
-                RefPrice eprice = DE.RefPrices.Where(s => s.assetId == iid).FirstOrDefault<RefPrice>(); //error if no refprice found releated to asset
-                decimal eprice2 = eprice.refprice1 / 100;
-                decimal ratio = item.ratio;
-                decimal lastPrice = ratio * eprice2;
-                possible.Text = (lastPrice * sum).ToString();
-                exPrice.Text = lastPrice.ToString();
-            }
-            catch
-            {
-                throw;
-            }
         }
         private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -175,6 +187,34 @@ namespace Clearing.pages
                 throw;
             }
         }
+        private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            qtyss.IsEnabled = true;
+            var item = asset.SelectedItem as Asset;
+            assId = item.id;
+            var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).ToArray();
+            decimal sum=0,freezesum=0;
+            foreach(Account1 i in totNumber)
+            {
+                sum += Convert.ToDecimal( i.totalNumber);
+                freezesum += Convert.ToDecimal(i.freezeValue);
+            }
+            remainder.Text = sum.ToString("0.##");
+            try
+            {
+                int iid = item.id;
+                RefPrice eprice = DE.RefPrices.Where(s => s.assetId == iid).FirstOrDefault<RefPrice>(); //error if no refprice found releated to asset
+                decimal eprice2 = eprice.refprice1 / 100;
+                decimal ratio = item.ratio;
+                decimal lastPrice = ratio * eprice2;
+                possible.Text = (lastPrice * sum).ToString("0.##");
+                exPrice.Text = lastPrice.ToString("0.##");
+            }
+            catch
+            {
+                throw;
+            }
+        }
         private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             App.TextBox_PreviewTextInput(sender, e);
@@ -190,9 +230,9 @@ namespace Clearing.pages
             var Interst = DE.Interests.Where(s => s.assetid == assId).FirstOrDefault<Interest>();
             decimal Interst1 =Convert.ToDecimal( Interst.interest1);
             inter = Convert.ToDecimal(TotalSum.Text) * days1 * Interst1;
-            Inter.Text = inter.ToString();
+            Inter.Text = inter.ToString("0.##");
             toPay = Convert.ToDecimal(TotalSum.Text) + Convert.ToDecimal(Inter.Text);
-            ToPay.Text = toPay.ToString();
+            ToPay.Text = toPay.ToString("0.##");
         }
         private void membee_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -215,10 +255,20 @@ namespace Clearing.pages
             dayy.SelectedItem = null;
             Inter.Text = null;
             ToPay.Text = null;
+           
             try
             {
-                totSum = Convert.ToInt32(qtyss.Text) * Convert.ToDecimal(exPrice.Text);
-                TotalSum.Text = totSum.ToString();
+            int qty=Convert.ToInt32( qtyss.Text);
+                if (qty <= Convert.ToInt32(remainder.Text))
+                {
+                    totSum = qty * Convert.ToDecimal(exPrice.Text);
+                    TotalSum.Text = totSum.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Хэмжээ үлдэгдэлээс илүү гарч болохгүй !!!!");
+                    return;
+                }
             }
             catch (System.FormatException)
             {

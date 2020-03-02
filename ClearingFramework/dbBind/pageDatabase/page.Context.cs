@@ -41,7 +41,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public virtual DbSet<dbo_logs> dbo_logs { get; set; }
         public virtual DbSet<Deal2> Deal2 { get; set; }
         public virtual DbSet<DealerAccount> DealerAccounts { get; set; }
-        public virtual DbSet<Deal> Deals { get; set; }
         public virtual DbSet<Dealtype> Dealtypes { get; set; }
         public virtual DbSet<expireTable> expireTables { get; set; }
         public virtual DbSet<Fee> Fees { get; set; }
@@ -80,5 +79,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public virtual DbSet<RefPrice> RefPrices { get; set; }
         public virtual DbSet<Interest> Interests { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Deal> Deals { get; set; }
     }
 }

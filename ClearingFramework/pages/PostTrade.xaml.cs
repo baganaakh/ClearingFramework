@@ -53,11 +53,11 @@ namespace Clearing.pages
                     if (i.side == -1) {side = "Зарах";}
                     else {side = "Авах";}
                 }
-                data.Add(new forItems() { accNumber = query, assetId = acode, sides = side, qtys=i.qty, prices=i.price, fees=Convert.ToDecimal(i.fee) });
+                data.Add(new forItems() { accNumber = query, assetId = acode, sides = side, qtys=Convert.ToDecimal( i.qty), prices=Convert.ToDecimal(i.price) , fees=Convert.ToDecimal(i.fee) });
                 using(var contx=new ClearingEntities())
                 {
                     decimal lastPrice =Convert.ToDecimal(contx.lastPrices.Where(s => s.assetid == i.assetid).FirstOrDefault<lastPrice>().ePrice);
-                    decimal gainloss = lastPrice * i.qty -i.price * i.qty;
+                    decimal gainloss = Convert.ToDecimal(lastPrice * i.qty -i.price * i.qty);
 
                     var std = new pozit()
                     {
