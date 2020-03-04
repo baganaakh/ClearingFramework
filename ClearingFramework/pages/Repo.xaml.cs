@@ -1,6 +1,6 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.pageDatabase;
+using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,7 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Account1 = ClearingFramework.dbBind.Account;
-using Account2 = ClearingFramework.dbBind.pageDatabase.Account;
+using Account2 = ClearingFramework.dbBind.AdminDatabase.Account;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Clearing.pages
@@ -72,7 +72,8 @@ namespace Clearing.pages
         private void FillGrid()
         {
             demoEntities1 de = new demoEntities1();
-            List<Order> ord= de.Orders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0) || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
+            List<Order> ord= de.Orders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
+            || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
             totalOrder.ItemsSource = ord;
             List<Order> ords = de.Orders.Where(s => s.memberid == memId).ToList();
             OwnTable.ItemsSource = ords;

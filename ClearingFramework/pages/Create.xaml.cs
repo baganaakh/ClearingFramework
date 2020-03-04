@@ -1,6 +1,6 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.pageDatabase;
+using ClearingFramework.dbBind.AdminDatabase;
 using ExcelDataReader;
 using LinqToExcel.Extensions;
 using System;
@@ -23,7 +23,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Z.Dapper.Plus;
 using Account1 = ClearingFramework.dbBind.Account;                  //clearing database nickname
-using Account2 = ClearingFramework.dbBind.pageDatabase.Account;     //page     database nickname
+using Account2 = ClearingFramework.dbBind.AdminDatabase.Account;     //page     database nickname
 using MessageBox = System.Windows.MessageBox;
 
 

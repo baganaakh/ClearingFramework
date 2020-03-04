@@ -1,6 +1,6 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.pageDatabase;
+using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClearingFramework.dbBind.AdminDatabase;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,18 @@ namespace Clearing.pages
         public Collateral()
         {
             InitializeComponent();
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using(demoEntities1 contx=new demoEntities1())
+            {
+                ColReq req = new ColReq()
+                {
+                    accId = 1
+                };
+            }
         }
     }
 }

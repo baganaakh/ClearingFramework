@@ -1,5 +1,5 @@
 ﻿using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.pageDatabase;
+using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Account = ClearingFramework.dbBind.pageDatabase.Account;
+using Account = ClearingFramework.dbBind.AdminDatabase.Account;
 
 namespace Clearing.pages
 {
