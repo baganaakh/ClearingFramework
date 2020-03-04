@@ -231,6 +231,7 @@
           <Property Name="day" Type="int" />
           <Property Name="interests" Type="decimal" Precision="18" Scale="4" />
           <Property Name="toPay" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="connect" Type="nvarchar" MaxLength="16" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
@@ -458,6 +459,7 @@
           <Property Name="totSum" Type="decimal" Precision="18" Scale="4" />
           <Property Name="toPay" Type="decimal" Precision="18" Scale="4" />
           <Property Name="interests" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Participants">
           <Key>
@@ -1518,6 +1520,7 @@
           <Property Name="totSum" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="Deal">
           <Key>
@@ -1542,6 +1545,7 @@
           <Property Name="day" Type="Int32" />
           <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="connect" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2266,6 +2270,7 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="demoModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="fee" ColumnName="fee" />
                 <ScalarProperty Name="interests" ColumnName="interests" />
                 <ScalarProperty Name="toPay" ColumnName="toPay" />
                 <ScalarProperty Name="totSum" ColumnName="totSum" />
@@ -2288,6 +2293,7 @@
           <EntitySetMapping Name="Deals">
             <EntityTypeMapping TypeName="demoModel.Deal">
               <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="connect" ColumnName="connect" />
                 <ScalarProperty Name="toPay" ColumnName="toPay" />
                 <ScalarProperty Name="interests" ColumnName="interests" />
                 <ScalarProperty Name="day" ColumnName="day" />

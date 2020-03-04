@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -17,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Account1 = ClearingFramework.dbBind.Account;
 using Account2 = ClearingFramework.dbBind.pageDatabase.Account;
+using MessageBox = System.Windows.MessageBox;
 
 namespace Clearing.pages
 {
@@ -33,7 +35,7 @@ namespace Clearing.pages
             bindCombo();
         }
         string linkacs, accnum,toId="0";
-        decimal assId,totSum,toPay,inter;
+        decimal assId,totSum,toPay,inter,fe;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         ClearingEntities CE = new ClearingEntities();
         demoEntities1 DE = new demoEntities1();
@@ -45,7 +47,7 @@ namespace Clearing.pages
             {
                 Order order = new Order()
                 {
-                    accountid = Convert.ToInt64(linkAc.SelectedValue),
+                    accountid = Convert.ToInt64(linkacs),
                     assetid = Convert.ToInt64(asset.SelectedValue),
                     price=Convert.ToDecimal(exPrice.Text),
                     qty = Convert.ToInt32(qtyss.Text),
@@ -57,11 +59,11 @@ namespace Clearing.pages
                     state = 0,
                     toPay = toPay,
                     interests = inter,
-                    dealType=4
+                    dealType=4,
+                    
                 };
                 context.Orders.Add(order);
                 context.SaveChanges();
-           
                 FillGrid();
             }
         }
@@ -74,8 +76,9 @@ namespace Clearing.pages
             totalOrder.ItemsSource = ord;
             List<Order> ords = de.Orders.Where(s => s.memberid == memId).ToList();
             OwnTable.ItemsSource = ords;
-            soldTable.ItemsSource= de.Orders.Where(s => s.memberid == memId && s.state == 1).ToList();
-            boughtTable.ItemsSource= de.Orders.Where(s => s.memberid != memId && s.state==1).ToList();
+            soldTable.ItemsSource= de.Deals.Where(s => s.memberid == memId && s.side == -1).ToList();
+            boughtTable.ItemsSource= de.Deals.Where(s => s.memberid != memId && s.side == 1).ToList();
+            repoHistory.ItemsSource = de.Deals.Where(s=> s.memberid == memId).ToList();
         }
         #endregion
         #region Нийт захиалга зөвшөөрөх
@@ -83,11 +86,17 @@ namespace Clearing.pages
         {
             Order value = (Order)totalOrder.SelectedItem;
             if (null == value) return;
-            using(demoEntities1 contx=new demoEntities1())
+            if(linkAc_Copy.SelectedItem == null)
+            {
+                MessageBox.Show("Авах дансаа сонго нуу");
+                return;
+            }
+            int useracc = Convert.ToInt32(linkAc_Copy.SelectedValue);
+            using (demoEntities1 contx=new demoEntities1())
             {
             Deal pageDeal1 = new Deal()
                 {
-                    accountid=Convert.ToInt32(linkAc_Copy.SelectedValuePath),
+                    accountid=useracc,
                     assetid=value.assetid,
                     day=value.day,
                     interests=value.interests,
@@ -97,8 +106,9 @@ namespace Clearing.pages
                     side=1,
                     toPay=value.toPay,
                     totalPrice=value.totSum,
-                    memberid=value.memberid,
+                    memberid=memId,
                     dealType=value.dealType,
+                    connect=value.connect,
                 };
             Deal pageDeal2 = new Deal()
                 {
@@ -108,18 +118,19 @@ namespace Clearing.pages
                     interests=value.interests,
                     modified=DateTime.Now,
                     price=value.price,
-                    qty=value.qty,
+                    qty=-value.qty,
                     side=-1,
-                    toPay=value.toPay,
-                    totalPrice=value.totSum,
+                    toPay=-value.toPay,
+                    totalPrice=-value.totSum,
                     memberid=value.memberid,
                     dealType=value.dealType,
+                    connect=value.connect,
                 };
             contx.Deals.Add(pageDeal1);
             contx.Deals.Add(pageDeal2);
             contx.SaveChanges();
             }
-            int id = Convert.ToInt32( value.id);
+            int id = Convert.ToInt32(value.id);
             using (var contx=new demoEntities1())
             {
             Order statss = contx.Orders.FirstOrDefault(s=> s.id == id);
@@ -132,15 +143,23 @@ namespace Clearing.pages
         #region өөрийн захиалга Цуцлах Устгах
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            Order value = (Order)OwnTable.SelectedItem;
-            if (null == value) return;
-            int id = Convert.ToInt32(value.id);
-            using (var contx = new demoEntities1())
+            var checkedRows = from DataGridViewRow r in OwnTable.Items
+                              where Convert.ToBoolean(r.Cells[0].Value) == true
+                              select r;
+            foreach(var row in checkedRows)
             {
-                Order statss = contx.Orders.FirstOrDefault(s => s.id == id);
-                contx.Orders.Remove(statss);
-                contx.SaveChanges();
+                MessageBox.Show("dsdsd");
             }
+
+            //Order value = (Order)OwnTable.SelectedItem;
+            //if (null == value) return;
+            //int id = Convert.ToInt32(value.id);
+            //using (var contx = new demoEntities1())
+            //{
+            //    Order statss = contx.Orders.FirstOrDefault(s => s.id == id);
+            //    contx.Orders.Remove(statss);
+            //    contx.SaveChanges();
+            //}
             FillGrid();
         }
         #endregion

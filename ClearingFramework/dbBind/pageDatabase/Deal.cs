@@ -33,5 +33,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public Nullable<int> day { get; set; }
         public Nullable<decimal> interests { get; set; }
         public Nullable<decimal> toPay { get; set; }
+        public string connect { get; set; }
     }
 }

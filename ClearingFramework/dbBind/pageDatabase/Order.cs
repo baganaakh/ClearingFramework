@@ -30,5 +30,6 @@ namespace ClearingFramework.dbBind.pageDatabase
         public Nullable<decimal> totSum { get; set; }
         public Nullable<decimal> toPay { get; set; }
         public Nullable<decimal> interests { get; set; }
+        public Nullable<decimal> fee { get; set; }
     }
 }
