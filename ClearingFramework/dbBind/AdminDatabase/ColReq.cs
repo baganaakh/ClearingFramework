@@ -22,5 +22,6 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public Nullable<byte> state { get; set; }
         public Nullable<System.DateTime> modified { get; set; }
         public Nullable<short> reason { get; set; }
+        public Nullable<int> memid { get; set; }
     }
 }

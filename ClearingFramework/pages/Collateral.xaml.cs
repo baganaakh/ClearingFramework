@@ -32,7 +32,18 @@ namespace Clearing.pages
         {
             InitializeComponent();
             bindCombo();
+            FillGrid();
         }
+        #region fill
+        private void FillGrid()
+        {
+            demoEntities1 CE = new demoEntities1();
+            List<ColReq> requs = CE.ColReqs.ToList();
+            collHistory.ItemsSource = requs;
+            pendingColl.ItemsSource = requs = requs.Where(s => s.state == 0).ToList();
+
+        }
+        #endregion
         #region илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -43,11 +54,11 @@ namespace Clearing.pages
                 {
                     accId = Convert.ToInt64(accId.SelectedValue),
                     assetId = Convert.ToInt32(asset.SelectedValue),
-                    value=Convert.ToDecimal( qtyss.Text),
-                    state=0,
+                    value=Convert.ToDecimal(qtyss.Text),
+                    type=Convert.ToInt16(Types.SelectedIndex),
                     modified=DateTime.Now,
-
-
+                    memid=memId,
+                    state=0,
                 };
                 contx.ColReqs.Add(req);
                 contx.SaveChanges();
@@ -61,7 +72,6 @@ namespace Clearing.pages
             var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accType == 3).ToList();
             acc = acclist;
             accId.ItemsSource = acc;
-
         }
         private void accId_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -87,8 +97,6 @@ namespace Clearing.pages
                 return;
             }
         }
-
-
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = asset.SelectedItem as Asset;
@@ -119,7 +127,6 @@ namespace Clearing.pages
             }
         }
         #endregion
-
         private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
         {
             try

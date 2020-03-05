@@ -146,6 +146,7 @@
           <Property Name="state" Type="tinyint" />
           <Property Name="modified" Type="datetime" />
           <Property Name="reason" Type="smallint" />
+          <Property Name="memid" Type="int" />
         </EntityType>
         <EntityType Name="Contracts">
           <Key>
@@ -1594,6 +1595,7 @@
           <Property Name="state" Type="Byte" />
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="reason" Type="Int16" />
+          <Property Name="memid" Type="Int32" />
         </EntityType>
         <EntityType Name="Reason">
           <Key>
@@ -2380,6 +2382,7 @@
           <EntitySetMapping Name="ColReqs">
             <EntityTypeMapping TypeName="demoModel.ColReq">
               <MappingFragment StoreEntitySet="ColReq">
+                <ScalarProperty Name="memid" ColumnName="memid" />
                 <ScalarProperty Name="reason" ColumnName="reason" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
