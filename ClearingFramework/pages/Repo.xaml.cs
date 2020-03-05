@@ -275,7 +275,6 @@ namespace Clearing.pages
             dayy.SelectedItem = null;
             Inter.Text = null;
             ToPay.Text = null;
-           
             try
             {
             int qty=Convert.ToInt32( qtyss.Text);
@@ -287,6 +286,8 @@ namespace Clearing.pages
                 else
                 {
                     MessageBox.Show("Хэмжээ үлдэгдэлээс илүү гарч болохгүй !!!!");
+                    qtyss.Text = null;
+                    TotalSum.Text = null;
                     return;
                 }
             }
