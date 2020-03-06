@@ -34,12 +34,12 @@ namespace Clearing.pages
             bindCombo();
             FillGrid();
         }
-        string accountID,accnum;
+        string accountID, accnum;
         #region combos
         public List<Account> acct { get; set; }
         private void bindCombo()
         {
-        ClearingEntities ce = new ClearingEntities();
+            ClearingEntities ce = new ClearingEntities();
             var acid = ce.Accounts.ToList();
             acct = acid;
             accid.ItemsSource = acct;
@@ -49,7 +49,7 @@ namespace Clearing.pages
             var item = accid.SelectedItem as Account;
             try
             {
-                accountID= item.id.ToString();
+                accountID = item.id.ToString();
                 sname.Text = item.fname.ToString();
                 accnum = item.accNum.ToString();
                 idnum.Text = item.idNum.ToString();
@@ -63,8 +63,8 @@ namespace Clearing.pages
         #region бүртгэх and sum to totalValue
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            decimal value= Decimal.Parse(trvalue.Text);
-            using (ClearingEntities context=new ClearingEntities())
+            decimal value = Decimal.Parse(trvalue.Text);
+            using (ClearingEntities context = new ClearingEntities())
             {
                 var tran = new transaction()
                 {
@@ -74,9 +74,9 @@ namespace Clearing.pages
                     note = trnote.Text,
                     side = "1"
                 };
-                Account accdet= context.Accounts.FirstOrDefault(r => r.accNum == accnum);
+                Account accdet = context.Accounts.FirstOrDefault(r => r.accNum == accnum);
                 if (accdet != null)
-                    accdet.totalNumber+= value;
+                    accdet.totalNumber += value;
                 context.transactions.Add(tran);
                 context.SaveChanges();
             }
@@ -102,7 +102,7 @@ namespace Clearing.pages
         #region insert excel file
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-        string filePath = "";
+            string filePath = "";
             using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "Excel 97-2003|*.xls|Excel Workbook|*.xlsx" })
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -121,7 +121,7 @@ namespace Clearing.pages
                                 tableCollection = result.Tables;
                                 cboSheet.Items.Clear();
                                 foreach (DataTable table in tableCollection)
-                                cboSheet.Items.Add(table.TableName);//add sheet to combobox
+                                    cboSheet.Items.Add(table.TableName);//add sheet to combobox
                             }
                         }
                     }
@@ -134,7 +134,7 @@ namespace Clearing.pages
                     {
                         throw;
                     }
-                    
+
                 }
             }
         }
@@ -167,7 +167,7 @@ namespace Clearing.pages
             {
                 yield return new transaction
                 {
-                    accNum= row["accNum"].ToString(),
+                    accNum = row["accNum"].ToString(),
                     transType = row["transType"].ToString(),
                     value = Convert.ToDecimal(row["value"]),
                     note = row["note"].ToString(),
@@ -194,7 +194,7 @@ namespace Clearing.pages
                         {
                             Account accdet = context.Accounts.FirstOrDefault(r => r.accNum == i.accNum);
                             if (accdet != null)
-                                accdet.totalNumber+= i.value;
+                                accdet.totalNumber += i.value;
                             context.SaveChanges();
                         }
                     }

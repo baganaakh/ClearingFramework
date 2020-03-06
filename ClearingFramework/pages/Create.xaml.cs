@@ -75,7 +75,7 @@ namespace Clearing.pages
         #region update
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using(ClearingEntities context=new ClearingEntities())
+            using (ClearingEntities context = new ClearingEntities())
             {
                 Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iid);
                 acc.lname = lName.Text;
@@ -100,22 +100,24 @@ namespace Clearing.pages
         #region insert
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (brokCode.SelectedValue == null && stat.SelectedValue == null 
+            if (brokCode.SelectedValue == null && stat.SelectedValue == null
                 && linkAc.SelectedValue == null)
             {
                 MessageBox.Show("Combos are empty Please fill them");
             }
-            using (ClearingEntities context=new ClearingEntities())
+            using (ClearingEntities context = new ClearingEntities())
             {
                 var exist = context.Accounts.Count(a => a.accNum == accountn.Text);
                 var idexist = context.Accounts.Count(a => a.idNum == idNumber.Text);
-                if(idexist != 0) {
-                    MessageBox.Show("РД давтагдсан байна " + idNumber.Text.ToString() +" !!!") ;
+                if (idexist != 0)
+                {
+                    MessageBox.Show("РД давтагдсан байна " + idNumber.Text.ToString() + " !!!");
                     return;
                 }
                 else
-                if(exist != 0) {
-                    MessageBox.Show("Account number exists " + accountn.Text.ToString() +" !!!") ;
+                if (exist != 0)
+                {
+                    MessageBox.Show("Account number exists " + accountn.Text.ToString() + " !!!");
                     return;
                 }
                 Account1 acct = new Account1
@@ -126,7 +128,7 @@ namespace Clearing.pages
                     phone = phonee.Text,
                     accNum = accountn.Text,
                     secAcc = secAc.Text,
-                    state=Convert.ToInt16(stat.SelectedIndex),
+                    state = Convert.ToInt16(stat.SelectedIndex),
                     mail = email.Text,
                     brokerCode = pcode,
                     linkAcc = linkAc.SelectedValue.ToString(),
@@ -134,7 +136,7 @@ namespace Clearing.pages
                     fee = Convert.ToDecimal(fee.Text),
                     denchinPercent = Convert.ToDecimal(denchinPercent.Text),
                     contractFee = Convert.ToDecimal(contractFee.Text),
-                    pozFee= Convert.ToDecimal(pozfee.Text)
+                    pozFee = Convert.ToDecimal(pozfee.Text)
                 };
                 context.Accounts.Add(acct);
                 context.SaveChanges();
@@ -146,7 +148,7 @@ namespace Clearing.pages
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             long iiid = (vwOmniAccBalance.SelectedItem as Account1).id;
-            using (ClearingEntities context=new ClearingEntities())
+            using (ClearingEntities context = new ClearingEntities())
             {
                 Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
                 context.Accounts.Remove(acc);
@@ -171,7 +173,7 @@ namespace Clearing.pages
                 email.Text = acc.mail;
                 brokCode.Text = acc.brokerCode;
                 linkAc.SelectedValue = acc.linkAcc;
-                stat.SelectedIndex = Convert.ToInt32( acc.state);
+                stat.SelectedIndex = Convert.ToInt32(acc.state);
                 fee.Text = acc.fee.ToString();
                 denchinPercent.Text = acc.denchinPercent.ToString();
                 contractFee.Text = acc.contractFee.ToString();
@@ -180,25 +182,25 @@ namespace Clearing.pages
         }
         #endregion
         #region excel
-        string filePath="";
+        string filePath = "";
         DataTableCollection tableCollection;
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog() 
-                    { Filter = "Excel 97-2003|*.xls|Excel Workbook|*.xlsx" })
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()
+            { Filter = "Excel 97-2003|*.xls|Excel Workbook|*.xlsx" })
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
                     chosen.Text = filePath;
-                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, 
+                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open,
                                                     FileAccess.Read))
                     {
                         using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                         {
                             DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
                             {
-                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration() 
+                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
                                 { UseHeaderRow = true }
                             });
                             tableCollection = result.Tables;

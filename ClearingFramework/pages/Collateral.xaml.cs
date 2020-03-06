@@ -36,29 +36,53 @@ namespace Clearing.pages
         }
         #region fill
         private void FillGrid()
-        {
-            demoEntities1 CE = new demoEntities1();
-            List<ColReq> requs = CE.ColReqs.ToList();
+        { 
+            int asset1;
+            demoEntities1 de = new demoEntities1();
+            List<ColReq> requs = de.ColReqs.ToList();
+            List<forGrid> ToDisplay=new List<forGrid>();
             collHistory.ItemsSource = requs;
-            pendingColl.ItemsSource = requs = requs.Where(s => s.state == 0).ToList();
+            requs = requs.Where(s => s.state == 0).ToList();
+            foreach(ColReq items in requs)
+            {
+                asset1 =Convert.ToInt32( items.assetId);
+                RefPrice refpri =de.RefPrices.Where(r => r.assetId ==  asset1).FirstOrDefault<RefPrice>();
+                decimal refPrice = Convert.ToDecimal(refpri.refprice1);
+                Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
+                decimal ratio = asst.ratio;
+                decimal qty =Convert.ToDecimal(items.value);
+                forGrid data = new forGrid()
+                {
+                    accNumber = items.accId.ToString(),
+                    Барьцаа = asset1.ToString("0.###"),
+                    Хэмжээ = qty.ToString("0.###"),
+                    ЖишигҮнэ=(ratio*refPrice).ToString("0.###"),
+                    НийтДүн=(qty*(ratio * refPrice)).ToString("0.###"),
+                    //ДоодДүн,
+                    //ЗөрүүДүн,
+                    //БуцаахДүн,
 
+                };
+                ToDisplay.Add(data);
+            }
+                pendingColl.ItemsSource = ToDisplay;
         }
         #endregion
         #region илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int qty = Convert.ToInt32(qtyss.Text);
-            using (demoEntities1 contx=new demoEntities1())
+            using (demoEntities1 contx = new demoEntities1())
             {
                 ColReq req = new ColReq()
                 {
                     accId = Convert.ToInt64(accId.SelectedValue),
                     assetId = Convert.ToInt32(asset.SelectedValue),
-                    value=Convert.ToDecimal(qtyss.Text),
-                    type=Convert.ToInt16(Types.SelectedIndex),
-                    modified=DateTime.Now,
-                    memid=memId,
-                    state=0,
+                    value = Convert.ToDecimal(qtyss.Text),
+                    type = Convert.ToInt16(Types.SelectedIndex),
+                    modified = DateTime.Now,
+                    memid = memId,
+                    state = 0,
                 };
                 contx.ColReqs.Add(req);
                 contx.SaveChanges();
@@ -91,7 +115,7 @@ namespace Clearing.pages
                 }
                 asset.ItemsSource = assets.Distinct();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 return;
@@ -120,13 +144,14 @@ namespace Clearing.pages
                 decimal lastPrice = ratio * eprice2;
                 exPrice.Text = lastPrice.ToString("0.##");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
                 return;
             }
         }
         #endregion
+        #region QTYSS text change number
         private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -155,6 +180,18 @@ namespace Clearing.pages
         private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             App.TextBox_PreviewTextInput(sender, e);
+        }
+        #endregion
+        public class forGrid
+        {
+            public string accNumber { get; set; }
+            public string Барьцаа { get; set; }
+            public string Хэмжээ { get; set; }
+            public string ЖишигҮнэ { get; set; }
+            public string НийтДүн { get; set; }
+            public string ДоодДүн { get; set; }
+            public string ЗөрүүДүн { get; set; }
+            public string БуцаахДүн { get; set; }
         }
     }
 }

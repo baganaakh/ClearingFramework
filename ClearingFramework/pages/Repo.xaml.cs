@@ -60,7 +60,6 @@ namespace Clearing.pages
                     toPay = toPay,
                     interests = inter,
                     dealType=4,
-                    
                 };
                 context.Orders.Add(order);
                 context.SaveChanges();

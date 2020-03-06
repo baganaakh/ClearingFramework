@@ -472,27 +472,31 @@
             </TabItem>
             <TabItem Header="Хүлээгдэж буй гүйлгээ" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
-                    <DataGrid x:Name="pendingColl" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="431*"/>
+                        <ColumnDefinition Width="423*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid AutoGenerateColumns="False" x:Name="pendingColl" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
-                              FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,60,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False">
+                              FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,60,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Барьцаа"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Жишиг үнэ ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Нийт дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Доод дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Зөрүү дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Буцаах дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding accNumber}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding Барьцаа}" ClipboardContentBinding="{x:Null}" Header="Барьцаа"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding Хэмжээ}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ЖишигҮнэ}" ClipboardContentBinding="{x:Null}" Header="Жишиг үнэ ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding НийтДүн}" ClipboardContentBinding="{x:Null}" Header="Нийт дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ДоодДүн}" ClipboardContentBinding="{x:Null}" Header="Доод дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ЗөрүүДүн}" ClipboardContentBinding="{x:Null}" Header="Зөрүү дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding БуцаахДүн}" ClipboardContentBinding="{x:Null}" Header="Буцаах дүн ₮"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="201,10,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="341,10,0,0" TextWrapping="Wrap" Text="Тусгаарласан дэнчин ₮" Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="480,10,0,0" TextWrapping="Wrap" Text="Боломжит үлдэгдэл ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="341,10,0,0" TextWrapping="Wrap" Text="Тусгаарласан дэнчин ₮" Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="49.333,10,0,0" TextWrapping="Wrap" Text="Боломжит үлдэгдэл ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="201,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="341,35,0,0" TextWrapping="Wrap" Text="..." Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="480,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="341,35,0,0" TextWrapping="Wrap" Text="..." Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="49.333,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Нэгдсэн данс #" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                         <TextBox.Resources>
@@ -509,7 +513,7 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <Button Content="Барьцаа буцаах" Margin="0,10,10,0" HorizontalAlignment="Right" Width="110" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White">
+                    <Button Content="Барьцаа буцаах" Margin="0,10,10,0" HorizontalAlignment="Right" Width="110" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White" Grid.Column="1">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="6,6,6,6"/>
