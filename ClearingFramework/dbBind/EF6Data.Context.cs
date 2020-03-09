@@ -32,5 +32,6 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<lastPrice> lastPrices { get; set; }
         public virtual DbSet<pozit> pozits { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<AccountDetail> AccountDetails { get; set; }
     }
 }

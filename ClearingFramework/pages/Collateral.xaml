@@ -490,7 +490,7 @@
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding НийтДүн}" ClipboardContentBinding="{x:Null}" Header="Нийт дүн ₮"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ДоодДүн}" ClipboardContentBinding="{x:Null}" Header="Доод дүн ₮"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ЗөрүүДүн}" ClipboardContentBinding="{x:Null}" Header="Зөрүү дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding БуцаахДүн}" ClipboardContentBinding="{x:Null}" Header="Буцаах дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="201,10,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>

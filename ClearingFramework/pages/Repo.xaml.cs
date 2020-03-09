@@ -191,19 +191,21 @@ namespace Clearing.pages
             {
                 linkacs = item.id.ToString();
                 List<Asset> assets = new List<Asset>();
-                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.idNum).ToList();
+                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.accNum).ToList();
                 foreach(var i in acclist)
                 {
-                    var detail = CE.Accounts.Where(s => s.idNum == i).Select(s=> s.assetid).ToArray();
+                    var detail = CE.AccountDetails.Where(s=>s.accNum == i).Select(s=> s.assetId).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
                     var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
                     assets.Add(asst);
                 }
                 asset.ItemsSource = assets.Distinct();
             }
-            catch
+            catch(Exception ex)
             {
-                throw;
+                MessageBox.Show(ex.ToString());
+                return;
+                //throw;
             }
         }
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -211,9 +213,9 @@ namespace Clearing.pages
             qtyss.IsEnabled = true;
             var item = asset.SelectedItem as Asset;
             assId = item.id;
-            var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).ToArray();
+            var totNumber = CE.AccountDetails.Where(s => s.assetId == assId && s.linkAcc == linkacs).ToArray();
             decimal sum=0,freezesum=0;
-            foreach(Account1 i in totNumber)
+            foreach(AccountDetail i in totNumber)
             {
                 sum += Convert.ToDecimal( i.totalNumber);
                 freezesum += Convert.ToDecimal(i.freezeValue);

@@ -39,7 +39,6 @@ namespace Clearing.pages
         { 
             int asset1;
             demoEntities1 de = new demoEntities1();
-            List<ColReq> requs = de.ColReqs.ToList();
             List<forGrid> ToDisplay=new List<forGrid>();
             List<forGrid> ToDisplay2 = new List<forGrid>();
             List<Tran> trans = de.Trans.ToList();
@@ -81,7 +80,7 @@ namespace Clearing.pages
             collHistory.ItemsSource = ToDisplay;
             #endregion
             #region Хүлээгдэж Буй гүйлгээ
-            requs = requs.Where(s => s.state == 0 || s.state == 2 ).ToList();
+            List<ColReq> requs = de.ColReqs.ToList();
             foreach(ColReq items in requs)
             {
                 asset1 =Convert.ToInt32( items.assetId);
@@ -105,8 +104,7 @@ namespace Clearing.pages
                     НийтДүн=totval.ToString("0.###"),
                     ДоодДүн= minval.ToString("0.###"),
                     ЗөрүүДүн=(totval-minval).ToString("0.###"),
-                    //БуцаахДүн=,
-
+                    state = items.state == 0 ? "Denied" : "Pending",
                 };
                 ToDisplay2.Add(data);
             }
@@ -128,7 +126,7 @@ namespace Clearing.pages
                     mode = Convert.ToInt16(Types.SelectedIndex),
                     modified = DateTime.Now,
                     memid = memId,
-                    state = 0,
+                    state=1,
                 };
                 contx.ColReqs.Add(req);
                 contx.SaveChanges();
@@ -151,10 +149,10 @@ namespace Clearing.pages
             {
                 linkacs = item.id.ToString();
                 List<Asset> assets = new List<Asset>();
-                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.idNum).ToList();
+                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.accNum).ToList();
                 foreach (var i in acclist)
                 {
-                    var detail = CE.Accounts.Where(s => s.idNum == i).Select(s => s.assetid).ToArray();
+                    var detail = CE.AccountDetails.Where(s => s.accNum == i).Select(s => s.assetId).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
                     var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
                     assets.Add(asst);
@@ -173,9 +171,9 @@ namespace Clearing.pages
             qtyss.IsEnabled = true;
             qtyss.Text = null;
             assId = item.id;
-            var totNumber = CE.Accounts.Where(s => s.assetid == assId && s.linkAcc == linkacs).ToArray();
+            var totNumber = CE.AccountDetails.Where(s => s.assetId == assId && s.linkAcc == linkacs).ToArray();
             decimal sum = 0, freezesum = 0;
-            foreach (Account1 i in totNumber)
+            foreach (AccountDetail i in totNumber)
             {
                 sum += Convert.ToDecimal(i.totalNumber);
                 freezesum += Convert.ToDecimal(i.freezeValue);
@@ -242,6 +240,7 @@ namespace Clearing.pages
             public string ДоодДүн { get; set; }
             public string ЗөрүүДүн { get; set; }
             public string БуцаахДүн { get; set; }
+            public string state { get; set; }
         }
     }
 }

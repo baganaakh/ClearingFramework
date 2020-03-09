@@ -25,9 +25,17 @@
           <Property Name="denchinPercent" Type="decimal" Precision="18" Scale="4" />
           <Property Name="contractFee" Type="decimal" Precision="18" Scale="4" />
           <Property Name="pozFee" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="AccountDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="freezeValue" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="assetid" Type="int" />
+          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="assetId" Type="int" />
+          <Property Name="accNum" Type="nvarchar" MaxLength="10" />
+          <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="clearingDeal">
           <Key>
@@ -116,6 +124,7 @@
         </EntityType>
         <EntityContainer Name="ClearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountDetails" EntityType="Self.AccountDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="clearingDeal" EntityType="Self.clearingDeal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="deal" EntityType="Self.deal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lastPrice" EntityType="Self.lastPrice" Schema="dbo" store:Type="Tables" />
@@ -135,6 +144,7 @@
           <EntitySet Name="lastPrices" EntityType="ClearingModel.lastPrice" />
           <EntitySet Name="pozits" EntityType="ClearingModel.pozit" />
           <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
+          <EntitySet Name="AccountDetails" EntityType="ClearingModel.AccountDetail" />
         </EntityContainer>
         <EntityType Name="transaction">
           <Key>
@@ -241,9 +251,17 @@
           <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="assetid" Type="Int32" />
+          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="accNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -345,9 +363,6 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="ClearingModel.Account">
               <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
-                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
                 <ScalarProperty Name="pozFee" ColumnName="pozFee" />
                 <ScalarProperty Name="contractFee" ColumnName="contractFee" />
                 <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
@@ -363,6 +378,18 @@
                 <ScalarProperty Name="lname" ColumnName="lname" />
                 <ScalarProperty Name="idNum" ColumnName="idNum" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountDetails">
+            <EntityTypeMapping TypeName="ClearingModel.AccountDetail">
+              <MappingFragment StoreEntitySet="AccountDetails">
+                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
+                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

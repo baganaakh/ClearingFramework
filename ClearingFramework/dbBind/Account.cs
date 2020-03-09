@@ -30,8 +30,5 @@ namespace ClearingFramework.dbBind
         public Nullable<decimal> denchinPercent { get; set; }
         public Nullable<decimal> contractFee { get; set; }
         public Nullable<decimal> pozFee { get; set; }
-        public Nullable<decimal> totalNumber { get; set; }
-        public Nullable<decimal> freezeValue { get; set; }
-        public Nullable<int> assetid { get; set; }
     }
 }
