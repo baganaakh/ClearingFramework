@@ -138,6 +138,9 @@
     <Compile Include="dbBind\AccountDetail.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\AdminDatabase\AccountDetail.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\AdminDatabase\ColReq.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>

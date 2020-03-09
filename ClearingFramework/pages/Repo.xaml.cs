@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Account1 = ClearingFramework.dbBind.Account;
 using Account2 = ClearingFramework.dbBind.AdminDatabase.Account;
+using AccountDetail = ClearingFramework.dbBind.AccountDetail;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Clearing.pages

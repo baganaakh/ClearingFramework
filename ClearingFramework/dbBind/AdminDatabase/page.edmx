@@ -23,6 +23,17 @@
           <Property Name="blnc" Type="decimal" Precision="18" Scale="4" />
           <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
+        <EntityType Name="AccountDetails">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="freezeValue" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="assetId" Type="int" />
+          <Property Name="accNum" Type="nvarchar" MaxLength="20" />
+          <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="accType">
           <Key>
             <PropertyRef Name="id" />
@@ -746,6 +757,7 @@
         </EntityType>
         <EntityContainer Name="demoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountDetails" EntityType="Self.AccountDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="accType" EntityType="Self.accType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="algo" EntityType="Self.algo" Schema="dbo" store:Type="Tables" />
@@ -865,6 +877,7 @@
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
           <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
           <EntitySet Name="Trans" EntityType="demoModel.Tran" />
+          <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
         </EntityContainer>
         <EntityType Name="accType">
           <Key>
@@ -1604,6 +1617,17 @@
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="userId" Type="Int64" />
           <Property Name="memberid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2399,6 +2423,18 @@
                 <ScalarProperty Name="type1" ColumnName="type1" />
                 <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountDetails">
+            <EntityTypeMapping TypeName="demoModel.AccountDetail">
+              <MappingFragment StoreEntitySet="AccountDetails">
+                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
+                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
