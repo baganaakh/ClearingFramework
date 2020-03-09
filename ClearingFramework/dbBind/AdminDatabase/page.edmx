@@ -23,7 +23,7 @@
           <Property Name="blnc" Type="decimal" Precision="18" Scale="4" />
           <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
-        <EntityType Name="AccountDetails">
+        <EntityType Name="AccountDet">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -757,7 +757,7 @@
         </EntityType>
         <EntityContainer Name="demoModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AccountDetails" EntityType="Self.AccountDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountDet" EntityType="Self.AccountDet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="accType" EntityType="Self.accType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ActiveSessions" EntityType="Self.ActiveSessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="algo" EntityType="Self.algo" Schema="dbo" store:Type="Tables" />
@@ -877,7 +877,7 @@
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
           <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
           <EntitySet Name="Trans" EntityType="demoModel.Tran" />
-          <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
+          <EntitySet Name="AccountDets" EntityType="demoModel.AccountDet" />
         </EntityContainer>
         <EntityType Name="accType">
           <Key>
@@ -1618,7 +1618,7 @@
           <Property Name="userId" Type="Int64" />
           <Property Name="memberid" Type="Int32" />
         </EntityType>
-        <EntityType Name="AccountDetail">
+        <EntityType Name="AccountDet">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -2427,9 +2427,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AccountDetails">
-            <EntityTypeMapping TypeName="demoModel.AccountDetail">
-              <MappingFragment StoreEntitySet="AccountDetails">
+          <EntitySetMapping Name="AccountDets">
+            <EntityTypeMapping TypeName="demoModel.AccountDet">
+              <MappingFragment StoreEntitySet="AccountDet">
                 <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
                 <ScalarProperty Name="assetId" ColumnName="assetId" />

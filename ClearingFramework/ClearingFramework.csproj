@@ -30,7 +30,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\192.168.1.109\Test\ClearingTest\</InstallUrl>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -138,7 +138,7 @@
     <Compile Include="dbBind\AccountDetail.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\AccountDetail.cs">
+    <Compile Include="dbBind\AdminDatabase\AccountDet.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\ColReq.cs">
