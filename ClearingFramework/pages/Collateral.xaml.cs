@@ -41,31 +41,77 @@ namespace Clearing.pages
             demoEntities1 de = new demoEntities1();
             List<ColReq> requs = de.ColReqs.ToList();
             List<forGrid> ToDisplay=new List<forGrid>();
-            collHistory.ItemsSource = requs;
-            requs = requs.Where(s => s.state == 0).ToList();
+            List<forGrid> ToDisplay2 = new List<forGrid>();
+            List<Tran> trans = de.Trans.ToList();
+            #region Барьцаа түүх
+            
+            foreach(Tran items in trans)
+            {
+                asset1 =Convert.ToInt32( items.currency);
+                RefPrice refpri =de.RefPrices.Where(r => r.assetId ==  asset1).FirstOrDefault<RefPrice>();
+                if (refpri == null)
+                {
+                    MessageBox.Show("RefPices has no value to connected to asset  "+asset1+" ");
+                    return;
+                }
+                decimal refPrice = Convert.ToDecimal(refpri.refprice1);
+                Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
+                Member memb = de.Members.Where(r => r.id == memId).FirstOrDefault<Member>();
+                int type = memb.type;
+                mtype mty = de.mtypes.Where(r => r.id == type).FirstOrDefault<mtype>();
+                int minval =Convert.ToInt32( mty.minValue);
+                decimal ratio = asst.ratio;
+                decimal qty =Convert.ToDecimal(items.amount);
+                decimal totval = qty * (ratio * refPrice);
+                forGrid data = new forGrid()
+                {
+                    id=Convert.ToInt64( items.id),
+                    accNumber = items.accountId.ToString(),
+                    Барьцаа = asset1.ToString("0.###"),
+                    Хэмжээ = qty.ToString("0.###"),
+                    ЖишигҮнэ=(ratio*refPrice).ToString("0.###"),
+                    НийтДүн=totval.ToString("0.###"),
+                    ДоодДүн= minval.ToString("0.###"),
+                    ЗөрүүДүн=(totval-minval).ToString("0.###"),
+                    //БуцаахДүн=,
+
+                };
+                ToDisplay.Add(data);
+            }
+            collHistory.ItemsSource = ToDisplay;
+            #endregion
+            #region Хүлээгдэж Буй гүйлгээ
+            requs = requs.Where(s => s.state == 0 || s.state == 2 ).ToList();
             foreach(ColReq items in requs)
             {
                 asset1 =Convert.ToInt32( items.assetId);
                 RefPrice refpri =de.RefPrices.Where(r => r.assetId ==  asset1).FirstOrDefault<RefPrice>();
                 decimal refPrice = Convert.ToDecimal(refpri.refprice1);
                 Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
+                Member memb = de.Members.Where(r => r.id == memId).FirstOrDefault<Member>();
+                int type = memb.type;
+                mtype mty = de.mtypes.Where(r => r.id == type).FirstOrDefault<mtype>();
+                int minval =Convert.ToInt32( mty.minValue);
                 decimal ratio = asst.ratio;
                 decimal qty =Convert.ToDecimal(items.value);
+                decimal totval = qty * (ratio * refPrice);
                 forGrid data = new forGrid()
                 {
+                    id = Convert.ToInt64(items.id),
                     accNumber = items.accId.ToString(),
                     Барьцаа = asset1.ToString("0.###"),
                     Хэмжээ = qty.ToString("0.###"),
                     ЖишигҮнэ=(ratio*refPrice).ToString("0.###"),
-                    НийтДүн=(qty*(ratio * refPrice)).ToString("0.###"),
-                    //ДоодДүн,
-                    //ЗөрүүДүн,
-                    //БуцаахДүн,
+                    НийтДүн=totval.ToString("0.###"),
+                    ДоодДүн= minval.ToString("0.###"),
+                    ЗөрүүДүн=(totval-minval).ToString("0.###"),
+                    //БуцаахДүн=,
 
                 };
-                ToDisplay.Add(data);
+                ToDisplay2.Add(data);
             }
-                pendingColl.ItemsSource = ToDisplay;
+                pendingColl.ItemsSource = ToDisplay2;
+            #endregion
         }
         #endregion
         #region илгээх
@@ -79,7 +125,7 @@ namespace Clearing.pages
                     accId = Convert.ToInt64(accId.SelectedValue),
                     assetId = Convert.ToInt32(asset.SelectedValue),
                     value = Convert.ToDecimal(qtyss.Text),
-                    type = Convert.ToInt16(Types.SelectedIndex),
+                    mode = Convert.ToInt16(Types.SelectedIndex),
                     modified = DateTime.Now,
                     memid = memId,
                     state = 0,
@@ -184,6 +230,10 @@ namespace Clearing.pages
         #endregion
         public class forGrid
         {
+            public forGrid()
+            {
+            }
+            public long id { get; set; }
             public string accNumber { get; set; }
             public string Барьцаа { get; set; }
             public string Хэмжээ { get; set; }

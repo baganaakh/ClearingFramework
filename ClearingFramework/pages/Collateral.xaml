@@ -417,19 +417,20 @@
             </TabItem>
             <TabItem Header="Барьцаа Түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
-                    <DataGrid x:Name="collHistory" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                    <DataGrid x:Name="collHistory" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
                               FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,60,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding accId}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding assetId}" ClipboardContentBinding="{x:Null}" Header="Барьцаа"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding value}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Жишиг үнэ ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Нийт дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Доод дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Зөрүү дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Буцаах дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding accNumber}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding Барьцаа}" ClipboardContentBinding="{x:Null}" Header="Барьцаа"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding Хэмжээ}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ЖишигҮнэ}" ClipboardContentBinding="{x:Null}" Header="Жишиг үнэ ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding НийтДүн}" ClipboardContentBinding="{x:Null}" Header="Нийт дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ДоодДүн}" ClipboardContentBinding="{x:Null}" Header="Доод дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ЗөрүүДүн}" ClipboardContentBinding="{x:Null}" Header="Зөрүү дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding БуцаахДүн}" ClipboardContentBinding="{x:Null}" Header="Буцаах дүн ₮"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="201,10,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
@@ -481,6 +482,7 @@
                               FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,60,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding accNumber}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding Барьцаа}" ClipboardContentBinding="{x:Null}" Header="Барьцаа"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding Хэмжээ}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>

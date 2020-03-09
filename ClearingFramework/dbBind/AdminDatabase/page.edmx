@@ -142,7 +142,7 @@
           <Property Name="accId" Type="bigint" />
           <Property Name="assetId" Type="int" />
           <Property Name="value" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="type" Type="smallint" />
+          <Property Name="mode" Type="smallint" />
           <Property Name="state" Type="tinyint" />
           <Property Name="modified" Type="datetime" />
           <Property Name="reason" Type="smallint" />
@@ -517,7 +517,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
           <Property Name="description" Type="nvarchar" MaxLength="1024" />
         </EntityType>
@@ -680,18 +680,18 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="accountId" Type="bigint" Nullable="false" />
-          <Property Name="type" Type="smallint" Nullable="false" />
-          <Property Name="type1" Type="smallint" Nullable="false" />
-          <Property Name="amount" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="currency" Type="int" Nullable="false" />
-          <Property Name="rate" Type="int" Nullable="false" />
-          <Property Name="note" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="tdate" Type="date" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="userId" Type="bigint" Nullable="false" />
-          <Property Name="memberid" Type="bigint" Nullable="false" />
+          <Property Name="accountId" Type="bigint" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="type1" Type="smallint" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="currency" Type="int" />
+          <Property Name="rate" Type="int" />
+          <Property Name="note" Type="nvarchar(max)" />
+          <Property Name="tdate" Type="date" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="memberid" Type="int" />
         </EntityType>
         <EntityType Name="transType">
           <Key>
@@ -852,7 +852,6 @@
           <EntitySet Name="stypes" EntityType="demoModel.stype" />
           <EntitySet Name="sysdiagrams" EntityType="demoModel.sysdiagram" />
           <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
-          <EntitySet Name="Trans" EntityType="demoModel.Tran" />
           <EntitySet Name="transTypes" EntityType="demoModel.transType" />
           <EntitySet Name="Ttables" EntityType="demoModel.Ttable" />
           <EntitySet Name="UserAccounts" EntityType="demoModel.UserAccount" />
@@ -863,8 +862,9 @@
           <EntitySet Name="Interests" EntityType="demoModel.Interest" />
           <EntitySet Name="Orders" EntityType="demoModel.Order" />
           <EntitySet Name="Deals" EntityType="demoModel.Deal" />
-          <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
           <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
+          <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
+          <EntitySet Name="Trans" EntityType="demoModel.Tran" />
         </EntityContainer>
         <EntityType Name="accType">
           <Key>
@@ -1427,24 +1427,6 @@
           <Property Name="timestamp" Type="Int64" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Tran">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accountId" Type="Int64" Nullable="false" />
-          <Property Name="type" Type="Int16" Nullable="false" />
-          <Property Name="type1" Type="Int16" Nullable="false" />
-          <Property Name="amount" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="currency" Type="Int32" Nullable="false" />
-          <Property Name="rate" Type="Int32" Nullable="false" />
-          <Property Name="note" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="userId" Type="Int64" Nullable="false" />
-          <Property Name="memberid" Type="Int64" Nullable="false" />
-        </EntityType>
         <EntityType Name="transType">
           <Key>
             <PropertyRef Name="id" />
@@ -1583,6 +1565,14 @@
           <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="connect" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="Reason">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="ColReq">
           <Key>
             <PropertyRef Name="id" />
@@ -1591,19 +1581,29 @@
           <Property Name="accId" Type="Int64" />
           <Property Name="assetId" Type="Int32" />
           <Property Name="value" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="type" Type="Int16" />
+          <Property Name="mode" Type="Int16" />
           <Property Name="state" Type="Byte" />
           <Property Name="modified" Type="DateTime" Precision="3" />
           <Property Name="reason" Type="Int16" />
           <Property Name="memid" Type="Int32" />
         </EntityType>
-        <EntityType Name="Reason">
+        <EntityType Name="Tran">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int64" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="type1" Type="Int16" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="currency" Type="Int32" />
+          <Property Name="rate" Type="Int32" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tdate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="memberid" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2212,25 +2212,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Trans">
-            <EntityTypeMapping TypeName="demoModel.Tran">
-              <MappingFragment StoreEntitySet="Trans">
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="tdate" ColumnName="tdate" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="rate" ColumnName="rate" />
-                <ScalarProperty Name="currency" ColumnName="currency" />
-                <ScalarProperty Name="amount" ColumnName="amount" />
-                <ScalarProperty Name="type1" ColumnName="type1" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="transTypes">
             <EntityTypeMapping TypeName="demoModel.transType">
               <MappingFragment StoreEntitySet="transType">
@@ -2379,6 +2360,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Reasons">
+            <EntityTypeMapping TypeName="demoModel.Reason">
+              <MappingFragment StoreEntitySet="Reason">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ColReqs">
             <EntityTypeMapping TypeName="demoModel.ColReq">
               <MappingFragment StoreEntitySet="ColReq">
@@ -2386,7 +2376,7 @@
                 <ScalarProperty Name="reason" ColumnName="reason" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="assetId" ColumnName="assetId" />
                 <ScalarProperty Name="accId" ColumnName="accId" />
@@ -2394,11 +2384,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Reasons">
-            <EntityTypeMapping TypeName="demoModel.Reason">
-              <MappingFragment StoreEntitySet="Reason">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
+          <EntitySetMapping Name="Trans">
+            <EntityTypeMapping TypeName="demoModel.Tran">
+              <MappingFragment StoreEntitySet="Trans">
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="tdate" ColumnName="tdate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="type1" ColumnName="type1" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

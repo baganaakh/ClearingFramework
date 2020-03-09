@@ -30,7 +30,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>\\192.168.1.109\Test\ClearingTest\</InstallUrl>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -135,6 +135,9 @@
     <Compile Include="dbBind\Account.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\AdminDatabase\ColReq.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\clearingDeal.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
@@ -175,9 +178,6 @@
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\ClearingAccount.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\ColReq.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\Contract.cs">

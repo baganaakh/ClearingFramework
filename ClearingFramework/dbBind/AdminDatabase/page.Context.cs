@@ -69,7 +69,6 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<stype> stypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
-        public virtual DbSet<Tran> Trans { get; set; }
         public virtual DbSet<transType> transTypes { get; set; }
         public virtual DbSet<Ttable> Ttables { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
@@ -80,7 +79,8 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<Interest> Interests { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Deal> Deals { get; set; }
-        public virtual DbSet<ColReq> ColReqs { get; set; }
         public virtual DbSet<Reason> Reasons { get; set; }
+        public virtual DbSet<ColReq> ColReqs { get; set; }
+        public virtual DbSet<Tran> Trans { get; set; }
     }
 }
