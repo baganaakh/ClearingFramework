@@ -289,7 +289,7 @@
                     </TextBox>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="19,14,0,0" TextWrapping="Wrap" Text="Данс" Width="115" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <ComboBox DisplayMemberPath="accNum" SelectedValuePath="id" SelectionChanged="accId_SelectionChanged" Name="accId" HorizontalAlignment="Left" Height="20" Margin="139,14,0,0"  Text="Гүйлгээний төрөл" Width="85" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <ComboBox x:Name="Types" HorizontalAlignment="Left" Height="20" Margin="422,17,0,0"  Text="Гүйлгээний төрөл" Width="118" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
+                    <ComboBox Name="Types" HorizontalAlignment="Left" Height="20" Margin="422,17,0,0" Text="reason" Width="118" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
                         <ComboBoxItem>Байршуулах</ComboBoxItem>
                         <ComboBoxItem>Буцаах</ComboBoxItem>
                     </ComboBox>

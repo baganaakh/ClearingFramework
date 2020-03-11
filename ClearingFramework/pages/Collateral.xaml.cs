@@ -48,7 +48,7 @@ namespace Clearing.pages
             
             foreach(Tran items in trans)
             {
-                asset1 =Convert.ToInt32( items.currency);
+                asset1 =Convert.ToInt32( items.assetId);
                 RefPrice refpri =de.RefPrices.Where(r => r.assetId ==  asset1).FirstOrDefault<RefPrice>();
                 if (refpri == null)
                 {
@@ -62,7 +62,7 @@ namespace Clearing.pages
                 mtype mty = de.mtypes.Where(r => r.id == type).FirstOrDefault<mtype>();
                 int minval =Convert.ToInt32( mty.minValue);
                 decimal ratio = asst.ratio;
-                decimal qty =Convert.ToDecimal(items.amount);
+                decimal qty =Convert.ToDecimal(items.totalNumber);
                 decimal totval = qty * (ratio * refPrice);
                 forGrid data = new forGrid()
                 {
@@ -118,14 +118,18 @@ namespace Clearing.pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int qty = Convert.ToInt32(qtyss.Text);
+            short mod = Convert.ToInt16(Types.SelectedIndex);
+            decimal qtyy = Convert.ToDecimal(qtyss.Text);
+            if (mod == 1)
+                qtyy *=(-1);
             using (demoEntities1 contx = new demoEntities1())
             {
                 ColReq req = new ColReq()
                 {
                     accId = Convert.ToInt64(accId.SelectedValue),
                     assetId = Convert.ToInt32(asset.SelectedValue),
-                    value = Convert.ToDecimal(qtyss.Text),
-                    mode = Convert.ToInt16(Types.SelectedIndex),
+                    mode = mod,
+                    value = qtyy,
                     modified = DateTime.Now,
                     memid = memId,
                     state=1,

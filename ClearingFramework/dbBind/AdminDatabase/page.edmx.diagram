@@ -61,8 +61,8 @@
         <EntityTypeShape EntityType="demoModel.Deal" Width="1.5" PointX="13.375" PointY="21.75" />
         <EntityTypeShape EntityType="demoModel.Reason" Width="1.5" PointX="21.375" PointY="17.75" />
         <EntityTypeShape EntityType="demoModel.ColReq" Width="1.5" PointX="15.375" PointY="21.75" />
-        <EntityTypeShape EntityType="demoModel.Tran" Width="1.5" PointX="21.375" PointY="20.75" />
-        <EntityTypeShape EntityType="demoModel.AccountDet" Width="1.5" PointX="17.375" PointY="22.75" />
+        <EntityTypeShape EntityType="demoModel.AccountDetail" Width="1.5" PointX="21.375" PointY="20.75" />
+        <EntityTypeShape EntityType="demoModel.Tran" Width="1.5" PointX="17.375" PointY="22.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

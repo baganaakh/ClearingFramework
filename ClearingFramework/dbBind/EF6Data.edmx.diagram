@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="ClearingModel.transaction" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="ClearingModel.Request" Width="1.5" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="ClearingModel.clearingDeal" Width="1.5" PointX="3.375" PointY="6.75" />
-        <EntityTypeShape EntityType="ClearingModel.deal" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ClearingModel.deal" Width="1.5" PointX="5.5" PointY="6.75" />
         <EntityTypeShape EntityType="ClearingModel.lastPrice" Width="1.5" PointX="0.75" PointY="8.125" />
         <EntityTypeShape EntityType="ClearingModel.pozit" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="ClearingModel.Account" Width="1.5" PointX="0.75" PointY="0.75" />
