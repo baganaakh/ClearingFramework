@@ -138,6 +138,11 @@ namespace Clearing.pages
                     contractFee = Convert.ToDecimal(contractFee.Text),
                     pozFee = Convert.ToDecimal(pozfee.Text)
                 };
+                ClearingFramework.dbBind.AccountDetail acd = new ClearingFramework.dbBind.AccountDetail
+                {
+
+                };
+                context.AccountDetails.Add(acd);
                 context.Accounts.Add(acct);
                 context.SaveChanges();
                 FillGrid();
