@@ -48,7 +48,6 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<GroupUser> GroupUsers { get; set; }
         public virtual DbSet<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<isactive> isactives { get; set; }
         public virtual DbSet<IsDealer> IsDealers { get; set; }
         public virtual DbSet<Margin> Margins { get; set; }
         public virtual DbSet<MarketMaker> MarketMakers { get; set; }
@@ -61,7 +60,6 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<Security> Securities { get; set; }
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
-        public virtual DbSet<side> sides { get; set; }
         public virtual DbSet<Software> Softwares { get; set; }
         public virtual DbSet<SpecialType> SpecialTypes { get; set; }
         public virtual DbSet<Spread> Spreads { get; set; }

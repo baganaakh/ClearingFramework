@@ -41,11 +41,12 @@ namespace Clearing.pages
         { 
             int asset1;
             demoEntities1 de = new demoEntities1();
+            ClearingEntities ce = new ClearingEntities();
             List<forGrid> ToDisplay=new List<forGrid>();
             List<forGrid> ToDisplay2 = new List<forGrid>();
+            List<forGrid> Биржбарьцаа = new List<forGrid>();
             List<Tran> trans = de.Trans.ToList();
             #region Барьцаа түүх
-            
             foreach(Tran items in trans)
             {
                 asset1 =Convert.ToInt32( items.assetId);
@@ -68,8 +69,8 @@ namespace Clearing.pages
                 {
                     id=Convert.ToInt64( items.id),
                     accNumber = items.accountId.ToString(),
-                    Барьцаа = asset1.ToString("0.###"),
-                    Хэмжээ = qty.ToString("0.###"),
+                    Барьцаа = asst.name.ToString(),
+                    Хэмжээ =Convert.ToInt32( qty),
                     ЖишигҮнэ=(ratio*refPrice).ToString("0.###"),
                     НийтДүн=totval.ToString("0.###"),
                     ДоодДүн= minval.ToString("0.###"),
@@ -101,7 +102,7 @@ namespace Clearing.pages
                     id = Convert.ToInt64(items.id),
                     accNumber = items.accId.ToString(),
                     Барьцаа = asset1.ToString("0.###"),
-                    Хэмжээ = qty.ToString("0.###"),
+                    Хэмжээ = Convert.ToInt32(qty),
                     ЖишигҮнэ=(ratio*refPrice).ToString("0.###"),
                     НийтДүн=totval.ToString("0.###"),
                     ДоодДүн= minval.ToString("0.###"),
@@ -112,6 +113,54 @@ namespace Clearing.pages
             }
                 pendingColl.ItemsSource = ToDisplay2;
             #endregion
+            #region Биржийн барьцаа
+            var accNums = ce.Accounts.Where(s => s.memId == memId).Select(s => s.accNum).ToArray();
+            foreach(var acnum in accNums)
+            {
+                var adet = ce.AccountDetails.Where(s => s.accNum == acnum).FirstOrDefault<AccountDetail>();
+                Asset asst = de.Assets.Where(s => s.id == adet.assetId).FirstOrDefault<Asset>();
+                RefPrice refpri = de.RefPrices.Where(r => r.assetId == adet.assetId).FirstOrDefault<RefPrice>();
+                if (refpri == null)
+                {
+                    MessageBox.Show("RefPices has no value to connected to asset  " + adet.assetId+ " ");
+                    return;
+                }
+                decimal refPrice = Convert.ToDecimal(refpri.refprice1);
+                decimal jish = asst.ratio * refPrice;
+                decimal tot = Convert.ToDecimal( adet.totalNumber * jish);
+                mtype mty = de.mtypes.Where(r => r.id == 0).FirstOrDefault<mtype>();
+                int minval = Convert.ToInt32(mty.minValue);
+                forGrid data = new forGrid()
+                {
+                    id=adet.id,
+                    Барьцаа =asst.name,
+                    Хэмжээ=Convert.ToInt32( adet.totalNumber),
+                    ЖишигҮнэ=(jish).ToString("0.##"),
+                    НийтДүн=(tot).ToString("0.##"),
+                    ДоодДүн=minval.ToString("0.##"),
+                    ЗөрүүДүн=(tot-minval).ToString("0.##"),
+                };
+                Биржбарьцаа.Add(data);
+            }
+            Биржийнбарьцаа.ItemsSource = Биржбарьцаа;
+            #endregion
+
+        }
+        public class forGrid
+        {
+            public forGrid()
+            {
+            }
+            public long id { get; set; }
+            public string accNumber { get; set; }
+            public string Барьцаа { get; set; }
+            public int Хэмжээ { get; set; }
+            public string ЖишигҮнэ { get; set; }
+            public string НийтДүн { get; set; }
+            public string ДоодДүн { get; set; }
+            public string ЗөрүүДүн { get; set; }
+            public string БуцаахДүн { get; set; }
+            public string state { get; set; }
         }
         #endregion
         #region илгээх
@@ -232,21 +281,6 @@ namespace Clearing.pages
             App.TextBox_PreviewTextInput(sender, e);
         }
         #endregion
-        public class forGrid
-        {
-            public forGrid()
-            {
-            }
-            public long id { get; set; }
-            public string accNumber { get; set; }
-            public string Барьцаа { get; set; }
-            public string Хэмжээ { get; set; }
-            public string ЖишигҮнэ { get; set; }
-            public string НийтДүн { get; set; }
-            public string ДоодДүн { get; set; }
-            public string ЗөрүүДүн { get; set; }
-            public string БуцаахДүн { get; set; }
-            public string state { get; set; }
-        }
+        
     }
 }

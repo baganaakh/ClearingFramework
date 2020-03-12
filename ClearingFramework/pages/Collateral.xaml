@@ -299,17 +299,18 @@
         <TabControl Margin="10,117,10,10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Биржийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
-                    <DataGrid Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                    <DataGrid x:Name="Биржийнбарьцаа" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
                               FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,60,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Барьцаа"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Жишиг үнэ ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Нийт дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Доод дүн ₮"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Зөрүү дүн ₮"/>
+                            <DataGridTextColumn Binding="{Binding  id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding  Барьцаа}" ClipboardContentBinding="{x:Null}" Header="Барьцаа"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding Хэмжээ}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ЖишигҮнэ}" ClipboardContentBinding="{x:Null}" Header="Жишиг үнэ ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding НийтДүн}" ClipboardContentBinding="{x:Null}" Header="Нийт дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ДоодДүн}" ClipboardContentBinding="{x:Null}" Header="Доод дүн ₮"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding ЗөрүүДүн}" ClipboardContentBinding="{x:Null}" Header="Зөрүү дүн ₮"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>

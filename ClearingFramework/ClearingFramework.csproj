@@ -234,9 +234,6 @@
     <Compile Include="dbBind\AdminDatabase\InvoiceDetail.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\isactive.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\AdminDatabase\IsDealer.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
@@ -295,9 +292,6 @@
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\Setting.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\side.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\Software.cs">

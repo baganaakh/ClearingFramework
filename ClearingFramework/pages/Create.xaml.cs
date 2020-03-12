@@ -42,6 +42,7 @@ namespace Clearing.pages
             FillGrid();
         }
         long iid;
+        int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string pcode;
         #region fill, new & refresh
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -65,7 +66,7 @@ namespace Clearing.pages
         {
             ClearingEntities CE = new ClearingEntities();
             var Accountss = CE.Accounts;
-            vwOmniAccBalance.ItemsSource = Accountss.ToList();
+            vwOmniAccBalance.ItemsSource = Accountss.Where(s=>s.memId == memId).ToList();
         }
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
@@ -122,25 +123,29 @@ namespace Clearing.pages
                 }
                 Account1 acct = new Account1
                 {
+                    accNum = accountn.Text,
+                    idNum = idNumber.Text,
                     lname = lName.Text,
                     fname = fName.Text,
-                    idNum = idNumber.Text,
                     phone = phonee.Text,
-                    accNum = accountn.Text,
-                    secAcc = secAc.Text,
-                    state = Convert.ToInt16(stat.SelectedIndex),
                     mail = email.Text,
-                    brokerCode = pcode,
                     linkAcc = linkAc.SelectedValue.ToString(),
+                    brokerCode = pcode,
+                    state = Convert.ToInt16(stat.SelectedIndex),
                     modified = DateTime.Now,
+                    secAcc = secAc.Text,
                     fee = Convert.ToDecimal(fee.Text),
                     denchinPercent = Convert.ToDecimal(denchinPercent.Text),
                     contractFee = Convert.ToDecimal(contractFee.Text),
-                    pozFee = Convert.ToDecimal(pozfee.Text)
+                    pozFee = Convert.ToDecimal(pozfee.Text),
+                    memId = memId
                 };
                 ClearingFramework.dbBind.AccountDetail acd = new ClearingFramework.dbBind.AccountDetail
                 {
-
+                    freezeValue=10,
+                    totalNumber=100,
+                    accNum= accountn.Text,
+                    linkAcc = linkAc.SelectedValue.ToString(),
                 };
                 context.AccountDetails.Add(acd);
                 context.Accounts.Add(acct);

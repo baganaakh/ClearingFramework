@@ -385,13 +385,6 @@
           <Property Name="expiredate" Type="date" />
           <Property Name="expiretime" Type="time" Precision="7" />
         </EntityType>
-        <EntityType Name="isactive">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="isactive" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
         <EntityType Name="IsDealer">
           <Key>
             <PropertyRef Name="id" />
@@ -613,13 +606,6 @@
           <Property Name="ValueType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FormatString" Type="nvarchar" MaxLength="1024" Nullable="false" />
         </EntityType>
-        <EntityType Name="side">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="side" Type="nvarchar" MaxLength="20" Nullable="false" />
-        </EntityType>
         <EntityType Name="Softwares">
           <Key>
             <PropertyRef Name="ID" />
@@ -784,7 +770,6 @@
           <EntitySet Name="Interests" EntityType="Self.Interests" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceDetails" EntityType="Self.InvoiceDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="isactive" EntityType="Self.isactive" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IsDealer" EntityType="Self.IsDealer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Margins" EntityType="Self.Margins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MarketMakers" EntityType="Self.MarketMakers" Schema="dbo" store:Type="Tables" />
@@ -800,7 +785,6 @@
           <EntitySet Name="Securities" EntityType="Self.Securities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Session" EntityType="Self.Session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="side" EntityType="Self.side" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Softwares" EntityType="Self.Softwares" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SpecialType" EntityType="Self.SpecialType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Spreads" EntityType="Self.Spreads" Schema="dbo" store:Type="Tables" />
@@ -843,7 +827,6 @@
           <EntitySet Name="GroupUsers" EntityType="demoModel.GroupUser" />
           <EntitySet Name="InvoiceDetails" EntityType="demoModel.InvoiceDetail" />
           <EntitySet Name="Invoices" EntityType="demoModel.Invoice" />
-          <EntitySet Name="isactives" EntityType="demoModel.isactive" />
           <EntitySet Name="IsDealers" EntityType="demoModel.IsDealer" />
           <EntitySet Name="Margins" EntityType="demoModel.Margin" />
           <EntitySet Name="MarketMakers" EntityType="demoModel.MarketMaker" />
@@ -856,7 +839,6 @@
           <EntitySet Name="Securities" EntityType="demoModel.Security" />
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
           <EntitySet Name="Settings" EntityType="demoModel.Setting" />
-          <EntitySet Name="sides" EntityType="demoModel.side" />
           <EntitySet Name="Softwares" EntityType="demoModel.Software" />
           <EntitySet Name="SpecialTypes" EntityType="demoModel.SpecialType" />
           <EntitySet Name="Spreads" EntityType="demoModel.Spread" />
@@ -1179,13 +1161,6 @@
           <Property Name="expiredate" Type="DateTime" Precision="0" />
           <Property Name="expiretime" Type="Time" Precision="7" />
         </EntityType>
-        <EntityType Name="isactive">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="isactive1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="IsDealer">
           <Key>
             <PropertyRef Name="id" />
@@ -1366,13 +1341,6 @@
           <Property Name="ReadOnly" Type="Byte" Nullable="false" />
           <Property Name="ValueType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FormatString" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="side">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="side1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Software">
           <Key>
@@ -1956,14 +1924,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="isactives">
-            <EntityTypeMapping TypeName="demoModel.isactive">
-              <MappingFragment StoreEntitySet="isactive">
-                <ScalarProperty Name="isactive1" ColumnName="isactive" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="IsDealers">
             <EntityTypeMapping TypeName="demoModel.IsDealer">
               <MappingFragment StoreEntitySet="IsDealer">
@@ -2152,14 +2112,6 @@
                 <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
                 <ScalarProperty Name="SettingName" ColumnName="SettingName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sides">
-            <EntityTypeMapping TypeName="demoModel.side">
-              <MappingFragment StoreEntitySet="side">
-                <ScalarProperty Name="side1" ColumnName="side" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
