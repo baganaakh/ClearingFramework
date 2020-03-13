@@ -336,12 +336,19 @@
     <Compile Include="dbBind\Request.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="pages\Repo2.xaml.cs">
+      <DependentUpon>Repo2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="dbBind\transaction.cs">
       <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
+    <Page Include="pages\Repo2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="windows\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

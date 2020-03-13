@@ -143,7 +143,16 @@
                     <Image Source="..\pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
                 </WrapPanel>
             </Button>
-            <Button Height="30" Margin="4,230,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_8">
+            <Button Height="30" Margin="4,230,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_13">
+                <WrapPanel Width="143">
+                    <Image Source="..\pics\Conversion of currency.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
+                        <Run Text="Репо2"/>
+                    </TextBlock>
+                    <Image Source="..\pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
+                </WrapPanel>
+            </Button>
+            <Button Height="30" Margin="4,260,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_8">
                 <WrapPanel Width="143">
                     <Image Source="..\pics\Coins.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
@@ -152,7 +161,7 @@
                     <Image Source="..\pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
                 </WrapPanel>
             </Button>
-            <Button Height="30" Margin="4,260,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_9">
+            <Button Height="30" Margin="4,290,0,0" FontSize="11" VerticalAlignment="Top" HorizontalContentAlignment="Left" Padding="1" UseLayoutRounding="False" BorderBrush="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" Click="Button_Click_9">
                 <WrapPanel Width="143">
                     <Image Source="..\pics\Medal.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">

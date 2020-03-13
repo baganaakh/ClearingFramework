@@ -106,5 +106,10 @@ namespace ClearingFramework
             login.Show();
             this.Close();
         }
+
+        private void Button_Click_13(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new Repo2();
+        }
     }
 }
