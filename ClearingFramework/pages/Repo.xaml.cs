@@ -43,7 +43,6 @@ namespace Clearing.pages
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
                 using (demoEntities1 context = new demoEntities1())
             {
                 Order order = new Order()

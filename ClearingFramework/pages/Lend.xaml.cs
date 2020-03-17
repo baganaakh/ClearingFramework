@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.AdminDatabase;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +23,14 @@ namespace Clearing.pages
         public Lend()
         {
             InitializeComponent();
+        }
+        ClearingEntities CE = new ClearingEntities();
+        demoEntities1 DE = new demoEntities1();
+        public List<Asset> asst { get; set; }
+        private void bindCombo()
+        {
+            List<Asset> acclist = DE.Assets;
+            assett.ItemsSource = acclist;
         }
     }
 }
