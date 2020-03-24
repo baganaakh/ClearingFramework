@@ -14,10 +14,9 @@ namespace ClearingFramework.dbBind.AdminDatabase
     
     public partial class RefPrice
     {
-        public long id { get; set; }
-        public decimal refprice1 { get; set; }
-        public System.DateTime modified { get; set; }
+        public long contractId { get; set; }
+        public Nullable<decimal> refprice1 { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
         public string name { get; set; }
-        public Nullable<int> assetId { get; set; }
     }
 }

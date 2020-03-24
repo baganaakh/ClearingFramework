@@ -29,8 +29,8 @@ namespace Clearing.pages
         public List<Asset> asst { get; set; }
         private void bindCombo()
         {
-            List<Asset> acclist = DE.Assets;
-            assett.ItemsSource = acclist;
+            //List<Asset> acclist = DE.Assets;
+            //assett.ItemsSource = acclist;
         }
     }
 }

@@ -307,7 +307,7 @@ namespace Clearing.pages
             mem = memid;
             brokCode.ItemsSource = mem;
 
-            var acclist = de.Accounts.Where(s => s.memberid == memId && s.accType == 3).ToList();
+            var acclist = de.Accounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
             acc = acclist;
             linkAc.ItemsSource = acc;
         }

@@ -45,9 +45,9 @@ namespace Clearing.pages
             List<forGrid> ToDisplay=new List<forGrid>();
             List<forGrid> ToDisplay2 = new List<forGrid>();
             List<forGrid> Биржбарьцаа = new List<forGrid>();
-            List<Tran> trans = de.Trans.ToList();
+            List<Transaction> trans = de.Transactions.ToList();
             #region Барьцаа түүх
-            foreach(Tran items in trans)
+            foreach(Transaction items in trans)
             {
                 asset1 =Convert.ToInt32( items.assetId);
                 RefPrice refpri =de.RefPrices.Where(r => r.assetId ==  asset1).FirstOrDefault<RefPrice>();

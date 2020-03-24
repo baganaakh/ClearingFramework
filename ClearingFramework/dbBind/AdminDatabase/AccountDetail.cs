@@ -16,9 +16,8 @@ namespace ClearingFramework.dbBind.AdminDatabase
     {
         public int id { get; set; }
         public Nullable<decimal> freezeValue { get; set; }
-        public Nullable<decimal> totalNumber { get; set; }
+        public Nullable<decimal> amount { get; set; }
         public Nullable<int> assetId { get; set; }
-        public string accountId { get; set; }
-        public string linkAcc { get; set; }
+        public Nullable<long> accountId { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace ClearingFramework.dbBind.AdminDatabase
     public partial class Order
     {
         public long id { get; set; }
-        public Nullable<long> bid { get; set; }
+        public Nullable<long> boardId { get; set; }
         public Nullable<short> side { get; set; }
         public Nullable<long> memberid { get; set; }
         public Nullable<long> accountid { get; set; }

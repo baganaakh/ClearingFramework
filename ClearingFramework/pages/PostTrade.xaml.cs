@@ -33,7 +33,7 @@ namespace Clearing.pages
                 {
                     try
                     {
-                        query = context.Accounts.Where(s => s.id == i.accountid).FirstOrDefault<Account>().accNum;
+                        query = context.Accounts.Where(s => s.id == i.accountid).FirstOrDefault<Account>().accNumber;
                         acode = context.Assets.Where(s => s.id == i.assetid).FirstOrDefault<Asset>().code;
                     }
                     catch (System.NullReferenceException)

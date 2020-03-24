@@ -34,7 +34,7 @@ namespace Clearing.pages
             using (demoEntities1 context = new demoEntities1())
             {
                 long memid= Convert.ToInt32(App.Current.Properties["member_id"]);
-                var acc = context.Accounts.Where(s=> s.memberid == memid && s.accType == 3).ToList();
+                var acc = context.Accounts.Where(s=> s.memberid == memid && s.accountType == 3).ToList();
                 unitedData.ItemsSource = acc;
                 //var level1 = context.Accounts.Where(s => s.memberid == memid && s.accType == 0);
                 //select * from demo.dbo.Account where accType = 3 and LinkAcc in (select accNum from demo.dbo.Account where  LinkAcc IN (select accNum from demo.dbo.Account where memberid= 20 and accType = 0) and accType = 2)

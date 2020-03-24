@@ -12,13 +12,13 @@ namespace ClearingFramework.dbBind.AdminDatabase
     using System;
     using System.Collections.Generic;
     
-    public partial class Tran
+    public partial class Transaction
     {
         public long id { get; set; }
-        public string accountId { get; set; }
+        public Nullable<long> accountId { get; set; }
         public Nullable<short> type { get; set; }
         public Nullable<short> type1 { get; set; }
-        public Nullable<decimal> totalNumber { get; set; }
+        public Nullable<int> amount { get; set; }
         public Nullable<int> assetId { get; set; }
         public Nullable<int> rate { get; set; }
         public string note { get; set; }
@@ -27,5 +27,6 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public Nullable<System.DateTime> modified { get; set; }
         public Nullable<long> userId { get; set; }
         public Nullable<int> memberid { get; set; }
+        public string currency { get; set; }
     }
 }

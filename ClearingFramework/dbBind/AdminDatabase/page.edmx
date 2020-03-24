@@ -10,18 +10,15 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="memberid" Type="bigint" Nullable="false" />
-          <Property Name="accNum" Type="nvarchar" MaxLength="16" />
-          <Property Name="accType" Type="smallint" />
-          <Property Name="LinkAcc" Type="nvarchar" MaxLength="16" />
-          <Property Name="collateral" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="memberid" Type="bigint" />
+          <Property Name="accNumber" Type="nvarchar" MaxLength="16" />
+          <Property Name="accountType" Type="smallint" />
+          <Property Name="LinkAccount" Type="bigint" />
+          <Property Name="modified" Type="datetime" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" />
           <Property Name="startdate" Type="date" />
           <Property Name="enddate" Type="date" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="blnc" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="smallint" />
         </EntityType>
         <EntityType Name="AccountDetails">
           <Key>
@@ -29,10 +26,9 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="freezeValue" Type="decimal" Precision="18" Scale="4" />
-          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="amount" Type="decimal" Precision="18" Scale="4" />
           <Property Name="assetId" Type="int" />
-          <Property Name="accountId" Type="nvarchar" MaxLength="20" />
-          <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
+          <Property Name="accountId" Type="bigint" />
         </EntityType>
         <EntityType Name="accType">
           <Key>
@@ -86,13 +82,13 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="code" Type="nvarchar" MaxLength="16" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="value" Type="decimal" Precision="18" Scale="6" Nullable="false" />
+          <Property Name="volume" Type="int" Nullable="false" />
           <Property Name="note" Type="nvarchar(max)" />
-          <Property Name="expireDate" Type="date" Nullable="false" />
+          <Property Name="expireDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="modified" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ratio" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="secId" Type="bigint" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="BoardInstruments">
           <Key>
@@ -135,15 +131,15 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="memberid" Type="int" Nullable="false" />
-          <Property Name="account" Type="int" Nullable="false" />
-          <Property Name="type" Type="smallint" Nullable="false" />
-          <Property Name="currency" Type="int" Nullable="false" />
-          <Property Name="blnc" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="linkaccount" Type="bigint" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="memberid" Type="int" />
+          <Property Name="account" Type="nvarchar" MaxLength="10" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="currency" Type="int" />
+          <Property Name="blnc" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="sblnc" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="linkaccount" Type="bigint" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
         </EntityType>
         <EntityType Name="ColReq">
           <Key>
@@ -164,21 +160,21 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="securityId" Type="bigint" Nullable="false" />
-          <Property Name="type" Type="smallint" Nullable="false" />
-          <Property Name="code" Type="nvarchar" MaxLength="16" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="lot" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="tick" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="sdate" Type="date" Nullable="false" />
-          <Property Name="edate" Type="date" Nullable="false" />
-          <Property Name="groupId" Type="smallint" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="mmorderLimit" Type="int" Nullable="false" />
-          <Property Name="orderLimit" Type="int" Nullable="false" />
-          <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="bid" Type="bigint" Nullable="false" />
+          <Property Name="securityId" Type="bigint" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="lot" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="tickTable" Type="int" />
+          <Property Name="sdate" Type="date" />
+          <Property Name="edate" Type="date" />
+          <Property Name="groupId" Type="smallint" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="mmorderLimit" Type="int" />
+          <Property Name="orderLimit" Type="int" />
+          <Property Name="refpriceParam" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="bid" Type="bigint" />
         </EntityType>
         <EntityType Name="ctype">
           <Key>
@@ -355,13 +351,14 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="invoiceid" Type="bigint" Nullable="false" />
-          <Property Name="assetid" Type="int" Nullable="false" />
-          <Property Name="qty" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="note" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="invoiceid" Type="bigint" />
+          <Property Name="assetid" Type="int" />
+          <Property Name="qty" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="note" Type="nvarchar(max)" />
+          <Property Name="dealNo" Type="bigint" />
         </EntityType>
         <EntityType Name="Invoices">
           <Key>
@@ -394,9 +391,9 @@
         </EntityType>
         <EntityType Name="Margins">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="contractId" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="contractId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="buy" Type="decimal" Precision="18" Scale="6" Nullable="false" />
           <Property Name="sell" Type="decimal" Precision="18" Scale="6" Nullable="false" />
           <Property Name="buytype" Type="smallint" Nullable="false" />
@@ -414,8 +411,8 @@
           <Property Name="contactid" Type="int" Nullable="false" />
           <Property Name="memberid" Type="int" Nullable="false" />
           <Property Name="accountid" Type="bigint" Nullable="false" />
-          <Property Name="startdate" Type="date" Nullable="false" />
-          <Property Name="enddate" Type="date" Nullable="false" />
+          <Property Name="startdate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="enddate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ticks" Type="int" Nullable="false" />
           <Property Name="description" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="orderlimit" Type="int" Nullable="false" />
@@ -424,23 +421,23 @@
         </EntityType>
         <EntityType Name="Members">
           <Key>
+            <PropertyRef Name="id" />
             <PropertyRef Name="code" />
             <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="type" Type="smallint" Nullable="false" />
+          <Property Name="type" Type="smallint" />
           <Property Name="code" Type="nvarchar" MaxLength="2" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="partid" Type="bigint" Nullable="false" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="partid" Type="bigint" />
           <Property Name="mask" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="startdate" Type="date" Nullable="false" />
-          <Property Name="enddate" Type="date" Nullable="false" />
-          <Property Name="broker" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="dealer" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ander" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="nominal" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="startdate" Type="date" />
+          <Property Name="enddate" Type="date" />
+          <Property Name="broker" Type="nvarchar" MaxLength="20" />
+          <Property Name="dealer" Type="nvarchar" MaxLength="20" />
+          <Property Name="ander" Type="nvarchar" MaxLength="20" />
+          <Property Name="nominal" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -467,7 +464,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="bid" Type="bigint" />
+          <Property Name="boardId" Type="bigint" />
           <Property Name="side" Type="smallint" />
           <Property Name="memberid" Type="bigint" />
           <Property Name="accountid" Type="bigint" />
@@ -487,28 +484,26 @@
         <EntityType Name="Participants">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="code" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="country" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="country" Type="nvarchar" MaxLength="50" />
           <Property Name="address" Type="nvarchar" MaxLength="255" />
-          <Property Name="phone" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="contact" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="pcity" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="pdistr" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="phoroo" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="pstreet" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="pwebpage" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="numofemp" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="csid" Type="int" Nullable="false" />
-          <Property Name="webid" Type="int" Nullable="false" />
-          <Property Name="spType" Type="smallint" />
-          <Property Name="coType" Type="smallint" />
+          <Property Name="phone" Type="nvarchar" MaxLength="30" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="pcity" Type="nvarchar" MaxLength="20" />
+          <Property Name="pdistr" Type="nvarchar" MaxLength="20" />
+          <Property Name="phoroo" Type="nvarchar" MaxLength="20" />
+          <Property Name="pstreet" Type="nvarchar" MaxLength="20" />
+          <Property Name="pwebpage" Type="nvarchar" MaxLength="30" />
+          <Property Name="numofemp" Type="nvarchar" MaxLength="20" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="csid" Type="int" />
+          <Property Name="webid" Type="int" />
+          <Property Name="specialType" Type="smallint" />
+          <Property Name="companyType" Type="smallint" />
         </EntityType>
         <EntityType Name="Ptype">
           <Key>
@@ -527,13 +522,12 @@
         </EntityType>
         <EntityType Name="RefPrice">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="contractId" />
           </Key>
-          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="refprice" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="contractId" Type="bigint" Nullable="false" />
+          <Property Name="refprice" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="modified" Type="datetime" />
           <Property Name="name" Type="nvarchar" MaxLength="20" />
-          <Property Name="assetId" Type="int" />
         </EntityType>
         <EntityType Name="Rights">
           <Key>
@@ -554,44 +548,42 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="partid" Type="int" Nullable="false" />
-          <Property Name="type" Type="smallint" Nullable="false" />
-          <Property Name="code" Type="nvarchar" MaxLength="16" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="refno" Type="nvarchar" MaxLength="16" Nullable="false" />
-          <Property Name="regno" Type="nvarchar" MaxLength="16" Nullable="false" />
-          <Property Name="totalQty" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="intRate" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="sdate" Type="date" Nullable="false" />
-          <Property Name="edate" Type="date" Nullable="false" />
-          <Property Name="groupId" Type="int" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="partid" Type="int" />
+          <Property Name="type" Type="smallint" />
+          <Property Name="code" Type="nvarchar" MaxLength="16" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalQty" Type="int" />
+          <Property Name="firstPrice" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="intRate" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="sdate" Type="date" />
+          <Property Name="edate" Type="date" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="assetId" Type="int" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="boardid" Type="bigint" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="stime" Type="time" Precision="7" Nullable="false" />
-          <Property Name="duration" Type="time" Precision="7" Nullable="false" />
-          <Property Name="algorithm" Type="smallint" Nullable="false" />
-          <Property Name="match" Type="smallint" Nullable="false" />
-          <Property Name="allowedtypes" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="description" Type="nvarchar" MaxLength="1024" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="isactive" Type="nvarchar" MaxLength="50" />
+          <Property Name="boardid" Type="bigint" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="stime" Type="time" Precision="7" />
+          <Property Name="duration" Type="int" />
+          <Property Name="algorithm" Type="smallint" />
+          <Property Name="match" Type="int" />
+          <Property Name="allowedtypes" Type="smallint" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="state" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="isactive" Type="bit" />
           <Property Name="starttime" Type="date" />
           <Property Name="endtime" Type="date" />
           <Property Name="tduration" Type="nchar" MaxLength="10" />
           <Property Name="matched" Type="bigint" />
-          <Property Name="editorder" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="delorder" Type="nchar" MaxLength="50" Nullable="false" />
-          <Property Name="markettype" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="editorder" Type="bit" />
+          <Property Name="delorder" Type="bit" />
+          <Property Name="markettype" Type="smallint" />
         </EntityType>
         <EntityType Name="Settings">
           <Key>
@@ -628,12 +620,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="contractid" Type="int" Nullable="false" />
-          <Property Name="sessionid" Type="int" Nullable="false" />
-          <Property Name="rspread" Type="int" Nullable="false" />
-          <Property Name="ispread" Type="int" Nullable="false" />
-          <Property Name="rparam" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
+          <Property Name="contractid" Type="int" />
+          <Property Name="sessionid" Type="int" />
+          <Property Name="rspread" Type="int" />
+          <Property Name="ispread" Type="int" />
+          <Property Name="rparam" Type="int" />
+          <Property Name="modified" Type="datetime" />
         </EntityType>
         <EntityType Name="States">
           <Key>
@@ -664,23 +656,17 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tableid" Type="bigint" Nullable="false" />
-          <Property Name="tick" Type="decimal" Precision="18" Scale="4" Nullable="false" />
-          <Property Name="price" Type="decimal" Precision="18" Scale="6" Nullable="false" />
-          <Property Name="state" Type="smallint" Nullable="false" />
-          <Property Name="modified" Type="datetime" Nullable="false" />
-          <Property Name="timestamp" Type="bigint" />
           <Property Name="name" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Trans">
+        <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="accountId" Type="nvarchar" MaxLength="20" />
+          <Property Name="accountId" Type="bigint" />
           <Property Name="type" Type="smallint" />
           <Property Name="type1" Type="smallint" />
-          <Property Name="totalNumber" Type="decimal" Precision="18" Scale="6" />
+          <Property Name="amount" Type="int" />
           <Property Name="assetId" Type="int" />
           <Property Name="rate" Type="int" />
           <Property Name="note" Type="nvarchar(max)" />
@@ -689,6 +675,7 @@
           <Property Name="modified" Type="datetime" />
           <Property Name="userId" Type="bigint" />
           <Property Name="memberid" Type="int" />
+          <Property Name="currency" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="transType">
           <Key>
@@ -792,7 +779,7 @@
           <EntitySet Name="stype" EntityType="Self.stype" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TickSizeTable" EntityType="Self.TickSizeTable" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Trans" EntityType="Self.Trans" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Transaction" EntityType="Self.Transaction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="transType" EntityType="Self.transType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ttable" EntityType="Self.Ttable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserAccounts" EntityType="Self.UserAccounts" Schema="dbo" store:Type="Tables" />
@@ -804,6 +791,8 @@
     <edmx:ConceptualModels>
       <Schema Namespace="demoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="demoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
+          <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
           <EntitySet Name="accTypes" EntityType="demoModel.accType" />
           <EntitySet Name="ActiveSessions" EntityType="demoModel.ActiveSession" />
           <EntitySet Name="algoes" EntityType="demoModel.algo" />
@@ -814,17 +803,20 @@
           <EntitySet Name="Boards" EntityType="demoModel.Board" />
           <EntitySet Name="Calendars" EntityType="demoModel.Calendar" />
           <EntitySet Name="ClearingAccounts" EntityType="demoModel.ClearingAccount" />
+          <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
           <EntitySet Name="Contracts" EntityType="demoModel.Contract" />
           <EntitySet Name="ctypes" EntityType="demoModel.ctype" />
           <EntitySet Name="dayTypes" EntityType="demoModel.dayType" />
           <EntitySet Name="dbo_logs" EntityType="demoModel.dbo_logs" />
           <EntitySet Name="Deal2" EntityType="demoModel.Deal2" />
           <EntitySet Name="DealerAccounts" EntityType="demoModel.DealerAccount" />
+          <EntitySet Name="Deals" EntityType="demoModel.Deal" />
           <EntitySet Name="Dealtypes" EntityType="demoModel.Dealtype" />
           <EntitySet Name="expireTables" EntityType="demoModel.expireTable" />
           <EntitySet Name="Fees" EntityType="demoModel.Fee" />
           <EntitySet Name="GroupRights" EntityType="demoModel.GroupRight" />
           <EntitySet Name="GroupUsers" EntityType="demoModel.GroupUser" />
+          <EntitySet Name="Interests" EntityType="demoModel.Interest" />
           <EntitySet Name="InvoiceDetails" EntityType="demoModel.InvoiceDetail" />
           <EntitySet Name="Invoices" EntityType="demoModel.Invoice" />
           <EntitySet Name="IsDealers" EntityType="demoModel.IsDealer" />
@@ -833,8 +825,11 @@
           <EntitySet Name="Members" EntityType="demoModel.Member" />
           <EntitySet Name="mtypes" EntityType="demoModel.mtype" />
           <EntitySet Name="nettings" EntityType="demoModel.netting" />
+          <EntitySet Name="Orders" EntityType="demoModel.Order" />
           <EntitySet Name="Participants" EntityType="demoModel.Participant" />
           <EntitySet Name="Ptypes" EntityType="demoModel.Ptype" />
+          <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
+          <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
           <EntitySet Name="Rights" EntityType="demoModel.Right" />
           <EntitySet Name="Securities" EntityType="demoModel.Security" />
           <EntitySet Name="Sessions" EntityType="demoModel.Session" />
@@ -846,21 +841,38 @@
           <EntitySet Name="stypes" EntityType="demoModel.stype" />
           <EntitySet Name="sysdiagrams" EntityType="demoModel.sysdiagram" />
           <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
+          <EntitySet Name="Transactions" EntityType="demoModel.Transaction" />
           <EntitySet Name="transTypes" EntityType="demoModel.transType" />
           <EntitySet Name="Ttables" EntityType="demoModel.Ttable" />
           <EntitySet Name="UserAccounts" EntityType="demoModel.UserAccount" />
           <EntitySet Name="UserGroups" EntityType="demoModel.UserGroup" />
           <EntitySet Name="users" EntityType="demoModel.user" />
-          <EntitySet Name="Accounts" EntityType="demoModel.Account" />
-          <EntitySet Name="RefPrices" EntityType="demoModel.RefPrice" />
-          <EntitySet Name="Interests" EntityType="demoModel.Interest" />
-          <EntitySet Name="Orders" EntityType="demoModel.Order" />
-          <EntitySet Name="Deals" EntityType="demoModel.Deal" />
-          <EntitySet Name="Reasons" EntityType="demoModel.Reason" />
-          <EntitySet Name="ColReqs" EntityType="demoModel.ColReq" />
-          <EntitySet Name="AccountDetails" EntityType="demoModel.AccountDetail" />
-          <EntitySet Name="Trans" EntityType="demoModel.Tran" />
         </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="accountType" Type="Int16" />
+          <Property Name="LinkAccount" Type="Int64" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+        </EntityType>
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="amount" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="accountId" Type="Int64" />
+        </EntityType>
         <EntityType Name="accType">
           <Key>
             <PropertyRef Name="id" />
@@ -913,13 +925,13 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="code" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="value" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
+          <Property Name="volume" Type="Int32" Nullable="false" />
           <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="expireDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="expireDate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ratio" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="secId" Type="Int64" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="BoardInstrument">
           <Key>
@@ -962,36 +974,50 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int32" Nullable="false" />
-          <Property Name="account" Type="Int32" Nullable="false" />
-          <Property Name="type" Type="Int16" Nullable="false" />
-          <Property Name="currency" Type="Int32" Nullable="false" />
-          <Property Name="blnc" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="sblnc" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="linkaccount" Type="Int64" Nullable="false" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="memberid" Type="Int32" />
+          <Property Name="account" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="currency" Type="Int32" />
+          <Property Name="blnc" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="sblnc" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="linkaccount" Type="Int64" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ColReq">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accId" Type="Int64" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="mode" Type="Int16" />
+          <Property Name="state" Type="Byte" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="reason" Type="Int16" />
+          <Property Name="memid" Type="Int32" />
         </EntityType>
         <EntityType Name="Contract">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="securityId" Type="Int64" Nullable="false" />
-          <Property Name="type" Type="Int16" Nullable="false" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lot" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="tick" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="sdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="edate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="groupId" Type="Int16" Nullable="false" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="mmorderLimit" Type="Int32" Nullable="false" />
-          <Property Name="orderLimit" Type="Int32" Nullable="false" />
-          <Property Name="refpriceParam" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="bid" Type="Int64" Nullable="false" />
+          <Property Name="securityId" Type="Int64" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="lot" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="tickTable" Type="Int32" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="edate" Type="DateTime" Precision="0" />
+          <Property Name="groupId" Type="Int16" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="mmorderLimit" Type="Int32" />
+          <Property Name="orderLimit" Type="Int32" />
+          <Property Name="refpriceParam" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="bid" Type="Int64" />
         </EntityType>
         <EntityType Name="ctype">
           <Key>
@@ -1047,6 +1073,31 @@
           <Property Name="accountid" Type="Int64" Nullable="false" />
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Deal">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardid" Type="Int16" />
+          <Property Name="dealno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="side" Type="Int16" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dealType" Type="Int16" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="connect" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Dealtype">
           <Key>
@@ -1126,18 +1177,31 @@
           <Property Name="state" Type="Int16" Nullable="false" />
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="Interest">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="interest1" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="repoInterset" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="loanInterset" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="maxValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="minValue" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
         <EntityType Name="InvoiceDetail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="invoiceid" Type="Int64" Nullable="false" />
-          <Property Name="assetid" Type="Int32" Nullable="false" />
-          <Property Name="qty" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="note" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="invoiceid" Type="Int64" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="dealNo" Type="Int64" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -1170,9 +1234,9 @@
         </EntityType>
         <EntityType Name="Margin">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="contractId" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="contractId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="buy" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
           <Property Name="sell" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
           <Property Name="buytype" Type="Int16" Nullable="false" />
@@ -1190,8 +1254,8 @@
           <Property Name="contactid" Type="Int32" Nullable="false" />
           <Property Name="memberid" Type="Int32" Nullable="false" />
           <Property Name="accountid" Type="Int64" Nullable="false" />
-          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="ticks" Type="Int32" Nullable="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="orderlimit" Type="Int32" Nullable="false" />
@@ -1200,23 +1264,23 @@
         </EntityType>
         <EntityType Name="Member">
           <Key>
+            <PropertyRef Name="id" />
             <PropertyRef Name="code" />
             <PropertyRef Name="mask" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="type" Type="Int16" Nullable="false" />
+          <Property Name="type" Type="Int16" />
           <Property Name="code" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="partid" Type="Int64" Nullable="false" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="partid" Type="Int64" />
           <Property Name="mask" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="broker" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="dealer" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ander" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="nominal" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="startdate" Type="DateTime" Precision="0" />
+          <Property Name="enddate" Type="DateTime" Precision="0" />
+          <Property Name="broker" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="dealer" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ander" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="nominal" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="mtype">
           <Key>
@@ -1238,31 +1302,51 @@
           <Property Name="total" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
           <Property Name="bid" Type="Int64" />
         </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardId" Type="Int64" />
+          <Property Name="side" Type="Int16" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="dealType" Type="Int16" />
+          <Property Name="connect" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="totSum" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+        </EntityType>
         <EntityType Name="Participant">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="code" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="pcity" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pdistr" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="phoroo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pstreet" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="pwebpage" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="numofemp" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="csid" Type="Int32" Nullable="false" />
-          <Property Name="webid" Type="Int32" Nullable="false" />
-          <Property Name="spType" Type="Int16" />
-          <Property Name="coType" Type="Int16" />
+          <Property Name="phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="pcity" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pdistr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="phoroo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pstreet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="pwebpage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="numofemp" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="csid" Type="Int32" />
+          <Property Name="webid" Type="Int32" />
+          <Property Name="specialType" Type="Int16" />
+          <Property Name="companyType" Type="Int16" />
         </EntityType>
         <EntityType Name="Ptype">
           <Key>
@@ -1270,6 +1354,23 @@
           </Key>
           <Property Name="id" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ptype1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Reason">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="RefPrice">
+          <Key>
+            <PropertyRef Name="contractId" />
+          </Key>
+          <Property Name="contractId" Type="Int64" Nullable="false" />
+          <Property Name="refprice1" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Right">
           <Key>
@@ -1290,44 +1391,42 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="partid" Type="Int32" Nullable="false" />
-          <Property Name="type" Type="Int16" Nullable="false" />
-          <Property Name="code" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="refno" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="regno" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="totalQty" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="firstPrice" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="intRate" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="sdate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="edate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="groupId" Type="Int32" Nullable="false" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="partid" Type="Int32" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="code" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalQty" Type="Int32" />
+          <Property Name="firstPrice" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="intRate" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="sdate" Type="DateTime" Precision="0" />
+          <Property Name="edate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="assetId" Type="Int32" />
         </EntityType>
         <EntityType Name="Session">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardid" Type="Int64" Nullable="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="stime" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="duration" Type="Time" Nullable="false" Precision="7" />
-          <Property Name="algorithm" Type="Int16" Nullable="false" />
-          <Property Name="match" Type="Int16" Nullable="false" />
-          <Property Name="allowedtypes" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="isactive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="boardid" Type="Int64" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="stime" Type="Time" Precision="7" />
+          <Property Name="duration" Type="Int32" />
+          <Property Name="algorithm" Type="Int16" />
+          <Property Name="match" Type="Int32" />
+          <Property Name="allowedtypes" Type="Int16" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="isactive" Type="Boolean" />
           <Property Name="starttime" Type="DateTime" Precision="0" />
           <Property Name="endtime" Type="DateTime" Precision="0" />
           <Property Name="tduration" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="matched" Type="Int64" />
-          <Property Name="editorder" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="delorder" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="markettype" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="editorder" Type="Boolean" />
+          <Property Name="delorder" Type="Boolean" />
+          <Property Name="markettype" Type="Int16" />
         </EntityType>
         <EntityType Name="Setting">
           <Key>
@@ -1364,12 +1463,12 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="contractid" Type="Int32" Nullable="false" />
-          <Property Name="sessionid" Type="Int32" Nullable="false" />
-          <Property Name="rspread" Type="Int32" Nullable="false" />
-          <Property Name="ispread" Type="Int32" Nullable="false" />
-          <Property Name="rparam" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="contractid" Type="Int32" />
+          <Property Name="sessionid" Type="Int32" />
+          <Property Name="rspread" Type="Int32" />
+          <Property Name="ispread" Type="Int32" />
+          <Property Name="rparam" Type="Int32" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -1400,13 +1499,26 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tableid" Type="Int64" Nullable="false" />
-          <Property Name="tick" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="timestamp" Type="Int64" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountId" Type="Int64" />
+          <Property Name="type" Type="Int16" />
+          <Property Name="type1" Type="Int16" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="rate" Type="Int32" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="tdate" Type="DateTime" Precision="0" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="userId" Type="Int64" />
+          <Property Name="memberid" Type="Int32" />
+          <Property Name="currency" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="transType">
           <Key>
@@ -1459,150 +1571,39 @@
           <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="memId" Type="Int32" />
         </EntityType>
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="memberid" Type="Int64" Nullable="false" />
-          <Property Name="accNum" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="accType" Type="Int16" />
-          <Property Name="LinkAcc" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="collateral" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="mask" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="startdate" Type="DateTime" Precision="0" />
-          <Property Name="enddate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" Nullable="false" />
-          <Property Name="blnc" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="sblnc" Type="Decimal" Precision="18" Scale="4" />
-        </EntityType>
-        <EntityType Name="RefPrice">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="refprice1" Type="Decimal" Nullable="false" Precision="18" Scale="6" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="assetId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Interest">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="interest1" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="assetid" Type="Int32" />
-          <Property Name="repoInterset" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="loanInterset" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="maxValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="minValue" Type="Decimal" Precision="18" Scale="4" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="bid" Type="Int64" />
-          <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="assetid" Type="Int64" />
-          <Property Name="qty" Type="Int32" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="dealType" Type="Int16" />
-          <Property Name="connect" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="day" Type="Int32" />
-          <Property Name="totSum" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-        </EntityType>
-        <EntityType Name="Deal">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardid" Type="Int16" />
-          <Property Name="dealno" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="assetid" Type="Int64" />
-          <Property Name="qty" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalPrice" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="m2m" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="dealType" Type="Int16" />
-          <Property Name="day" Type="Int32" />
-          <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="connect" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Reason">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="ColReq">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accId" Type="Int64" />
-          <Property Name="assetId" Type="Int32" />
-          <Property Name="value" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="mode" Type="Int16" />
-          <Property Name="state" Type="Byte" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="reason" Type="Int16" />
-          <Property Name="memid" Type="Int32" />
-        </EntityType>
-        <EntityType Name="AccountDetail">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="assetId" Type="Int32" />
-          <Property Name="accountId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Tran">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accountId" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="type" Type="Int16" />
-          <Property Name="type1" Type="Int16" />
-          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="6" />
-          <Property Name="assetId" Type="Int32" />
-          <Property Name="rate" Type="Int32" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="tdate" Type="DateTime" Precision="0" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Precision="3" />
-          <Property Name="userId" Type="Int64" />
-          <Property Name="memberid" Type="Int32" />
-        </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="demoModelStoreContainer" CdmEntityContainer="demoEntities1">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="demoModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="enddate" ColumnName="enddate" />
+                <ScalarProperty Name="startdate" ColumnName="startdate" />
+                <ScalarProperty Name="mask" ColumnName="mask" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="LinkAccount" ColumnName="LinkAccount" />
+                <ScalarProperty Name="accountType" ColumnName="accountType" />
+                <ScalarProperty Name="accNumber" ColumnName="accNumber" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountDetails">
+            <EntityTypeMapping TypeName="demoModel.AccountDetail">
+              <MappingFragment StoreEntitySet="AccountDetails">
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="accTypes">
             <EntityTypeMapping TypeName="demoModel.accType">
               <MappingFragment StoreEntitySet="accType">
@@ -1655,13 +1656,13 @@
           <EntitySetMapping Name="Assets">
             <EntityTypeMapping TypeName="demoModel.Asset">
               <MappingFragment StoreEntitySet="Assets">
-                <ScalarProperty Name="secId" ColumnName="secId" />
+                <ScalarProperty Name="price" ColumnName="price" />
                 <ScalarProperty Name="ratio" ColumnName="ratio" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="expireDate" ColumnName="expireDate" />
                 <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="volume" ColumnName="volume" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -1723,6 +1724,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ColReqs">
+            <EntityTypeMapping TypeName="demoModel.ColReq">
+              <MappingFragment StoreEntitySet="ColReq">
+                <ScalarProperty Name="memid" ColumnName="memid" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="mode" ColumnName="mode" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="accId" ColumnName="accId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Contracts">
             <EntityTypeMapping TypeName="demoModel.Contract">
               <MappingFragment StoreEntitySet="Contracts">
@@ -1735,7 +1751,7 @@
                 <ScalarProperty Name="groupId" ColumnName="groupId" />
                 <ScalarProperty Name="edate" ColumnName="edate" />
                 <ScalarProperty Name="sdate" ColumnName="sdate" />
-                <ScalarProperty Name="tick" ColumnName="tick" />
+                <ScalarProperty Name="tickTable" ColumnName="tickTable" />
                 <ScalarProperty Name="lot" ColumnName="lot" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="code" ColumnName="code" />
@@ -1801,6 +1817,32 @@
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="accountid" ColumnName="accountid" />
                 <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deals">
+            <EntityTypeMapping TypeName="demoModel.Deal">
+              <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="connect" ColumnName="connect" />
+                <ScalarProperty Name="toPay" ColumnName="toPay" />
+                <ScalarProperty Name="interests" ColumnName="interests" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
+                <ScalarProperty Name="m2m" ColumnName="m2m" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="dealno" ColumnName="dealno" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1888,9 +1930,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Interests">
+            <EntityTypeMapping TypeName="demoModel.Interest">
+              <MappingFragment StoreEntitySet="Interests">
+                <ScalarProperty Name="minValue" ColumnName="minValue" />
+                <ScalarProperty Name="maxValue" ColumnName="maxValue" />
+                <ScalarProperty Name="loanInterset" ColumnName="loanInterset" />
+                <ScalarProperty Name="repoInterset" ColumnName="repoInterset" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="interest1" ColumnName="interest" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="InvoiceDetails">
             <EntityTypeMapping TypeName="demoModel.InvoiceDetail">
               <MappingFragment StoreEntitySet="InvoiceDetails">
+                <ScalarProperty Name="dealNo" ColumnName="dealNo" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
@@ -1943,7 +1999,7 @@
                 <ScalarProperty Name="buytype" ColumnName="buytype" />
                 <ScalarProperty Name="sell" ColumnName="sell" />
                 <ScalarProperty Name="buy" ColumnName="buy" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1967,7 +2023,6 @@
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="demoModel.Member">
               <MappingFragment StoreEntitySet="Members">
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="nominal" ColumnName="nominal" />
                 <ScalarProperty Name="ander" ColumnName="ander" />
                 <ScalarProperty Name="dealer" ColumnName="dealer" />
@@ -2006,11 +2061,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="demoModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="interests" ColumnName="interests" />
+                <ScalarProperty Name="toPay" ColumnName="toPay" />
+                <ScalarProperty Name="totSum" ColumnName="totSum" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="connect" ColumnName="connect" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="boardId" ColumnName="boardId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Participants">
             <EntityTypeMapping TypeName="demoModel.Participant">
               <MappingFragment StoreEntitySet="Participants">
-                <ScalarProperty Name="coType" ColumnName="coType" />
-                <ScalarProperty Name="spType" ColumnName="spType" />
+                <ScalarProperty Name="companyType" ColumnName="companyType" />
+                <ScalarProperty Name="specialType" ColumnName="specialType" />
                 <ScalarProperty Name="webid" ColumnName="webid" />
                 <ScalarProperty Name="csid" ColumnName="csid" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
@@ -2027,7 +2105,6 @@
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="country" ColumnName="country" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2037,6 +2114,25 @@
               <MappingFragment StoreEntitySet="Ptype">
                 <ScalarProperty Name="ptype1" ColumnName="ptype" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reasons">
+            <EntityTypeMapping TypeName="demoModel.Reason">
+              <MappingFragment StoreEntitySet="Reason">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RefPrices">
+            <EntityTypeMapping TypeName="demoModel.RefPrice">
+              <MappingFragment StoreEntitySet="RefPrice">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="refprice1" ColumnName="refprice" />
+                <ScalarProperty Name="contractId" ColumnName="contractId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2058,16 +2154,14 @@
           <EntitySetMapping Name="Securities">
             <EntityTypeMapping TypeName="demoModel.Security">
               <MappingFragment StoreEntitySet="Securities">
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="groupId" ColumnName="groupId" />
                 <ScalarProperty Name="edate" ColumnName="edate" />
                 <ScalarProperty Name="sdate" ColumnName="sdate" />
                 <ScalarProperty Name="intRate" ColumnName="intRate" />
                 <ScalarProperty Name="firstPrice" ColumnName="firstPrice" />
                 <ScalarProperty Name="totalQty" ColumnName="totalQty" />
-                <ScalarProperty Name="regno" ColumnName="regno" />
-                <ScalarProperty Name="refno" ColumnName="refno" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="code" ColumnName="code" />
                 <ScalarProperty Name="type" ColumnName="type" />
@@ -2178,12 +2272,26 @@
             <EntityTypeMapping TypeName="demoModel.TickSizeTable">
               <MappingFragment StoreEntitySet="TickSizeTable">
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="demoModel.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="tick" ColumnName="tick" />
-                <ScalarProperty Name="tableid" ColumnName="tableid" />
+                <ScalarProperty Name="tdate" ColumnName="tdate" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="rate" ColumnName="rate" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="type1" ColumnName="type1" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="accountId" ColumnName="accountId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2240,153 +2348,6 @@
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="uname" ColumnName="uname" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="demoModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="sblnc" ColumnName="sblnc" />
-                <ScalarProperty Name="blnc" ColumnName="blnc" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="enddate" ColumnName="enddate" />
-                <ScalarProperty Name="startdate" ColumnName="startdate" />
-                <ScalarProperty Name="mask" ColumnName="mask" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="collateral" ColumnName="collateral" />
-                <ScalarProperty Name="LinkAcc" ColumnName="LinkAcc" />
-                <ScalarProperty Name="accType" ColumnName="accType" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RefPrices">
-            <EntityTypeMapping TypeName="demoModel.RefPrice">
-              <MappingFragment StoreEntitySet="RefPrice">
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="refprice1" ColumnName="refprice" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Interests">
-            <EntityTypeMapping TypeName="demoModel.Interest">
-              <MappingFragment StoreEntitySet="Interests">
-                <ScalarProperty Name="minValue" ColumnName="minValue" />
-                <ScalarProperty Name="maxValue" ColumnName="maxValue" />
-                <ScalarProperty Name="loanInterset" ColumnName="loanInterset" />
-                <ScalarProperty Name="repoInterset" ColumnName="repoInterset" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="interest1" ColumnName="interest" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="demoModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="interests" ColumnName="interests" />
-                <ScalarProperty Name="toPay" ColumnName="toPay" />
-                <ScalarProperty Name="totSum" ColumnName="totSum" />
-                <ScalarProperty Name="day" ColumnName="day" />
-                <ScalarProperty Name="connect" ColumnName="connect" />
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="bid" ColumnName="bid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Deals">
-            <EntityTypeMapping TypeName="demoModel.Deal">
-              <MappingFragment StoreEntitySet="Deals">
-                <ScalarProperty Name="connect" ColumnName="connect" />
-                <ScalarProperty Name="toPay" ColumnName="toPay" />
-                <ScalarProperty Name="interests" ColumnName="interests" />
-                <ScalarProperty Name="day" ColumnName="day" />
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
-                <ScalarProperty Name="m2m" ColumnName="m2m" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="dealno" ColumnName="dealno" />
-                <ScalarProperty Name="boardid" ColumnName="boardid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reasons">
-            <EntityTypeMapping TypeName="demoModel.Reason">
-              <MappingFragment StoreEntitySet="Reason">
-                <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ColReqs">
-            <EntityTypeMapping TypeName="demoModel.ColReq">
-              <MappingFragment StoreEntitySet="ColReq">
-                <ScalarProperty Name="memid" ColumnName="memid" />
-                <ScalarProperty Name="reason" ColumnName="reason" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="mode" ColumnName="mode" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="accId" ColumnName="accId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="AccountDetails">
-            <EntityTypeMapping TypeName="demoModel.AccountDetail">
-              <MappingFragment StoreEntitySet="AccountDetails">
-                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
-                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Trans">
-            <EntityTypeMapping TypeName="demoModel.Tran">
-              <MappingFragment StoreEntitySet="Trans">
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="tdate" ColumnName="tdate" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="rate" ColumnName="rate" />
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
-                <ScalarProperty Name="type1" ColumnName="type1" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="accountId" ColumnName="accountId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

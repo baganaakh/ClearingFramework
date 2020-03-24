@@ -169,7 +169,7 @@ namespace Clearing.pages
         public List<Member> members{ get; set; }
         private void bindCombo()
         {
-            var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accType == 3).ToList();
+            var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
             acc = acclist;
             linkAc.ItemsSource = acc;
             linkAc_Copy.ItemsSource = acc;
