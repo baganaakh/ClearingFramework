@@ -283,11 +283,11 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="257,60,0,0" TextWrapping="Wrap" Text="Нийт дүн ₮" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox x:Name="TotalSum" HorizontalAlignment="Left" Height="20" Margin="332,60,0,0" TextWrapping="Wrap" Text="..." Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="447,10,0,0" TextWrapping="Wrap" Text="Хаяг" Width="41" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <ComboBox SelectionChanged="membee_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id"  Name="membee" HorizontalAlignment="Left" Height="20" Margin="493,10,0,0"  Text="Гүйлгээний төрөл" Width="109" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <ComboBox SelectionChanged="membee_SelectionChanged" DisplayMemberPath="code" SelectedValuePath="id"  Name="membee" HorizontalAlignment="Left" Height="20" Margin="493,10,0,0"  Text="Гүйлгээний төрөл" Width="109" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="514,62,0,0" TextWrapping="Wrap" Text="Төлөх дүн ₮" Width="99" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox x:Name="ToPay" HorizontalAlignment="Left" Height="20" Margin="618,62,0,0" TextWrapping="Wrap" Text="..." Width="103" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="607,4,0,0" TextWrapping="Wrap" Text="Данс" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <ComboBox SelectionChanged="linkAc_SelectionChanged" x:Name="linkAc" DisplayMemberPath="accNum" SelectedValuePath="accNum"  HorizontalAlignment="Left" Height="20" Margin="723,4,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <ComboBox SelectionChanged="linkAc_SelectionChanged" x:Name="linkAc" DisplayMemberPath="accNumber" SelectedValuePath="accNum"  HorizontalAlignment="Left" Height="20" Margin="723,4,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>
@@ -295,12 +295,13 @@
             <TabItem Header="Нийт захиалга" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="30*"/>
-                        <ColumnDefinition Width="397*"/>
+                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="73*"/>
+                        <ColumnDefinition Width="721*"/>
                     </Grid.ColumnDefinitions>
                     <DataGrid CanUserAddRows="False" AutoGenerateColumns="False" x:Name="totalOrder" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
-                              FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="2">
+                              FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="3">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                             <DataGridTextColumn MinWidth="20" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
@@ -314,7 +315,7 @@
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding state}" Header="Төлөв"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Click="Button_Click_1" Content="Зөвшөөрөх" Margin="0,6,10,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White" Grid.Column="1">
+                    <Button Click="Button_Click_1" Content="Зөвшөөрөх" Margin="0,6,10,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White" Grid.Column="2">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="6,6,6,6"/>
@@ -328,7 +329,7 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <ComboBox x:Name="linkAc_Copy" DisplayMemberPath="accNum" SelectedValuePath="id"  HorizontalAlignment="Left" Height="20" Margin="560,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
+                    <ComboBox x:Name="linkAc_Copy" DisplayMemberPath="accNum" SelectedValuePath="id"  HorizontalAlignment="Left" Height="20" Margin="487,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2"/>
                     <ComboBox HorizontalAlignment="Left" Height="20" Margin="41,10,0,0"  Text="Гүйлгээний төрөл" Width="50" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="ҮЦ" Width="26" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                 </Grid>

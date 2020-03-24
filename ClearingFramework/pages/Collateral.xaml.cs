@@ -38,45 +38,43 @@ namespace Clearing.pages
         }
         #region fill
         private void FillGrid()
-        { 
+        {
             int asset1;
             demoEntities1 de = new demoEntities1();
             ClearingEntities ce = new ClearingEntities();
-            List<forGrid> ToDisplay=new List<forGrid>();
+
+            List<forGrid> ToDisplay = new List<forGrid>();
             List<forGrid> ToDisplay2 = new List<forGrid>();
             List<forGrid> Биржбарьцаа = new List<forGrid>();
+
             List<Transaction> trans = de.Transactions.ToList();
             #region Барьцаа түүх
-            foreach(Transaction items in trans)
+            foreach (Transaction items in trans)
             {
-                asset1 =Convert.ToInt32( items.assetId);
-                RefPrice refpri =de.RefPrices.Where(r => r.assetId ==  asset1).FirstOrDefault<RefPrice>();
-                if (refpri == null)
-                {
-                    MessageBox.Show("RefPices has no value to connected to asset  "+asset1+" ");
-                    return;
-                }
-                decimal refPrice = Convert.ToDecimal(refpri.refprice1);
+                asset1 = Convert.ToInt32(items.assetId);
                 Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
+                decimal price = Convert.ToDecimal(asst.price);
+
                 Member memb = de.Members.Where(r => r.id == memId).FirstOrDefault<Member>();
-                int type = memb.type;
+                short type =Convert.ToInt16( memb.type);
+
                 mtype mty = de.mtypes.Where(r => r.id == type).FirstOrDefault<mtype>();
-                int minval =Convert.ToInt32( mty.minValue);
+                int minval = Convert.ToInt32(mty.minValue);
+
                 decimal ratio = asst.ratio;
-                decimal qty =Convert.ToDecimal(items.totalNumber);
-                decimal totval = qty * (ratio * refPrice);
+                decimal qty = Convert.ToDecimal(items.amount);
+                decimal totval = qty * (ratio * price);
                 forGrid data = new forGrid()
                 {
-                    id=Convert.ToInt64( items.id),
+                    id = Convert.ToInt64(items.id),
                     accNumber = items.accountId.ToString(),
                     Барьцаа = asst.name.ToString(),
-                    Хэмжээ =Convert.ToInt32( qty),
-                    ЖишигҮнэ=(ratio*refPrice).ToString("0.###"),
-                    НийтДүн=totval.ToString("0.###"),
-                    ДоодДүн= minval.ToString("0.###"),
-                    ЗөрүүДүн=(totval-minval).ToString("0.###"),
+                    Хэмжээ = Convert.ToInt32(qty),
+                    ЖишигҮнэ = (ratio * price).ToString("0.###"),
+                    НийтДүн = totval.ToString("0.###"),
+                    ДоодДүн = minval.ToString("0.###"),
+                    ЗөрүүДүн = (totval - minval).ToString("0.###"),
                     //БуцаахДүн=,
-
                 };
                 ToDisplay.Add(data);
             }
@@ -84,61 +82,56 @@ namespace Clearing.pages
             #endregion
             #region Хүлээгдэж Буй гүйлгээ
             List<ColReq> requs = de.ColReqs.ToList();
-            foreach(ColReq items in requs)
+            foreach (ColReq items in requs)
             {
-                asset1 =Convert.ToInt32( items.assetId);
-                RefPrice refpri =de.RefPrices.Where(r => r.assetId ==  asset1).FirstOrDefault<RefPrice>();
-                decimal refPrice = Convert.ToDecimal(refpri.refprice1);
+                asset1 = Convert.ToInt32(items.assetId);
                 Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
+                decimal price= Convert.ToDecimal(asst.price);
                 Member memb = de.Members.Where(r => r.id == memId).FirstOrDefault<Member>();
-                int type = memb.type;
+                short type = Convert.ToInt16(memb.type);
+
                 mtype mty = de.mtypes.Where(r => r.id == type).FirstOrDefault<mtype>();
-                int minval =Convert.ToInt32( mty.minValue);
+                int minval = Convert.ToInt32(mty.minValue);
+
                 decimal ratio = asst.ratio;
-                decimal qty =Convert.ToDecimal(items.value);
-                decimal totval = qty * (ratio * refPrice);
+                decimal qty = Convert.ToDecimal(items.value);
+                decimal totval = qty * (ratio * price);
                 forGrid data = new forGrid()
                 {
                     id = Convert.ToInt64(items.id),
                     accNumber = items.accId.ToString(),
                     Барьцаа = asset1.ToString("0.###"),
                     Хэмжээ = Convert.ToInt32(qty),
-                    ЖишигҮнэ=(ratio*refPrice).ToString("0.###"),
-                    НийтДүн=totval.ToString("0.###"),
-                    ДоодДүн= minval.ToString("0.###"),
-                    ЗөрүүДүн=(totval-minval).ToString("0.###"),
+                    ЖишигҮнэ = (ratio * price).ToString("0.###"),
+                    НийтДүн = totval.ToString("0.###"),
+                    ДоодДүн = minval.ToString("0.###"),
+                    ЗөрүүДүн = (totval - minval).ToString("0.###"),
                     state = items.state == 0 ? "Denied" : "Pending",
                 };
                 ToDisplay2.Add(data);
             }
-                pendingColl.ItemsSource = ToDisplay2;
+            pendingColl.ItemsSource = ToDisplay2;
             #endregion
             #region Биржийн барьцаа
             var accNums = ce.Accounts.Where(s => s.memId == memId).Select(s => s.accNum).ToArray();
-            foreach(var acnum in accNums)
+            foreach (var acnum in accNums)
             {
                 var adet = ce.AccountDetails.Where(s => s.accNum == acnum).FirstOrDefault<AccountDetail>();
                 Asset asst = de.Assets.Where(s => s.id == adet.assetId).FirstOrDefault<Asset>();
-                RefPrice refpri = de.RefPrices.Where(r => r.assetId == adet.assetId).FirstOrDefault<RefPrice>();
-                if (refpri == null)
-                {
-                    MessageBox.Show("RefPices has no value to connected to asset  " + adet.assetId+ " ");
-                    return;
-                }
-                decimal refPrice = Convert.ToDecimal(refpri.refprice1);
-                decimal jish = asst.ratio * refPrice;
-                decimal tot = Convert.ToDecimal( adet.totalNumber * jish);
+                decimal price= Convert.ToDecimal(asst.price);
+                decimal jish = asst.ratio * price;
+                decimal tot = Convert.ToDecimal(adet.totalNumber * jish);
                 mtype mty = de.mtypes.Where(r => r.id == 0).FirstOrDefault<mtype>();
                 int minval = Convert.ToInt32(mty.minValue);
                 forGrid data = new forGrid()
                 {
-                    id=adet.id,
-                    Барьцаа =asst.name,
-                    Хэмжээ=Convert.ToInt32( adet.totalNumber),
-                    ЖишигҮнэ=(jish).ToString("0.##"),
-                    НийтДүн=(tot).ToString("0.##"),
-                    ДоодДүн=minval.ToString("0.##"),
-                    ЗөрүүДүн=(tot-minval).ToString("0.##"),
+                    id = adet.id,
+                    Барьцаа = asst.name,
+                    Хэмжээ = Convert.ToInt32(adet.totalNumber),
+                    ЖишигҮнэ = (jish).ToString("0.##"),
+                    НийтДүн = (tot).ToString("0.##"),
+                    ДоодДүн = minval.ToString("0.##"),
+                    ЗөрүүДүн = (tot - minval).ToString("0.##"),
                 };
                 Биржбарьцаа.Add(data);
             }
@@ -166,35 +159,32 @@ namespace Clearing.pages
         #region илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int qty = Convert.ToInt32(qtyss.Text);
             short mod = Convert.ToInt16(Types.SelectedIndex);
-            decimal qtyy = Convert.ToDecimal(qtyss.Text);
+            int qtyy = Convert.ToInt32(qtyss.Text);
             if (mod == 1)
                 qtyy *=(-1);
             using (demoEntities1 contx = new demoEntities1())
             {
-                ColReq req = new ColReq()
+                Order order = new Order()
                 {
-                    accId = Convert.ToInt64(accId.SelectedValue),
-                    assetId = Convert.ToInt32(asset.SelectedValue),
-                    mode = mod,
-                    value = qtyy,
+                    accountid = Convert.ToInt64(accId.SelectedValue),
+                    assetid = Convert.ToInt32(asset.SelectedValue),
+                    side = mod,
+                    qty = qtyy,
                     modified = DateTime.Now,
-                    memid = memId,
-                    state=1,
+                    memberid = memId,
+                    state = 1,
+                    dealType = 4,
                 };
-                contx.ColReqs.Add(req);
+                contx.Orders.Add(order);
                 contx.SaveChanges();
             }
         }
         #endregion
         #region combos
-        public List<Account2> acc { get; set; }
         private void bindCombo()
         {
-            var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accType == 3).ToList();
-            acc = acclist;
-            accId.ItemsSource = acc;
+            accId.ItemsSource = DE.Accounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
         }
         private void accId_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -237,10 +227,9 @@ namespace Clearing.pages
             try
             {
                 int iid = item.id;
-                RefPrice eprice = DE.RefPrices.Where(s => s.assetId == iid).FirstOrDefault<RefPrice>(); //error if no refprice found releated to asset
-                decimal eprice2 = eprice.refprice1 / 100;
+                decimal eprice =Convert.ToDecimal(item.price)/ 100;
                 decimal ratio = item.ratio;
-                decimal lastPrice = ratio * eprice2;
+                decimal lastPrice = ratio * eprice;
                 exPrice.Text = lastPrice.ToString("0.##");
             }
             catch (Exception ex)

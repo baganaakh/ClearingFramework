@@ -31,16 +31,19 @@ namespace Clearing.pages
             {
                 using (var context = new demoEntities1())
                 {
-                    try
+                    var ac = (from s in context.Accounts
+                                where s.id == i.accountid
+                                select s).FirstOrDefault<Account>();
+                    var ass = (from s in context.Assets
+                                where s.id == i.assetid
+                                select s ).FirstOrDefault<Asset>();
+                    if(ac == null)
                     {
-                        query = context.Accounts.Where(s => s.id == i.accountid).FirstOrDefault<Account>().accNumber;
-                        acode = context.Assets.Where(s => s.id == i.assetid).FirstOrDefault<Asset>().code;
-                    }
-                    catch (System.NullReferenceException)
-                    {
-                        MessageBox.Show("Post trade хоосон байна");
+                        MessageBox.Show("deals accountid oldsongui");
                         return;
                     }
+                    query = ac.accNumber;
+                    acode= ass.code;
                     if (i.side == -1) { side = "Зарах"; }
                     else { side = "Авах"; }
                 }

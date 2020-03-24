@@ -35,8 +35,8 @@ namespace Clearing.pages
             FillGrid();
             bindCombo();
         }
-        string linkacs, accnum,toId="0";
-        decimal assId,totSum,toPay,inter,fe;
+        string linkacs, toId="0";
+        decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         ClearingEntities CE = new ClearingEntities();
         demoEntities1 DE = new demoEntities1();
@@ -59,7 +59,7 @@ namespace Clearing.pages
                     state = 0,
                     toPay = toPay,
                     interests = inter,
-                    dealType=4,
+                    dealType=1,
                 };
                 context.Orders.Add(order);
                 context.SaveChanges();
@@ -143,13 +143,22 @@ namespace Clearing.pages
         #region өөрийн захиалга Цуцлах Устгах
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            var checkedRows = from DataGridViewRow r in OwnTable.Items
-                              where Convert.ToBoolean(r.Cells[0].Value) == true
-                              select r;
-            foreach(var row in checkedRows)
+            var value = OwnTable.SelectedItem as Order;
+            if (value == null) return;
+            using (demoEntities1 conx = new demoEntities1())
             {
-                MessageBox.Show("dsdsd");
+                var del = conx.Orders.Where(x => x.id == value.id).First();
+                conx.Orders.Remove(del);
+                conx.SaveChanges();
             }
+            
+            //var checkedRows = from DataGridViewRow r in OwnTable.Items
+            //                  where Convert.ToBoolean(r.Cells[0].Value) == true
+            //                  select r;
+            //foreach(var row in checkedRows)
+            //{
+            //    MessageBox.Show("dsdsd");
+            //}
 
             //Order value = (Order)OwnTable.SelectedItem;
             //if (null == value) return;
@@ -163,21 +172,21 @@ namespace Clearing.pages
             FillGrid();
         }
         #endregion
-        #region combos selection change 
-        public List<Account2> acc { get; set; }
-        public List<Asset> assets { get; set; }
+        #region combos selection change                 
         public List<Member> members{ get; set; }
         private void bindCombo()
         {
             var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
-            acc = acclist;
-            linkAc.ItemsSource = acc;
-            linkAc_Copy.ItemsSource = acc;
+            
+            linkAc.ItemsSource = acclist;
+            linkAc_Copy.ItemsSource = acclist;
+
             var memlist = DE.Members.ToList();
             members = memlist;
-            var rem = members.Find(x => x.id == memId);
+            var rem = memlist.Find(x => x.id == memId);
             members.Remove(rem);
-            Member allItem = new Member() {name= "Бүгд", id= 0};
+
+            Member allItem = new Member() {code= "Бүгд", id= 0};
             members.Add(allItem);
             membee.ItemsSource = members;
             int indexx = members.Count();
@@ -186,6 +195,7 @@ namespace Clearing.pages
         private void linkAc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             asset.IsEnabled = true;
+            asset.ItemsSource = null;
             var item = linkAc.SelectedItem as Account2;
             try
             {
@@ -198,6 +208,11 @@ namespace Clearing.pages
                     int ids = Convert.ToInt32(detail[0]);
                     var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
                     assets.Add(asst);
+                }
+                if(assets.Count == 0)
+                {
+                    MessageBox.Show("Таны "+item.accNumber+" дансанд үнэт цаас байхгүй байна");
+                    return;
                 }
                 asset.ItemsSource = assets.Distinct();
             }
@@ -212,8 +227,16 @@ namespace Clearing.pages
         {
             qtyss.IsEnabled = true;
             var item = asset.SelectedItem as Asset;
+            if (item == null)
+            {
+                remainder.Text = null;
+                exPrice.Text = null;
+                possible.Text = null;
+                return;
+            }
             assId = item.id;
             var totNumber = CE.AccountDetails.Where(s => s.assetId == assId && s.linkAcc == linkacs).ToArray();
+            decimal eprice =Convert.ToDecimal(item.price);
             decimal sum=0,freezesum=0;
             foreach(AccountDetail i in totNumber)
             {
@@ -224,10 +247,8 @@ namespace Clearing.pages
             try
             {
                 int iid = item.id;
-                RefPrice eprice = DE.RefPrices.Where(s => s.assetId == iid).FirstOrDefault<RefPrice>(); //error if no refprice found releated to asset
-                decimal eprice2 = eprice.refprice1 / 100;
                 decimal ratio = item.ratio;
-                decimal lastPrice = ratio * eprice2;
+                decimal lastPrice = ratio * eprice;
                 possible.Text = (lastPrice * sum).ToString("0.##");
                 exPrice.Text = lastPrice.ToString("0.##");
             }
