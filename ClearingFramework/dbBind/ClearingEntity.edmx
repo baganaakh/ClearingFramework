@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="ClearingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="clearingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
@@ -123,7 +123,7 @@
           <Property Name="note" Type="nvarchar" MaxLength="255" />
           <Property Name="side" Type="nvarchar" MaxLength="20" />
         </EntityType>
-        <EntityContainer Name="ClearingModelStoreContainer">
+        <EntityContainer Name="clearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountDetails" EntityType="Self.AccountDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="clearingDeal" EntityType="Self.clearingDeal" Schema="dbo" store:Type="Tables" />
@@ -136,38 +136,39 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="ClearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="ClearingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="transactions" EntityType="ClearingModel.transaction" />
-          <EntitySet Name="Requests" EntityType="ClearingModel.Request" />
-          <EntitySet Name="clearingDeals" EntityType="ClearingModel.clearingDeal" />
-          <EntitySet Name="deals" EntityType="ClearingModel.deal" />
-          <EntitySet Name="lastPrices" EntityType="ClearingModel.lastPrice" />
-          <EntitySet Name="pozits" EntityType="ClearingModel.pozit" />
-          <EntitySet Name="AccountDetails" EntityType="ClearingModel.AccountDetail" />
-          <EntitySet Name="Accounts" EntityType="ClearingModel.Account" />
-        </EntityContainer>
-        <EntityType Name="transaction">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="transType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="value" Type="Decimal" Nullable="false" Precision="18" Scale="4" />
-          <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Request">
+      <Schema Namespace="clearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="balance" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="remain" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="date" Type="DateTime" Precision="3" />
-          <Property Name="pendingDay" Type="Int32" />
+          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="idNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="memId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AccountDetail">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetId" Type="Int32" />
+          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="clearingDeal">
           <Key>
@@ -210,14 +211,6 @@
           <Property Name="refPrice" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="dealType" Type="Int16" />
         </EntityType>
-        <EntityType Name="lastPrice">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="assetid" Type="Int32" />
-          <Property Name="ePrice" Type="Decimal" Precision="18" Scale="4" />
-        </EntityType>
         <EntityType Name="pozit">
           <Key>
             <PropertyRef Name="id" />
@@ -232,167 +225,174 @@
           <Property Name="gainLoss" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="callDenchin" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
-        <EntityType Name="AccountDetail">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="freezeValue" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="totalNumber" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="assetId" Type="Int32" />
-          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Account">
+        <EntityType Name="Request">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
-          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="memId" Type="Int32" />
+          <Property Name="account" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="balance" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="remain" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="pendingDay" Type="Int32" />
+        </EntityType>
+        <EntityType Name="transaction">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="transType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="value" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="side" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="clearingEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="AccountDetails" EntityType="Self.AccountDetail" />
+          <EntitySet Name="clearingDeals" EntityType="Self.clearingDeal" />
+          <EntitySet Name="deals" EntityType="Self.deal" />
+          <EntitySet Name="pozits" EntityType="Self.pozit" />
+          <EntitySet Name="Requests" EntityType="Self.Request" />
+          <EntitySet Name="transactions" EntityType="Self.transaction" />
+          <EntitySet Name="lastPrices" EntityType="clearingModel.lastPrice" />
+        </EntityContainer>
+        <EntityType Name="lastPrice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="assetid" Type="Int32" />
+          <Property Name="ePrice" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ClearingModelStoreContainer" CdmEntityContainer="ClearingEntities">
-          <EntitySetMapping Name="transactions">
-            <EntityTypeMapping TypeName="ClearingModel.transaction">
-              <MappingFragment StoreEntitySet="transaction">
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="note" ColumnName="note" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="transType" ColumnName="transType" />
+        <EntityContainerMapping StorageEntityContainer="clearingModelStoreContainer" CdmEntityContainer="clearingEntities1">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="clearingModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Requests">
-            <EntityTypeMapping TypeName="ClearingModel.Request">
-              <MappingFragment StoreEntitySet="Request">
-                <ScalarProperty Name="pendingDay" ColumnName="pendingDay" />
-                <ScalarProperty Name="date" ColumnName="date" />
-                <ScalarProperty Name="remain" ColumnName="remain" />
-                <ScalarProperty Name="balance" ColumnName="balance" />
-                <ScalarProperty Name="account" ColumnName="account" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="clearingDeals">
-            <EntityTypeMapping TypeName="ClearingModel.clearingDeal">
-              <MappingFragment StoreEntitySet="clearingDeal">
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
-                <ScalarProperty Name="m2m" ColumnName="m2m" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="idNum" ColumnName="idNum" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
+                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="dealno" ColumnName="dealno" />
-                <ScalarProperty Name="boardid" ColumnName="boardid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="deals">
-            <EntityTypeMapping TypeName="ClearingModel.deal">
-              <MappingFragment StoreEntitySet="deal">
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
-                <ScalarProperty Name="m2m" ColumnName="m2m" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
                 <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="boardid" ColumnName="boardid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="lastPrices">
-            <EntityTypeMapping TypeName="ClearingModel.lastPrice">
-              <MappingFragment StoreEntitySet="lastPrice">
-                <ScalarProperty Name="ePrice" ColumnName="ePrice" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="pozits">
-            <EntityTypeMapping TypeName="ClearingModel.pozit">
-              <MappingFragment StoreEntitySet="pozits">
-                <ScalarProperty Name="callDenchin" ColumnName="callDenchin" />
-                <ScalarProperty Name="gainLoss" ColumnName="gainLoss" />
+                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
                 <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetCode" ColumnName="assetCode" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
+                <ScalarProperty Name="contractFee" ColumnName="contractFee" />
+                <ScalarProperty Name="pozFee" ColumnName="pozFee" />
+                <ScalarProperty Name="memId" ColumnName="memId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AccountDetails">
-            <EntityTypeMapping TypeName="ClearingModel.AccountDetail">
+            <EntityTypeMapping TypeName="clearingModel.AccountDetail">
               <MappingFragment StoreEntitySet="AccountDetails">
-                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="assetId" ColumnName="assetId" />
-                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
-                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
                 <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
+                <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
+                <ScalarProperty Name="assetId" ColumnName="assetId" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="ClearingModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="memId" ColumnName="memId" />
-                <ScalarProperty Name="pozFee" ColumnName="pozFee" />
-                <ScalarProperty Name="contractFee" ColumnName="contractFee" />
-                <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
+          <EntitySetMapping Name="clearingDeals">
+            <EntityTypeMapping TypeName="clearingModel.clearingDeal">
+              <MappingFragment StoreEntitySet="clearingDeal">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="dealno" ColumnName="dealno" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
                 <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
-                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
-                <ScalarProperty Name="mail" ColumnName="mail" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="fname" ColumnName="fname" />
-                <ScalarProperty Name="lname" ColumnName="lname" />
-                <ScalarProperty Name="idNum" ColumnName="idNum" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="m2m" ColumnName="m2m" />
+                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deals">
+            <EntityTypeMapping TypeName="clearingModel.deal">
+              <MappingFragment StoreEntitySet="deal">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="boardid" ColumnName="boardid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="m2m" ColumnName="m2m" />
+                <ScalarProperty Name="refPrice" ColumnName="refPrice" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pozits">
+            <EntityTypeMapping TypeName="clearingModel.pozit">
+              <MappingFragment StoreEntitySet="pozits">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="assetCode" ColumnName="assetCode" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="gainLoss" ColumnName="gainLoss" />
+                <ScalarProperty Name="callDenchin" ColumnName="callDenchin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requests">
+            <EntityTypeMapping TypeName="clearingModel.Request">
+              <MappingFragment StoreEntitySet="Request">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="account" ColumnName="account" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="remain" ColumnName="remain" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="pendingDay" ColumnName="pendingDay" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="transactions">
+            <EntityTypeMapping TypeName="clearingModel.transaction">
+              <MappingFragment StoreEntitySet="transaction">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="transType" ColumnName="transType" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="side" ColumnName="side" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lastPrices">
+            <EntityTypeMapping TypeName="clearingModel.lastPrice">
+              <MappingFragment StoreEntitySet="lastPrice">
+                <ScalarProperty Name="ePrice" ColumnName="ePrice" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -411,7 +411,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

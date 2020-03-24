@@ -13,10 +13,10 @@ namespace ClearingFramework.dbBind
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ClearingEntities : DbContext
+    public partial class clearingEntities1 : DbContext
     {
-        public ClearingEntities()
-            : base("name=ClearingEntities")
+        public clearingEntities1()
+            : base("name=clearingEntities1")
         {
         }
     
@@ -25,13 +25,13 @@ namespace ClearingFramework.dbBind
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<transaction> transactions { get; set; }
-        public virtual DbSet<Request> Requests { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<clearingDeal> clearingDeals { get; set; }
         public virtual DbSet<deal> deals { get; set; }
-        public virtual DbSet<lastPrice> lastPrices { get; set; }
         public virtual DbSet<pozit> pozits { get; set; }
-        public virtual DbSet<AccountDetail> AccountDetails { get; set; }
-        public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<Request> Requests { get; set; }
+        public virtual DbSet<transaction> transactions { get; set; }
+        public virtual DbSet<lastPrice> lastPrices { get; set; }
     }
 }
