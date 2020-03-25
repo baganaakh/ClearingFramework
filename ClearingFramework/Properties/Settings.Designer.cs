@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClearingFramework.Properties {
+namespace Non_Member.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

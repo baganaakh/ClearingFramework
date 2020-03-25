@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClearingFramework.dbBind.AdminDatabase
+namespace Non_Member.dbBind.AdminDatabase
 {
     using System;
     using System.Collections.Generic;
