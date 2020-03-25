@@ -17,7 +17,7 @@ namespace Clearing.pages
     /// </summary>
     public partial class Collateral : Page
     {
-        clearingEntities1 CE = new clearingEntities1();
+        ClearingEntities CE = new ClearingEntities();
         demoEntities1 DE = new demoEntities1();
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string linkacs;
@@ -33,7 +33,7 @@ namespace Clearing.pages
         {
             int asset1;
             demoEntities1 de = new demoEntities1();
-            clearingEntities1 ce = new clearingEntities1();
+            ClearingEntities ce = new ClearingEntities();
 
             List<forGrid> ToDisplay = new List<forGrid>();
             List<forGrid> ToDisplay2 = new List<forGrid>();
