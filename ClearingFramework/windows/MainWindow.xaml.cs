@@ -51,7 +51,6 @@ namespace ClearingFramework
         private void rectangle2_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
-
         }
         #endregion
         public void Button_Click_1(object sender, RoutedEventArgs e)    // Эхлэл 
