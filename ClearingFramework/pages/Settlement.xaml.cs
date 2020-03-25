@@ -39,7 +39,7 @@ namespace Clearing.pages
         public List<Account> acct { get; set; }
         private void bindCombo()
         {
-            ClearingEntities ce = new ClearingEntities();
+            clearingEntities ce = new clearingEntities();
             var acid = ce.Accounts.ToList();
             acct = acid;
             accid.ItemsSource = acct;
@@ -64,7 +64,7 @@ namespace Clearing.pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             decimal value = Decimal.Parse(trvalue.Text);
-            using (ClearingEntities context = new ClearingEntities())
+            using (clearingEntities context = new clearingEntities())
             {
                 var tran = new transaction()
                 {
@@ -86,7 +86,7 @@ namespace Clearing.pages
         #region fill & number
         private void FillGrid()
         {
-            ClearingEntities CE = new ClearingEntities();
+            clearingEntities CE = new clearingEntities();
             var requs = CE.Requests;
             datagrid1.ItemsSource = requs.ToList();
             var trans = CE.transactions;
@@ -188,7 +188,7 @@ namespace Clearing.pages
                 IEnumerable<transaction> newAcct = exceldata.ItemsSource as IEnumerable<transaction>;
                 if (newAcct != null)
                 {
-                    using (ClearingEntities context = new ClearingEntities())
+                    using (clearingEntities context = new clearingEntities())
                     {
                         foreach (var i in newAcct)
                         {

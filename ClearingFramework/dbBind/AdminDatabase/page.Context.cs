@@ -74,12 +74,12 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<State> States { get; set; }
         public virtual DbSet<stype> stypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
         public virtual DbSet<transType> transTypes { get; set; }
         public virtual DbSet<Ttable> Ttables { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
     }
 }

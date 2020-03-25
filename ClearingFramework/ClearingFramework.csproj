@@ -133,10 +133,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="dbBind\Account.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AccountDetail.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\AccountDetail.cs">
       <DependentUpon>page.tt</DependentUpon>
@@ -144,17 +144,11 @@
     <Compile Include="dbBind\AdminDatabase\ColReq.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\Transaction.cs">
+    <Compile Include="dbBind\AdminDatabase\TickSizeTable.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\clearingDeal.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\deal.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\lastPrice.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
+    <Compile Include="dbBind\AdminDatabase\Transaction.cs">
+      <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\Account.cs">
       <DependentUpon>page.tt</DependentUpon>
@@ -312,9 +306,6 @@
     <Compile Include="dbBind\AdminDatabase\sysdiagram.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\TickSizeTable.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\AdminDatabase\transType.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
@@ -330,20 +321,44 @@
     <Compile Include="dbBind\AdminDatabase\UserGroup.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbBind\clearingDeal.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\deal.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\lastPrice.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="dbBind\pozit.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\Request.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\transaction.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="pages\Repo2.xaml.cs">
       <DependentUpon>Repo2.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\transaction.cs">
-      <DependentUpon>EF6Data.tt</DependentUpon>
     </Compile>
     <Page Include="pages\Repo2.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -360,21 +375,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="dbBind\EF6Data.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EF6Data.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\EF6Data.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EF6Data.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\EF6Data.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>EF6Data.edmx</DependentUpon>
     </Compile>
     <Compile Include="functions\Excel.cs" />
     <Compile Include="windows\MainWindow.xaml.cs">
@@ -470,15 +470,15 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="dbBind\EF6Data.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EF6Data.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="App.config" />
-    <None Include="keys\ClearingFramework_TemporaryKey.pfx" />
-    <None Include="dbBind\EF6Data.edmx.diagram">
-      <DependentUpon>EF6Data.edmx</DependentUpon>
+    <EntityDeploy Include="dbBind\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="dbBind\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
+    <None Include="keys\ClearingFramework_TemporaryKey.pfx" />
     <EntityDeploy Include="dbBind\AdminDatabase\page.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>page.Designer.cs</LastGenOutput>
@@ -529,16 +529,6 @@
     <Resource Include="pics\YES1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dbBind\EF6Data.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EF6Data.Context.cs</LastGenOutput>
-      <DependentUpon>EF6Data.edmx</DependentUpon>
-    </Content>
-    <Content Include="dbBind\EF6Data.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EF6Data.edmx</DependentUpon>
-      <LastGenOutput>EF6Data.cs</LastGenOutput>
-    </Content>
     <Content Include="dbBind\AdminDatabase\page.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>page.edmx</DependentUpon>
@@ -548,6 +538,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>page.edmx</DependentUpon>
       <LastGenOutput>page.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbBind\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="dbBind\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <Resource Include="favicon.ico" />
     <Resource Include="pics\favicon.ico" />

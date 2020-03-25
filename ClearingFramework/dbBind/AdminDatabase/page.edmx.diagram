@@ -54,13 +54,13 @@
         <EntityTypeShape EntityType="demoModel.State" Width="1.5" PointX="4.75" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.stype" Width="1.5" PointX="12.75" PointY="19.75" />
         <EntityTypeShape EntityType="demoModel.sysdiagram" Width="1.5" PointX="20.75" PointY="0.75" />
-        <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="20.75" PointY="3.75" />
         <EntityTypeShape EntityType="demoModel.Transaction" Width="1.5" PointX="20.75" PointY="6.75" />
         <EntityTypeShape EntityType="demoModel.transType" Width="1.5" PointX="6.75" PointY="20.75" />
         <EntityTypeShape EntityType="demoModel.Ttable" Width="1.5" PointX="20.75" PointY="11.75" />
         <EntityTypeShape EntityType="demoModel.UserAccount" Width="1.5" PointX="20.75" PointY="15.75" />
         <EntityTypeShape EntityType="demoModel.UserGroup" Width="1.5" PointX="20.75" PointY="18.75" />
         <EntityTypeShape EntityType="demoModel.user" Width="1.5" PointX="0.75" PointY="21.75" />
+        <EntityTypeShape EntityType="demoModel.TickSizeTable" Width="1.5" PointX="21.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -38,7 +38,7 @@ namespace Clearing.pages
         string linkacs, toId="0";
         decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
-        ClearingEntities CE = new ClearingEntities();
+        clearingEntities CE = new clearingEntities();
         demoEntities1 DE = new demoEntities1();
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)

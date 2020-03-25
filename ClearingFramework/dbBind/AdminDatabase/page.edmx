@@ -840,13 +840,13 @@
           <EntitySet Name="States" EntityType="demoModel.State" />
           <EntitySet Name="stypes" EntityType="demoModel.stype" />
           <EntitySet Name="sysdiagrams" EntityType="demoModel.sysdiagram" />
-          <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
           <EntitySet Name="Transactions" EntityType="demoModel.Transaction" />
           <EntitySet Name="transTypes" EntityType="demoModel.transType" />
           <EntitySet Name="Ttables" EntityType="demoModel.Ttable" />
           <EntitySet Name="UserAccounts" EntityType="demoModel.UserAccount" />
           <EntitySet Name="UserGroups" EntityType="demoModel.UserGroup" />
           <EntitySet Name="users" EntityType="demoModel.user" />
+          <EntitySet Name="TickSizeTables" EntityType="demoModel.TickSizeTable" />
         </EntityContainer>
         <EntityType Name="Account">
           <Key>
@@ -1494,13 +1494,6 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="TickSizeTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="Transaction">
           <Key>
             <PropertyRef Name="id" />
@@ -1570,6 +1563,13 @@
           <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
           <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="memId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TickSizeTable">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -2268,14 +2268,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TickSizeTables">
-            <EntityTypeMapping TypeName="demoModel.TickSizeTable">
-              <MappingFragment StoreEntitySet="TickSizeTable">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Transactions">
             <EntityTypeMapping TypeName="demoModel.Transaction">
               <MappingFragment StoreEntitySet="Transaction">
@@ -2348,6 +2340,14 @@
                 <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="uname" ColumnName="uname" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TickSizeTables">
+            <EntityTypeMapping TypeName="demoModel.TickSizeTable">
+              <MappingFragment StoreEntitySet="TickSizeTable">
+                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
