@@ -1,5 +1,5 @@
-﻿using ClearingFramework;
-using ClearingFramework.dbBind;
+﻿using Non_Member;
+using Non_Member.dbBind;
 using ExcelDataReader;
 using System;
 using System.Collections.Generic;

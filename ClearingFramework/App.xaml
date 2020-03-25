@@ -1,7 +1,7 @@
-﻿<Application x:Class="ClearingFramework.App"
+﻿<Application x:Class="Non_Member.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:ClearingFramework"
+             xmlns:local="clr-namespace:Non_Member"
              StartupUri="windows/Login.xaml">
     <Application.Resources>
          

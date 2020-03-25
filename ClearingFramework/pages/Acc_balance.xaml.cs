@@ -1,20 +1,8 @@
-﻿using ClearingFramework;
-using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.AdminDatabase;
+﻿using Non_Member;
+using Non_Member.dbBind.AdminDatabase;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Account2 = System.Collections.Generic.IEnumerable<ClearingFramework.dbBind.AdminDatabase.Account>;
 
 namespace Clearing.pages
 {

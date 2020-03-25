@@ -12,7 +12,7 @@ using System.Data.OleDb;
 using System.Data;
 using DataTable = System.Data.DataTable;
 
-namespace ClearingFramework
+namespace Non_Member
 {
     class Excel
     {

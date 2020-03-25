@@ -1,11 +1,11 @@
-﻿using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.AdminDatabase;
+﻿using Non_Member.dbBind;
+using Non_Member.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Account = ClearingFramework.dbBind.AdminDatabase.Account;
+using Account = Non_Member.dbBind.AdminDatabase.Account;
 
 namespace Clearing.pages
 {
