@@ -24,7 +24,7 @@ namespace Clearing.pages
         {
             InitializeComponent();
         }
-        ClearingEntities CE = new ClearingEntities();
+        clearingEntities1 CE = new clearingEntities1();
         demoEntities1 DE = new demoEntities1();
         public List<Asset> asst { get; set; }
         private void bindCombo()

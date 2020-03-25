@@ -132,7 +132,7 @@
                             <DataGridTextColumn Binding="{Binding phone}" ClipboardContentBinding="{x:Null}" Header="Утас" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding mail}" ClipboardContentBinding="{x:Null}" Header="Email" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding linkAcc}" ClipboardContentBinding="{x:Null}" Header="холбох данс" IsReadOnly="False"/>
-                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding accNumber}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding brokerCode}" ClipboardContentBinding="{x:Null}" Header="Брокерийн код" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
@@ -174,7 +174,7 @@
                             <DataGridTextColumn Binding="{Binding phone}" ClipboardContentBinding="{x:Null}" Header="Утас" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding mail}" ClipboardContentBinding="{x:Null}" Header="Email" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding linkAcc}" ClipboardContentBinding="{x:Null}" Header="холбох данс" IsReadOnly="False"/>
-                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding accNumber}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding brokerCode}" ClipboardContentBinding="{x:Null}" Header="Брокерийн код" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
@@ -245,7 +245,7 @@
             <ComboBox x:Name="brokCode" SelectionChanged="brokCode_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="code" SelectedValuePath="code" HorizontalAlignment="Left" Height="20" Margin="352,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
             <Label Content="Label" Margin="0,12,238,0" VerticalAlignment="Top" Height="164" HorizontalAlignment="Right" Width="4" Background="#FF7B5477"/>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="236,75,0,0" TextWrapping="Wrap" Text="Холбох данс" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
-            <ComboBox Name="linkAc" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Height="20" Margin="352,75,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
+            <ComboBox Name="linkAc" DisplayMemberPath="accNumber" SelectedValuePath="id" HorizontalAlignment="Left" Height="20" Margin="352,75,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
             </ComboBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="280,36,0,0" TextWrapping="Wrap" Text="Төлөв" Width="45" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
             <ComboBox Name="stat" HorizontalAlignment="Left" Height="20" Margin="352,41,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
