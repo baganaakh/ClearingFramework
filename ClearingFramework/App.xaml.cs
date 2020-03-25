@@ -1,8 +1,15 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace Non_Member
+namespace ClearingFramework
 {
     /// <summary>
     /// Interaction logic for App.xaml

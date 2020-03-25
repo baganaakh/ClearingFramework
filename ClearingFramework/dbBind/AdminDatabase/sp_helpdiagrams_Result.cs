@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Non_Member.dbBind.AdminDatabase
+namespace ClearingFramework.dbBind.AdminDatabase
 {
     using System;
     

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Non_Member.dbBind
+namespace ClearingFramework.dbBind
 {
     using System;
     using System.Collections.Generic;

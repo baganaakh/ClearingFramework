@@ -1,6 +1,6 @@
-﻿using Non_Member;
-using Non_Member.dbBind;
-using Non_Member.dbBind.AdminDatabase;
+﻿using ClearingFramework;
+using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,9 +16,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Account1 = Non_Member.dbBind.Account;
-using Account2 = Non_Member.dbBind.AdminDatabase.Account;
-using AccountDetail = Non_Member.dbBind.AccountDetail;
+using Account1 = ClearingFramework.dbBind.Account;
+using Account2 = ClearingFramework.dbBind.AdminDatabase.Account;
+using AccountDetail = ClearingFramework.dbBind.AccountDetail;
 using MessageBox = System.Windows.MessageBox;
 
 namespace Clearing.pages

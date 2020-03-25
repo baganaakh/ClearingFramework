@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\altanbagana.n\source\repos\Non_Member\Non_Member\dbBind\AdminDatabase\page.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\altanbagana.n\source\repos\ClearingFramework\ClearingFramework\dbBind\AdminDatabase\page.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -1,5 +1,5 @@
-﻿using Non_Member.dbBind;
-using Non_Member.dbBind.AdminDatabase;
+﻿using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Text;

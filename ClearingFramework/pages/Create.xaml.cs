@@ -1,6 +1,6 @@
-﻿using Non_Member;
-using Non_Member.dbBind;
-using Non_Member.dbBind.AdminDatabase;
+﻿using ClearingFramework;
+using ClearingFramework.dbBind;
+using ClearingFramework.dbBind.AdminDatabase;
 using ExcelDataReader;
 using LinqToExcel.Extensions;
 using System;
@@ -22,8 +22,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Z.Dapper.Plus;
-using Account1 = Non_Member.dbBind.Account;                  //clearing database nickname
-using Account2 = Non_Member.dbBind.AdminDatabase.Account;     //page     database nickname
+using Account1 = ClearingFramework.dbBind.Account;                  //clearing database nickname
+using Account2 = ClearingFramework.dbBind.AdminDatabase.Account;     //page     database nickname
 using MessageBox = System.Windows.MessageBox;
 
 
@@ -140,7 +140,7 @@ namespace Clearing.pages
                     pozFee = Convert.ToDecimal(pozfee.Text),
                     memId = memId
                 };
-                Non_Member.dbBind.AccountDetail acd = new Non_Member.dbBind.AccountDetail
+                ClearingFramework.dbBind.AccountDetail acd = new ClearingFramework.dbBind.AccountDetail
                 {
                     freezeValue=10,
                     totalNumber=100,
