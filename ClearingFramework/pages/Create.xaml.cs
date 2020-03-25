@@ -64,7 +64,7 @@ namespace Clearing.pages
         }
         private void FillGrid()
         {
-            clearingEntities1 CE = new clearingEntities1();
+            ClearingEntities CE = new ClearingEntities();
             var Accountss = CE.Accounts;
             vwOmniAccBalance.ItemsSource = Accountss.Where(s=>s.memId == memId).ToList();
         }
@@ -76,7 +76,7 @@ namespace Clearing.pages
         #region update
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using (clearingEntities1 context = new clearingEntities1())
+            using (ClearingEntities context = new ClearingEntities())
             {
                 Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iid);
                 acc.lname = lName.Text;
@@ -106,7 +106,7 @@ namespace Clearing.pages
             {
                 MessageBox.Show("Combos are empty Please fill them");
             }
-            using (clearingEntities1 context = new clearingEntities1())
+            using (ClearingEntities context = new ClearingEntities())
             {
                 var exist = context.Accounts.Count(a => a.accNum == accountn.Text);
                 var idexist = context.Accounts.Count(a => a.idNum == idNumber.Text);
@@ -158,7 +158,7 @@ namespace Clearing.pages
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             long iiid = (vwOmniAccBalance.SelectedItem as Account1).id;
-            using (clearingEntities1 context = new clearingEntities1())
+            using (ClearingEntities context = new ClearingEntities())
             {
                 Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
                 context.Accounts.Remove(acc);
@@ -171,7 +171,7 @@ namespace Clearing.pages
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             iid = (vwOmniAccBalance.SelectedItem as Account1).id;
-            using (clearingEntities1 context = new clearingEntities1())
+            using (ClearingEntities context = new ClearingEntities())
             {
                 Account1 acc = context.Accounts.FirstOrDefault(r => r.id == iid);
                 lName.Text = acc.lname;

@@ -34,7 +34,7 @@ namespace Clearing.pages
             InitializeComponent();
 
         }
-        clearingEntities1 CE = new clearingEntities1();
+        ClearingEntities CE = new ClearingEntities();
         demoEntities1 DE = new demoEntities1();
 
     }

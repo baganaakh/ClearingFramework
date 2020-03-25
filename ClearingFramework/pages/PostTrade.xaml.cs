@@ -56,7 +56,7 @@ namespace Clearing.pages
                     prices = Convert.ToDecimal(i.price),
                     fees = Convert.ToDecimal(i.fee)
                 });
-                using (var contx = new clearingEntities1())
+                using (var contx = new ClearingEntities())
                 {
                     decimal lastPrice = Convert.ToDecimal(
                         contx.lastPrices.Where(s => s.assetid == i.assetid)
