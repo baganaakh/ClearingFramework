@@ -10,11 +10,10 @@
 namespace ClearingFramework.dbBind.AdminDatabase
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Ptype
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public short id { get; set; }
-        public string ptype1 { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

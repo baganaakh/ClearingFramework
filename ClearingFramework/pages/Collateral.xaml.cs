@@ -81,10 +81,10 @@ namespace Clearing.pages
             collHistory.ItemsSource = ToDisplay;
             #endregion
             #region Хүлээгдэж Буй гүйлгээ
-            List<ColReq> requs = de.ColReqs.ToList();
-            foreach (ColReq items in requs)
+            List<Order> requs = de.Orders.ToList();
+            foreach (Order items in requs)
             {
-                asset1 = Convert.ToInt32(items.assetId);
+                asset1 = Convert.ToInt32(items.assetid);
                 Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
                 decimal price= Convert.ToDecimal(asst.price);
                 Member memb = de.Members.Where(r => r.id == memId).FirstOrDefault<Member>();
@@ -94,12 +94,12 @@ namespace Clearing.pages
                 int minval = Convert.ToInt32(mty.minValue);
 
                 decimal ratio = asst.ratio;
-                decimal qty = Convert.ToDecimal(items.value);
+                decimal qty = Convert.ToDecimal(items.qty);
                 decimal totval = qty * (ratio * price);
                 forGrid data = new forGrid()
                 {
                     id = Convert.ToInt64(items.id),
-                    accNumber = items.accId.ToString(),
+                    accNumber = items.accountid.ToString(),
                     Барьцаа = asset1.ToString("0.###"),
                     Хэмжээ = Convert.ToInt32(qty),
                     ЖишигҮнэ = (ratio * price).ToString("0.###"),

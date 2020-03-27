@@ -10,11 +10,13 @@
 namespace ClearingFramework.dbBind.AdminDatabase
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class stype
+    public partial class sp_helpdiagrams_Result
     {
-        public short id { get; set; }
-        public string stype1 { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

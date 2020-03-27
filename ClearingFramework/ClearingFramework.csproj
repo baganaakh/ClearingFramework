@@ -138,31 +138,16 @@
     <Compile Include="dbBind\AccountDetail.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\AccountDetail.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\ColReq.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\TickSizeTable.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\Transaction.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\AdminDatabase\Account.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\AdminDatabase\AccountDetail.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\accType.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\ActiveSession.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\algo.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\allowedtype.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\API.cs">
@@ -198,13 +183,7 @@
     <Compile Include="dbBind\AdminDatabase\Deal.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\Deal2.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\AdminDatabase\DealerAccount.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDatabase\Dealtype.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\expireTable.cs">
@@ -267,9 +246,6 @@
     <Compile Include="dbBind\AdminDatabase\Participant.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\Ptype.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\AdminDatabase\Reason.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
@@ -291,22 +267,22 @@
     <Compile Include="dbBind\AdminDatabase\Software.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\SpecialType.cs">
-      <DependentUpon>page.tt</DependentUpon>
-    </Compile>
     <Compile Include="dbBind\AdminDatabase\Spread.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\State.cs">
+    <Compile Include="dbBind\AdminDatabase\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\stype.cs">
+    <Compile Include="dbBind\AdminDatabase\sp_helpdiagrams_Result.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\sysdiagram.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
-    <Compile Include="dbBind\AdminDatabase\transType.cs">
+    <Compile Include="dbBind\AdminDatabase\TickSizeTable.cs">
+      <DependentUpon>page.tt</DependentUpon>
+    </Compile>
+    <Compile Include="dbBind\AdminDatabase\Transaction.cs">
       <DependentUpon>page.tt</DependentUpon>
     </Compile>
     <Compile Include="dbBind\AdminDatabase\Ttable.cs">

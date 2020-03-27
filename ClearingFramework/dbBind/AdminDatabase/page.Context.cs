@@ -12,6 +12,8 @@ namespace ClearingFramework.dbBind.AdminDatabase
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class demoEntities1 : DbContext
     {
@@ -29,23 +31,18 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<accType> accTypes { get; set; }
         public virtual DbSet<ActiveSession> ActiveSessions { get; set; }
-        public virtual DbSet<algo> algoes { get; set; }
-        public virtual DbSet<allowedtype> allowedtypes { get; set; }
         public virtual DbSet<API> APIs { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<BoardInstrument> BoardInstruments { get; set; }
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<Calendar> Calendars { get; set; }
         public virtual DbSet<ClearingAccount> ClearingAccounts { get; set; }
-        public virtual DbSet<ColReq> ColReqs { get; set; }
         public virtual DbSet<Contract> Contracts { get; set; }
         public virtual DbSet<ctype> ctypes { get; set; }
         public virtual DbSet<dayType> dayTypes { get; set; }
         public virtual DbSet<dbo_logs> dbo_logs { get; set; }
-        public virtual DbSet<Deal2> Deal2 { get; set; }
         public virtual DbSet<DealerAccount> DealerAccounts { get; set; }
         public virtual DbSet<Deal> Deals { get; set; }
-        public virtual DbSet<Dealtype> Dealtypes { get; set; }
         public virtual DbSet<expireTable> expireTables { get; set; }
         public virtual DbSet<Fee> Fees { get; set; }
         public virtual DbSet<GroupRight> GroupRights { get; set; }
@@ -61,7 +58,6 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<netting> nettings { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Participant> Participants { get; set; }
-        public virtual DbSet<Ptype> Ptypes { get; set; }
         public virtual DbSet<Reason> Reasons { get; set; }
         public virtual DbSet<RefPrice> RefPrices { get; set; }
         public virtual DbSet<Right> Rights { get; set; }
@@ -69,17 +65,116 @@ namespace ClearingFramework.dbBind.AdminDatabase
         public virtual DbSet<Session> Sessions { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<Software> Softwares { get; set; }
-        public virtual DbSet<SpecialType> SpecialTypes { get; set; }
         public virtual DbSet<Spread> Spreads { get; set; }
-        public virtual DbSet<State> States { get; set; }
-        public virtual DbSet<stype> stypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
-        public virtual DbSet<transType> transTypes { get; set; }
         public virtual DbSet<Ttable> Ttables { get; set; }
         public virtual DbSet<UserAccount> UserAccounts { get; set; }
         public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<TickSizeTable> TickSizeTables { get; set; }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
     }
 }
