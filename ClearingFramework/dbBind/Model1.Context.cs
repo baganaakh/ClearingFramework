@@ -33,5 +33,32 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<pozit> pozits { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }
+        public virtual DbSet<AdminAccount> AdminAccounts { get; set; }
+        public virtual DbSet<AdminAccountDetail> AdminAccountDetails { get; set; }
+        public virtual DbSet<AdminActiveSession> AdminActiveSessions { get; set; }
+        public virtual DbSet<AdminAsset> AdminAssets { get; set; }
+        public virtual DbSet<AdminBoard> AdminBoards { get; set; }
+        public virtual DbSet<AdminCalendar> AdminCalendars { get; set; }
+        public virtual DbSet<AdminContract> AdminContracts { get; set; }
+        public virtual DbSet<AdminFee> AdminFees { get; set; }
+        public virtual DbSet<AdminInterest> AdminInterests { get; set; }
+        public virtual DbSet<AdminMargin> AdminMargins { get; set; }
+        public virtual DbSet<AdminMarketMaker> AdminMarketMakers { get; set; }
+        public virtual DbSet<Adminmtype> Adminmtypes { get; set; }
+        public virtual DbSet<AdminReason> AdminReasons { get; set; }
+        public virtual DbSet<AdminRefPrice> AdminRefPrices { get; set; }
+        public virtual DbSet<AdminSecurity> AdminSecurities { get; set; }
+        public virtual DbSet<AdminSession> AdminSessions { get; set; }
+        public virtual DbSet<AdminSpread> AdminSpreads { get; set; }
+        public virtual DbSet<AdminTickSizeTable> AdminTickSizeTables { get; set; }
+        public virtual DbSet<AdminTtable> AdminTtables { get; set; }
+        public virtual DbSet<AdminUser> AdminUsers { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
+        public virtual DbSet<AdminMember> AdminMembers { get; set; }
+        public virtual DbSet<AdminDeal> AdminDeals { get; set; }
+        public virtual DbSet<AdminInvoiceDetail> AdminInvoiceDetails { get; set; }
+        public virtual DbSet<AdminInvoice> AdminInvoices { get; set; }
+        public virtual DbSet<AdminOrder> AdminOrders { get; set; }
+        public virtual DbSet<AdminTransaction> AdminTransactions { get; set; }
     }
 }

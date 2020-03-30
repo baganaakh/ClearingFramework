@@ -1,6 +1,5 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Account2 = System.Collections.Generic.IEnumerable<ClearingFramework.dbBind.AdminDatabase.Account>;
+
 
 namespace Clearing.pages
 {
@@ -31,10 +30,10 @@ namespace Clearing.pages
         #region fill
         private void FillGrid()
         {
-            using (demoEntities1 context = new demoEntities1())
+            using (clearingEntities context = new clearingEntities())
             {
                 long memid= Convert.ToInt32(App.Current.Properties["member_id"]);
-                var acc = context.Accounts.Where(s=> s.memberid == memid && s.accountType == 3).ToList();
+                var acc = context.AdminAccounts.Where(s=> s.memberid == memid && s.accountType == 3).ToList();
                 unitedData.ItemsSource = acc;
                 //var level1 = context.Accounts.Where(s => s.memberid == memid && s.accType == 0);
                 //select * from demo.dbo.Account where accType = 3 and LinkAcc in (select accNum from demo.dbo.Account where  LinkAcc IN (select accNum from demo.dbo.Account where memberid= 20 and accType = 0) and accType = 2)

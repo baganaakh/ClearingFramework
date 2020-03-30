@@ -1,5 +1,4 @@
 ﻿using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,8 +24,7 @@ namespace Clearing.pages
             InitializeComponent();
         }
         clearingEntities CE = new clearingEntities();
-        demoEntities1 DE = new demoEntities1();
-        public List<Asset> asst { get; set; }
+        public List<AdminAsset> asst { get; set; }
         private void bindCombo()
         {
             //List<Asset> acclist = DE.Assets;

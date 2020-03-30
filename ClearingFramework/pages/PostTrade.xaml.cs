@@ -1,11 +1,9 @@
 ﻿using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using Account = ClearingFramework.dbBind.AdminDatabase.Account;
 
 namespace Clearing.pages
 {
@@ -22,21 +20,21 @@ namespace Clearing.pages
         #region fill
         private void FillGrid()
         {
-            demoEntities1 DE = new demoEntities1();
-            var deal1 = DE.Deals;
+            clearingEntities DE = new clearingEntities();
+            var deal1 = DE.AdminDeals;
             var dealList = deal1.ToList();
             string query, acode, side;
             List<object> data = new List<object>();
             foreach (var i in dealList)
             {
-                using (var context = new demoEntities1())
+                using (var context = new clearingEntities())
                 {
-                    var ac = (from s in context.Accounts
+                    var ac = (from s in context.AdminAccounts
                                 where s.id == i.accountid
-                                select s).FirstOrDefault<Account>();
-                    var ass = (from s in context.Assets
+                                select s).FirstOrDefault<AdminAccount>();
+                    var ass = (from s in context.AdminAssets
                                 where s.id == i.assetid
-                                select s ).FirstOrDefault<Asset>();
+                                select s ).FirstOrDefault<AdminAsset>();
                     if(ac == null)
                     {
                         MessageBox.Show("deals accountid oldsongui");

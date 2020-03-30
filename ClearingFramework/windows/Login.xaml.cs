@@ -1,4 +1,4 @@
-﻿using ClearingFramework.dbBind.AdminDatabase;
+﻿using ClearingFramework.dbBind;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +27,9 @@ namespace ClearingFramework
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            using (demoEntities1 context = new demoEntities1())
+            using (clearingEntities context = new clearingEntities())
             {
-                var query = context.users.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<user>();
+                var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
                 if(query == null)
                 {
                     MessageBox.Show("Username doesn't match");

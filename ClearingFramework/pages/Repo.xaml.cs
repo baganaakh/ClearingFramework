@@ -1,6 +1,5 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,8 +15,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Account1 = ClearingFramework.dbBind.Account;
-using Account2 = ClearingFramework.dbBind.AdminDatabase.Account;
 using AccountDetail = ClearingFramework.dbBind.AccountDetail;
 using MessageBox = System.Windows.MessageBox;
 
@@ -38,14 +35,13 @@ namespace Clearing.pages
         string linkacs, toId="0";
         decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
-        clearingEntities CE = new clearingEntities();
-        demoEntities1 DE = new demoEntities1();
+        clearingEntities CE = new clearingEntities();        
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                using (demoEntities1 context = new demoEntities1())
+                using (clearingEntities context = new clearingEntities())
             {
-                Order order = new Order()
+                AdminOrder order = new AdminOrder()
                 {
                     accountid = Convert.ToInt64(linkacs),
                     assetid = Convert.ToInt64(asset.SelectedValue),
@@ -61,7 +57,7 @@ namespace Clearing.pages
                     interests = inter,
                     dealType=1,
                 };
-                context.Orders.Add(order);
+                context.AdminOrders.Add(order);
                 context.SaveChanges();
                 FillGrid();
             }
@@ -70,21 +66,21 @@ namespace Clearing.pages
         #region datagrid fill
         private void FillGrid()
         {
-            demoEntities1 de = new demoEntities1();
-            List<Order> ord= de.Orders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
+            clearingEntities de = new clearingEntities();
+            List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
             || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
             totalOrder.ItemsSource = ord;
-            List<Order> ords = de.Orders.Where(s => s.memberid == memId).ToList();
+            List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memId).ToList();
             OwnTable.ItemsSource = ords;
-            soldTable.ItemsSource= de.Deals.Where(s => s.memberid == memId && s.side == -1).ToList();
-            boughtTable.ItemsSource= de.Deals.Where(s => s.memberid != memId && s.side == 1).ToList();
-            repoHistory.ItemsSource = de.Deals.Where(s=> s.memberid == memId).ToList();
+            soldTable.ItemsSource= de.AdminDeals.Where(s => s.memberid == memId && s.side == -1).ToList();
+            boughtTable.ItemsSource= de.AdminDeals.Where(s => s.memberid != memId && s.side == 1).ToList();
+            repoHistory.ItemsSource = de.AdminDeals.Where(s=> s.memberid == memId).ToList();
         }
         #endregion
         #region Нийт захиалга зөвшөөрөх
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            Order value = (Order)totalOrder.SelectedItem;
+            AdminOrder value = (AdminOrder)totalOrder.SelectedItem;
             if (null == value) return;
             if(linkAc_Copy.SelectedItem == null)
             {
@@ -92,9 +88,9 @@ namespace Clearing.pages
                 return;
             }
             int useracc = Convert.ToInt32(linkAc_Copy.SelectedValue);
-            using (demoEntities1 contx=new demoEntities1())
+            using (clearingEntities contx=new clearingEntities())
             {
-            Deal pageDeal1 = new Deal()
+            AdminDeal pageDeal1 = new AdminDeal()
                 {
                     accountid=useracc,
                     assetid=value.assetid,
@@ -110,7 +106,7 @@ namespace Clearing.pages
                     dealType=value.dealType,
                     connect=value.connect,
                 };
-            Deal pageDeal2 = new Deal()
+            AdminDeal pageDeal2 = new AdminDeal()
                 {
                     accountid=value.accountid,
                     assetid=value.assetid,
@@ -126,14 +122,14 @@ namespace Clearing.pages
                     dealType=value.dealType,
                     connect=value.connect,
                 };
-            contx.Deals.Add(pageDeal1);
-            contx.Deals.Add(pageDeal2);
+            contx.AdminDeals.Add(pageDeal1);
+            contx.AdminDeals.Add(pageDeal2);
             contx.SaveChanges();
             }
             int id = Convert.ToInt32(value.id);
-            using (var contx=new demoEntities1())
+            using (var contx=new clearingEntities())
             {
-            Order statss = contx.Orders.FirstOrDefault(s=> s.id == id);
+            AdminOrder statss = contx.AdminOrders.FirstOrDefault(s=> s.id == id);
             statss.state = 1;
             contx.SaveChanges();
             }
@@ -143,12 +139,12 @@ namespace Clearing.pages
         #region өөрийн захиалга Цуцлах Устгах
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            var value = OwnTable.SelectedItem as Order;
+            var value = OwnTable.SelectedItem as AdminOrder;
             if (value == null) return;
-            using (demoEntities1 conx = new demoEntities1())
+            using (clearingEntities conx = new clearingEntities())
             {
-                var del = conx.Orders.Where(x => x.id == value.id).First();
-                conx.Orders.Remove(del);
+                var del = conx.AdminOrders.Where(x => x.id == value.id).First();
+                conx.AdminOrders.Remove(del);
                 conx.SaveChanges();
             }
             
@@ -173,20 +169,20 @@ namespace Clearing.pages
         }
         #endregion
         #region combos selection change                 
-        public List<Member> members{ get; set; }
+        public List<AdminMember> members{ get; set; }
         private void bindCombo()
         {
-            var acclist = DE.Accounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
+            var acclist = CE.AdminAccounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
             
             linkAc.ItemsSource = acclist;
             linkAc_Copy.ItemsSource = acclist;
 
-            var memlist = DE.Members.ToList();
+            var memlist = CE.AdminMembers.ToList();
             members = memlist;
             var rem = memlist.Find(x => x.id == memId);
             members.Remove(rem);
 
-            Member allItem = new Member() {code= "Бүгд", id= 0};
+            AdminMember allItem = new AdminMember() {code= "Бүгд", id= 0};
             members.Add(allItem);
             membee.ItemsSource = members;
             int indexx = members.Count();
@@ -196,17 +192,17 @@ namespace Clearing.pages
         {
             asset.IsEnabled = true;
             asset.ItemsSource = null;
-            var item = linkAc.SelectedItem as Account2;
+            var item = linkAc.SelectedItem as AdminAccount;
             try
             {
                 linkacs = item.id.ToString();
-                List<Asset> assets = new List<Asset>();
+                List<AdminAsset> assets = new List<AdminAsset>();
                 var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.accNum).ToList();
                 foreach(var i in acclist)
                 {
                     var detail = CE.AccountDetails.Where(s=>s.accNum == i).Select(s=> s.assetId).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
-                    var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
+                    var asst = CE.AdminAssets.Where(s => s.id == ids).FirstOrDefault<AdminAsset>();
                     assets.Add(asst);
                 }
                 if(assets.Count == 0)
@@ -226,7 +222,7 @@ namespace Clearing.pages
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             qtyss.IsEnabled = true;
-            var item = asset.SelectedItem as Asset;
+            var item = asset.SelectedItem as AdminAsset;
             if (item == null)
             {
                 remainder.Text = null;
@@ -269,8 +265,8 @@ namespace Clearing.pages
                 return;
             }
             int days1 = Convert.ToInt32(days.Content);
-            var Interst = DE.Interests.Where(s => s.assetid == assId).FirstOrDefault<Interest>();
-            decimal Interst1 =Convert.ToDecimal( Interst.interest1);
+            var Interst = CE.AdminInterests.Where(s => s.assetid == assId).FirstOrDefault<AdminInterest>();
+            decimal Interst1 =Convert.ToDecimal( Interst.interest);
             inter = Convert.ToDecimal(TotalSum.Text) * days1 * Interst1;
             Inter.Text = inter.ToString("0.##");
             toPay = Convert.ToDecimal(TotalSum.Text) + Convert.ToDecimal(Inter.Text);
@@ -278,7 +274,7 @@ namespace Clearing.pages
         }
         private void membee_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = membee.SelectedItem as Member;
+            var item = membee.SelectedItem as AdminMember;
             try
             {
                 toId = item.id.ToString();

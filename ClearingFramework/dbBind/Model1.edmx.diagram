@@ -13,6 +13,33 @@
         <EntityTypeShape EntityType="clearingModel.pozit" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="clearingModel.Request" Width="1.5" PointX="6.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="clearingModel.transaction" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="clearingModel.AdminAccount" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminAccountDetail" Width="1.5" PointX="2.75" PointY="8.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminActiveSession" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminAsset" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminBoard" Width="1.5" PointX="9.75" PointY="8.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminCalendar" Width="1.5" PointX="4.75" PointY="10.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminContract" Width="1.5" PointX="6.75" PointY="10.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminFee" Width="1.5" PointX="11.75" PointY="0.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminInterest" Width="1.5" PointX="11.75" PointY="3.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminMargin" Width="1.5" PointX="11.75" PointY="7.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminMarketMaker" Width="1.5" PointX="11.75" PointY="11.75" />
+        <EntityTypeShape EntityType="clearingModel.Adminmtype" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminReason" Width="1.5" PointX="8.75" PointY="12.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminRefPrice" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminSecurity" Width="1.5" PointX="2.75" PointY="13.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminSession" Width="1.5" PointX="13.75" PointY="3.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminSpread" Width="1.5" PointX="13.75" PointY="9.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminTickSizeTable" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminTtable" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminUser" Width="1.5" PointX="15.75" PointY="4.75" />
+        <EntityTypeShape EntityType="clearingModel.Member" Width="1.5" PointX="4.75" PointY="15.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminMember" Width="1.5" PointX="7.375" PointY="15.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminDeal" Width="1.5" PointX="9.375" PointY="15.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminInvoiceDetail" Width="1.5" PointX="16.375" PointY="7.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminInvoice" Width="1.5" PointX="16.375" PointY="11.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminOrder" Width="1.5" PointX="11.375" PointY="16.75" />
+        <EntityTypeShape EntityType="clearingModel.AdminTransaction" Width="1.5" PointX="13.375" PointY="16.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

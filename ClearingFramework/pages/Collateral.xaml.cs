@@ -1,6 +1,5 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
-using ClearingFramework.dbBind.AdminDatabase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Account1 = ClearingFramework.dbBind.Account;
-using Account2 = ClearingFramework.dbBind.AdminDatabase.Account;
-using AccountDetail = ClearingFramework.dbBind.AccountDetail;
 
 namespace Clearing.pages
 {
@@ -26,7 +22,6 @@ namespace Clearing.pages
     public partial class Collateral : Page
     {
         clearingEntities CE = new clearingEntities();
-        demoEntities1 DE = new demoEntities1();
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string linkacs;
         decimal assId;
@@ -39,26 +34,25 @@ namespace Clearing.pages
         #region fill
         private void FillGrid()
         {
-            int asset1;
-            demoEntities1 de = new demoEntities1();
+            int asset1;            
             clearingEntities ce = new clearingEntities();
 
             List<forGrid> ToDisplay = new List<forGrid>();
             List<forGrid> ToDisplay2 = new List<forGrid>();
             List<forGrid> Биржбарьцаа = new List<forGrid>();
 
-            List<Transaction> trans = de.Transactions.ToList();
+            List<AdminTransaction> trans = ce.AdminTransactions.ToList();
             #region Барьцаа түүх
-            foreach (Transaction items in trans)
+            foreach (AdminTransaction items in trans)
             {
                 asset1 = Convert.ToInt32(items.assetId);
-                Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
+                AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
                 decimal price = Convert.ToDecimal(asst.price);
 
-                Member memb = de.Members.Where(r => r.id == memId).FirstOrDefault<Member>();
+                AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
                 short type =Convert.ToInt16( memb.type);
 
-                mtype mty = de.mtypes.Where(r => r.id == type).FirstOrDefault<mtype>();
+                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
 
                 decimal ratio = asst.ratio;
@@ -81,16 +75,16 @@ namespace Clearing.pages
             collHistory.ItemsSource = ToDisplay;
             #endregion
             #region Хүлээгдэж Буй гүйлгээ
-            List<Order> requs = de.Orders.ToList();
-            foreach (Order items in requs)
+            List<AdminOrder> requs = ce.AdminOrders.ToList();
+            foreach (AdminOrder items in requs)
             {
                 asset1 = Convert.ToInt32(items.assetid);
-                Asset asst = de.Assets.Where(r => r.id == asset1).FirstOrDefault<Asset>();
+                AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
                 decimal price= Convert.ToDecimal(asst.price);
-                Member memb = de.Members.Where(r => r.id == memId).FirstOrDefault<Member>();
+                AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
                 short type = Convert.ToInt16(memb.type);
 
-                mtype mty = de.mtypes.Where(r => r.id == type).FirstOrDefault<mtype>();
+                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
 
                 decimal ratio = asst.ratio;
@@ -117,11 +111,15 @@ namespace Clearing.pages
             foreach (var acnum in accNums)
             {
                 var adet = ce.AccountDetails.Where(s => s.accNum == acnum).FirstOrDefault<AccountDetail>();
-                Asset asst = de.Assets.Where(s => s.id == adet.assetId).FirstOrDefault<Asset>();
+                AdminAsset asst = ce.AdminAssets.Where(s => s.id == adet.assetId).FirstOrDefault<AdminAsset>();
+                if (asst == null) {
+                                    MessageBox.Show("Asset empty");
+                                    return;
+                                  }
                 decimal price= Convert.ToDecimal(asst.price);
                 decimal jish = asst.ratio * price;
                 decimal tot = Convert.ToDecimal(adet.totalNumber * jish);
-                mtype mty = de.mtypes.Where(r => r.id == 0).FirstOrDefault<mtype>();
+                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 0).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
                 forGrid data = new forGrid()
                 {
@@ -137,7 +135,6 @@ namespace Clearing.pages
             }
             Биржийнбарьцаа.ItemsSource = Биржбарьцаа;
             #endregion
-
         }
         public class forGrid
         {
@@ -163,9 +160,9 @@ namespace Clearing.pages
             int qtyy = Convert.ToInt32(qtyss.Text);
             if (mod == 1)
                 qtyy *=(-1);
-            using (demoEntities1 contx = new demoEntities1())
+            using (clearingEntities contx = new clearingEntities())
             {
-                Order order = new Order()
+                AdminOrder order = new AdminOrder()
                 {
                     accountid = Convert.ToInt64(accId.SelectedValue),
                     assetid = Convert.ToInt32(asset.SelectedValue),
@@ -176,7 +173,7 @@ namespace Clearing.pages
                     state = 1,
                     dealType = 4,
                 };
-                contx.Orders.Add(order);
+                contx.AdminOrders.Add(order);
                 contx.SaveChanges();
             }
         }
@@ -184,22 +181,22 @@ namespace Clearing.pages
         #region combos
         private void bindCombo()
         {
-            accId.ItemsSource = DE.Accounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
+            accId.ItemsSource = CE.AdminAccounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();
         }
         private void accId_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             asset.IsEnabled = true;
-            var item = accId.SelectedItem as Account2;
+            var item = accId.SelectedItem as AdminAccount;
             try
             {
                 linkacs = item.id.ToString();
-                List<Asset> assets = new List<Asset>();
+                List<AdminAsset> assets = new List<AdminAsset>();
                 var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.accNum).ToList();
                 foreach (var i in acclist)
                 {
                     var detail = CE.AccountDetails.Where(s => s.accNum == i).Select(s => s.assetId).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
-                    var asst = DE.Assets.Where(s => s.id == ids).FirstOrDefault<Asset>();
+                    var asst = CE.AdminAssets.Where(s => s.id == ids).FirstOrDefault<AdminAsset>();
                     assets.Add(asst);
                 }
                 asset.ItemsSource = assets.Distinct();
@@ -212,7 +209,7 @@ namespace Clearing.pages
         }
         private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = asset.SelectedItem as Asset;
+            var item = asset.SelectedItem as AdminAsset;
             qtyss.IsEnabled = true;
             qtyss.Text = null;
             assId = item.id;
