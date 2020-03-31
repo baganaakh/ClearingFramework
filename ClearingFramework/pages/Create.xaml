@@ -159,22 +159,26 @@
             </TabItem>
             <TabItem Header="Exceldata" Name="exceltab" BorderThickness="0,0,0,0" IsEnabled="False" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
                 <Grid Margin="0,0,-4,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="13*"/>
+                    </Grid.ColumnDefinitions>
 
                     <DataGrid x:Name="exceldata" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
                               FontSize="11" RenderTransformOrigin="0.5,0.5" CanUserDeleteRows="True" CanUserReorderColumns="False" BorderThickness="0" 
                               EnableRowVirtualization="False" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled"
                               ItemsSource="{Binding}"
-                               ScrollViewer.CanContentScroll="True" Margin="0,10,0,29" CanUserAddRows="False">
+                               ScrollViewer.CanContentScroll="True" Margin="0,10,0,29" CanUserAddRows="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn Width="50" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding idNum}" ClipboardContentBinding="{x:Null}" Header="РД" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding lname}" ClipboardContentBinding="{x:Null}" Header="Овог" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding fname}" ClipboardContentBinding="{x:Null}" Header="Нэр" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding idNum}" ClipboardContentBinding="{x:Null}" Header="РД" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding phone}" ClipboardContentBinding="{x:Null}" Header="Утас" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding mail}" ClipboardContentBinding="{x:Null}" Header="Email" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding linkAcc}" ClipboardContentBinding="{x:Null}" Header="холбох данс" IsReadOnly="False"/>
-                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding brokerCode}" ClipboardContentBinding="{x:Null}" Header="Брокерийн код" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
@@ -183,6 +187,7 @@
                             <DataGridTextColumn Binding="{Binding denchinPercent}" ClipboardContentBinding="{x:Null}" Header="дэнчин хувь" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding contractFee}" ClipboardContentBinding="{x:Null}" Header="ContractFee" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding pozFee}" ClipboardContentBinding="{x:Null}" Header="PozFee" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding memId}" ClipboardContentBinding="{x:Null}" Header="memid" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
@@ -245,7 +250,7 @@
             <ComboBox x:Name="brokCode" SelectionChanged="brokCode_SelectionChanged" ItemsSource="{Binding}" DisplayMemberPath="code" SelectedValuePath="code" HorizontalAlignment="Left" Height="20" Margin="352,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
             <Label Content="Label" Margin="0,12,238,0" VerticalAlignment="Top" Height="164" HorizontalAlignment="Right" Width="4" Background="#FF7B5477"/>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="236,75,0,0" TextWrapping="Wrap" Text="Холбох данс" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
-            <ComboBox Name="linkAc" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Height="20" Margin="352,75,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
+            <ComboBox Name="linkAc" DisplayMemberPath="accNumber" SelectedValuePath="id" HorizontalAlignment="Left" Height="20" Margin="352,75,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
             </ComboBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="280,36,0,0" TextWrapping="Wrap" Text="Төлөв" Width="45" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
             <ComboBox Name="stat" HorizontalAlignment="Left" Height="20" Margin="352,41,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
@@ -322,7 +327,6 @@
                 </Button.Resources>
             </Button>
             <ComboBox SelectionChanged="cboSheet_SelectionChanged" x:Name="cboSheet" HorizontalAlignment="Left" Height="20" Margin="629,58,0,0"  Text="Гүйлгээний төрөл" Width="102" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"></ComboBox>
-            <TextBox HorizontalAlignment="Left" Name="chosen" Height="20" Margin="750,17,0,0" TextWrapping="Wrap" Text="Сонгоогүй" Width="75" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
             <Button Click="Button_Click_7" Content="import" Margin="0,89,131,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="SeaGreen" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">

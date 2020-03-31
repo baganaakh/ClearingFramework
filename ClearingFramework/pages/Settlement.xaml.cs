@@ -7,18 +7,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Z.Dapper.Plus;
 using MessageBox = System.Windows.Forms.MessageBox;
 
 namespace Clearing.pages
@@ -64,15 +57,20 @@ namespace Clearing.pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             decimal value = Decimal.Parse(trvalue.Text);
+            Int16 s = Convert.ToInt16(side.SelectedIndex);
+            if (s == 0)
+            {
+                s = -1;
+            }
             using (clearingEntities context = new clearingEntities())
             {
                 var tran = new transaction()
                 {
                     accNum = accountID,
-                    transType = transType.Text,
+                    transType = Convert.ToInt16(transType.SelectedIndex),
                     value = Decimal.Parse(trvalue.Text),
                     note = trnote.Text,
-                    side = "1"
+                    side = s,
                 };
                 AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accNum == accnum);
                 if (accdet != null)
@@ -103,14 +101,14 @@ namespace Clearing.pages
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             string filePath = "";
-            using (OpenFileDialog openFileDialog = new OpenFileDialog() { Filter = "Excel 97-2003|*.xls|Excel Workbook|*.xlsx" })
+            using (OpenFileDialog fbd = new OpenFileDialog() { Filter = "Excel 97-2003|*.xls|Excel Workbook|*.xlsx" })
             {
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (fbd.ShowDialog() == DialogResult.OK)
                 {
-                    filePath = openFileDialog.FileName;
+                    filePath = fbd.FileName;
                     try
                     {
-                        using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+                        using (var stream = File.Open(fbd.FileName, FileMode.Open, FileAccess.Read))
                         {
                             using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                             {
@@ -153,10 +151,10 @@ namespace Clearing.pages
                 {
                     transaction acc = new transaction();
                     acc.accNum = dt.Rows[i]["accNum"].ToString();
-                    acc.transType = dt.Rows[i]["transType"].ToString();
+                    acc.transType =Convert.ToInt16(dt.Rows[i]["transType"]);
                     acc.value = Convert.ToDecimal(dt.Rows[i]["value"]);
                     acc.note = dt.Rows[i]["note"].ToString();
-                    acc.side = dt.Rows[i]["side"].ToString();
+                    acc.side =Convert.ToInt16(dt.Rows[i]["side"]);
                     acct.Add(acc);
                 }
             }
@@ -168,50 +166,69 @@ namespace Clearing.pages
                 yield return new transaction
                 {
                     accNum = row["accNum"].ToString(),
-                    transType = row["transType"].ToString(),
+                    transType =Convert.ToInt16(row["transType"]),
                     value = Convert.ToDecimal(row["value"]),
                     note = row["note"].ToString(),
-                    side = row["side"].ToString(),
+                    side =Convert.ToInt16(row["side"]),
                 };
             }
         }
 
         #endregion
+        #region xls хуулах
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            string excel= "";
+            string paths = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @".\\functions\\Гүйлгээ бүртгэх.xlsx");
+            string filePath = "";
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog() )
+            {
+                DialogResult result = fbd.ShowDialog();
+                if(result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    filePath = fbd.SelectedPath;
+                    file.Text = filePath;
+                    try { 
+                System.IO.File.Move(paths, filePath);
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+        }
+        #endregion
 
         #region bulk insert from datatable
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
+            var newAcct = exceldata.ItemsSource as IEnumerable<transaction>;
             try
-            {
-                string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;Persist Security Info=True;User ID=sa;Password=Qwerty123456";
-                DapperPlusManager.Entity<transaction>().Table("transaction");
-                IEnumerable<transaction> newAcct = exceldata.ItemsSource as IEnumerable<transaction>;
+            {                
                 if (newAcct != null)
                 {
                     using (clearingEntities context = new clearingEntities())
                     {
                         foreach (var i in newAcct)
                         {
-                            AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accNum == i.accNum);
-                            if (accdet != null)
-                                accdet.totalNumber += i.value;
-                            context.SaveChanges();
+                            context.transactions.Add(i);
                         }
+                            context.SaveChanges();
                     }
-                    using (IDbConnection db = new SqlConnection(connectionString))
-                    {
-                        db.BulkInsert(newAcct);
-                    }
+
                     MessageBox.Show("inserted !!!!!");
                 }
                 else
                 {
                     MessageBox.Show("Fail !!!!!");
+                    return;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Message");
+                return;
             }
         }
         #endregion

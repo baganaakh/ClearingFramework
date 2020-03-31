@@ -1,28 +1,16 @@
 ﻿using ClearingFramework;
 using ClearingFramework.dbBind;
 using ExcelDataReader;
-using LinqToExcel.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity.Validation;
-using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Z.Dapper.Plus;
 using MessageBox = System.Windows.MessageBox;
-
 
 namespace Clearing.pages
 {
@@ -136,7 +124,7 @@ namespace Clearing.pages
                     pozFee = Convert.ToDecimal(pozfee.Text),
                     memId = memId
                 };
-                ClearingFramework.dbBind.AccountDetail acd = new ClearingFramework.dbBind.AccountDetail
+                AccountDetail acd = new AccountDetail
                 {
                     freezeValue=10,
                     totalNumber=100,
@@ -198,22 +186,30 @@ namespace Clearing.pages
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     filePath = openFileDialog.FileName;
-                    chosen.Text = filePath;
-                    using (var stream = File.Open(openFileDialog.FileName, FileMode.Open,
-                                                    FileAccess.Read))
+                    //chosen.Text = filePath;
+                    try
                     {
-                        using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+                        using (var stream = File.Open(openFileDialog.FileName, FileMode.Open,
+                                                                    FileAccess.Read))
                         {
-                            DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                            using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
                             {
-                                ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
-                                { UseHeaderRow = true }
-                            });
-                            tableCollection = result.Tables;
-                            cboSheet.Items.Clear();
-                            foreach (DataTable table in tableCollection)
-                                cboSheet.Items.Add(table.TableName);//add sheet to combobox
+                                DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                                {
+                                    ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                                    { UseHeaderRow = true }
+                                });
+                                tableCollection = result.Tables;
+                                cboSheet.Items.Clear();
+                                foreach (DataTable table in tableCollection)
+                                    cboSheet.Items.Add(table.TableName);//add sheets to combobox
+                            }
                         }
+                    }
+                    catch (System.IO.IOException ex)
+                    {
+                        MessageBox.Show("Файл нээх боломжгүй "+filePath + " файлийг өөр программ ашиглаж байна");
+                        return;
                     }
                 }
             }
@@ -230,34 +226,42 @@ namespace Clearing.pages
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     Account acc = new Account();
+                    acc.accNum = dt.Rows[i]["accNum"].ToString();
+                    acc.idNum = dt.Rows[i]["idNum"].ToString();
                     acc.lname = dt.Rows[i]["lname"].ToString();
                     acc.fname = dt.Rows[i]["fname"].ToString();
-                    acc.idNum = dt.Rows[i]["idNum"].ToString();
                     acc.phone = dt.Rows[i]["phone"].ToString();
                     acc.mail = dt.Rows[i]["mail"].ToString();
                     acc.linkAcc = dt.Rows[i]["linkAcc"].ToString();
-                    acc.accNum = dt.Rows[i]["accNum"].ToString();
                     acc.brokerCode = dt.Rows[i]["brokerCode"].ToString();
                     acc.state = 1;
                     //acc.state = dt.Rows[i]["state"].ToString();
                     acc.secAcc = dt.Rows[i]["secAcc"].ToString();
+                    acc.fee = Convert.ToDecimal(dt.Rows[i]["fee"]);
+                    acc.denchinPercent = Convert.ToDecimal(dt.Rows[i]["denchinPercent"]);
+                    acc.contractFee = Convert.ToDecimal(dt.Rows[i]["contractFee"]);
+                    acc.pozFee= Convert.ToDecimal(dt.Rows[i]["pozFee"]);
+                    acc.memId= Convert.ToInt32(dt.Rows[i]["memId"]);
                     acct.Add(acc);
                 }
+                exceldata.ItemsSource = null;
+                exceldata.ItemsSource = acct;
             }
         }
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             try
             {
-                string connectionString = "Data Source=msx-1003;Initial Catalog=Clearing;" +
-                    "Persist Security Info=True;User ID=sa;Password=Qwerty123456";
-                DapperPlusManager.Entity<Account>().Table("Account");
-                List<Account> newAcct = vwOmniAccBalance.ItemsSource as List<Account>;
+                var newAcct = exceldata.ItemsSource as List<Account>;
                 if (newAcct != null)
                 {
-                    using (IDbConnection db = new SqlConnection(connectionString))
+                    using(var contx=new clearingEntities())
                     {
-                        db.BulkInsert(newAcct);
+                    foreach(var i in newAcct)
+                    {
+                        contx.Accounts.Add(i);
+                    }
+                        contx.SaveChanges();
                     }
                     MessageBox.Show("Inserted");
                 }
@@ -277,16 +281,22 @@ namespace Clearing.pages
             {
                 yield return new Account
                 {
+                    accNum = row["accNum"].ToString(),
+                    idNum = row["idNum"].ToString(),
                     lname = row["lname"].ToString(),
                     fname = row["fname"].ToString(),
-                    idNum = row["idNum"].ToString(),
                     phone = row["phone"].ToString(),
                     mail = row["mail"].ToString(),
                     linkAcc = row["linkAcc"].ToString(),
-                    accNum = row["accNum"].ToString(),
                     brokerCode = row["brokerCode"].ToString(),
                     state = Convert.ToInt16(row["state"]),
-                    secAcc = row["secAcc"].ToString()
+                    modified=Convert.ToDateTime(row["modified"]),
+                    secAcc = row["secAcc"].ToString(),
+                    fee= Convert.ToDecimal(row["fee"]),
+                    denchinPercent = Convert.ToDecimal(row["denchinPercent"]),
+                    contractFee = Convert.ToDecimal(row["contractFee"]),
+                    pozFee = Convert.ToDecimal(row["pozFee"]),
+                    memId = Convert.ToInt32(row["memId"]),
                 };
             }
         }

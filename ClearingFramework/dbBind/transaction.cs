@@ -16,9 +16,9 @@ namespace ClearingFramework.dbBind
     {
         public int id { get; set; }
         public string accNum { get; set; }
-        public string transType { get; set; }
-        public decimal value { get; set; }
+        public Nullable<short> transType { get; set; }
+        public Nullable<decimal> value { get; set; }
         public string note { get; set; }
-        public string side { get; set; }
+        public Nullable<short> side { get; set; }
     }
 }

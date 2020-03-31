@@ -241,7 +241,7 @@
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Xls Хуулах" Margin="0,90,10,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White" Grid.Column="2">
+            <Button Content="Xls Хуулах" Click="Button_Click_1" Margin="0,90,10,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White" Grid.Column="2">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="6,6,6,6"/>
@@ -306,9 +306,10 @@
                 </Button.Resources>
             </Button>
             <ComboBox x:Name="side" HorizontalAlignment="Left" Height="20" Margin="268,17,0,0"  Text="Гүйлгээний төрөл" Width="100" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2">
-                <ComboBoxItem Content="Орлого"/>
                 <ComboBoxItem Content="Зарлага"/>
+                <ComboBoxItem Content="Орлого"/>
             </ComboBox>
+            <TextBox x:Name="file" HorizontalAlignment="Left" Height="20" Margin="417,16,0,0" TextWrapping="Wrap" Text="file" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2"/>
         </Grid>
         <TabControl Margin="10,169,10,10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Гүйлгээний түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">

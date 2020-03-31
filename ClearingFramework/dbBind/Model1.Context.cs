@@ -32,7 +32,6 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<lastPrice> lastPrices { get; set; }
         public virtual DbSet<pozit> pozits { get; set; }
         public virtual DbSet<Request> Requests { get; set; }
-        public virtual DbSet<transaction> transactions { get; set; }
         public virtual DbSet<AdminAccount> AdminAccounts { get; set; }
         public virtual DbSet<AdminAccountDetail> AdminAccountDetails { get; set; }
         public virtual DbSet<AdminActiveSession> AdminActiveSessions { get; set; }
@@ -53,12 +52,12 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<AdminTickSizeTable> AdminTickSizeTables { get; set; }
         public virtual DbSet<AdminTtable> AdminTtables { get; set; }
         public virtual DbSet<AdminUser> AdminUsers { get; set; }
-        public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<AdminMember> AdminMembers { get; set; }
         public virtual DbSet<AdminDeal> AdminDeals { get; set; }
         public virtual DbSet<AdminInvoiceDetail> AdminInvoiceDetails { get; set; }
         public virtual DbSet<AdminInvoice> AdminInvoices { get; set; }
         public virtual DbSet<AdminOrder> AdminOrders { get; set; }
         public virtual DbSet<AdminTransaction> AdminTransactions { get; set; }
+        public virtual DbSet<transaction> transactions { get; set; }
     }
 }

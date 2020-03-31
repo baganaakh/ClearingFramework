@@ -3,17 +3,9 @@ using ClearingFramework.dbBind;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 namespace Clearing.pages
 {
     /// <summary>
@@ -37,9 +29,9 @@ namespace Clearing.pages
             int asset1;            
             clearingEntities ce = new clearingEntities();
 
-            List<forGrid> ToDisplay = new List<forGrid>();
-            List<forGrid> ToDisplay2 = new List<forGrid>();
-            List<forGrid> Биржбарьцаа = new List<forGrid>();
+            List<ForGrid> ToDisplay = new List<ForGrid>();
+            List<ForGrid> ToDisplay2 = new List<ForGrid>();
+            List<ForGrid> Биржбарьцаа = new List<ForGrid>();
 
             List<AdminTransaction> trans = ce.AdminTransactions.ToList();
             #region Барьцаа түүх
@@ -58,7 +50,7 @@ namespace Clearing.pages
                 decimal ratio = asst.ratio;
                 decimal qty = Convert.ToDecimal(items.amount);
                 decimal totval = qty * (ratio * price);
-                forGrid data = new forGrid()
+                ForGrid data = new ForGrid()
                 {
                     id = Convert.ToInt64(items.id),
                     accNumber = items.accountId.ToString(),
@@ -90,7 +82,7 @@ namespace Clearing.pages
                 decimal ratio = asst.ratio;
                 decimal qty = Convert.ToDecimal(items.qty);
                 decimal totval = qty * (ratio * price);
-                forGrid data = new forGrid()
+                ForGrid data = new ForGrid()
                 {
                     id = Convert.ToInt64(items.id),
                     accNumber = items.accountid.ToString(),
@@ -121,7 +113,7 @@ namespace Clearing.pages
                 decimal tot = Convert.ToDecimal(adet.totalNumber * jish);
                 Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 0).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
-                forGrid data = new forGrid()
+                ForGrid data = new ForGrid()
                 {
                     id = adet.id,
                     Барьцаа = asst.name,
@@ -136,9 +128,9 @@ namespace Clearing.pages
             Биржийнбарьцаа.ItemsSource = Биржбарьцаа;
             #endregion
         }
-        public class forGrid
+        public class ForGrid
         {
-            public forGrid()
+            public ForGrid()
             {
             }
             public long id { get; set; }
@@ -266,7 +258,10 @@ namespace Clearing.pages
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion
-        
+        #endregion        
     }
 }
+//                      C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\functions\Гүйлгээ бүртгэх.xlsx
+//Could not find file 'C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\bin\functions\Гүйлгээ бүртгэх.xlsx'.
+//Could not find file 'C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\bin\Debug\functions\Гүйлгээ бүртгэх.xlsx'.
+//Could not find file 'C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\bin\Debug\...\functions\Гүйлгээ бүртгэх.xlsx'.
