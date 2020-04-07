@@ -15,7 +15,7 @@
           <Property Name="lname" Type="nvarchar" MaxLength="30" />
           <Property Name="fname" Type="nvarchar" MaxLength="30" />
           <Property Name="phone" Type="nvarchar" MaxLength="20" />
-          <Property Name="mail" Type="nvarchar" MaxLength="30" />
+          <Property Name="mail" Type="nvarchar" MaxLength="50" />
           <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
           <Property Name="brokerCode" Type="nvarchar" MaxLength="50" />
           <Property Name="state" Type="smallint" />
@@ -37,6 +37,7 @@
           <Property Name="assetId" Type="int" />
           <Property Name="accNum" Type="nvarchar" MaxLength="20" />
           <Property Name="linkAcc" Type="nvarchar" MaxLength="20" />
+          <Property Name="modified" Type="datetime" />
         </EntityType>
         <EntityType Name="AdminAccount">
           <Key>
@@ -505,6 +506,8 @@
           <Property Name="value" Type="decimal" Precision="18" Scale="4" />
           <Property Name="note" Type="nvarchar" MaxLength="255" />
           <Property Name="side" Type="smallint" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="assetid" Type="int" />
         </EntityType>
         <EntityContainer Name="clearingModelStoreContainer">
           <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
@@ -546,28 +549,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="clearingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Account">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idNum" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="mail" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="memId" Type="Int32" />
-        </EntityType>
         <EntityType Name="AccountDetail">
           <Key>
             <PropertyRef Name="id" />
@@ -578,6 +559,7 @@
           <Property Name="assetId" Type="Int32" />
           <Property Name="accNum" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="clearingDeal">
           <Key>
@@ -654,7 +636,6 @@
           <Property Name="pendingDay" Type="Int32" />
         </EntityType>
         <EntityContainer Name="clearingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Accounts" EntityType="Self.Account" />
           <EntitySet Name="AccountDetails" EntityType="Self.AccountDetail" />
           <EntitySet Name="clearingDeals" EntityType="Self.clearingDeal" />
           <EntitySet Name="deals" EntityType="Self.deal" />
@@ -688,6 +669,7 @@
           <EntitySet Name="AdminOrders" EntityType="clearingModel.AdminOrder" />
           <EntitySet Name="AdminTransactions" EntityType="clearingModel.AdminTransaction" />
           <EntitySet Name="transactions" EntityType="clearingModel.transaction" />
+          <EntitySet Name="Accounts" EntityType="clearingModel.Account" />
         </EntityContainer>
         <EntityType Name="AdminAccount">
           <Key>
@@ -1082,6 +1064,30 @@
           <Property Name="value" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="side" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="assetid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accNum" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="idNum" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="lname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="fname" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="linkAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="brokerCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="secAcc" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="denchinPercent" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="memId" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1089,32 +1095,10 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="clearingModelStoreContainer" CdmEntityContainer="clearingEntities">
-          <EntitySetMapping Name="Accounts">
-            <EntityTypeMapping TypeName="clearingModel.Account">
-              <MappingFragment StoreEntitySet="Account">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="accNum" ColumnName="accNum" />
-                <ScalarProperty Name="idNum" ColumnName="idNum" />
-                <ScalarProperty Name="lname" ColumnName="lname" />
-                <ScalarProperty Name="fname" ColumnName="fname" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="mail" ColumnName="mail" />
-                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
-                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
-                <ScalarProperty Name="contractFee" ColumnName="contractFee" />
-                <ScalarProperty Name="pozFee" ColumnName="pozFee" />
-                <ScalarProperty Name="memId" ColumnName="memId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AccountDetails">
             <EntityTypeMapping TypeName="clearingModel.AccountDetail">
               <MappingFragment StoreEntitySet="AccountDetails">
+                <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="freezeValue" ColumnName="freezeValue" />
                 <ScalarProperty Name="totalNumber" ColumnName="totalNumber" />
@@ -1613,10 +1597,35 @@
           <EntitySetMapping Name="transactions">
             <EntityTypeMapping TypeName="clearingModel.transaction">
               <MappingFragment StoreEntitySet="transaction">
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
                 <ScalarProperty Name="side" ColumnName="side" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="value" ColumnName="value" />
                 <ScalarProperty Name="transType" ColumnName="transType" />
+                <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="clearingModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="memId" ColumnName="memId" />
+                <ScalarProperty Name="pozFee" ColumnName="pozFee" />
+                <ScalarProperty Name="contractFee" ColumnName="contractFee" />
+                <ScalarProperty Name="denchinPercent" ColumnName="denchinPercent" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="secAcc" ColumnName="secAcc" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="brokerCode" ColumnName="brokerCode" />
+                <ScalarProperty Name="linkAcc" ColumnName="linkAcc" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="fname" ColumnName="fname" />
+                <ScalarProperty Name="lname" ColumnName="lname" />
+                <ScalarProperty Name="idNum" ColumnName="idNum" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

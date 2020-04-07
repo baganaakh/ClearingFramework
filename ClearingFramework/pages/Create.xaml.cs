@@ -4,8 +4,10 @@ using ExcelDataReader;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -19,7 +21,6 @@ namespace Clearing.pages
     /// </summary>
     public partial class Create : Page
     {
-
         public Create()
         {
             InitializeComponent();
@@ -50,7 +51,7 @@ namespace Clearing.pages
         private void FillGrid()
         {
             clearingEntities CE = new clearingEntities();
-            vwOmniAccBalance.ItemsSource = CE.Accounts.Where(s=>s.memId == memId).ToList();
+            vwOmniAccBalance.ItemsSource = CE.Accounts.Where(s => s.memId == memId).ToList();
         }
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
@@ -126,12 +127,12 @@ namespace Clearing.pages
                 };
                 AccountDetail acd = new AccountDetail
                 {
-                    freezeValue=10,
-                    totalNumber=100,
-                    accNum= accountn.Text,
+                    freezeValue = 10,
+                    totalNumber = 100,
+                    accNum = accountn.Text,
                     linkAcc = linkAc.SelectedValue.ToString(),
                 };
-                context.AccountDetails.Add(acd);
+                context.AccountDetails.Add(acd);                
                 context.Accounts.Add(acct);
                 context.SaveChanges();
                 FillGrid();
@@ -142,9 +143,15 @@ namespace Clearing.pages
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             long iiid = (vwOmniAccBalance.SelectedItem as Account).id;
+            string accnu = (vwOmniAccBalance.SelectedItem as Account).accNum;
             using (clearingEntities context = new clearingEntities())
             {
                 Account acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
+                var aacd = context.AccountDetails.Where(r => r.accNum == accnu);
+                foreach (var i in aacd)
+                {
+                    context.AccountDetails.Remove(i);
+                }
                 context.Accounts.Remove(acc);
                 context.SaveChanges();
             }
@@ -206,7 +213,7 @@ namespace Clearing.pages
                             }
                         }
                     }
-                    catch (System.IO.IOException ex)
+                    catch (System.IO.IOException)
                     {
                         MessageBox.Show("Файл нээх боломжгүй "+filePath + " файлийг өөр программ ашиглаж байна");
                         return;
@@ -218,50 +225,42 @@ namespace Clearing.pages
         {
             exceltab.IsEnabled = true;
             exceltab.IsSelected = true;
+            if (cboSheet.SelectedItem == null)
+                return;
             DataTable dt = tableCollection[cboSheet.SelectedItem.ToString()];
             exceldata.ItemsSource = ConvertToAccountReadings(dt);
-            if (dt != null)
-            {
-                List<Account> acct = new List<Account>();
-                for (int i = 0; i < dt.Rows.Count; i++)
-                {
-                    Account acc = new Account();
-                    acc.accNum = dt.Rows[i]["accNum"].ToString();
-                    acc.idNum = dt.Rows[i]["idNum"].ToString();
-                    acc.lname = dt.Rows[i]["lname"].ToString();
-                    acc.fname = dt.Rows[i]["fname"].ToString();
-                    acc.phone = dt.Rows[i]["phone"].ToString();
-                    acc.mail = dt.Rows[i]["mail"].ToString();
-                    acc.linkAcc = dt.Rows[i]["linkAcc"].ToString();
-                    acc.brokerCode = dt.Rows[i]["brokerCode"].ToString();
-                    acc.state = 1;
-                    //acc.state = dt.Rows[i]["state"].ToString();
-                    acc.secAcc = dt.Rows[i]["secAcc"].ToString();
-                    acc.fee = Convert.ToDecimal(dt.Rows[i]["fee"]);
-                    acc.denchinPercent = Convert.ToDecimal(dt.Rows[i]["denchinPercent"]);
-                    acc.contractFee = Convert.ToDecimal(dt.Rows[i]["contractFee"]);
-                    acc.pozFee= Convert.ToDecimal(dt.Rows[i]["pozFee"]);
-                    acc.memId= Convert.ToInt32(dt.Rows[i]["memId"]);
-                    acct.Add(acc);
-                }
-                exceldata.ItemsSource = null;
-                exceldata.ItemsSource = acct;
-            }
+
         }
+        #region Import
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             try
             {
-                var newAcct = exceldata.ItemsSource as List<Account>;
+                var newAcct = exceldata.ItemsSource as IEnumerable<Account>;
                 if (newAcct != null)
                 {
-                    using(var contx=new clearingEntities())
+                    using (var contx = new clearingEntities())
                     {
-                    foreach(var i in newAcct)
-                    {
-                        contx.Accounts.Add(i);
-                    }
-                        contx.SaveChanges();
+                        foreach (var i in newAcct)
+                        {
+                            contx.Accounts.Add(i);                           
+                        }
+                        try
+                        {
+                            contx.SaveChanges();
+                        }
+                        catch (DbEntityValidationException ex)
+                        {
+                            foreach (var eve in ex.EntityValidationErrors)
+                            {
+                                MessageBox.Show("Entity of type " + eve.Entry.Entity.GetType().Name + " in state " + eve.Entry.State.ToString() + " has the following validation errors:");
+                                foreach (var ve in eve.ValidationErrors)
+                                {
+                                    MessageBox.Show("- Property: " + ve.PropertyName + ", Value: " + eve.Entry.CurrentValues.GetValue<object>(ve.PropertyName) + ", Error: " + ve.ErrorMessage);
+                                }
+                            }
+                            throw;
+                        }
                     }
                     MessageBox.Show("Inserted");
                 }
@@ -275,10 +274,28 @@ namespace Clearing.pages
                 MessageBox.Show(ex.Message, "Message");
             }
         }
+        #endregion
         public IEnumerable<Account> ConvertToAccountReadings(DataTable dataTable)
         {
+            clearingEntities CE = new clearingEntities();
+            string accNumber;
             foreach (DataRow row in dataTable.Rows)
             {
+                try
+                {
+                    accNumber = row["accNum"].ToString();
+                }
+                catch (Exception exx)
+                {
+                    MessageBox.Show(exx.ToString());
+                    throw;
+                }
+                var exist = (from s in CE.Accounts where s.accNum == accNumber select s).FirstOrDefault<Account>();
+                if (exist != null)
+                {
+                    MessageBox.Show("Account number exists " + accountn.Text.ToString() + " !!!");
+                    break;
+                }
                 yield return new Account
                 {
                     accNum = row["accNum"].ToString(),
@@ -287,21 +304,18 @@ namespace Clearing.pages
                     fname = row["fname"].ToString(),
                     phone = row["phone"].ToString(),
                     mail = row["mail"].ToString(),
-                    linkAcc = row["linkAcc"].ToString(),
-                    brokerCode = row["brokerCode"].ToString(),
-                    state = Convert.ToInt16(row["state"]),
-                    modified=Convert.ToDateTime(row["modified"]),
+                    state =Convert.ToInt16(row["state"]),
+                    modified = Convert.ToDateTime(DateTime.Now),
                     secAcc = row["secAcc"].ToString(),
-                    fee= Convert.ToDecimal(row["fee"]),
+                    fee = Convert.ToDecimal(row["fee"]),
                     denchinPercent = Convert.ToDecimal(row["denchinPercent"]),
                     contractFee = Convert.ToDecimal(row["contractFee"]),
                     pozFee = Convert.ToDecimal(row["pozFee"]),
-                    memId = Convert.ToInt32(row["memId"]),
                 };
             }
         }
         #endregion
-        #region combos        
+         #region combos        
         public List<AdminAccount> acc { get; set; }
         private void bindCombo()
         {
@@ -329,5 +343,30 @@ namespace Clearing.pages
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
+        #region xls хуулах
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            string paths = Path.Combine(
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
+                @".\\functions\\Данс.xlsx");
+            string filePath = "";
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    filePath = fbd.SelectedPath;
+                    try
+                    {
+                        System.IO.File.Move(paths, filePath + "\\Данс.xlsx");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

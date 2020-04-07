@@ -147,7 +147,7 @@
                 <WrapPanel Width="143">
                     <Image Source="..\pics\Conversion of currency.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
-                        <Run Text="Репо2"/>
+                        <Run Text="Үнэт цаас зээл"/>
                     </TextBlock>
                     <Image Source="..\pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
                 </WrapPanel>
@@ -156,7 +156,7 @@
                 <WrapPanel Width="143">
                     <Image Source="..\pics\Coins.png" HorizontalAlignment="Right" Width="16" Height="16" Margin="8,0,0,0"/>
                     <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" Height="17" Width="90">
-                        <Run Text="ҮЦ зээл"/>
+                        <Run Text="ҮЦ зээлийн сан"/>
                     </TextBlock>
                     <Image Source="..\pics\Arrow.png" HorizontalAlignment="Right" Width="16" Height="16"/>
                 </WrapPanel>

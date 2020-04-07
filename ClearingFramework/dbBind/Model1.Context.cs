@@ -25,7 +25,6 @@ namespace ClearingFramework.dbBind
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<clearingDeal> clearingDeals { get; set; }
         public virtual DbSet<deal> deals { get; set; }
@@ -59,5 +58,6 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<AdminOrder> AdminOrders { get; set; }
         public virtual DbSet<AdminTransaction> AdminTransactions { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }
+        public virtual DbSet<Account> Accounts { get; set; }
     }
 }

@@ -56,5 +56,12 @@ namespace ClearingFramework
                 }
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            connect connnect = new connect();
+            connnect.Show();
+            this.Close();
+        }
     }
 }

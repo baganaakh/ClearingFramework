@@ -178,7 +178,6 @@ namespace Clearing.pages
         #region xls хуулах
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string excel= "";
             string paths = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @".\\functions\\Гүйлгээ бүртгэх.xlsx");
             string filePath = "";
             using (FolderBrowserDialog fbd = new FolderBrowserDialog() )

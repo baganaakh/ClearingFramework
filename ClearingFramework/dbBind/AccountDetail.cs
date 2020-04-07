@@ -20,5 +20,6 @@ namespace ClearingFramework.dbBind
         public Nullable<int> assetId { get; set; }
         public string accNum { get; set; }
         public string linkAcc { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
     }
 }

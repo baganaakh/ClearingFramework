@@ -20,5 +20,7 @@ namespace ClearingFramework.dbBind
         public Nullable<decimal> value { get; set; }
         public string note { get; set; }
         public Nullable<short> side { get; set; }
+        public Nullable<System.DateTime> modified { get; set; }
+        public Nullable<int> assetid { get; set; }
     }
 }

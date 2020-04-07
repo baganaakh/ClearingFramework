@@ -29,9 +29,37 @@ namespace Clearing.pages
         public Repo2()
         {
             InitializeComponent();
+            bindCombo();
+        }
+        int memid= Convert.ToInt32(App.Current.Properties["member_id"]);
+        clearingEntities CE = new clearingEntities();
+        private void bindCombo()
+        {
+            assett.ItemsSource = CE.AdminAssets.ToList();
+            asset2.ItemsSource = CE.AdminAssets.SqlQuery("select * from AdminAssets" +
+                " where id= any (select assetId from Clearing.dbo.AccountDetails t1 " +
+                "inner join Clearing.dbo.account t2 on t1.accNum = t2.accNum " +
+                "where t2.memId = "+memid+" )").ToList<AdminAsset>();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var ast = assett.SelectedItem as AdminAsset;
+            decimal price =Convert.ToDecimal(ast.price);
+            try
+            {
+                int qty = Convert.ToInt32(qtyss.Text);
+                wagerValue.Text = (qty * price).ToString();
+            }
+            catch (System.FormatException)
+            {
+                return;
+            }
 
         }
-        clearingEntities CE = new clearingEntities();
-
+        private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
     }
 }
