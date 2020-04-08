@@ -27,7 +27,7 @@ namespace ClearingFramework
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            using (clearingEntities context = new clearingEntities())
+            using (Model1 context = new Model1())
             {
                 var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
                 if(query == null)

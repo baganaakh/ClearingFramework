@@ -13,7 +13,7 @@ namespace Clearing.pages
     /// </summary>
     public partial class Collateral : Page
     {
-        clearingEntities CE = new clearingEntities();
+        Model1 CE = new Model1();
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string linkacs;
         decimal assId;
@@ -27,7 +27,7 @@ namespace Clearing.pages
         private void FillGrid()
         {
             int asset1;            
-            clearingEntities ce = new clearingEntities();
+            Model1 ce = new Model1();
 
             List<ForGrid> ToDisplay = new List<ForGrid>();
             List<ForGrid> ToDisplay2 = new List<ForGrid>();
@@ -152,7 +152,7 @@ namespace Clearing.pages
             int qtyy = Convert.ToInt32(qtyss.Text);
             if (mod == 1)
                 qtyy *=(-1);
-            using (clearingEntities contx = new clearingEntities())
+            using (Model1 contx = new Model1())
             {
                 AdminOrder order = new AdminOrder()
                 {

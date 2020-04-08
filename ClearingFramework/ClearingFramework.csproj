@@ -130,123 +130,41 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="dbBind\Account.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AccountDetail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminAccount.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminAccountDetail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminActiveSession.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminAsset.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminBoard.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminCalendar.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminContract.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminDeal.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminFee.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminInterest.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminInvoice.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminInvoiceDetail.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminMargin.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminMarketMaker.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminMember.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Adminmtype.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminOrder.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminReason.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminRefPrice.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminSecurity.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminSession.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminSpread.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminTickSizeTable.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminTransaction.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminTtable.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\AdminUser.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\clearingDeal.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\deal.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\lastPrice.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\pozit.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\Request.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbBind\transaction.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
+    <Compile Include="dbBind\Account.cs" />
+    <Compile Include="dbBind\AccountDetail.cs" />
+    <Compile Include="dbBind\AdminAccount.cs" />
+    <Compile Include="dbBind\AdminAccountDetail.cs" />
+    <Compile Include="dbBind\AdminActiveSession.cs" />
+    <Compile Include="dbBind\AdminAsset.cs" />
+    <Compile Include="dbBind\AdminBoard.cs" />
+    <Compile Include="dbBind\AdminCalendar.cs" />
+    <Compile Include="dbBind\AdminContract.cs" />
+    <Compile Include="dbBind\AdminDeal.cs" />
+    <Compile Include="dbBind\AdminFee.cs" />
+    <Compile Include="dbBind\AdminInterest.cs" />
+    <Compile Include="dbBind\AdminInvoice.cs" />
+    <Compile Include="dbBind\AdminInvoiceDetail.cs" />
+    <Compile Include="dbBind\AdminMargin.cs" />
+    <Compile Include="dbBind\AdminMarketMaker.cs" />
+    <Compile Include="dbBind\AdminMember.cs" />
+    <Compile Include="dbBind\Adminmtype.cs" />
+    <Compile Include="dbBind\AdminOrder.cs" />
+    <Compile Include="dbBind\AdminReason.cs" />
+    <Compile Include="dbBind\AdminRefPrice.cs" />
+    <Compile Include="dbBind\AdminSecurity.cs" />
+    <Compile Include="dbBind\AdminSession.cs" />
+    <Compile Include="dbBind\AdminSpread.cs" />
+    <Compile Include="dbBind\AdminTickSizeTable.cs" />
+    <Compile Include="dbBind\AdminTransaction.cs" />
+    <Compile Include="dbBind\AdminTtable.cs" />
+    <Compile Include="dbBind\AdminUser.cs" />
+    <Compile Include="dbBind\clearingDeal.cs" />
+    <Compile Include="dbBind\deal.cs" />
+    <Compile Include="dbBind\lastPrice.cs" />
+    <Compile Include="dbBind\Model1.cs" />
+    <Compile Include="dbBind\pozit.cs" />
+    <Compile Include="dbBind\Request.cs" />
+    <Compile Include="dbBind\transaction.cs" />
     <Compile Include="pages\Repo2.xaml.cs">
       <DependentUpon>Repo2.xaml</DependentUpon>
     </Compile>
@@ -371,13 +289,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <EntityDeploy Include="dbBind\Model1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="dbBind\Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </None>
     <None Include="functions\Гүйлгээ бүртгэх.xlsx" />
     <None Include="functions\Данс.xlsx" />
     <None Include="keys\ClearingFramework_TemporaryKey.pfx" />
@@ -424,16 +335,6 @@
     <Resource Include="pics\YES1.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="dbBind\Model1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="dbBind\Model1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
-    </Content>
     <Resource Include="favicon.ico" />
     <Resource Include="pics\favicon.ico" />
     <Resource Include="usefulCodes\debug.txt" />

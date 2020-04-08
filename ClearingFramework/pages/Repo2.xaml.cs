@@ -35,7 +35,7 @@ namespace Clearing.pages
         int asst1, asst2,qty,qty2,day;
         decimal price,price2,inter,topay,totSum;
         int memid= Convert.ToInt32(App.Current.Properties["member_id"]);        
-        clearingEntities CE = new clearingEntities();
+        Model1 CE = new Model1();
         #region bindcombo
         private void bindCombo()
         {
@@ -123,7 +123,7 @@ namespace Clearing.pages
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            using(clearingEntities conx =new clearingEntities())
+            using(Model1 conx =new Model1())
             {
                 AdminOrder order = new AdminOrder()
                 {
@@ -183,7 +183,7 @@ namespace Clearing.pages
         #region FillGrid
         private void FillGrid()
         {
-            clearingEntities ce = new clearingEntities();
+            Model1 ce = new Model1();
             НийтЗээл.ItemsSource = ce.AdminOrders.Where(s => s.dealType == 5).ToList();
         }
         #endregion

@@ -32,7 +32,7 @@ namespace Clearing.pages
         public List<Account> acct { get; set; }
         private void bindCombo()
         {
-            clearingEntities ce = new clearingEntities();
+            Model1 ce = new Model1();
             var acid = ce.Accounts.ToList();
             acct = acid;
             accid.ItemsSource = acct;
@@ -62,7 +62,7 @@ namespace Clearing.pages
             {
                 s = -1;
             }
-            using (clearingEntities context = new clearingEntities())
+            using (Model1 context = new Model1())
             {
                 var tran = new transaction()
                 {
@@ -84,7 +84,7 @@ namespace Clearing.pages
         #region fill & number
         private void FillGrid()
         {
-            clearingEntities CE = new clearingEntities();
+            Model1 CE = new Model1();
             var requs = CE.Requests;
             datagrid1.ItemsSource = requs.ToList();
             var trans = CE.transactions;
@@ -207,7 +207,7 @@ namespace Clearing.pages
             {                
                 if (newAcct != null)
                 {
-                    using (clearingEntities context = new clearingEntities())
+                    using (Model1 context = new Model1())
                     {
                         foreach (var i in newAcct)
                         {

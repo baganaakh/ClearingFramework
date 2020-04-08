@@ -20,14 +20,14 @@ namespace Clearing.pages
         #region fill
         private void FillGrid()
         {
-            clearingEntities DE = new clearingEntities();
+            Model1 DE = new Model1();
             var deal1 = DE.AdminDeals;
             var dealList = deal1.ToList();
             string query, acode, side;
             List<object> data = new List<object>();
             foreach (var i in dealList)
             {
-                using (var context = new clearingEntities())
+                using (var context = new Model1())
                 {
                     var ac = (from s in context.AdminAccounts
                                 where s.id == i.accountid
@@ -54,7 +54,7 @@ namespace Clearing.pages
                     prices = Convert.ToDecimal(i.price),
                     fees = Convert.ToDecimal(i.fee)
                 });
-                using (var contx = new clearingEntities())
+                using (var contx = new Model1())
                 {
                     decimal lastPrice = Convert.ToDecimal(
                         contx.lastPrices.Where(s => s.assetid == i.assetid)

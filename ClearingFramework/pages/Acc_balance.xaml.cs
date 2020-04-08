@@ -30,7 +30,7 @@ namespace Clearing.pages
         #region fill
         private void FillGrid()
         {
-            using (clearingEntities context = new clearingEntities())
+            using (Model1 context = new Model1())
             {
                 long memid= Convert.ToInt32(App.Current.Properties["member_id"]);
                 var acc = context.AdminAccounts.Where(s=> s.memberid == memid && s.accountType == 3).ToList();

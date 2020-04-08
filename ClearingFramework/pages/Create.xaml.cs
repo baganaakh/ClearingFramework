@@ -50,7 +50,7 @@ namespace Clearing.pages
         }
         private void FillGrid()
         {
-            clearingEntities CE = new clearingEntities();
+            Model1 CE = new Model1();
             vwOmniAccBalance.ItemsSource = CE.Accounts.Where(s => s.memId == memId).ToList();
         }
         private void Button_Click_8(object sender, RoutedEventArgs e)
@@ -61,7 +61,7 @@ namespace Clearing.pages
         #region update
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            using (clearingEntities context = new clearingEntities())
+            using (Model1 context = new Model1())
             {
                 Account acc = context.Accounts.FirstOrDefault(r => r.id == iid);
                 acc.lname = lName.Text;
@@ -91,7 +91,7 @@ namespace Clearing.pages
             {
                 MessageBox.Show("Combos are empty Please fill them");
             }
-            using (clearingEntities context = new clearingEntities())
+            using (Model1 context = new Model1())
             {
                 var exist = context.Accounts.Count(a => a.accNum == accountn.Text);
                 var idexist = context.Accounts.Count(a => a.idNum == idNumber.Text);
@@ -144,7 +144,7 @@ namespace Clearing.pages
         {
             long iiid = (vwOmniAccBalance.SelectedItem as Account).id;
             string accnu = (vwOmniAccBalance.SelectedItem as Account).accNum;
-            using (clearingEntities context = new clearingEntities())
+            using (Model1 context = new Model1())
             {
                 Account acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
                 var aacd = context.AccountDetails.Where(r => r.accNum == accnu);
@@ -162,7 +162,7 @@ namespace Clearing.pages
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             iid = (vwOmniAccBalance.SelectedItem as Account).id;
-            using (clearingEntities context = new clearingEntities())
+            using (Model1 context = new Model1())
             {
                 Account acc = context.Accounts.FirstOrDefault(r => r.id == iid);
                 lName.Text = acc.lname;
@@ -239,7 +239,7 @@ namespace Clearing.pages
                 var newAcct = exceldata.ItemsSource as IEnumerable<Account>;
                 if (newAcct != null)
                 {
-                    using (var contx = new clearingEntities())
+                    using (var contx = new Model1())
                     {
                         foreach (var i in newAcct)
                         {
@@ -277,7 +277,7 @@ namespace Clearing.pages
         #endregion
         public IEnumerable<Account> ConvertToAccountReadings(DataTable dataTable)
         {
-            clearingEntities CE = new clearingEntities();
+            Model1 CE = new Model1();
             string accNumber;
             foreach (DataRow row in dataTable.Rows)
             {
@@ -320,7 +320,7 @@ namespace Clearing.pages
         private void bindCombo()
         {
             int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
-            clearingEntities ce = new clearingEntities();
+            Model1 ce = new Model1();
             //var memid = de.Members.Where(s=>s.partid == partId).ToList();            
             brokCode.ItemsSource = ce.AdminMembers.ToList();
             linkAc.ItemsSource = ce.AdminAccounts.Where(s => s.memberid == memId && s.accountType == 3).ToList();

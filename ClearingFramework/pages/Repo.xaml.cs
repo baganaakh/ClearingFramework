@@ -35,11 +35,11 @@ namespace Clearing.pages
         string linkacs, toId="0";
         decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
-        clearingEntities CE = new clearingEntities();        
+        Model1 CE = new Model1();        
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                using (clearingEntities context = new clearingEntities())
+                using (Model1 context = new Model1())
             {
                 AdminOrder order = new AdminOrder()
                 {
@@ -66,7 +66,7 @@ namespace Clearing.pages
         #region datagrid fill
         private void FillGrid()
         {
-            clearingEntities de = new clearingEntities();
+            Model1 de = new Model1();
             List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
             || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
             totalOrder.ItemsSource = ord;
@@ -88,7 +88,7 @@ namespace Clearing.pages
                 return;
             }
             int useracc = Convert.ToInt32(linkAc_Copy.SelectedValue);
-            using (clearingEntities contx=new clearingEntities())
+            using (Model1 contx=new Model1())
             {
             AdminDeal pageDeal1 = new AdminDeal()
                 {
@@ -127,7 +127,7 @@ namespace Clearing.pages
             contx.SaveChanges();
             }
             int id = Convert.ToInt32(value.id);
-            using (var contx=new clearingEntities())
+            using (var contx=new Model1())
             {
             AdminOrder statss = contx.AdminOrders.FirstOrDefault(s=> s.id == id);
             statss.state = 1;
@@ -141,7 +141,7 @@ namespace Clearing.pages
         {
             var value = OwnTable.SelectedItem as AdminOrder;
             if (value == null) return;
-            using (clearingEntities conx = new clearingEntities())
+            using (Model1 conx = new Model1())
             {
                 var del = conx.AdminOrders.Where(x => x.id == value.id).First();
                 conx.AdminOrders.Remove(del);

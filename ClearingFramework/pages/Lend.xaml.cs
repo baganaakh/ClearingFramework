@@ -23,7 +23,7 @@ namespace Clearing.pages
         {
             InitializeComponent();
         }
-        clearingEntities CE = new clearingEntities();
+        Model1 CE = new Model1();
         public List<AdminAsset> asst { get; set; }
         private void bindCombo()
         {

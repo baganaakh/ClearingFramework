@@ -42,7 +42,7 @@ namespace ClearingFramework
                 using (EntityConnection conn = new EntityConnection(entityBuilder.ToString()))
                 {
                     conn.Open();
-                    var connectString = ConfigurationManager.ConnectionStrings["clearingEntities"].ConnectionString;
+                    var connectString = ConfigurationManager.ConnectionStrings["Model1"].ConnectionString;
                     MessageBox.Show("connected");
                     conn.Close();
                 }
@@ -52,7 +52,7 @@ namespace ClearingFramework
                 MessageBox.Show("fail " + ex.ToString());
                 return;
             }
-            config.ConnectionStrings.ConnectionStrings["clearingEntities"].ConnectionString = entityBuilder.ToString();
+            config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = entityBuilder.ToString();
             config.Save(ConfigurationSaveMode.Modified);
         }
         private void button1_Copy_Click(object sender, RoutedEventArgs e)
