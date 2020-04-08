@@ -55,9 +55,9 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<AdminDeal> AdminDeals { get; set; }
         public virtual DbSet<AdminInvoiceDetail> AdminInvoiceDetails { get; set; }
         public virtual DbSet<AdminInvoice> AdminInvoices { get; set; }
-        public virtual DbSet<AdminOrder> AdminOrders { get; set; }
         public virtual DbSet<AdminTransaction> AdminTransactions { get; set; }
         public virtual DbSet<transaction> transactions { get; set; }
         public virtual DbSet<Account> Accounts { get; set; }
+        public virtual DbSet<AdminOrder> AdminOrders { get; set; }
     }
 }

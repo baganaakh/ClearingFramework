@@ -301,6 +301,9 @@
           <Property Name="toPay" Type="decimal" Precision="18" Scale="4" />
           <Property Name="interests" Type="decimal" Precision="18" Scale="4" />
           <Property Name="fee" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="assetid2" Type="bigint" />
+          <Property Name="qty2" Type="int" />
+          <Property Name="price2" Type="decimal" Precision="18" Scale="4" />
         </EntityType>
         <EntityType Name="AdminReason">
           <Key>
@@ -666,10 +669,10 @@
           <EntitySet Name="AdminDeals" EntityType="clearingModel.AdminDeal" />
           <EntitySet Name="AdminInvoiceDetails" EntityType="clearingModel.AdminInvoiceDetail" />
           <EntitySet Name="AdminInvoices" EntityType="clearingModel.AdminInvoice" />
-          <EntitySet Name="AdminOrders" EntityType="clearingModel.AdminOrder" />
           <EntitySet Name="AdminTransactions" EntityType="clearingModel.AdminTransaction" />
           <EntitySet Name="transactions" EntityType="clearingModel.transaction" />
           <EntitySet Name="Accounts" EntityType="clearingModel.Account" />
+          <EntitySet Name="AdminOrders" EntityType="clearingModel.AdminOrder" />
         </EntityContainer>
         <EntityType Name="AdminAccount">
           <Key>
@@ -1013,28 +1016,6 @@
           <Property Name="expiredate" Type="DateTime" Precision="0" />
           <Property Name="expiretime" Type="Time" Precision="7" />
         </EntityType>
-        <EntityType Name="AdminOrder">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="boardId" Type="Int64" />
-          <Property Name="side" Type="Int16" />
-          <Property Name="memberid" Type="Int64" />
-          <Property Name="accountid" Type="Int64" />
-          <Property Name="assetid" Type="Int64" />
-          <Property Name="qty" Type="Int32" />
-          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="state" Type="Int16" />
-          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="dealType" Type="Int16" />
-          <Property Name="connect" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="day" Type="Int32" />
-          <Property Name="totSum" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
-          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
-        </EntityType>
         <EntityType Name="AdminTransaction">
           <Key>
             <PropertyRef Name="id" />
@@ -1088,6 +1069,31 @@
           <Property Name="contractFee" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="pozFee" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="memId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AdminOrder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="boardId" Type="Int64" />
+          <Property Name="side" Type="Int16" />
+          <Property Name="memberid" Type="Int64" />
+          <Property Name="accountid" Type="Int64" />
+          <Property Name="assetid" Type="Int64" />
+          <Property Name="qty" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="state" Type="Int16" />
+          <Property Name="modified" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="dealType" Type="Int16" />
+          <Property Name="connect" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="day" Type="Int32" />
+          <Property Name="totSum" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="toPay" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="interests" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="fee" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="assetid2" Type="Int64" />
+          <Property Name="qty2" Type="Int32" />
+          <Property Name="price2" Type="Decimal" Precision="18" Scale="4" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1551,29 +1557,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="AdminOrders">
-            <EntityTypeMapping TypeName="clearingModel.AdminOrder">
-              <MappingFragment StoreEntitySet="AdminOrder">
-                <ScalarProperty Name="fee" ColumnName="fee" />
-                <ScalarProperty Name="interests" ColumnName="interests" />
-                <ScalarProperty Name="toPay" ColumnName="toPay" />
-                <ScalarProperty Name="totSum" ColumnName="totSum" />
-                <ScalarProperty Name="day" ColumnName="day" />
-                <ScalarProperty Name="connect" ColumnName="connect" />
-                <ScalarProperty Name="dealType" ColumnName="dealType" />
-                <ScalarProperty Name="modified" ColumnName="modified" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="qty" ColumnName="qty" />
-                <ScalarProperty Name="assetid" ColumnName="assetid" />
-                <ScalarProperty Name="accountid" ColumnName="accountid" />
-                <ScalarProperty Name="memberid" ColumnName="memberid" />
-                <ScalarProperty Name="side" ColumnName="side" />
-                <ScalarProperty Name="boardId" ColumnName="boardId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AdminTransactions">
             <EntityTypeMapping TypeName="clearingModel.AdminTransaction">
               <MappingFragment StoreEntitySet="AdminTransaction">
@@ -1627,6 +1610,32 @@
                 <ScalarProperty Name="lname" ColumnName="lname" />
                 <ScalarProperty Name="idNum" ColumnName="idNum" />
                 <ScalarProperty Name="accNum" ColumnName="accNum" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminOrders">
+            <EntityTypeMapping TypeName="clearingModel.AdminOrder">
+              <MappingFragment StoreEntitySet="AdminOrder">
+                <ScalarProperty Name="price2" ColumnName="price2" />
+                <ScalarProperty Name="qty2" ColumnName="qty2" />
+                <ScalarProperty Name="assetid2" ColumnName="assetid2" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="interests" ColumnName="interests" />
+                <ScalarProperty Name="toPay" ColumnName="toPay" />
+                <ScalarProperty Name="totSum" ColumnName="totSum" />
+                <ScalarProperty Name="day" ColumnName="day" />
+                <ScalarProperty Name="connect" ColumnName="connect" />
+                <ScalarProperty Name="dealType" ColumnName="dealType" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="assetid" ColumnName="assetid" />
+                <ScalarProperty Name="accountid" ColumnName="accountid" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+                <ScalarProperty Name="side" ColumnName="side" />
+                <ScalarProperty Name="boardId" ColumnName="boardId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

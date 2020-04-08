@@ -296,7 +296,7 @@ namespace Clearing.pages
             try
             {
             int qty=Convert.ToInt32( qtyss.Text);
-                if (qty <= Convert.ToInt32(remainder.Text))
+                if (qty < Convert.ToInt32(remainder.Text))
                 {
                     totSum = qty * Convert.ToDecimal(exPrice.Text);
                     TotalSum.Text = totSum.ToString();

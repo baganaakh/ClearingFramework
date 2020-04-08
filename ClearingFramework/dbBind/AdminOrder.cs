@@ -31,5 +31,8 @@ namespace ClearingFramework.dbBind
         public Nullable<decimal> toPay { get; set; }
         public Nullable<decimal> interests { get; set; }
         public Nullable<decimal> fee { get; set; }
+        public Nullable<long> assetid2 { get; set; }
+        public Nullable<int> qty2 { get; set; }
+        public Nullable<decimal> price2 { get; set; }
     }
 }
