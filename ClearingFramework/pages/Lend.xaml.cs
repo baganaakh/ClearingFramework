@@ -1,4 +1,5 @@
-﻿using ClearingFramework.dbBind;
+﻿using ClearingFramework;
+using ClearingFramework.dbBind;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -29,6 +30,36 @@ namespace Clearing.pages
         {
             //List<Asset> acclist = DE.Assets;
             //assett.ItemsSource = acclist;
+        }
+        private void day_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+        #region Илгээх
+        private void Илгээх_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
+
+        private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
+
+        private void accId_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void asset_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -21,7 +21,7 @@ namespace Clearing.pages
         {
             InitializeComponent();
             bindCombo();
-            //FillGrid();
+            FillGrid();
         }
         #region fill
         private void FillGrid()
@@ -103,15 +103,15 @@ namespace Clearing.pages
             foreach (var acnum in accNums)
             {
                 var adet = ce.AccountDetails.Where(s => s.accNum == acnum).FirstOrDefault<AccountDetail>();
-                AdminAsset asst = ce.AdminAssets.Where(s => s.id == adet.assetId).FirstOrDefault<AdminAsset>();
-                if (asst == null) {
+                if (adet == null) {
                                     MessageBox.Show("Asset empty");
                                     return;
                                   }
+                AdminAsset asst = ce.AdminAssets.Where(s => s.id == adet.assetId).FirstOrDefault<AdminAsset>();
                 decimal price= Convert.ToDecimal(asst.price);
                 decimal jish = asst.ratio * price;
                 decimal tot = Convert.ToDecimal(adet.totalNumber * jish);
-                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 0).FirstOrDefault<Adminmtype>();
+                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 1).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
                 ForGrid data = new ForGrid()
                 {
