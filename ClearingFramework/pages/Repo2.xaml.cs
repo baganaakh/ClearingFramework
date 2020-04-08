@@ -30,11 +30,13 @@ namespace Clearing.pages
         {
             InitializeComponent();
             bindCombo();
+            FillGrid();
         }
         int asst1, asst2,qty,qty2,day;
-        decimal price,price2,inter,topay;
+        decimal price,price2,inter,topay,totSum;
         int memid= Convert.ToInt32(App.Current.Properties["member_id"]);        
         clearingEntities CE = new clearingEntities();
+        #region bindcombo
         private void bindCombo()
         {
             assett.ItemsSource = CE.AdminAssets.ToList();
@@ -50,15 +52,39 @@ namespace Clearing.pages
             membee.ItemsSource = memlist;            
             membee.SelectedIndex = memlist.Count() - 1;
         }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        #endregion
+        #region number
+        private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            App.TextBox_PreviewTextInput(sender, e);
+        }
+        #endregion
+        #region Цуцлах Clear
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            assett.SelectedItem = null;
+            qtyss.Text = null;
+            wagerValue.Text = null;
+            asset2.SelectedItem = null;
+            ast2price.Text = null;
+            remain.Text = null;
+            qtyss2.Text = null;
+            membee.SelectedItem = null;
+            dayy.SelectedItem = null;
+            Inter.Text = null;
+            TotalSum.Text = null;
+            ToPay.Text = null;
+        }
+        #endregion
+        #region textboxes changed
+        private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
         {
             var ast = assett.SelectedItem as AdminAsset;
             decimal price =Convert.ToDecimal(ast.price);
             try
             {
-                int qty = Convert.ToInt32(qtyss.Text);
-                wagerValue.Text = (qty * price).ToString("0.##");
+                qty = Convert.ToInt32(qtyss.Text);
+                wagerValue.Text = (qty * price).ToString("0.#");
             }
             catch (System.FormatException)
             {
@@ -70,29 +96,6 @@ namespace Clearing.pages
             }
 
         }
-        private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            App.TextBox_PreviewTextInput(sender, e);
-        }
-        private void asset2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var ast2 = asset2.SelectedItem as AdminAsset;
-            asst2 = ast2.id;
-            price2 =Convert.ToDecimal(ast2.price);
-            ast2price.Text = price.ToString();
-            var ast = CE.AccountDetails.SqlQuery("" +
-                "select * from Clearing.dbo.AccountDetails t1 " +
-                "inner join Clearing.dbo.account t2 on t1.accNum =t2 .accNum " +
-                "where t2.memId = " + memid + " and t1.assetId=" + ast2.id + "").FirstOrDefault<AccountDetail>();
-            remain.Text = Convert.ToInt32(ast.totalNumber).ToString();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            assett.SelectedItem = null;
-
-        }
-
         private void qty2_TextChanged(object sender, TextChangedEventArgs e)
         {
             try
@@ -100,8 +103,8 @@ namespace Clearing.pages
                 qty2 = Convert.ToInt32(qtyss2.Text);
                 if (qty2 < Convert.ToInt32(remain.Text))
                 {
-                    decimal astprice2 = Convert.ToDecimal(ast2price.Text);
-                    TotalSum.Text = (astprice2 * qty).ToString();
+                    totSum = price2 * qty2;
+                    TotalSum.Text = totSum.ToString("0.#");
                 }
                 else
                 {
@@ -116,31 +119,16 @@ namespace Clearing.pages
                 return;
             }
         }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBoxItem days = (ComboBoxItem)dayy.SelectedItem;
-            if (days == null)
-            {
-                return;
-            }
-            int days1 = Convert.ToInt32(days.Content);
-            var asst2= asset2.SelectedItem as AdminAsset;
-            var Interst = CE.AdminInterests.Where(s => s.assetid == asst2.id).FirstOrDefault<AdminInterest>();
-            inter= Convert.ToDecimal(Interst.interest);
-            decimal inters = Convert.ToDecimal(TotalSum.Text) * days1 * inter;
-            Inter.Text = inter.ToString("0.##");
-            topay = Convert.ToDecimal(TotalSum.Text) + Convert.ToDecimal(Inter.Text);
-            TotalSum.Text = topay.ToString("0.##");
-        }
+        #endregion
+        #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             using(clearingEntities conx =new clearingEntities())
             {
                 AdminOrder order = new AdminOrder()
                 {
-                    assetid=Convert.ToInt64(assett.SelectedValue),
-                    qty=Convert.ToInt32(qtyss),
+                    assetid=asst1,
+                    qty=qty,
                     price=price,
                     assetid2=Convert.ToInt64(asset2.SelectedValue),
                     qty2=qty2,
@@ -149,21 +137,55 @@ namespace Clearing.pages
                     connect=membee.SelectedValue.ToString(),
                     interests=inter,
                     dealType=5,
-                    day=Convert.ToInt32(dayy.SelectedValue),
-
+                    day=day,
+                    totSum=totSum,
+                    toPay=topay,
                 };
                 conx.AdminOrders.Add(order);
                 conx.SaveChanges();
             }
             
         }
-       
+        #endregion
+        #region combos selections changed
+        private void asset2_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var ast2 = asset2.SelectedItem as AdminAsset;
+            asst2 = ast2.id;
+            price2 =Convert.ToDecimal(ast2.price);
+            ast2price.Text = price.ToString();
+            var ast = CE.AccountDetails.SqlQuery("" +
+                "select * from Clearing.dbo.AccountDetails t1 " +
+                "inner join Clearing.dbo.account t2 on t1.accNum =t2 .accNum " +
+                "where t2.memId = " + memid + " and t1.assetId=" + ast2.id + "").FirstOrDefault<AccountDetail>();
+            remain.Text = Convert.ToInt32(ast.totalNumber).ToString();
+        }
         private void assett_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var ast = assett.SelectedItem as AdminAsset;
             price = Convert.ToDecimal(ast.price);
             asst1 = ast.id;
         }
-
+        private void day_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBoxItem days = (ComboBoxItem)dayy.SelectedItem;
+            if (days == null)
+                return;
+            day = Convert.ToInt32(days.Content);            
+            var Interst = CE.AdminInterests.Where(s => s.assetid == asst2).FirstOrDefault<AdminInterest>();
+            decimal interest= Convert.ToDecimal(Interst.interest);
+            inter = totSum * day * interest;
+            Inter.Text = inter.ToString("0.#");
+            topay = totSum + inter;
+            ToPay.Text = topay.ToString("0.#");
+        }
+        #endregion
+        #region FillGrid
+        private void FillGrid()
+        {
+            clearingEntities ce = new clearingEntities();
+            НийтЗээл.ItemsSource = ce.AdminOrders.Where(s => s.dealType == 5).ToList();
+        }
+        #endregion
     }
 }
