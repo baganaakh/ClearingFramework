@@ -21,7 +21,7 @@ namespace Clearing.pages
         {
             InitializeComponent();
             bindCombo();
-            FillGrid();
+            //FillGrid();
         }
         #region fill
         private void FillGrid()

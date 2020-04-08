@@ -47,6 +47,9 @@ namespace Clearing.pages
             denchinPercent.Text = null;
             contractFee.Text = null;
             pozfee.Text = null;
+            banks.SelectedItem = null;
+            bankaccount.Text = null;
+            bankaccname.Text = null;
         }
         private void FillGrid()
         {
@@ -78,6 +81,9 @@ namespace Clearing.pages
                 acc.denchinPercent = Convert.ToDecimal(denchinPercent.Text);
                 acc.contractFee = Convert.ToDecimal(contractFee.Text);
                 acc.pozFee = Convert.ToDecimal(pozfee.Text);
+                acc.bank = banks.SelectedIndex;
+                acc.bankAccName = bankaccname.Text;
+                acc.bankAccount = bankaccount.Text;
                 context.SaveChanges();
             }
             FillGrid();
@@ -123,12 +129,15 @@ namespace Clearing.pages
                     denchinPercent = Convert.ToDecimal(denchinPercent.Text),
                     contractFee = Convert.ToDecimal(contractFee.Text),
                     pozFee = Convert.ToDecimal(pozfee.Text),
-                    memId = memId
+                    memId = memId,
+                    bank=banks.SelectedIndex,
+                    bankAccount=bankaccount.Text,
+                    bankAccName=bankaccname.Text,
                 };
                 AccountDetail acd = new AccountDetail
                 {
                     freezeValue = 10,
-                    totalNumber = 100,
+                    totalNumber = 0,
                     accNum = accountn.Text,
                     linkAcc = linkAc.SelectedValue.ToString(),
                 };
@@ -311,6 +320,9 @@ namespace Clearing.pages
                     denchinPercent = Convert.ToDecimal(row["denchinPercent"]),
                     contractFee = Convert.ToDecimal(row["contractFee"]),
                     pozFee = Convert.ToDecimal(row["pozFee"]),
+                    bank = Convert.ToInt32(row["bank"]),
+                    bankAccName = row["bankAccName"].ToString(),
+                    bankAccount = row["bankAccount"].ToString(),
                 };
             }
         }

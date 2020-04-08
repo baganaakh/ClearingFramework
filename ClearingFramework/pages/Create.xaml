@@ -141,13 +141,9 @@
                             <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
                             <DataGridTextColumn Binding="{Binding secAcc}" ClipboardContentBinding="{x:Null}" Header="ҮЦТХТ данс" IsReadOnly="True"/>
-                            <!--<DataGridTemplateColumn>
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Content="Delete" Click="Button_Click_2"/>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>-->
+                            <DataGridTextColumn Binding="{Binding bankName}" ClipboardContentBinding="{x:Null}" Header="Банк" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding bankAccName}" ClipboardContentBinding="{x:Null}" Header="Банкны дансны нэр" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding bankAccount}" ClipboardContentBinding="{x:Null}" Header="Банкны данс" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button Margin="0,5,10,0" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"  Click="Button_Click_8" Foreground="White" Grid.Column="1">
@@ -258,8 +254,8 @@
             </ComboBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="280,36,0,0" TextWrapping="Wrap" Text="Төлөв" Width="45" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" RenderTransformOrigin="10.512,-0.152"/>
             <ComboBox Name="stat" HorizontalAlignment="Left" Height="20" Margin="352,41,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
-                <ComboBoxItem x:Name="cbi7" Content="Банкаар"/>
-                <ComboBoxItem x:Name="cbi8" Content="Бэлнээр"/>
+                <ComboBoxItem Content="Банкаар"/>
+                <ComboBoxItem Content="Бэлнээр"/>
             </ComboBox>
             <TextBox HorizontalAlignment="Left" Height="20" Margin="29,12,0,0" TextWrapping="Wrap" Text="Овог" Width="38" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
             <TextBox x:Name="lName" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="99,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
@@ -379,12 +375,14 @@
                 </TextBox.Resources>
             </TextBox>
             <Label Content="Label" Margin="0,23,369,0" VerticalAlignment="Top" Height="164" HorizontalAlignment="Right" Width="4" Background="#FF7B5477"/>
-            <ComboBox x:Name="stat_Copy" HorizontalAlignment="Left" Height="20" Margin="512,41,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
-                <ComboBoxItem x:Name="cbi1" Content="Банкаар"/>
-                <ComboBoxItem x:Name="cbi2" Content="Бэлнээр"/>
+            <ComboBox x:Name="banks" HorizontalAlignment="Left" Height="20" Margin="512,41,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
+                <ComboBoxItem Content="Банк бус"/>
+                <ComboBoxItem Content="Хаан Банк"/>
+                <ComboBoxItem Content="ХХБ"/>
+                <ComboBoxItem Content="Хас Банк"/>
             </ComboBox>
             <TextBox HorizontalAlignment="Left" Height="20" TextAlignment="Center" Margin="504,72,0,0" TextWrapping="Wrap" Text="Банкны дансны нэр" Width="119" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox PreviewTextInput="fee_PreviewTextInput" x:Name="fee_Copy" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="512,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox x:Name="bankaccname" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="512,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -392,7 +390,7 @@
                 </TextBox.Resources>
             </TextBox>
             <TextBox HorizontalAlignment="Left" Height="20" TextAlignment="Center" Margin="504,136,0,0" TextWrapping="Wrap" Text="Банкны данс" Width="119" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-            <TextBox PreviewTextInput="fee_PreviewTextInput" x:Name="fee_Copy1" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="512,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+            <TextBox PreviewTextInput="fee_PreviewTextInput" x:Name="bankaccount" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="512,167,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>

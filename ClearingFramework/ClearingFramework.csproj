@@ -165,6 +165,15 @@
     <Compile Include="dbBind\pozit.cs" />
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
+    <Compile Include="Migrations\202004080744057_initial.cs" />
+    <Compile Include="Migrations\202004080744057_initial.designer.cs">
+      <DependentUpon>202004080744057_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004080745553_account table add three more column.cs" />
+    <Compile Include="Migrations\202004080745553_account table add three more column.designer.cs">
+      <DependentUpon>202004080745553_account table add three more column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="pages\Repo2.xaml.cs">
       <DependentUpon>Repo2.xaml</DependentUpon>
     </Compile>
@@ -284,6 +293,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202004080744057_initial.resx">
+      <DependentUpon>202004080744057_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004080745553_account table add three more column.resx">
+      <DependentUpon>202004080745553_account table add three more column.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -291,7 +306,6 @@
     <None Include="App.config" />
     <None Include="functions\Гүйлгээ бүртгэх.xlsx" />
     <None Include="functions\Данс.xlsx" />
-    <None Include="keys\ClearingFramework_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -363,7 +377,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="keys\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>

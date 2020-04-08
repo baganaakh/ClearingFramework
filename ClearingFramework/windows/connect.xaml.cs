@@ -44,7 +44,7 @@ namespace ClearingFramework
                     conn.Open();
                     var connectString = ConfigurationManager.ConnectionStrings["Model1"].ConnectionString;
                     MessageBox.Show("connected");
-                    conn.Close();
+                    //conn.Close();
                 }
             }
             catch (Exception ex)

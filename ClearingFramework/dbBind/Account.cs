@@ -1,4 +1,4 @@
-namespace ClearingFramework.dbBind
+﻿namespace ClearingFramework.dbBind
 {
     using System;
     using System.Collections.Generic;
@@ -54,5 +54,28 @@ namespace ClearingFramework.dbBind
         public decimal? pozFee { get; set; }
 
         public int? memId { get; set; }
+        public int bank { get; set; }
+        public string bankName { get 
+            {
+                string bname;
+                switch (bank) {
+                    case 0: bname = "Банк бус";
+                        break;
+                    case 1: bname = "Хаан Банк";
+                        break;
+                    case 2: bname = "ХХБ";
+                        break;
+                    case 3: bname = "Хас Банк";
+                        break;
+                    default: bname = "Байхгүй";
+                        break;
+                }
+                return bname;
+
+            } 
+        }
+        public string bankAccName { get; set; }
+        public string bankAccount { get; set; }
+
     }
 }

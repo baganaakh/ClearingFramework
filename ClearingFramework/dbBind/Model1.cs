@@ -10,6 +10,8 @@ namespace ClearingFramework.dbBind
         public Model1()
             : base("name=Model1")
         {
+            //Database.SetInitializer<Model1>(new CreateDatabaseIfNotExists<Model1>());
+
         }
 
         public virtual DbSet<Account> Accounts { get; set; }
