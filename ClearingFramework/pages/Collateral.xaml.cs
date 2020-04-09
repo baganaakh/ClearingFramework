@@ -204,6 +204,8 @@ namespace Clearing.pages
             var item = asset.SelectedItem as AdminAsset;
             qtyss.IsEnabled = true;
             qtyss.Text = null;
+            if (item == null)
+                return;
             assId = item.id;
             var totNumber = CE.AccountDetails.Where(s => s.assetId == assId && s.linkAcc == linkacs).ToArray();
             decimal sum = 0, freezesum = 0;
@@ -261,7 +263,3 @@ namespace Clearing.pages
         #endregion        
     }
 }
-//                      C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\functions\Гүйлгээ бүртгэх.xlsx
-//Could not find file 'C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\bin\functions\Гүйлгээ бүртгэх.xlsx'.
-//Could not find file 'C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\bin\Debug\functions\Гүйлгээ бүртгэх.xlsx'.
-//Could not find file 'C:\Users\altanbagana.n\Documents\GitHub\ClearingFramework\ClearingFramework\bin\Debug\...\functions\Гүйлгээ бүртгэх.xlsx'.

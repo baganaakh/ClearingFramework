@@ -257,7 +257,7 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="540,39,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="106" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="19,41,0,0" TextWrapping="Wrap" Text="Барьцааны хөрөнгө" Width="115" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="540,14,0,0" TextWrapping="Wrap" Text="Барьцаалах хэмжээ" Width="106" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox TextChanged="qtyss_TextChanged" IsEnabled="False" PreviewTextInput="qtyss_PreviewTextInput" x:Name="qtyss" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="650,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
+                    <TextBox TextChanged="qtyss_TextChanged" IsEnabled="False" PreviewTextInput="qtyss_PreviewTextInput" x:Name="qtyss" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="650,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -266,21 +266,21 @@
                     </TextBox>
                     <ComboBox DisplayMemberPath="name" SelectedValuePath="id" SelectionChanged="asset_SelectionChanged" Name="asset" IsEnabled="False" HorizontalAlignment="Left" Height="20" Margin="139,41,0,0"  Text="Гүйлгээний төрөл" Width="85" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="240,39,0,0" TextWrapping="Wrap" Text="Боложит үлдэгдэл" Width="108" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox x:Name="remainder" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="353,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
+                    <TextBox x:Name="remainder" IsReadOnly="True" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="353,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBox x:Name="exPrice" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="324,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
+                    <TextBox x:Name="exPrice" IsReadOnly="True" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="324,17,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBox x:Name="collateralValue" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="650,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
+                    <TextBox x:Name="collateralValue" IsReadOnly="True" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="650,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -288,7 +288,7 @@
                         </TextBox.Resources>
                     </TextBox>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="19,14,0,0" TextWrapping="Wrap" Text="Данс" Width="115" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <ComboBox DisplayMemberPath="accNum" SelectedValuePath="id" SelectionChanged="accId_SelectionChanged" Name="accId" HorizontalAlignment="Left" Height="20" Margin="139,14,0,0"  Text="Гүйлгээний төрөл" Width="85" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <ComboBox DisplayMemberPath="accNumber" SelectedValuePath="id" SelectionChanged="accId_SelectionChanged" Name="accId" HorizontalAlignment="Left" Height="20" Margin="139,14,0,0"  Text="Гүйлгээний төрөл" Width="85" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
                     <ComboBox Name="Types" HorizontalAlignment="Left" Height="20" Margin="422,17,0,0" Text="reason" Width="118" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top">
                         <ComboBoxItem>Байршуулах</ComboBoxItem>
                         <ComboBoxItem>Буцаах</ComboBoxItem>

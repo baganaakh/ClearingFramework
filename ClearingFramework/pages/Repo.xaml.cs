@@ -253,10 +253,12 @@ namespace Clearing.pages
                 throw;
             }
         }
+        #region number
         private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
+        #endregion
         private void dayy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem days = (ComboBoxItem)dayy.SelectedItem;
