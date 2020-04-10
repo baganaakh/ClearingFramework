@@ -30,18 +30,25 @@ namespace Clearing.pages
         {
             using(Model1 context=new Model1())
             {
-                var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
-                App.Current.Properties["User_id"] = query.id;
-                if(query.password == txtLoginPass.Password)
+                try
                 {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.Show();
+                    var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
+                    App.Current.Properties["User_id"] = query.id;
+                    if(query.password == txtLoginPass.Password)
+                    {
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.Show();
                     
-                    //Window parentWindow = Window.GetWindow(this).Button;
+                        //Window parentWindow = Window.GetWindow(this).Button;
                     
-                    //((this.Parent) as Window).Content.Bu;
-                    //parentWindow.
-                    //dashboard.start.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                        //((this.Parent) as Window).Content.Bu;
+                        //parentWindow.
+                        //dashboard.start.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
                 }
             }
         }
