@@ -83,6 +83,20 @@
                         </Style>
                     </Button.Resources>
                 </Button>
+                <Button x:Name="button1_Copy1" Click="button1_Copy_Click" Content="exit" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="106,377,106,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="uselocal" Click="uselocal_Click" Content="Use Local" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="106,437,106,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
             </Grid>
             <Label x:Name="lblMessage" Content="" Margin="0,100,0,0" Foreground="WhiteSmoke"  Padding="30,0,0,0" />
         </StackPanel>

@@ -28,7 +28,7 @@ namespace ClearingFramework
             string DBpassword = ssd.Text;
             string databaseName = databases.Text;
             string providerName = "System.Data.SqlClient";
-            string entityBuilder= "Data source="+serverName+";initial catalog="+databaseName+";integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            string entityBuilder= "Data source="+serverName+";initial catalog="+databaseName+";;MultipleActiveResultSets=True;App=EntityFramework";
             config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = entityBuilder;
             config.Save(ConfigurationSaveMode.Modified);
             using(Model1 conx=new Model1())
@@ -43,6 +43,11 @@ namespace ClearingFramework
             Login log = new Login();
             log.Show();
             this.Close();
+        }
+
+        private void uselocal_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 

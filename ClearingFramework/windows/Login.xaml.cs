@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Deployment.Application;
+using System.Reflection;
 
 namespace ClearingFramework
 {
@@ -22,8 +24,19 @@ namespace ClearingFramework
     {
         public Login()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            string vers="";
+            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                vers = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            var ver = Assembly.GetExecutingAssembly().GetName().Version;
+            string version ="Login  Version: "+ ver.Major + "." + ver.Minor + "." + ver.Build + "." + ver.Revision;
+            this.Title = vers;
+            using(Model1 db=new Model1())
+            {
+                
+            }
         }
+            
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {

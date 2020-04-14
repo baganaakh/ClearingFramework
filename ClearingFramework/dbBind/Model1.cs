@@ -10,8 +10,44 @@ namespace ClearingFramework.dbBind
         public Model1()
             : base("name=Model1")
         {
+            Database.SetInitializer<Model1>(new Model1DBInit());
         }
-
+        public class Model1DBInit : CreateDatabaseIfNotExists<Model1>
+        {
+            protected override void Seed(Model1 context)
+            {
+                Account acct = new Account
+                {
+                    accNum = "1",
+                    idNum = "sd5669889",
+                    lname = "last",
+                    fname ="First",
+                    phone = "7879879",
+                    mail ="sdadas",
+                    state = Convert.ToInt16(1),
+                    modified = DateTime.Now,
+                    secAcc = "s123123",
+                    fee = Convert.ToDecimal(0.56),
+                    denchinPercent = Convert.ToDecimal(0.35),
+                    contractFee = Convert.ToDecimal(0.94),
+                    pozFee = Convert.ToDecimal(0.68),
+                    memId = 1,
+                    bank = 1,
+                };
+                AdminUser au = new AdminUser()
+                {
+                    uname = "baganaakh",
+                    password = "baganaakh",
+                    modified = DateTime.Now,
+                    role="user",
+                    memId=1
+                };
+                context.AdminUsers.Add(au);
+                context.Accounts.Add(acct);
+                context.SaveChanges();
+                base.Seed(context);
+            }
+        }
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<AdminAccount> AdminAccounts { get; set; }
