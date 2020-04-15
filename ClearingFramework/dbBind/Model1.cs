@@ -4,26 +4,27 @@ namespace ClearingFramework.dbBind
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Windows;
 
     public partial class Model1 : DbContext
     {
         public Model1()
             : base("name=Model1")
         {
-            Database.SetInitializer<Model1>(new Model1DBInit());
+            Database.SetInitializer<Model1>(new CreateDatabaseIfNotExists<Model1>());
         }
         public class Model1DBInit : CreateDatabaseIfNotExists<Model1>
         {
-            protected override void Seed(Model1 context)
+            protected override void Seed(Model1 db)
             {
                 Account acct = new Account
                 {
                     accNum = "1",
                     idNum = "sd5669889",
                     lname = "last",
-                    fname ="First",
+                    fname = "First",
                     phone = "7879879",
-                    mail ="sdadas",
+                    mail = "sdadas",
                     state = Convert.ToInt16(1),
                     modified = DateTime.Now,
                     secAcc = "s123123",
@@ -39,13 +40,15 @@ namespace ClearingFramework.dbBind
                     uname = "baganaakh",
                     password = "baganaakh",
                     modified = DateTime.Now,
-                    role="user",
-                    memId=1
+                    role = "user",
+                    memId = 1
                 };
-                context.AdminUsers.Add(au);
-                context.Accounts.Add(acct);
-                context.SaveChanges();
-                base.Seed(context);
+                db.AdminUsers.Add(au);
+                db.Accounts.Add(acct);
+                db.SaveChanges();
+                //var query = db.AdminUsers.Where(s => s.uname == "baganaakh").FirstOrDefault<AdminUser>();
+                //MessageBox.Show(query.role);
+                base.Seed(db);
             }
         }
         public virtual DbSet<Account> Accounts { get; set; }
