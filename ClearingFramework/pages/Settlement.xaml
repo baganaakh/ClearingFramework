@@ -227,7 +227,7 @@
             </Grid.ColumnDefinitions>
             <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="114" Width="4" Background="#FF7B5477"/>
             <Label Content="Label" HorizontalAlignment="Left" Margin="2,12,0,0" VerticalAlignment="Top" Height="112" Width="4" Background="#FF7B5477" Grid.Column="2"/>
-            <Button Click="Button_Click_5" Content="Xls татах" Margin="0,53,121,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White" Grid.Column="2">
+            <Button Click="Button_Click_1" Content="Xls татах" Margin="0,53,121,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White" Grid.Column="2">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="6,6,6,6"/>
@@ -241,7 +241,7 @@
                     </ToolTip>
                 </Button.ToolTip>
             </Button>
-            <Button Content="Xls Хуулах" Click="Button_Click_1" Margin="0,90,10,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White" Grid.Column="2">
+            <Button Content="Xls Хуулах" Click="Button_Click_5" Margin="0,90,10,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White" Grid.Column="2">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="6,6,6,6"/>

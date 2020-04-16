@@ -178,7 +178,10 @@ namespace Clearing.pages
         #region xls хуулах
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string paths = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @".\\functions\\Гүйлгээ бүртгэх.xlsx");
+            string paths = Path.Combine(
+                Path.GetDirectoryName(
+                    Assembly.GetExecutingAssembly().Location),
+                @".\functions\Гүйлгээ бүртгэх.xlsx");
             string filePath = "";
             using (FolderBrowserDialog fbd = new FolderBrowserDialog() )
             {
@@ -186,9 +189,8 @@ namespace Clearing.pages
                 if(result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     filePath = fbd.SelectedPath;
-                    file.Text = filePath;
                     try { 
-                System.IO.File.Move(paths, filePath);
+                System.IO.File.Move(paths, filePath + "\\Гүйлгээ бүртгэх.xlsx");
                     }
                     catch(Exception ex)
                     {

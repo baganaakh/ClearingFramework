@@ -327,7 +327,7 @@ namespace Clearing.pages
             }
         }
         #endregion
-         #region combos        
+        #region combos        
         public List<AdminAccount> acc { get; set; }
         private void bindCombo()
         {
@@ -359,8 +359,9 @@ namespace Clearing.pages
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             string paths = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                @".\\functions\\Данс.xlsx");
+                Path.GetDirectoryName(
+                    Assembly.GetExecutingAssembly().Location),
+                @".\functions\Данс.xlsx");
             string filePath = "";
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
