@@ -17,7 +17,6 @@ namespace ClearingFramework.dbBind
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int sessionid { get; set; }
 
-        [Required]
         [StringLength(10)]
         public string isactive { get; set; }
 
@@ -29,7 +28,6 @@ namespace ClearingFramework.dbBind
 
         public int matched { get; set; }
 
-        [Required]
         [StringLength(10)]
         public string state { get; set; }
     }

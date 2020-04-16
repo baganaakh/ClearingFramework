@@ -53,7 +53,10 @@ namespace ClearingFramework
             try
             {
                 using(var db = new Model1())
-                {                    
+                {
+                    DateTime now = DateTime.Now;
+                    int hour = now.Hour, minute = now.Minute, second = now.Second, millisec = now.Millisecond;
+                    TimeSpan time = new TimeSpan(hour, minute, second, millisec);
                     db.Database.CreateIfNotExists();
                     Account acct = new Account
                     {
@@ -73,6 +76,7 @@ namespace ClearingFramework
                         memId = 1,
                         bank = 1,
                     };
+                    db.Accounts.Add(acct);
                     AdminUser au = new AdminUser()
                     {
                         uname = "baganaakh",
@@ -82,7 +86,101 @@ namespace ClearingFramework
                         memId = 1
                     };
                     db.AdminUsers.Add(au);
-                    db.Accounts.Add(acct);
+                    AdminAccount adac = new AdminAccount()
+                    {
+                        memberid=1,
+                        accNumber="1",
+                        accountType=1,
+                        LinkAccount=1,
+                        modified=DateTime.Now,
+                        mask="mask",
+                        startdate=DateTime.Today,
+                        enddate=(DateTime.Now).AddDays(2),
+                        state=1,
+                    };
+                    db.AdminAccounts.Add(adac);
+                    AdminAccountDetail adacd = new AdminAccountDetail()
+                    {
+                        freezeValue=193,
+                        amount=911,
+                        assetId=1,
+                        accountId=adac.id,
+                    };
+                    db.AdminAccountDetails.Add(adacd);
+                    AdminActiveSession aacs = new AdminActiveSession()
+                    {
+                        sessionid = 1,
+                        isactive = "1",
+                        starttime =time,
+                        endtime = time.Add(time),
+                        tduration=(new TimeSpan(1,1,1,1)),
+                        matched=6,
+                        state="1",
+                    };
+                    db.AdminActiveSessions.Add(aacs);
+                    AdminAsset ast = new AdminAsset()
+                    {
+                        code = "amd",
+                        name = "advanced micro devices",
+                        volume = 1000,
+                        note = "advanced micro devices",
+                        expireDate=DateTime.Now.AddYears(1),
+                        state=1,
+                        modified=DateTime.Now,
+                        ratio=Convert.ToDecimal(18.5),
+                        price=45,
+                    };
+                    db.AdminAssets.Add(ast);
+                    AdminBoard bo = new AdminBoard()
+                    {
+                        name = "board1",
+                        type = 1,
+                        tdays = "1;2;3;4;",
+                        state = 1,
+                        modified=DateTime.Now,
+                        description="dfgsdfgsdfg",
+                        dealType=1,
+                        expTime=(new TimeSpan(2,4,5,6)),
+                        expDate=1,
+                    };
+                    db.AdminBoards.Add(bo);
+                    AdminCalendar ac = new AdminCalendar()
+                    {
+                        tdate = DateTime.Today,
+                        type = 1,
+                        note = "sgsdfgsdfgsdfg",
+                        state=1,
+                        modified=DateTime.Now,
+                    };
+                    db.AdminCalendars.Add(ac);
+                    AdminContract aco = new AdminContract()
+                    {
+                        securityId=1,
+                        type=1,
+                        code="sdsasd",
+                        name="ads",
+                        lot=Convert.ToDecimal(12.42),
+                        tickTable=1,
+                        sdate=DateTime.Now,
+                        edate=DateTime.Now.AddDays(1),
+                        groupId=1,
+                        state=1,
+                        modified=DateTime.Now,
+                        mmorderLimit=1,
+                        orderLimit=1,
+                        refpriceParam=66,
+                        bid=1,
+                    };
+                    db.AdminContracts.Add(aco);
+                    AdminDeal adeal = new AdminDeal() 
+                    {
+
+                    };
+                    db.AdminDeals.Add(adeal);
+                    AdminInterest aint = new AdminInterest()
+                    {
+
+                    };
                     db.SaveChanges();
                     var query = db.AdminUsers.Where(s => s.uname == "baganaakh").FirstOrDefault<AdminUser>();
                     MessageBox.Show(query.role);
