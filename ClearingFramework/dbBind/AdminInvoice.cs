@@ -36,7 +36,9 @@ namespace ClearingFramework.dbBind
 
         [Key]
         [Column(Order = 1)]
-        public DateTime invoiceno { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long invoiceno { get; set; }        
 
         [Column(TypeName = "date")]
         public DateTime? invoicedate { get; set; }

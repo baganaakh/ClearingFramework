@@ -168,6 +168,10 @@
     <Compile Include="dbBind\pozit.cs" />
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
+    <Compile Include="Migrations\202004170403460_database generated option.cs" />
+    <Compile Include="Migrations\202004170403460_database generated option.designer.cs">
+      <DependentUpon>202004170403460_database generated option.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="pages\Repo2.xaml.cs">
       <DependentUpon>Repo2.xaml</DependentUpon>
@@ -281,6 +285,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202004170403460_database generated option.resx">
+      <DependentUpon>202004170403460_database generated option.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
