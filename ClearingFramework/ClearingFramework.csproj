@@ -172,6 +172,10 @@
     <Compile Include="Migrations\202004170403460_database generated option.designer.cs">
       <DependentUpon>202004170403460_database generated option.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004170714521_adminmembe change to bool.cs" />
+    <Compile Include="Migrations\202004170714521_adminmembe change to bool.designer.cs">
+      <DependentUpon>202004170714521_adminmembe change to bool.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="pages\Repo2.xaml.cs">
       <DependentUpon>Repo2.xaml</DependentUpon>
@@ -287,6 +291,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202004170403460_database generated option.resx">
       <DependentUpon>202004170403460_database generated option.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004170714521_adminmembe change to bool.resx">
+      <DependentUpon>202004170714521_adminmembe change to bool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
