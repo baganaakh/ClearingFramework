@@ -7,13 +7,13 @@ namespace ClearingFramework.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class adminmembechangetobool : IMigrationMetadata
+    public sealed partial class deleteactiv : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(adminmembechangetobool));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(deleteactiv));
         
         string IMigrationMetadata.Id
         {
-            get { return "202004170714521_adminmembe change to bool"; }
+            get { return "202004170957350_delete activ"; }
         }
         
         string IMigrationMetadata.Source

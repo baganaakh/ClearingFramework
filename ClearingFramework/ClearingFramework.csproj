@@ -137,7 +137,6 @@
     <Compile Include="dbBind\AccountDetail.cs" />
     <Compile Include="dbBind\AdminAccount.cs" />
     <Compile Include="dbBind\AdminAccountDetail.cs" />
-    <Compile Include="dbBind\AdminActiveSession.cs" />
     <Compile Include="dbBind\AdminAsset.cs" />
     <Compile Include="dbBind\AdminBoard.cs" />
     <Compile Include="dbBind\AdminCalendar.cs" />
@@ -168,13 +167,9 @@
     <Compile Include="dbBind\pozit.cs" />
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
-    <Compile Include="Migrations\202004170403460_database generated option.cs" />
-    <Compile Include="Migrations\202004170403460_database generated option.designer.cs">
-      <DependentUpon>202004170403460_database generated option.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004170714521_adminmembe change to bool.cs" />
-    <Compile Include="Migrations\202004170714521_adminmembe change to bool.designer.cs">
-      <DependentUpon>202004170714521_adminmembe change to bool.cs</DependentUpon>
+    <Compile Include="Migrations\202004170957350_delete activ.cs" />
+    <Compile Include="Migrations\202004170957350_delete activ.designer.cs">
+      <DependentUpon>202004170957350_delete activ.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="pages\Repo2.xaml.cs">
@@ -289,11 +284,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202004170403460_database generated option.resx">
-      <DependentUpon>202004170403460_database generated option.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004170714521_adminmembe change to bool.resx">
-      <DependentUpon>202004170714521_adminmembe change to bool.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004170957350_delete activ.resx">
+      <DependentUpon>202004170957350_delete activ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
