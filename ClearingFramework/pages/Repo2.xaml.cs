@@ -145,7 +145,7 @@ namespace Clearing.pages
                 conx.AdminOrders.Add(order);
                 conx.SaveChanges();
             }
-            
+            FillGrid();
         }
         #endregion
         #region combos selections changed
@@ -174,7 +174,15 @@ namespace Clearing.pages
                 return;
             day = Convert.ToInt32(days.Content);            
             var Interst = CE.AdminInterests.Where(s => s.assetid == asst2).FirstOrDefault<AdminInterest>();
-            decimal interest= Convert.ToDecimal(Interst.interest);
+            decimal interest;
+            try
+            {
+                 interest = Convert.ToDecimal(Interst.interest);
+            }
+            catch (System.NullReferenceException)
+            {
+                return;                
+            }
             inter = totSum * day * interest;
             Inter.Text = inter.ToString("0.#");
             topay = totSum + inter;

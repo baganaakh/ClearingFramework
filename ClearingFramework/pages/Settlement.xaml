@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="730" d:DesignWidth="874"
       Title="Settlement">
@@ -57,11 +58,9 @@
             </Trigger>
         </ControlTemplate.Triggers>-->
         </ControlTemplate>
-
         <ControlTemplate x:Key="ComboBoxTextBox" TargetType="{x:Type TextBox}">
             <Border x:Name="PART_ContentHost" Focusable="False" Background="{TemplateBinding Background}"/>
         </ControlTemplate>
-
         <Style x:Key="{x:Type ComboBox}" TargetType="{x:Type ComboBox}">
             <Setter Property="SnapsToDevicePixels" Value="true"/>
             <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -276,7 +275,8 @@
                 <ComboBoxItem Content="Бэлнээр"></ComboBoxItem>
             </ComboBox>
 
-            <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="20" Margin="22,90,0,0" TextWrapping="Wrap" Text="Гүйлгээний утга" Width="230" Background="#FFE9E5E9" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" FontStyle="Italic" VerticalAlignment="Top" Grid.Column="2">
+            <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="24" Margin="22,90,0,0" TextWrapping="Wrap" Width="230" Background="#FFE9E5E9" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" FontStyle="Italic"  VerticalAlignment="Top" Grid.Column="2"
+                     materialDesign:HintAssist.Hint=" Гүйлгээний утга">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -297,7 +297,7 @@
             </TextBox>
             <Label Content="Label" Margin="0,12,247,0" VerticalAlignment="Top" Height="112" HorizontalAlignment="Right" Width="4" Background="#FF7B5477" Grid.Column="2"/>
             <ComboBox Name="accid" SelectionChanged="ComboBox_SelectionChanged" DisplayMemberPath="accNum" SelectedValuePath="id" HorizontalAlignment="Left" Height="20" Margin="10,31,0,0"  Text="Гүйлгээний төрөл" Width="94" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
-            <ComboBox SelectionChanged="cboSheet_SelectionChanged" x:Name="cboSheet" HorizontalAlignment="Left" Height="20" Margin="549,53,0,0"  Text="Гүйлгээний төрөл" Width="90" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0,0.55"/>
+            <ComboBox SelectionChanged="cboSheet_SelectionChanged" x:Name="cboSheet" HorizontalAlignment="Right" Height="20" Margin="0,53,10,0"  Text="Гүйлгээний төрөл" Width="90" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2" RenderTransformOrigin="0.489,0.55"/>
             <Button Click="Button_Click_7" Content="import" Margin="0,86,121,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="SeaGreen" Foreground="White" Grid.Column="2">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
@@ -305,11 +305,10 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <ComboBox x:Name="side" HorizontalAlignment="Left" Height="20" Margin="268,17,0,0"  Text="Гүйлгээний төрөл" Width="100" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2">
+            <ComboBox x:Name="side" HorizontalAlignment="Right" Height="20" Margin="0,17,281,0"  Text="Гүйлгээний төрөл" Width="100" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2">
                 <ComboBoxItem Content="Зарлага"/>
                 <ComboBoxItem Content="Орлого"/>
             </ComboBox>
-            <TextBox x:Name="file" HorizontalAlignment="Left" Height="20" Margin="417,16,0,0" TextWrapping="Wrap" Text="file" Width="111" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2"/>
         </Grid>
         <TabControl Margin="10,169,10,10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Гүйлгээний түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">

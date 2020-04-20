@@ -46,10 +46,7 @@ namespace ClearingFramework
         }
 
         private void uselocal_Click(object sender, RoutedEventArgs e)
-        {
-            //string localstring = "Server = (LocalDB)\\MSSQLLocalDB; Integrated Security = true";
-            //config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = localstring;
-            //config.Save(ConfigurationSaveMode.Modified);            
+        {      
             try
             {
                 using(var db = new Model1())
@@ -208,10 +205,11 @@ namespace ClearingFramework
                         linkMember = 1,
                         name = "dasda",
                     };
+                    db.AdminMembers.Add(adme);
                     AdminMember adme2 = new AdminMember()
                     {
                         type = 2,
-                        code = "fg",
+                        code = "hj",
                         state = 2,
                         modified = DateTime.Now,
                         partid = 2,

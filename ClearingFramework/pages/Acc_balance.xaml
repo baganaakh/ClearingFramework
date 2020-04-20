@@ -272,42 +272,6 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="278,62,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="419,62,0,0" TextWrapping="Wrap" Text="..." Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="559,62,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <Button Height="26" Margin="0,10,80,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-                        <Button.Background>
-                            <ImageBrush ImageSource="/pics/XLS.png" Stretch="Uniform" Opacity="0.8"/>
-                        </Button.Background>
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <StackPanel>
-                                    <TextBlock><Run Text="Xls-ээр хадгалах"/></TextBlock>
-                                </StackPanel>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Height="26" Margin="0,10,45,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-                        <Button.Background>
-                            <ImageBrush ImageSource="/pics/PDF.ico" Stretch="Uniform" Opacity="0.8"/>
-                        </Button.Background>
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <StackPanel>
-                                    <TextBlock><Run Text="Pdf-ээр хадгалах"/></TextBlock>
-                                </StackPanel>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
-                    <Button Height="26" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-                        <Button.Background>
-                            <ImageBrush ImageSource="/pics/Print.png" Stretch="Uniform" Opacity="0.8"/>
-                        </Button.Background>
-                        <Button.ToolTip>
-                            <ToolTip>
-                                <StackPanel>
-                                    <TextBlock><Run Text="Хэвлэх"/></TextBlock>
-                                </StackPanel>
-                            </ToolTip>
-                        </Button.ToolTip>
-                    </Button>
                     <DatePicker Height="21" Margin="0,10,365,0" VerticalAlignment="Top" HorizontalContentAlignment="Right" Padding="0" BorderThickness="1" HorizontalAlignment="Right" Width="100" Background="{x:Null}" BorderBrush="#FF7B5477" FirstDayOfWeek="Monday" IsTodayHighlighted="True" Foreground="#FF7B5477" VerticalContentAlignment="Center"/>
                     <TextBox Height="21" Margin="0,10,470,0" TextWrapping="Wrap" Text="Эхлэх огноо" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Right" Width="89" HorizontalContentAlignment="Right"/>
                     <TextBox Height="21" Margin="0,10,271,0" TextWrapping="Wrap" Text="Дуусах огноо" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" HorizontalAlignment="Right" Width="89" HorizontalContentAlignment="Right"/>

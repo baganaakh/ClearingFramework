@@ -35,7 +35,7 @@ namespace Clearing.pages
         string linkacs, toId="0";
         decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
-        Model1 CE = new Model1();        
+        Model1 CE = new Model1();
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {

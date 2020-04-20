@@ -628,42 +628,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Height="26" Margin="0,10,80,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/XLS.png" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Xls-ээр хадгалах"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
-        <Button Height="26" Margin="0,10,45,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/PDF.ico" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Pdf-ээр хадгалах"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
-        <Button Height="26" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/Print.png" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Хэвлэх"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
     </Grid>
 </Page>
 
