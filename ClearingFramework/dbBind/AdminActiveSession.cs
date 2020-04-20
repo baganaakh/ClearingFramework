@@ -1,4 +1,4 @@
-namespace ClearingFramework.dbBind
+﻿namespace ClearingFramework.dbBind
 {
     using System;
     using System.Collections.Generic;
@@ -9,12 +9,8 @@ namespace ClearingFramework.dbBind
     public partial class AdminActiveSession
     {
         [Key]
-        [Column(Order = 0)]
         public int id { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int sessionid { get; set; }
 
         [StringLength(10)]

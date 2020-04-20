@@ -30,7 +30,7 @@ namespace ClearingFramework.dbBind
 
         [Column(TypeName = "date")]
         public DateTime? enddate { get; set; }
-                
+
         public bool broker { get; set; }
 
         public bool dealer { get; set; }

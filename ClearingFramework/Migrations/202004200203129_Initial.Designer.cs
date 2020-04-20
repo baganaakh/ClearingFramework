@@ -7,13 +7,13 @@ namespace ClearingFramework.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class deleteactiv : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(deleteactiv));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "202004170957350_delete activ"; }
+            get { return "202004200203129_Initial"; }
         }
         
         string IMigrationMetadata.Source

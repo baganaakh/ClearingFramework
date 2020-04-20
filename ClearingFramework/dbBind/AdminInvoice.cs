@@ -10,7 +10,13 @@ namespace ClearingFramework.dbBind
     {
         [Key]
         [Column(Order = 0)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long id { get; set; }
+
+        [Key]
+        [Column(Order = 1)]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long invoiceno { get; set; }
 
         public long? boardid { get; set; }
 
@@ -33,12 +39,6 @@ namespace ClearingFramework.dbBind
         public decimal? fee { get; set; }
 
         public DateTime? modified { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long invoiceno { get; set; }        
 
         [Column(TypeName = "date")]
         public DateTime? invoicedate { get; set; }

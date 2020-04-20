@@ -107,16 +107,16 @@ namespace ClearingFramework
                         accountId = adac.id,
                     };
                     db.AdminAccountDetails.Add(adacd);
-                    //AdminActiveSession aacs = new AdminActiveSession()
-                    //{                        
-                    //    isactive = "1",
-                    //    starttime = time,
-                    //    endtime =new TimeSpan(2,2,2),
-                    //    tduration = (new TimeSpan(1, 1, 1)),
-                    //    matched = 6,
-                    //    state = "1",
-                    //};
-                    //db.AdminActiveSessions.Add(aacs);
+                    AdminActiveSession aacs = new AdminActiveSession()
+                    {
+                        isactive = "1",
+                        starttime = time,
+                        endtime = new TimeSpan(2, 2, 2),
+                        tduration = (new TimeSpan(1, 1, 1)),
+                        matched = 6,
+                        state = "1",
+                    };
+                    db.AdminActiveSessions.Add(aacs);
                     AdminAsset ast = new AdminAsset()
                     {
                         code = "amd",
