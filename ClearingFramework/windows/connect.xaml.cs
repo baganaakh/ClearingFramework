@@ -75,8 +75,19 @@ namespace ClearingFramework
                         pozFee = Convert.ToDecimal(0.68),
                         memId = 1,
                         bank = 1,
+                        linkAcc="1",
                     };
                     db.Accounts.Add(acct);
+                    AccountDetail accountDetail = new AccountDetail()
+                    {
+                        freezeValue = 12,
+                        totalNumber = 55,
+                        assetId = 1,
+                        accNum = "1",
+                        linkAcc = "1",
+                        modified = DateTime.Now,
+                    };
+                    db.AccountDetails.Add(accountDetail);
                     AdminUser au = new AdminUser()
                     {
                         uname = "baganaakh",
@@ -90,7 +101,7 @@ namespace ClearingFramework
                     {
                         memberid = 1,
                         accNumber = "1",
-                        accountType = 1,
+                        accountType = 3,
                         LinkAccount = 1,
                         modified = DateTime.Now,
                         mask = "mask",
@@ -180,6 +191,57 @@ namespace ClearingFramework
                     {
 
                     };
+                    AdminMember adme = new AdminMember()
+                    {
+                        type = 1,
+                        code = "fg",
+                        state = 1,
+                        modified = DateTime.Now,
+                        partid = 1,
+                        mask = "dsa",
+                        startdate = DateTime.Now,
+                        enddate = DateTime.Now,
+                        broker = true,
+                        dealer = true,
+                        ander = true,
+                        nominal = true,
+                        linkMember = 1,
+                        name = "dasda",
+                    };
+                    AdminMember adme2 = new AdminMember()
+                    {
+                        type = 2,
+                        code = "fg",
+                        state = 2,
+                        modified = DateTime.Now,
+                        partid = 2,
+                        mask = "dsa",
+                        startdate = DateTime.Now,
+                        enddate = DateTime.Now,
+                        broker = true,
+                        dealer = true,
+                        ander = true,
+                        nominal = true,
+                        linkMember = 2,
+                        name = "dasda2",
+                    };
+                    db.AdminMembers.Add(adme2);
+                    Adminmtype adminmtype = new Adminmtype()
+                    {
+                        mtype="Арилжаа",
+                        minValue=50,
+                    };
+                    db.Adminmtypes.Add(adminmtype);
+                    AdminInterest adin = new AdminInterest()
+                    {
+                        interest=13,
+                        assetid=1,
+                        repoInterset=4,
+                        loanInterset=5,
+                        maxValue=6,
+                        minValue=2,
+                    };
+                    db.AdminInterests.Add(adin);
                     db.SaveChanges();
                     var query = db.AdminUsers.Where(s => s.uname == "baganaakh").FirstOrDefault<AdminUser>();
                     MessageBox.Show(query.role);

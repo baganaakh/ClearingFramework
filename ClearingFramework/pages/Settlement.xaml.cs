@@ -200,7 +200,6 @@ namespace Clearing.pages
             }
         }
         #endregion
-
         #region bulk insert from datatable
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {

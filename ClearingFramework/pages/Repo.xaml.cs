@@ -268,7 +268,7 @@ namespace Clearing.pages
             }
             int days1 = Convert.ToInt32(days.Content);
             var Interst = CE.AdminInterests.Where(s => s.assetid == assId).FirstOrDefault<AdminInterest>();
-            decimal Interst1 =Convert.ToDecimal( Interst.interest);
+            decimal Interst1 =Convert.ToDecimal(Interst.interest);
             inter = Convert.ToDecimal(TotalSum.Text) * days1 * Interst1;
             Inter.Text = inter.ToString("0.##");
             toPay = Convert.ToDecimal(TotalSum.Text) + Convert.ToDecimal(Inter.Text);

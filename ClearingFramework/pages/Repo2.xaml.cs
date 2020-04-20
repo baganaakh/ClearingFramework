@@ -40,10 +40,11 @@ namespace Clearing.pages
         private void bindCombo()
         {
             assett.ItemsSource = CE.AdminAssets.ToList();
-            asset2.ItemsSource = CE.AdminAssets.SqlQuery("select * from AdminAssets" +
-                " where id= any (select assetId from Clearing.dbo.AccountDetails t1 " +
-                "inner join Clearing.dbo.account t2 on t1.accNum = t2.accNum " +
-                "where t2.memId = "+memid+" )").ToList<AdminAsset>();
+            var ast2= CE.AdminAssets.SqlQuery("select * from AdminAssets" +
+                " where id= any (select assetId from model1.dbo.AccountDetails t1 " +
+                "inner join model1.dbo.account t2 on t1.accNum = t2.accNum " +
+                "where t2.memId = " + memid + " )").ToList<AdminAsset>();
+            asset2.ItemsSource = ast2;
             var memlist = CE.AdminMembers.ToList();
             var rem = memlist.Find(x => x.id == memid);
             memlist.Remove(rem);
@@ -155,8 +156,8 @@ namespace Clearing.pages
             price2 =Convert.ToDecimal(ast2.price);
             ast2price.Text = price.ToString();
             var ast = CE.AccountDetails.SqlQuery("" +
-                "select * from Clearing.dbo.AccountDetails t1 " +
-                "inner join Clearing.dbo.account t2 on t1.accNum =t2 .accNum " +
+                "select * from model1.dbo.AccountDetails t1 " +
+                "inner join model1.dbo.account t2 on t1.accNum =t2 .accNum " +
                 "where t2.memId = " + memid + " and t1.assetId=" + ast2.id + "").FirstOrDefault<AccountDetail>();
             remain.Text = Convert.ToInt32(ast.totalNumber).ToString();
         }

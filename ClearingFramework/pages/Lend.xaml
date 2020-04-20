@@ -294,7 +294,7 @@
                         <ComboBoxItem>Буцаах</ComboBoxItem>
                     </ComboBox>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="397,47,0,0" TextWrapping="Wrap" Text="Өдөр" Width="36" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox TextChanged="day_TextChanged" IsEnabled="False" PreviewTextInput="qtyss_PreviewTextInput" x:Name="day" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="450,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                    <TextBox TextChanged="day_TextChanged" PreviewTextInput="qtyss_PreviewTextInput" x:Name="day" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="450,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
