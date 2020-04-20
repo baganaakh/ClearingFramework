@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="730" d:DesignWidth="874"
-      Title="Lend">
+      Title="Lend" >
     <Page.Resources>
         <Style TargetType="ScrollBar">
             <Setter Property="Background" Value="#FFE4DCE4" />
@@ -220,7 +220,7 @@
     </Page.Resources>
     <Grid Background="#14501B4A">
         <TabControl Margin="10,10,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11" Height="123" VerticalAlignment="Top">
-            <TabItem Header="Барьцаа байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White" Margin="-2,0,2,0">
+            <TabItem Header="Барьцаа байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="10" Foreground="White" Margin="-2,0,2,0">
                 <Grid Background="White">
                     <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="53" Width="4" Background="#FF7B5477"/>
                     <Button Click="Илгээх_Click" Content="Илгээх" Margin="0,10,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
@@ -280,7 +280,7 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBox x:Name="collateralValue" IsReadOnly="True" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="650,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
+                    <TextBox x:Name="collateralValue" IsReadOnly="True" Background="{x:Null}" HorizontalAlignment="Left" Height="20" Margin="651,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Text="...">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
