@@ -97,9 +97,13 @@
         <TabControl Margin="10,10,10,4" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Нэгдсэн дансны үлдэгдэл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="41*"/>
+                        <ColumnDefinition Width="386*"/>
+                    </Grid.ColumnDefinitions>
                     <DataGrid x:Name="unitedData" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" HorizontalGridLinesBrush="White" 
                               AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" FontSize="10" RenderTransformOrigin="0.5,0.5" 
-                              Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False">
+                              Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
                             <DataGridTextColumn MinWidth="100" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Эхний үлдэгдэл ₮"/>
@@ -110,16 +114,16 @@
                             <DataGridTextColumn MinWidth="80" Width ="*"  Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="19,10,0,0" TextWrapping="Wrap" Text="Нэгдсэн данс #" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="111,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="19,10,0,0" TextWrapping="Wrap" Text="Нэгдсэн данс #" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="28.565,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Grid.Column="1">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="210,10,0,0" TextWrapping="Wrap" Text="Брокер" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="285,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="127.565,10,0,0" TextWrapping="Wrap" Text="Брокер" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="202.565,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0" Grid.Column="1">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>

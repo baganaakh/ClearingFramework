@@ -4,11 +4,5 @@
              xmlns:local="clr-namespace:ClearingFramework"
              StartupUri="windows/Login.xaml">
     <Application.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>                
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-
     </Application.Resources>
 </Application>

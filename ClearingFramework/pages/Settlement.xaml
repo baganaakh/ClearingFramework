@@ -3,11 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="730" d:DesignWidth="874"
-      Title="Settlement"
-      FontSize="10">
+      Title="Settlement">
     <Page.Resources>
         <Style TargetType="ScrollBar">
             <Setter Property="Background" Value="#FFE4DCE4" />
@@ -274,10 +272,10 @@
             <ComboBox Name="transType" HorizontalAlignment="Left" Height="20" Margin="22,53,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="2">
                 <ComboBoxItem Content="Банкаар"></ComboBoxItem>
                 <ComboBoxItem Content="Бэлнээр"></ComboBoxItem>
+                
             </ComboBox>
 
-            <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="24" Margin="22,90,0,0" TextWrapping="Wrap" Width="230" Background="#FFE9E5E9" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" FontStyle="Italic"  VerticalAlignment="Top" Grid.Column="2"
-                     materialDesign:HintAssist.Hint=" Гүйлгээний утга">
+            <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="24" Margin="22,90,0,0" TextWrapping="Wrap" Width="230" Background="#FFE9E5E9" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" FontStyle="Italic"  VerticalAlignment="Top" Grid.Column="2">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>

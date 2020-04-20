@@ -42,9 +42,12 @@ namespace ClearingFramework
             if (this.WindowState == WindowState.Maximized)
             {
                 this.WindowState = WindowState.Normal;
+                resizebtn.Content = FindResource("mini");
             }
             else
             {
+                resizebtn.Background = null;
+                resizebtn.Content = FindResource("maxi");
                 this.WindowState = WindowState.Maximized;
             }
         }

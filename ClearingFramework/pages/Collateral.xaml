@@ -220,7 +220,7 @@
     </Page.Resources>
     <Grid Background="#14501B4A">
         <TabControl Margin="10,10,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11" Height="102" VerticalAlignment="Top">
-            <TabItem Header="Барьцаа байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="10" Foreground="White" Margin="-2,0,2,0">
+            <TabItem Header="Барьцаа байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White" Margin="-2,0,2,0">
                 <Grid Background="White">
                     <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="53" Width="4" Background="#FF7B5477"/>
                     <Button Click="Button_Click" Content="Илгээх" Margin="0,10,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
@@ -254,7 +254,7 @@
                     <Label Content="Label" Margin="0,10,112,0" VerticalAlignment="Top" Height="53" HorizontalAlignment="Right" Width="4" Background="#FF7B5477"/>
                     <Label Content="Label" Margin="229,14,0,0" VerticalAlignment="Top" Height="53" Background="#FF7B5477" HorizontalAlignment="Left" Width="4"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="240,14,0,0" TextWrapping="Wrap" Text="Жишиг үнэ ₮" Width="73" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="540,39,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="106" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="540,39,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="106" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="19,41,0,0" TextWrapping="Wrap" Text="Барьцааны хөрөнгө" Width="115" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="540,14,0,0" TextWrapping="Wrap" Text="Барьцаалах хэмжээ" Width="106" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox TextChanged="qtyss_TextChanged" IsEnabled="False" PreviewTextInput="qtyss_PreviewTextInput" x:Name="qtyss" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="650,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
