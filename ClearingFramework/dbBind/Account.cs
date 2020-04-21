@@ -54,7 +54,7 @@
         public decimal? pozFee { get; set; }
 
         public int? memId { get; set; }
-        public int bank { get; set; }
+        public int? bank { get; set; }
         public string bankName { get 
             {
                 string bname;

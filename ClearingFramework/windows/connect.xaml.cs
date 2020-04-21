@@ -55,6 +55,7 @@ namespace ClearingFramework
                     int hour = now.Hour, minute = now.Minute, second = now.Second;
                     TimeSpan time = new TimeSpan(hour, minute, second);
                     db.Database.CreateIfNotExists();
+                    
                     Account acct = new Account
                     {
                         accNum = "1",
@@ -90,7 +91,7 @@ namespace ClearingFramework
                         uname = "baganaakh",
                         password = "baganaakh",
                         modified = DateTime.Now,
-                        role = "user",
+                        role = "Done",
                         memId = 1
                     };
                     db.AdminUsers.Add(au);

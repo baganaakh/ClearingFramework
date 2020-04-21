@@ -13,7 +13,7 @@ namespace ClearingFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202004200203129_Initial"; }
+            get { return "202004210811094_Initial"; }
         }
         
         string IMigrationMetadata.Source

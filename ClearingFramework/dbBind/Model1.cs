@@ -4,12 +4,14 @@ namespace ClearingFramework.dbBind
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
-    using System.Windows;
+    using System.Windows;    
+
     public partial class Model1 : DbContext
     {
         public Model1()
             : base("name=Model1")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Model1, ClearingFramework.Migrations.Configuration>());
         }
 
         public virtual DbSet<Account> Accounts { get; set; }

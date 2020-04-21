@@ -32,7 +32,7 @@
     <InstallUrl>https://raw.githubusercontent.com/baganaakh/publishClearing/master/</InstallUrl>
     <PublisherName>baganaakh</PublisherName>
     <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -171,21 +171,9 @@
     <Compile Include="dbBind\pozit.cs" />
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
-    <Compile Include="Migrations\202004200203129_Initial.cs" />
-    <Compile Include="Migrations\202004200203129_Initial.designer.cs">
-      <DependentUpon>202004200203129_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004200257513_add adminactivesession.cs" />
-    <Compile Include="Migrations\202004200257513_add adminactivesession.designer.cs">
-      <DependentUpon>202004200257513_add adminactivesession.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004200300453_shit why no create.cs" />
-    <Compile Include="Migrations\202004200300453_shit why no create.designer.cs">
-      <DependentUpon>202004200300453_shit why no create.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004200309271_wish add table.cs" />
-    <Compile Include="Migrations\202004200309271_wish add table.designer.cs">
-      <DependentUpon>202004200309271_wish add table.cs</DependentUpon>
+    <Compile Include="Migrations\202004210811094_Initial.cs" />
+    <Compile Include="Migrations\202004210811094_Initial.designer.cs">
+      <DependentUpon>202004210811094_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="pages\Repo2.xaml.cs">
@@ -301,17 +289,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="pics\mini2.png" />
-    <EmbeddedResource Include="Migrations\202004200203129_Initial.resx">
-      <DependentUpon>202004200203129_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004200257513_add adminactivesession.resx">
-      <DependentUpon>202004200257513_add adminactivesession.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004200300453_shit why no create.resx">
-      <DependentUpon>202004200300453_shit why no create.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004200309271_wish add table.resx">
-      <DependentUpon>202004200309271_wish add table.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004210811094_Initial.resx">
+      <DependentUpon>202004210811094_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
