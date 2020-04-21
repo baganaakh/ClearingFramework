@@ -80,7 +80,7 @@ namespace Clearing.pages
             {
                 int iid = item.id;
                 decimal eprice = Convert.ToDecimal(item.price) / 100;
-                decimal ratio = item.ratio;
+                decimal ratio =Convert.ToDecimal(item.ratio);
                 decimal lastPrice = ratio * eprice;
                 exPrice.Text = lastPrice.ToString("0.##");
             }

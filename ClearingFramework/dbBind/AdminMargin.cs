@@ -11,20 +11,20 @@ namespace ClearingFramework.dbBind
         [Key]
         public long contractId { get; set; }
 
-        public decimal buy { get; set; }
+        public decimal? buy { get; set; }
 
-        public decimal sell { get; set; }
+        public decimal? sell { get; set; }
 
-        public short buytype { get; set; }
+        public short? buytype { get; set; }
 
-        public short selltype { get; set; }
+        public short? selltype { get; set; }
 
-        public DateTime modified { get; set; }
+        public DateTime? modified { get; set; }
 
-        public decimal mbuy { get; set; }
+        public decimal? mbuy { get; set; }
 
-        public decimal msell { get; set; }
+        public decimal? msell { get; set; }
 
-        public long coid { get; set; }
+        public long? coid { get; set; }
     }
 }

@@ -47,7 +47,7 @@ namespace Clearing.pages
                 Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
 
-                decimal ratio = asst.ratio;
+                decimal ratio = Convert.ToDecimal(asst.ratio);
                 decimal qty = Convert.ToDecimal(items.amount);
                 decimal totval = qty * (ratio * price);
                 ForGrid data = new ForGrid()
@@ -79,7 +79,7 @@ namespace Clearing.pages
                 Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
 
-                decimal ratio = asst.ratio;
+                decimal ratio = Convert.ToDecimal(asst.ratio);
                 decimal qty = Convert.ToDecimal(items.qty);
                 decimal totval = qty * (ratio * price);
                 ForGrid data = new ForGrid()
@@ -109,7 +109,7 @@ namespace Clearing.pages
                                   }
                 AdminAsset asst = ce.AdminAssets.Where(s => s.id == adet.assetId).FirstOrDefault<AdminAsset>();
                 decimal price= Convert.ToDecimal(asst.price);
-                decimal jish = asst.ratio * price;
+                decimal jish = Convert.ToDecimal(asst.ratio * price);
                 decimal tot = Convert.ToDecimal(adet.totalNumber * jish);
                 Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 1).FirstOrDefault<Adminmtype>();
                 int minval = Convert.ToInt32(mty.minValue);
@@ -219,7 +219,7 @@ namespace Clearing.pages
             {
                 int iid = item.id;
                 decimal eprice =Convert.ToDecimal(item.price)/ 100;
-                decimal ratio = item.ratio;
+                decimal ratio = Convert.ToDecimal(item.ratio);
                 decimal lastPrice = ratio * eprice;
                 exPrice.Text = lastPrice.ToString("0.##");
             }

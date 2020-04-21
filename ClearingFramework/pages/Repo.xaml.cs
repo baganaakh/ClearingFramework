@@ -243,7 +243,7 @@ namespace Clearing.pages
             try
             {
                 int iid = item.id;
-                decimal ratio = item.ratio;
+                decimal ratio = Convert.ToDecimal(item.ratio);
                 decimal lastPrice = ratio * eprice;
                 possible.Text = (lastPrice * sum).ToString("0.##");
                 exPrice.Text = lastPrice.ToString("0.##");

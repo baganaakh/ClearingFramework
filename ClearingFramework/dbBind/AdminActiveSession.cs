@@ -11,18 +11,18 @@
         [Key]
         public int id { get; set; }
 
-        public int sessionid { get; set; }
+        public int? sessionid { get; set; }
 
         [StringLength(10)]
         public string isactive { get; set; }
 
-        public TimeSpan starttime { get; set; }
+        public TimeSpan? starttime { get; set; }
 
-        public TimeSpan endtime { get; set; }
+        public TimeSpan? endtime { get; set; }
 
-        public TimeSpan tduration { get; set; }
+        public TimeSpan? tduration { get; set; }
 
-        public int matched { get; set; }
+        public int? matched { get; set; }
 
         [StringLength(10)]
         public string state { get; set; }

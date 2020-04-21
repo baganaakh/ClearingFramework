@@ -14,15 +14,15 @@ namespace ClearingFramework.dbBind
         [StringLength(50)]
         public string name { get; set; }
 
-        public short type { get; set; }
+        public short? type { get; set; }
 
         [Required]
         [StringLength(128)]
         public string tdays { get; set; }
 
-        public short state { get; set; }
+        public short? state { get; set; }
 
-        public DateTime modified { get; set; }
+        public DateTime? modified { get; set; }
 
         [Required]
         [StringLength(1024)]

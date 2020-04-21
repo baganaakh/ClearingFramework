@@ -18,19 +18,19 @@ namespace ClearingFramework.dbBind
         [StringLength(50)]
         public string name { get; set; }
 
-        public int volume { get; set; }
+        public int? volume { get; set; }
 
         public string note { get; set; }
 
         [Column(TypeName = "datetime2")]
-        public DateTime expireDate { get; set; }
+        public DateTime? expireDate { get; set; }
 
-        public short state { get; set; }
+        public short? state { get; set; }
 
         [Column(TypeName = "datetime2")]
-        public DateTime modified { get; set; }
+        public DateTime? modified { get; set; }
 
-        public decimal ratio { get; set; }
+        public decimal? ratio { get; set; }
 
         public decimal? price { get; set; }
     }
