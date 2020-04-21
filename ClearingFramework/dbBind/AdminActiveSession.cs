@@ -11,7 +11,7 @@
         [Key]
         public int id { get; set; }
 
-        public int? sessionid { get; set; }
+        public int sessionid { get; set; }
 
         [StringLength(10)]
         public string isactive { get; set; }

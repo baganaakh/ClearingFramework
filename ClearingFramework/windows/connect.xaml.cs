@@ -118,6 +118,7 @@ namespace ClearingFramework
                     db.AdminAccountDetails.Add(adacd);
                     AdminActiveSession aacs = new AdminActiveSession()
                     {
+                        sessionid=5,
                         isactive = "1",
                         starttime = time,
                         endtime = new TimeSpan(2, 2, 2),
