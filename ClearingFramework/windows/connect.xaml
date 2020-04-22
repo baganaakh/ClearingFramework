@@ -56,7 +56,7 @@
     </Window.Resources>
     <Grid Background="#FF501B4A" >
         <StackPanel Height="730" VerticalAlignment="Top" HorizontalAlignment="Center" MinWidth="874">
-            <Grid Height="500" Width="414" Margin="0,15,0,0" Background="#33FFFFFF">
+            <Grid Height="563" Width="414" Margin="0,15,0,0" Background="#33FFFFFF">
                 <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="106,243,106,0" BorderThickness="0" Height="53" Width="202" CornerRadius="4,4,4,4" Background="White" >
                     <TextBox x:Name="databases" Text="test" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="162" Tag="database" Margin="10,10,30,11"/>
                 </Border>
@@ -91,6 +91,13 @@
                     </Button.Resources>
                 </Button>
                 <Button x:Name="uselocal" Click="uselocal_Click" Content="Use Local" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="106,437,106,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="DeleteDB" Click="DeleteDB_Click" Content="Delete local Db" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="106,496,106,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="4,4,4,4"/>

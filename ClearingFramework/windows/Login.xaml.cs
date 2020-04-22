@@ -63,7 +63,7 @@ namespace ClearingFramework
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
             }
         }

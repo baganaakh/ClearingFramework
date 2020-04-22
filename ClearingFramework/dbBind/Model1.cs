@@ -11,6 +11,7 @@ namespace ClearingFramework.dbBind
         public Model1()
             : base("name=Model1")
         {
+            //this.Database.Connection.ConnectionString = @"data source=(LocalDB)\v11.0;Initial catalog=Model1;MultipleActiveResultSets=True;App=EntityFramework;Pooling=false;User ID=sa;Password=Qwerty123456";
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Model1, ClearingFramework.Migrations.Configuration>());
         }
         

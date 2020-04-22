@@ -248,10 +248,34 @@ namespace ClearingFramework
 
             catch (Exception ex)
                 {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
                 }
 
+        }
+
+        private void DeleteDB_Click(object sender, RoutedEventArgs e)
+        {
+            if (server.Text == "accept" && username.Text == "delete" && ssd.Text == "localdb" && databases.Text == "confirm")
+            {
+                try
+                {
+                    using (var dbconx = new DbContext("Model1"))
+                    {
+                        dbconx.Database.Delete();
+                    };
+                    MessageBox.Show("Done 😀");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Secret text wrong !!!! try again");
+            }
         }
     }
 

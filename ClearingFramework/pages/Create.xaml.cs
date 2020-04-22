@@ -296,7 +296,7 @@ namespace Clearing.pages
                 }
                 catch (Exception exx)
                 {
-                    MessageBox.Show(exx.ToString());
+                    MessageBox.Show(exx.Message.ToString());
                     throw;
                 }
                 var exist = (from s in CE.Accounts where s.accNum == accNumber select s).FirstOrDefault<Account>();
@@ -375,7 +375,7 @@ namespace Clearing.pages
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show(ex.Message.ToString());
                     }
                 }
             }
