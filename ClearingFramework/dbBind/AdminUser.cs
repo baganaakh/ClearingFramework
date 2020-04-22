@@ -10,18 +10,15 @@ namespace ClearingFramework.dbBind
     {
         public int id { get; set; }
 
-        [Required]
         [StringLength(30)]
         public string uname { get; set; }
 
-        [Required]
         [StringLength(30)]
         public string password { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime modified { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string role { get; set; }
 

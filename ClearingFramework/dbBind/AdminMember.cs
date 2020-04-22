@@ -12,7 +12,6 @@ namespace ClearingFramework.dbBind
 
         public short? type { get; set; }
 
-        [Required]
         [StringLength(2)]
         public string code { get; set; }
 

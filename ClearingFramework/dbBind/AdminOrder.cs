@@ -28,7 +28,7 @@ namespace ClearingFramework.dbBind
         public short? state { get; set; }
 
         [Column(TypeName = "datetime2")]
-        public DateTime modified { get; set; }
+        public DateTime? modified { get; set; }
 
         public short? dealType { get; set; }
 

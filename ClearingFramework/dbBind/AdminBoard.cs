@@ -16,7 +16,6 @@ namespace ClearingFramework.dbBind
 
         public short? type { get; set; }
 
-        [Required]
         [StringLength(128)]
         public string tdays { get; set; }
 
@@ -24,7 +23,6 @@ namespace ClearingFramework.dbBind
 
         public DateTime? modified { get; set; }
 
-        [Required]
         [StringLength(1024)]
         public string description { get; set; }
 

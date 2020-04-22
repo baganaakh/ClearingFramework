@@ -13,7 +13,7 @@ namespace ClearingFramework.dbBind
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Model1, ClearingFramework.Migrations.Configuration>());
         }
-
+        
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<AdminAccount> AdminAccounts { get; set; }
@@ -334,6 +334,7 @@ namespace ClearingFramework.dbBind
             modelBuilder.Entity<transaction>()
                 .Property(e => e.value)
                 .HasPrecision(18, 4);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

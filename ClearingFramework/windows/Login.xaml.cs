@@ -31,10 +31,6 @@ namespace ClearingFramework
             var ver = Assembly.GetExecutingAssembly().GetName().Version;
             string version ="Login  Version: "+ ver.Major + "." + ver.Minor + "." + ver.Build + "." + ver.Revision;
             this.Title = vers;
-            using(Model1 db=new Model1())
-            {
-                
-            }
         }
             
 

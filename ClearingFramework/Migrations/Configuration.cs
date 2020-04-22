@@ -9,7 +9,8 @@
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            ContextKey = "Model1";
         }
 
         protected override void Seed(ClearingFramework.dbBind.Model1 context)

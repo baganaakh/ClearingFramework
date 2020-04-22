@@ -27,7 +27,7 @@ namespace ClearingFramework
             string userName = username.Text;
             string DBpassword = ssd.Text;
             string databaseName = databases.Text;
-            string providerName = "System.Data.SqlClient";
+            //string providerName = "System.Data.SqlClient";
             string entityBuilder= "Data source="+serverName+";initial catalog="+databaseName+";;MultipleActiveResultSets=True;App=EntityFramework";
             config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = entityBuilder;
             config.Save(ConfigurationSaveMode.Modified);
@@ -50,12 +50,7 @@ namespace ClearingFramework
             try
             {
                 using(var db = new Model1())
-                {
-                    DateTime now = DateTime.Now;
-                    int hour = now.Hour, minute = now.Minute, second = now.Second;
-                    TimeSpan time = new TimeSpan(hour, minute, second);
-                    db.Database.CreateIfNotExists();
-                    
+                {              
                     Account acct = new Account
                     {
                         accNum = "1",
@@ -118,9 +113,9 @@ namespace ClearingFramework
                     db.AdminAccountDetails.Add(adacd);
                     AdminActiveSession aacs = new AdminActiveSession()
                     {
-                        sessionid=5,
+                        sessionid = 5,
                         isactive = "1",
-                        starttime = time,
+                        starttime = new TimeSpan(3,3,3),
                         endtime = new TimeSpan(2, 2, 2),
                         tduration = (new TimeSpan(1, 1, 1)),
                         matched = 6,

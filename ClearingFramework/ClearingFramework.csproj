@@ -32,7 +32,7 @@
     <InstallUrl>https://raw.githubusercontent.com/baganaakh/publishClearing/master/</InstallUrl>
     <PublisherName>baganaakh</PublisherName>
     <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>24</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -171,14 +171,6 @@
     <Compile Include="dbBind\pozit.cs" />
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
-    <Compile Include="Migrations\202004210811094_Initial.cs" />
-    <Compile Include="Migrations\202004210811094_Initial.designer.cs">
-      <DependentUpon>202004210811094_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004210923425_allownulls.cs" />
-    <Compile Include="Migrations\202004210923425_allownulls.designer.cs">
-      <DependentUpon>202004210923425_allownulls.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="pages\Repo2.xaml.cs">
       <DependentUpon>Repo2.xaml</DependentUpon>
@@ -293,12 +285,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="pics\mini2.png" />
-    <EmbeddedResource Include="Migrations\202004210811094_Initial.resx">
-      <DependentUpon>202004210811094_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004210923425_allownulls.resx">
-      <DependentUpon>202004210923425_allownulls.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
