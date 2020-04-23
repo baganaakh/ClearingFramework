@@ -108,6 +108,11 @@ namespace Clearing.pages
                                     return;
                                   }
                 AdminAsset asst = ce.AdminAssets.Where(s => s.id == adet.assetId).FirstOrDefault<AdminAsset>();
+                if(asst == null)
+                {
+                    MessageBox.Show("Дансны дугаарууд Үц байхгүй байна");
+                    return;
+                }
                 decimal price= Convert.ToDecimal(asst.price);
                 decimal jish = Convert.ToDecimal(asst.ratio * price);
                 decimal tot = Convert.ToDecimal(adet.totalNumber * jish);

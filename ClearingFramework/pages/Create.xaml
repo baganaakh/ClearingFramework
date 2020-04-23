@@ -241,84 +241,6 @@
         </Grid.RowDefinitions>
         <GridSplitter HorizontalAlignment="Stretch" Grid.Row="1" Background="#BF501B4A"/>
         <GridSplitter HorizontalAlignment="Stretch" Grid.Row="2" Background="#BF501B4A" Margin="0,461,0,10"/>
-        <TabControl Grid.Row="2" Margin="10,4,10,21" x:Name="tabcontrol" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
-            <TabItem Header="Нэгдсэн дансны мэдээлэл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
-                <Grid Margin="0,0,-4,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="197*"/>
-                        <ColumnDefinition Width="657*"/>
-                    </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="vwOmniAccBalance" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
-                              CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
-                              FontSize="11" RenderTransformOrigin="0.5,0.5" CanUserDeleteRows="True" CanUserReorderColumns="False" BorderThickness="0" 
-                              EnableRowVirtualization="False"  HorizontalScrollBarVisibility="Disabled"
-                              ItemsSource="{Binding}"
-                              AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" Margin="0,39,0,0" Grid.ColumnSpan="2" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="10" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding lname}" ClipboardContentBinding="{x:Null}" Header="Овог" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding fname}" ClipboardContentBinding="{x:Null}" Header="Нэр" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding idNum}" ClipboardContentBinding="{x:Null}" Header="РД" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding phone}" ClipboardContentBinding="{x:Null}" Header="Утас" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding mail}" ClipboardContentBinding="{x:Null}" Header="Email" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding linkAcc}" ClipboardContentBinding="{x:Null}" Header="холбох данс" IsReadOnly="False"/>
-                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding brokerCode}" ClipboardContentBinding="{x:Null}" Header="Брокерийн код" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding secAcc}" ClipboardContentBinding="{x:Null}" Header="ҮЦТХТ данс" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding bankName}" ClipboardContentBinding="{x:Null}" Header="Банк" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding bankAccName}" ClipboardContentBinding="{x:Null}" Header="Банкны дансны нэр" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding bankAccount}" ClipboardContentBinding="{x:Null}" Header="Банкны данс" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button Margin="0,5,10,0" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"  Click="Button_Click_8" Foreground="White" Grid.Column="1">
-                        <Button.Background>
-                            <ImageBrush ImageSource="/pics/reload.png" Stretch="Uniform" Opacity="0.8"/>
-                        </Button.Background>
-                    </Button>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="0,10,0,0" TextWrapping="Wrap" Text="Хуваарилах үлдэгдэл ₮" Width="133" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="138,10,0,0" TextWrapping="Wrap" Text="..." Width="109" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="55,10,0,0" TextWrapping="Wrap" Text="Хуваарилсан үлдэгдэл ₮" Width="145" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="205,10,0,0" TextWrapping="Wrap" Text="..." Width="109" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Exceldata" Name="exceltab" BorderThickness="0,0,0,0" IsEnabled="False" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
-                <Grid Margin="0,0,-4,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="13*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <DataGrid x:Name="exceldata" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
-                              CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
-                              FontSize="11" RenderTransformOrigin="0.5,0.5" CanUserDeleteRows="True" CanUserReorderColumns="False" BorderThickness="0" 
-                              EnableRowVirtualization="False" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled"
-                              ItemsSource="{Binding}"
-                               ScrollViewer.CanContentScroll="True" Margin="0,10,0,29" CanUserAddRows="False" Grid.ColumnSpan="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Width="50" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding idNum}" ClipboardContentBinding="{x:Null}" Header="РД" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding lname}" ClipboardContentBinding="{x:Null}" Header="Овог" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding fname}" ClipboardContentBinding="{x:Null}" Header="Нэр" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding phone}" ClipboardContentBinding="{x:Null}" Header="Утас" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding mail}" ClipboardContentBinding="{x:Null}" Header="Email" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding linkAcc}" ClipboardContentBinding="{x:Null}" Header="холбох данс" IsReadOnly="False"/>
-                            <DataGridTextColumn Binding="{Binding brokerCode}" ClipboardContentBinding="{x:Null}" Header="Брокерийн код" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding secAcc}" ClipboardContentBinding="{x:Null}" Header="ҮЦТХТ данс" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding fee}" ClipboardContentBinding="{x:Null}" Header="Шимтгэл" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding denchinPercent}" ClipboardContentBinding="{x:Null}" Header="дэнчин хувь" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding contractFee}" ClipboardContentBinding="{x:Null}" Header="ContractFee" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding pozFee}" ClipboardContentBinding="{x:Null}" Header="PozFee" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding memId}" ClipboardContentBinding="{x:Null}" Header="memid" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
-            </TabItem>
-        </TabControl>
         <Grid Background="White" Margin="10,23,14,10">
             <Label Content="Label" HorizontalAlignment="Left" Margin="10,23,0,0" VerticalAlignment="Top" Height="166" Width="4" Background="#FF7B5477"/>
             <Label Content="Label" HorizontalAlignment="Left" Margin="209,19,0,0" VerticalAlignment="Top" Height="166" Width="4" Background="#FF7B5477"/>
@@ -357,7 +279,7 @@
                     </Style>
                 </Button.Resources>
             </Button>
-            <Button Click="Button_Click_4" Content="Шинэ" Margin="0,8,123,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="SeaGreen" Foreground="White">
+            <Button Click="ClearFields" Content="Шинэ" Margin="0,8,123,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="SeaGreen" Foreground="White">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="6,6,6,6"/>
@@ -517,5 +439,83 @@
                 </TextBox.Resources>
             </TextBox>
         </Grid>
+        <TabControl Grid.Row="2" Margin="10,4,10,21" x:Name="tabcontrol" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
+            <TabItem Header="Нэгдсэн дансны мэдээлэл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
+                <Grid Margin="0,0,-4,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="197*"/>
+                        <ColumnDefinition Width="657*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="vwOmniAccBalance" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                              CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
+                              FontSize="11" RenderTransformOrigin="0.5,0.5" CanUserDeleteRows="True" CanUserReorderColumns="False" BorderThickness="0" 
+                              EnableRowVirtualization="False"  HorizontalScrollBarVisibility="Disabled"
+                              ItemsSource="{Binding}"
+                              AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" Margin="0,39,0,0" Grid.ColumnSpan="2" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="10" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding lname}" ClipboardContentBinding="{x:Null}" Header="Овог" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding fname}" ClipboardContentBinding="{x:Null}" Header="Нэр" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding idNum}" ClipboardContentBinding="{x:Null}" Header="РД" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding phone}" ClipboardContentBinding="{x:Null}" Header="Утас" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding mail}" ClipboardContentBinding="{x:Null}" Header="Email" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding linkAcc}" ClipboardContentBinding="{x:Null}" Header="холбох данс" IsReadOnly="False"/>
+                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding brokerCode}" ClipboardContentBinding="{x:Null}" Header="Брокерийн код" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding secAcc}" ClipboardContentBinding="{x:Null}" Header="ҮЦТХТ данс" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding bankName}" ClipboardContentBinding="{x:Null}" Header="Банк" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding bankAccName}" ClipboardContentBinding="{x:Null}" Header="Банкны дансны нэр" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding bankAccount}" ClipboardContentBinding="{x:Null}" Header="Банкны данс" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Margin="0,5,10,0" HorizontalAlignment="Right" Width="24" Height="24" VerticalAlignment="Top"  Click="Button_Click_8" Foreground="White" Grid.Column="1">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/pics/reload.png" Stretch="Uniform" Opacity="0.8"/>
+                        </Button.Background>
+                    </Button>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="0,10,0,0" TextWrapping="Wrap" Text="Хуваарилах үлдэгдэл ₮" Width="133" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="138,10,0,0" TextWrapping="Wrap" Text="..." Width="109" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="55,10,0,0" TextWrapping="Wrap" Text="Хуваарилсан үлдэгдэл ₮" Width="145" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="205,10,0,0" TextWrapping="Wrap" Text="..." Width="109" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Exceldata" Name="exceltab" BorderThickness="0,0,0,0" IsEnabled="False" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
+                <Grid Margin="0,0,-4,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="13*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <DataGrid x:Name="exceldata" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                              CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
+                              FontSize="11" RenderTransformOrigin="0.5,0.5" CanUserDeleteRows="True" CanUserReorderColumns="False" BorderThickness="0" 
+                              EnableRowVirtualization="False" AutoGenerateColumns="False" HorizontalScrollBarVisibility="Disabled"
+                              ItemsSource="{Binding}"
+                               ScrollViewer.CanContentScroll="True" Margin="0,10,0,29" CanUserAddRows="False" Grid.ColumnSpan="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="50" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="Дансны дугаар" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding idNum}" ClipboardContentBinding="{x:Null}" Header="РД" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding lname}" ClipboardContentBinding="{x:Null}" Header="Овог" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding fname}" ClipboardContentBinding="{x:Null}" Header="Нэр" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding phone}" ClipboardContentBinding="{x:Null}" Header="Утас" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding mail}" ClipboardContentBinding="{x:Null}" Header="Email" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding linkAcc}" ClipboardContentBinding="{x:Null}" Header="холбох данс" IsReadOnly="False"/>
+                            <DataGridTextColumn Binding="{Binding brokerCode}" ClipboardContentBinding="{x:Null}" Header="Брокерийн код" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Өөрчилсөн" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding secAcc}" ClipboardContentBinding="{x:Null}" Header="ҮЦТХТ данс" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding fee}" ClipboardContentBinding="{x:Null}" Header="Шимтгэл" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding denchinPercent}" ClipboardContentBinding="{x:Null}" Header="дэнчин хувь" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding contractFee}" ClipboardContentBinding="{x:Null}" Header="ContractFee" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding pozFee}" ClipboardContentBinding="{x:Null}" Header="PozFee" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding memId}" ClipboardContentBinding="{x:Null}" Header="memid" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

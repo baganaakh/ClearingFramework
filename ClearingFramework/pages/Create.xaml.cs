@@ -31,7 +31,7 @@ namespace Clearing.pages
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string pcode;
         #region fill, new & refresh
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void ClearFields(object sender, RoutedEventArgs e)
         {
             lName.Text = null;
             fName.Text = null;
@@ -96,6 +96,7 @@ namespace Clearing.pages
                 && linkAc.SelectedValue == null)
             {
                 MessageBox.Show("Combos are empty Please fill them");
+                return;
             }
             using (Model1 context = new Model1())
             {
@@ -109,43 +110,57 @@ namespace Clearing.pages
                 else
                 if (exist != 0)
                 {
-                    MessageBox.Show("Account number exists " + accountn.Text.ToString() + " !!!");
+                    MessageBox.Show("Дансны дугаар давтагдсан байна " + accountn.Text.ToString() + " !!!");
                     return;
                 }
-                Account acct = new Account
+                try
                 {
-                    accNum = accountn.Text,
-                    idNum = idNumber.Text,
-                    lname = lName.Text,
-                    fname = fName.Text,
-                    phone = phonee.Text,
-                    mail = email.Text,
-                    linkAcc = linkAc.SelectedValue.ToString(),
-                    brokerCode = pcode,
-                    state = Convert.ToInt16(stat.SelectedIndex),
-                    modified = DateTime.Now,
-                    secAcc = secAc.Text,
-                    fee = Convert.ToDecimal(fee.Text),
-                    denchinPercent = Convert.ToDecimal(denchinPercent.Text),
-                    contractFee = Convert.ToDecimal(contractFee.Text),
-                    pozFee = Convert.ToDecimal(pozfee.Text),
-                    memId = memId,
-                    bank=banks.SelectedIndex,
-                    bankAccount=bankaccount.Text,
-                    bankAccName=bankaccname.Text,
-                };
-                AccountDetail acd = new AccountDetail
+                    Account acct = new Account
+                    {
+                        accNum = accountn.Text,
+                        idNum = idNumber.Text,
+                        lname = lName.Text,
+                        fname = fName.Text,
+                        phone = phonee.Text,
+                        mail = email.Text,
+                        linkAcc = linkAc.SelectedValue.ToString(),
+                        brokerCode = pcode,
+                        state = Convert.ToInt16(stat.SelectedIndex),
+                        modified = DateTime.Now,
+                        secAcc = secAc.Text,
+                        fee = Convert.ToDecimal(fee.Text),
+                        denchinPercent = Convert.ToDecimal(denchinPercent.Text),
+                        contractFee = Convert.ToDecimal(contractFee.Text),
+                        pozFee = Convert.ToDecimal(pozfee.Text),
+                        memId = memId,
+                        bank = banks.SelectedIndex,
+                        bankAccount = bankaccount.Text,
+                        bankAccName = bankaccname.Text,
+                    };
+                    AccountDetail acd = new AccountDetail
+                    {
+                        freezeValue = 10,
+                        totalNumber = 0,
+                        accNum = accountn.Text,
+                        linkAcc = linkAc.SelectedValue.ToString(),
+                    };
+                    context.AccountDetails.Add(acd);                
+                    context.Accounts.Add(acct);
+                    context.SaveChanges();
+                }
+                catch (System.NullReferenceException)
                 {
-                    freezeValue = 10,
-                    totalNumber = 0,
-                    accNum = accountn.Text,
-                    linkAcc = linkAc.SelectedValue.ToString(),
-                };
-                context.AccountDetails.Add(acd);                
-                context.Accounts.Add(acct);
-                context.SaveChanges();
+                    MessageBox.Show("Талбар гүйцэд бөглөнө үү");
+                    return;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                    return;
+                }
                 FillGrid();
             }
+            ClearFields(null,null);
         }
         #endregion
         #region delete

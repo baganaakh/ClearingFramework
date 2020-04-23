@@ -275,7 +275,7 @@
                 
             </ComboBox>
 
-            <TextBox x:Name="trnote" HorizontalAlignment="Left" Height="24" Margin="22,90,0,0" TextWrapping="Wrap" Width="230" Background="#FFE9E5E9" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" FontStyle="Italic"  VerticalAlignment="Top" Grid.Column="2">
+            <TextBox x:Name="trnote" Tag="Гүйлгээний утга" HorizontalAlignment="Left" Height="24" Margin="22,90,0,0" TextWrapping="Wrap" Width="230" Background="#FFE9E5E9" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" FontStyle="Italic"  VerticalAlignment="Top" Grid.Column="2">
                 <TextBox.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="4,4,4,4"/>

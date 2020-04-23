@@ -11,6 +11,7 @@
         {
             AutomaticMigrationsEnabled = true;
             ContextKey = "Model1";
+            AutomaticMigrationDataLossAllowed = false;
         }
 
         protected override void Seed(ClearingFramework.dbBind.Model1 context)

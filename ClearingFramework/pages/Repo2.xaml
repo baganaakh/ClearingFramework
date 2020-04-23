@@ -237,7 +237,7 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <Button Click="Button_Click_1" Content="Шинэ" Margin="0,58,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White">
+                    <Button Click="ClearFields" Content="Шинэ" Margin="0,58,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="6,6,6,6"/>

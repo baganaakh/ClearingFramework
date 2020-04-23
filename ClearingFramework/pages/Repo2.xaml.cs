@@ -61,7 +61,7 @@ namespace Clearing.pages
         }
         #endregion
         #region Цуцлах Clear
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ClearFields(object sender, RoutedEventArgs e)
         {
             assett.SelectedItem = null;
             qtyss.Text = null;
@@ -144,6 +144,7 @@ namespace Clearing.pages
                 };
                 conx.AdminOrders.Add(order);
                 conx.SaveChanges();
+                ClearFields(null, null);
             }
             FillGrid();
         }

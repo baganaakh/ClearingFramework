@@ -64,19 +64,27 @@ namespace Clearing.pages
             }
             using (Model1 context = new Model1())
             {
-                var tran = new transaction()
+                try
                 {
-                    accNum = accountID,
-                    transType = Convert.ToInt16(transType.SelectedIndex),
-                    value = Decimal.Parse(trvalue.Text),
-                    note = trnote.Text,
-                    side = s,
-                };
-                AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accNum == accnum);
-                if (accdet != null)
-                    accdet.totalNumber += value;
-                context.transactions.Add(tran);
-                context.SaveChanges();
+                    var tran = new transaction()
+                    {
+                        accNum = accountID,
+                        transType = Convert.ToInt16(transType.SelectedIndex),
+                        value = Decimal.Parse(trvalue.Text),
+                        note = trnote.Text,
+                        side = s,
+                    };
+                    AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accNum == accnum);
+                    if (accdet != null)
+                        accdet.totalNumber += value;
+                    context.transactions.Add(tran);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                    throw;
+                }
             }
             FillGrid();
         }

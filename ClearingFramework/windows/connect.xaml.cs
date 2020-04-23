@@ -21,22 +21,21 @@ namespace ClearingFramework
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void Change(object sender, RoutedEventArgs e)
         {
             string serverName = server.Text;
             string userName = username.Text;
             string DBpassword = ssd.Text;
             string databaseName = databases.Text;
-            //string providerName = "System.Data.SqlClient";
-            string entityBuilder= "Data source="+serverName+";initial catalog="+databaseName+";;MultipleActiveResultSets=True;App=EntityFramework";
+            string entityBuilder= "Data source="+serverName+";" +
+                "initial catalog="+databaseName+";" +
+                "User Id="+userName+";" +
+                "Password="+DBpassword+";"+
+                "App=EntityFramework;Pooling=false;";
             config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = entityBuilder;
+            config.ConnectionStrings.ConnectionStrings["Model1"].ProviderName = "System.Data.SqlClient";
             config.Save(ConfigurationSaveMode.Modified);
-            using(Model1 conx=new Model1())
-            {
-                var query = conx.AdminUsers.Where(s => s.uname == "baganaakh").FirstOrDefault<AdminUser>();
-                MessageBox.Show(query.role);
-            }
-
+            MessageBox.Show("done");
         }
         private void button1_Copy_Click(object sender, RoutedEventArgs e)
         {
@@ -49,6 +48,10 @@ namespace ClearingFramework
         {      
             try
             {
+                string Cstring = "data source=(LocalDB)\\v11.0;Initial catalog=Model1;Integrated security=True;MultipleActiveResultSets=True;App=EntityFramework;Pooling=false;";
+                config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = Cstring;
+                config.ConnectionStrings.ConnectionStrings["Model1"].ProviderName = "System.Data.SqlClient";
+                config.Save(ConfigurationSaveMode.Modified);
                 using(var db = new Model1())
                 {              
                     Account acct = new Account
@@ -276,6 +279,12 @@ namespace ClearingFramework
             {
                 MessageBox.Show("Secret text wrong !!!! try again");
             }
+        }
+
+        private void check_Click(object sender, RoutedEventArgs e)
+        {
+            var connection = ConfigurationManager.ConnectionStrings["Model1"].ConnectionString;
+            MessageBox.Show(connection.ToString());
         }
     }
 
