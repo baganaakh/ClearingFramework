@@ -11,13 +11,13 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Collateral.xaml
     /// </summary>
-    public partial class Collateral : Page
+    public partial class Барьцаа : Page
     {
         Model1 CE = new Model1();
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string linkacs;
         decimal assId;
-        public Collateral()
+        public Барьцаа()
         {
             InitializeComponent();
             bindCombo();

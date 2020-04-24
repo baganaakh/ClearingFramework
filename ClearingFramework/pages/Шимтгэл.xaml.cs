@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace Clearing.pages
 {
     /// <summary>
-    /// Interaction logic for Start.xaml
+    /// Interaction logic for Fee.xaml
     /// </summary>
-    public partial class Start : Page
+    public partial class Шимтгэл : Page
     {
-        public Start()
+        public Шимтгэл()
         {
             InitializeComponent();
         }

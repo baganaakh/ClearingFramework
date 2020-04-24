@@ -10,9 +10,9 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for PostTrade.xaml
     /// </summary>
-    public partial class PostTrade : Page
+    public partial class Арилжааныдүн : Page
     {
-        public PostTrade()
+        public Арилжааныдүн()
         {
             InitializeComponent();
             FillGrid();

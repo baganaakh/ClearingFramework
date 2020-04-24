@@ -172,8 +172,8 @@
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="pages\Repo2.xaml.cs">
-      <DependentUpon>Repo2.xaml</DependentUpon>
+    <Compile Include="pages\Үнэтцаасзээл.xaml.cs">
+      <DependentUpon>Үнэтцаасзээл.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\connect.xaml.cs">
       <DependentUpon>connect.xaml</DependentUpon>
@@ -181,7 +181,7 @@
     <Compile Include="windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Page Include="pages\Repo2.xaml">
+    <Page Include="pages\Үнэтцаасзээл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -206,27 +206,27 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pages\Acc_balance.xaml">
+    <Page Include="pages\Данснымэдээлэл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Collateral.xaml">
+    <Page Include="pages\Барьцаа.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Create.xaml">
+    <Page Include="pages\Данснээх.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Fee.xaml">
+    <Page Include="pages\Шимтгэл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Lend.xaml">
+    <Page Include="pages\ҮЦзээлийнсан.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\PostTrade.xaml">
+    <Page Include="pages\Арилжааныдүн.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -234,42 +234,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Settlement.xaml">
+    <Page Include="pages\Гүйлгээбүртгэх.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Start.xaml">
+    <Page Include="pages\Эхлэл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\Acc_balance.xaml.cs">
-      <DependentUpon>Acc_balance.xaml</DependentUpon>
+    <Compile Include="pages\Данснымэдээлэл.xaml.cs">
+      <DependentUpon>Данснымэдээлэл.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Collateral.xaml.cs">
-      <DependentUpon>Collateral.xaml</DependentUpon>
+    <Compile Include="pages\Барьцаа.xaml.cs">
+      <DependentUpon>Барьцаа.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Create.xaml.cs">
-      <DependentUpon>Create.xaml</DependentUpon>
+    <Compile Include="pages\Данснээх.xaml.cs">
+      <DependentUpon>Данснээх.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Fee.xaml.cs">
-      <DependentUpon>Fee.xaml</DependentUpon>
+    <Compile Include="pages\Шимтгэл.xaml.cs">
+      <DependentUpon>Шимтгэл.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Lend.xaml.cs">
-      <DependentUpon>Lend.xaml</DependentUpon>
+    <Compile Include="pages\ҮЦзээлийнсан.xaml.cs">
+      <DependentUpon>ҮЦзээлийнсан.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\PostTrade.xaml.cs">
-      <DependentUpon>PostTrade.xaml</DependentUpon>
+    <Compile Include="pages\Арилжааныдүн.xaml.cs">
+      <DependentUpon>Арилжааныдүн.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\Repo.xaml.cs">
       <DependentUpon>Repo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Settlement.xaml.cs">
-      <DependentUpon>Settlement.xaml</DependentUpon>
+    <Compile Include="pages\Гүйлгээбүртгэх.xaml.cs">
+      <DependentUpon>Гүйлгээбүртгэх.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Start.xaml.cs">
-      <DependentUpon>Start.xaml</DependentUpon>
+    <Compile Include="pages\Эхлэл.xaml.cs">
+      <DependentUpon>Эхлэл.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

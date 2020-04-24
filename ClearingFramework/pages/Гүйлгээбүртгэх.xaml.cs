@@ -19,9 +19,9 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Settlement.xaml
     /// </summary>
-    public partial class Settlement : Page
+    public partial class Гүйлгээбүртгэх : Page
     {
-        public Settlement()
+        public Гүйлгээбүртгэх()
         {
             InitializeComponent();
             bindCombo();

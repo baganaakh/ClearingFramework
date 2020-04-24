@@ -24,9 +24,9 @@ namespace Clearing.pages
     /// Interaction logic for Repo.xaml
     /// interst, refPrice, account-totalsum
     /// </summary>
-    public partial class Repo2 : Page
+    public partial class Үнэтцаасзээл : Page
     {
-        public Repo2()
+        public Үнэтцаасзээл()
         {
             InitializeComponent();
             bindCombo();

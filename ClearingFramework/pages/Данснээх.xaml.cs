@@ -19,9 +19,9 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Create.xaml
     /// </summary>
-    public partial class Create : Page
+    public partial class Данснээх : Page
     {
-        public Create()
+        public Данснээх()
         {
             InitializeComponent();
             bindCombo();

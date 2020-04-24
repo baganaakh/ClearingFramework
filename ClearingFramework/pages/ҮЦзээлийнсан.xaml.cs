@@ -19,9 +19,9 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Lend.xaml
     /// </summary>
-    public partial class Lend : Page
+    public partial class ҮЦзээлийнсан : Page
     {
-        public Lend()
+        public ҮЦзээлийнсан()
         {
             InitializeComponent();
             bindCombo();

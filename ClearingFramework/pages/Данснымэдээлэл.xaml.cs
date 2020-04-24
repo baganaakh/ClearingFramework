@@ -18,11 +18,11 @@ using System.Windows.Shapes;
 namespace Clearing.pages
 {
     /// <summary>
-    /// Interaction logic for Acc_balance.xaml
+    /// Interaction logic for Дансны мэдээлэл.xaml
     /// </summary>
-    public partial class Acc_balance : Page
+    public partial class Данснымэдээлэл : Page
     {
-        public Acc_balance()
+        public Данснымэдээлэл()
         {
             InitializeComponent();
             FillGrid();
