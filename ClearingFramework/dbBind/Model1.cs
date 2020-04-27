@@ -88,10 +88,6 @@ namespace ClearingFramework.dbBind
                 .Property(e => e.isactive)
                 .IsFixedLength();
 
-            modelBuilder.Entity<AdminActiveSession>()
-                .Property(e => e.state)
-                .IsFixedLength();
-
             modelBuilder.Entity<AdminAsset>()
                 .Property(e => e.ratio)
                 .HasPrecision(10, 2);

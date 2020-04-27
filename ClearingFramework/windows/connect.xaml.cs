@@ -122,7 +122,7 @@ namespace ClearingFramework
                         endtime = new TimeSpan(2, 2, 2),
                         tduration = (new TimeSpan(1, 1, 1)),
                         matched = 6,
-                        state = "1",
+                        state = 1,
                     };
                     db.AdminActiveSessions.Add(aacs);
                     AdminAsset ast = new AdminAsset()
@@ -141,7 +141,7 @@ namespace ClearingFramework
                     AdminBoard bo = new AdminBoard()
                     {
                         name = "board1",
-                        type = 1,
+                        dayType = 1,
                         tdays = "1;2;3;4;",
                         state = 1,
                         modified = DateTime.Now,

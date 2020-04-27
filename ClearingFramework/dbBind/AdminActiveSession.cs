@@ -24,7 +24,6 @@
 
         public int? matched { get; set; }
 
-        [StringLength(10)]
-        public string state { get; set; }
+        public short state { get; set; }
     }
 }
