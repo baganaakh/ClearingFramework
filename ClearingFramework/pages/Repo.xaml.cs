@@ -71,10 +71,21 @@ namespace Clearing.pages
             || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
             totalOrder.ItemsSource = ord;
             List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memId).ToList();
+            //OwnAsset.ItemsSource=
             OwnTable.ItemsSource = ords;
             soldTable.ItemsSource= de.AdminDeals.Where(s => s.memberid == memId && s.side == -1).ToList();
             boughtTable.ItemsSource= de.AdminDeals.Where(s => s.memberid != memId && s.side == 1).ToList();
             repoHistory.ItemsSource = de.AdminDeals.Where(s=> s.memberid == memId).ToList();
+        }
+
+        //public List<AdminAsset> AssetLists(List<class> data)
+        //{
+
+        //    return;
+        //}
+    private void OwnAssetC(object sender, SelectionChangedEventArgs e)
+        {
+
         }
         #endregion
         #region Нийт захиалга зөвшөөрөх
@@ -154,7 +165,7 @@ namespace Clearing.pages
             //foreach(var row in checkedRows)
             //{
             //    MessageBox.Show("dsdsd");
-            //}
+ 
 
             //Order value = (Order)OwnTable.SelectedItem;
             //if (null == value) return;
@@ -253,6 +264,7 @@ namespace Clearing.pages
                 throw;
             }
         }
+
         #region number
         private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

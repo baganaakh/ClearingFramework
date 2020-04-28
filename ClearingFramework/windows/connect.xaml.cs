@@ -286,6 +286,10 @@ namespace ClearingFramework
             var connection = ConfigurationManager.ConnectionStrings["Model1"].ConnectionString;
             MessageBox.Show(connection.ToString());
         }
+        //private void Backup(object sender,RoutedEventArgs e)
+        //{
+        //    Backup
+        //}
     }
 
 }

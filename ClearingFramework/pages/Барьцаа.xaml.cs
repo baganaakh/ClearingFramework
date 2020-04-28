@@ -35,35 +35,71 @@ namespace Clearing.pages
 
             List<AdminTransaction> trans = ce.AdminTransactions.ToList();
             #region Барьцаа түүх
-            foreach (AdminTransaction items in trans)
+            AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
+            short type = Convert.ToInt16(memb.type);
+
+            Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
+            int minval = Convert.ToInt32(mty.minValue);
+
+            var t = from tt in trans
+                    join a in ce.AdminAssets on tt.assetId equals a.id
+                    select new
+                    {
+                        tt.id,
+                        tt.accountId,
+                        a.name,
+                        tt.amount,
+                        a.ratio,
+                        a.price,
+                        totval = tt.amount * a.ratio * a.price,
+                        refprice = a.ratio * a.price,
+                        diff = tt.amount * a.ratio * a.price - minval
+                    };
+
+            foreach (var item in t)
             {
-                asset1 = Convert.ToInt32(items.assetId);
-                AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
-                decimal price = Convert.ToDecimal(asst.price);
+                decimal qty = Convert.ToDecimal(item.amount);
+                decimal totval = Convert.ToDecimal(item.totval);
+                decimal refprice = Convert.ToDecimal(item.refprice);
+                decimal diff = Convert.ToDecimal(item.diff);
 
-                AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
-                short type =Convert.ToInt16( memb.type);
-
-                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
-                int minval = Convert.ToInt32(mty.minValue);
-
-                decimal ratio = Convert.ToDecimal(asst.ratio);
-                decimal qty = Convert.ToDecimal(items.amount);
-                decimal totval = qty * (ratio * price);
                 ForGrid data = new ForGrid()
                 {
-                    id = Convert.ToInt64(items.id),
-                    accNumber = items.accountId.ToString(),
-                    Барьцаа = asst.name.ToString(),
+                    id = Convert.ToInt64(item.id),
+                    accNumber = item.accountId.ToString(),
+                    Барьцаа = item.name.ToString(),
                     Хэмжээ = Convert.ToInt32(qty),
-                    ЖишигҮнэ = (ratio * price).ToString("0.###"),
+                    ЖишигҮнэ = refprice.ToString("0.###"),
                     НийтДүн = totval.ToString("0.###"),
                     ДоодДүн = minval.ToString("0.###"),
-                    ЗөрүүДүн = (totval - minval).ToString("0.###"),
+                    ЗөрүүДүн = diff.ToString("0.###"),
                     //БуцаахДүн=,
                 };
                 ToDisplay.Add(data);
             }
+            //foreach (AdminTransaction items in trans)
+            //{
+            //    asset1 = Convert.ToInt32(items.assetId);
+            //    AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
+            //    decimal price = Convert.ToDecimal(asst.price);
+
+            //    decimal ratio = Convert.ToDecimal(asst.ratio);
+            //    decimal qty = Convert.ToDecimal(items.amount);
+            //    decimal totval = qty * (ratio * price);
+            //    ForGrid data = new ForGrid()
+            //    {
+            //        id = Convert.ToInt64(items.id),
+            //        accNumber = items.accountId.ToString(),
+            //        Барьцаа = asst.name.ToString(),
+            //        Хэмжээ = Convert.ToInt32(qty),
+            //        ЖишигҮнэ = (ratio * price).ToString("0.###"),
+            //        НийтДүн = totval.ToString("0.###"),
+            //        ДоодДүн = minval.ToString("0.###"),
+            //        ЗөрүүДүн = (totval - minval).ToString("0.###"),
+            //        //БуцаахДүн=,
+            //    };
+            //    ToDisplay.Add(data);
+            //}
             collHistory.ItemsSource = ToDisplay;
             #endregion
             #region Хүлээгдэж Буй гүйлгээ
@@ -72,12 +108,12 @@ namespace Clearing.pages
             {
                 asset1 = Convert.ToInt32(items.assetid);
                 AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
-                decimal price= Convert.ToDecimal(asst.price);
-                AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
-                short type = Convert.ToInt16(memb.type);
+                decimal price = Convert.ToDecimal(asst.price);
+                //AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
+                //short type = Convert.ToInt16(memb.type);
 
-                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
-                int minval = Convert.ToInt32(mty.minValue);
+                //Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
+                //int minval = Convert.ToInt32(mty.minValue);
 
                 decimal ratio = Convert.ToDecimal(asst.ratio);
                 decimal qty = Convert.ToDecimal(items.qty);
@@ -116,8 +152,8 @@ namespace Clearing.pages
                 decimal price= Convert.ToDecimal(asst.price);
                 decimal jish = Convert.ToDecimal(asst.ratio * price);
                 decimal tot = Convert.ToDecimal(adet.totalNumber * jish);
-                Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 1).FirstOrDefault<Adminmtype>();
-                int minval = Convert.ToInt32(mty.minValue);
+                //Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 1).FirstOrDefault<Adminmtype>();
+                //int minval = Convert.ToInt32(mty.minValue);
                 ForGrid data = new ForGrid()
                 {
                     id = adet.id,

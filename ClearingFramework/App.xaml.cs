@@ -20,5 +20,7 @@ namespace ClearingFramework
         {
             e.Handled = Regex.IsMatch(e.Text, "[^0-9.-]+");
         }
+        
+
     }
 }
