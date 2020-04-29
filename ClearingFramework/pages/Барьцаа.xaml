@@ -297,7 +297,7 @@
             </TabItem>
         </TabControl>
         <TabControl Margin="10,117,10,10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
-            <TabItem Header="Биржийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Биржийнбарьца" Selector.IsSelected="True" Header="Биржийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="419*"/>
@@ -325,7 +325,7 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="289,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Брокерийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Брокерийнбарьцаа"  Header="Брокерийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <DataGrid Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
@@ -420,7 +420,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Барьцаа Түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="БарьцааТүүх" Header="Барьцаа Түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <DataGrid x:Name="collHistory" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
@@ -476,7 +476,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Хүлээгдэж буй гүйлгээ" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Хүлээгдэжбуйгүйлгээ" Header="Хүлээгдэж буй гүйлгээ" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="431*"/>

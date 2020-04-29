@@ -16,30 +16,65 @@ namespace Clearing.pages
         Model1 CE = new Model1();
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string linkacs;
+        int minval;
         decimal assId;
         public Барьцаа()
         {
             InitializeComponent();
             bindCombo();
-            FillGrid();
+            
         }
         #region fill
-        private void FillGrid()
+        private void Брокерийнбарьцаа(object sender, RoutedEventArgs e)
         {
-            int asset1;            
-            Model1 ce = new Model1();
 
-            List<ForGrid> ToDisplay = new List<ForGrid>();
+        }
+        #region Хүлээгдэж Буй гүйлгээ
+        private void Хүлээгдэжбуйгүйлгээ(object sender, RoutedEventArgs e)
+        {
             List<ForGrid> ToDisplay2 = new List<ForGrid>();
-            List<ForGrid> Биржбарьцаа = new List<ForGrid>();
+            int asset1;
+            Model1 ce = new Model1();
+            List<AdminOrder> requs = ce.AdminOrders.ToList();
+            foreach (AdminOrder items in requs)
+            {
+                asset1 = Convert.ToInt32(items.assetid);
+                AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
+                decimal price = Convert.ToDecimal(asst.price);
+                //AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
+                //short type = Convert.ToInt16(memb.type);
 
+                //Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
+                //int minval = Convert.ToInt32(mty.minValue);
+
+                decimal ratio = Convert.ToDecimal(asst.ratio);
+                decimal qty = Convert.ToDecimal(items.qty);
+                decimal totval = qty * (ratio * price);
+                ForGrid data = new ForGrid()
+                {
+                    id = Convert.ToInt64(items.id),
+                    accNumber = items.accountid.ToString(),
+                    Барьцаа = asset1.ToString("0.###"),
+                    Хэмжээ = Convert.ToInt32(qty),
+                    ЖишигҮнэ = (ratio * price).ToString("0.###"),
+                    НийтДүн = totval.ToString("0.###"),
+                    ДоодДүн = minval.ToString("0.###"),
+                    ЗөрүүДүн = (totval - minval).ToString("0.###"),
+                    state = items.state == 0 ? "Denied" : "Pending",
+                };
+                ToDisplay2.Add(data);
+            }
+            pendingColl.ItemsSource = ToDisplay2;
+
+        }
+            #endregion
+        #region Барьцаа түүх
+        private void БарьцааТүүх(object sender, RoutedEventArgs e)
+        {
+            Model1 ce = new Model1();
             List<AdminTransaction> trans = ce.AdminTransactions.ToList();
-            #region Барьцаа түүх
-            AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
-            short type = Convert.ToInt16(memb.type);
+            List<ForGrid> ToDisplay = new List<ForGrid>();
 
-            Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
-            int minval = Convert.ToInt32(mty.minValue);
 
             var t = from tt in trans
                     join a in ce.AdminAssets on tt.assetId equals a.id
@@ -101,40 +136,21 @@ namespace Clearing.pages
             //    ToDisplay.Add(data);
             //}
             collHistory.ItemsSource = ToDisplay;
+        }
             #endregion
-            #region Хүлээгдэж Буй гүйлгээ
-            List<AdminOrder> requs = ce.AdminOrders.ToList();
-            foreach (AdminOrder items in requs)
-            {
-                asset1 = Convert.ToInt32(items.assetid);
-                AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
-                decimal price = Convert.ToDecimal(asst.price);
-                //AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
-                //short type = Convert.ToInt16(memb.type);
+        #region Биржийн барьцаа
+        private void Биржийнбарьца(object sender, RoutedEventArgs e)
+        {
+            int asset1;            
+            Model1 ce = new Model1();            
+            List<ForGrid> Биржбарьцаа = new List<ForGrid>();
+            List<AdminTransaction> trans = ce.AdminTransactions.ToList();
+            
+            AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
+            short type = Convert.ToInt16(memb.type);
 
-                //Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
-                //int minval = Convert.ToInt32(mty.minValue);
-
-                decimal ratio = Convert.ToDecimal(asst.ratio);
-                decimal qty = Convert.ToDecimal(items.qty);
-                decimal totval = qty * (ratio * price);
-                ForGrid data = new ForGrid()
-                {
-                    id = Convert.ToInt64(items.id),
-                    accNumber = items.accountid.ToString(),
-                    Барьцаа = asset1.ToString("0.###"),
-                    Хэмжээ = Convert.ToInt32(qty),
-                    ЖишигҮнэ = (ratio * price).ToString("0.###"),
-                    НийтДүн = totval.ToString("0.###"),
-                    ДоодДүн = minval.ToString("0.###"),
-                    ЗөрүүДүн = (totval - minval).ToString("0.###"),
-                    state = items.state == 0 ? "Denied" : "Pending",
-                };
-                ToDisplay2.Add(data);
-            }
-            pendingColl.ItemsSource = ToDisplay2;
-            #endregion
-            #region Биржийн барьцаа
+            Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
+            minval = Convert.ToInt32(mty.minValue);
             var accNums = ce.Accounts.Where(s => s.memId == memId).Select(s => s.accNum).ToArray();
             foreach (var acnum in accNums)
             {
@@ -167,8 +183,8 @@ namespace Clearing.pages
                 Биржбарьцаа.Add(data);
             }
             Биржийнбарьцаа.ItemsSource = Биржбарьцаа;
-            #endregion
         }
+            #endregion
         public class ForGrid
         {
             public ForGrid()
