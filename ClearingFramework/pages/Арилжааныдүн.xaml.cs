@@ -15,7 +15,7 @@ namespace Clearing.pages
         public Арилжааныдүн()
         {
             InitializeComponent();
-            FillGrid();
+            //FillGrid();
         }
         #region fill
         private void FillGrid()

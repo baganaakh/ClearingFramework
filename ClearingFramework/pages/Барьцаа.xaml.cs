@@ -22,6 +22,11 @@ namespace Clearing.pages
         {
             InitializeComponent();
             bindCombo();
+            AdminMember memb = CE.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
+            short type = Convert.ToInt16(memb.type);
+
+            Adminmtype mty = CE.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
+            minval = Convert.ToInt32(mty.minValue);
             
         }
         #region fill
@@ -35,26 +40,32 @@ namespace Clearing.pages
             List<ForGrid> ToDisplay2 = new List<ForGrid>();
             int asset1;
             Model1 ce = new Model1();
-            List<AdminOrder> requs = ce.AdminOrders.ToList();
-            foreach (AdminOrder items in requs)
+            List<AdminOrder> requs = ce.AdminOrders.Where(r=>r.state == 1 || r.state==0  && r.memberid==memId).ToList<AdminOrder>();
+            var t = from tt in requs
+                    join a1 in ce.AdminAssets on tt.assetid equals a1.id
+                    select new
+                    {
+                        tt.id,
+                        astprice=a1.price,
+                        tt.accountid,
+                        tt.state,
+                        a1.name,
+                        a1.ratio,
+                        tt.qty,
+                        a1.price,
+                    };
+            
+            foreach (var items in t)
             {
-                asset1 = Convert.ToInt32(items.assetid);
-                AdminAsset asst = ce.AdminAssets.Where(r => r.id == asset1).FirstOrDefault<AdminAsset>();
-                decimal price = Convert.ToDecimal(asst.price);
-                //AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
-                //short type = Convert.ToInt16(memb.type);
-
-                //Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
-                //int minval = Convert.ToInt32(mty.minValue);
-
-                decimal ratio = Convert.ToDecimal(asst.ratio);
+                decimal price = Convert.ToDecimal(items.price);                
+                decimal ratio = Convert.ToDecimal(items.ratio);
                 decimal qty = Convert.ToDecimal(items.qty);
                 decimal totval = qty * (ratio * price);
                 ForGrid data = new ForGrid()
                 {
                     id = Convert.ToInt64(items.id),
                     accNumber = items.accountid.ToString(),
-                    Барьцаа = asset1.ToString("0.###"),
+                    Барьцаа = items.name,
                     Хэмжээ = Convert.ToInt32(qty),
                     ЖишигҮнэ = (ratio * price).ToString("0.###"),
                     НийтДүн = totval.ToString("0.###"),
@@ -74,7 +85,6 @@ namespace Clearing.pages
             Model1 ce = new Model1();
             List<AdminTransaction> trans = ce.AdminTransactions.ToList();
             List<ForGrid> ToDisplay = new List<ForGrid>();
-
 
             var t = from tt in trans
                     join a in ce.AdminAssets on tt.assetId equals a.id
@@ -144,14 +154,9 @@ namespace Clearing.pages
             int asset1;            
             Model1 ce = new Model1();            
             List<ForGrid> Биржбарьцаа = new List<ForGrid>();
-            List<AdminTransaction> trans = ce.AdminTransactions.ToList();
             
-            AdminMember memb = ce.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
-            short type = Convert.ToInt16(memb.type);
-
-            Adminmtype mty = ce.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
-            minval = Convert.ToInt32(mty.minValue);
             var accNums = ce.Accounts.Where(s => s.memId == memId).Select(s => s.accNum).ToArray();
+
             foreach (var acnum in accNums)
             {
                 var adet = ce.AccountDetails.Where(s => s.accNum == acnum).FirstOrDefault<AccountDetail>();
