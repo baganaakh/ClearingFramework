@@ -68,14 +68,6 @@ namespace ClearingFramework.dbBind
                 .Property(e => e.pozFee)
                 .HasPrecision(18, 4);
 
-            modelBuilder.Entity<AccountDetail>()
-                .Property(e => e.freezeValue)
-                .HasPrecision(18, 4);
-
-            modelBuilder.Entity<AccountDetail>()
-                .Property(e => e.totalNumber)
-                .HasPrecision(18, 4);
-
             modelBuilder.Entity<AdminAccountDetail>()
                 .Property(e => e.freezeValue)
                 .HasPrecision(18, 4);

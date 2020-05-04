@@ -119,21 +119,21 @@
         <TabControl Grid.Row="0" Margin="10,20,10,5" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Нэгдсэн дансны мэдээлэл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
                 <Grid Margin="0,0,-4,0">
-                    <DataGrid x:Name="vwOmniAccBalance" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                    <DataGrid x:Name="Нэгдсэнданснымэдээлэл" Background="White" BorderBrush="{x:Null}" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
                               FontSize="11" RenderTransformOrigin="0.5,0.5" CanUserDeleteRows="False" CanUserReorderColumns="False" BorderThickness="0" 
                               EnableRowVirtualization="False"  HorizontalScrollBarVisibility="Disabled"
                               ItemsSource="{Binding}"
-                              AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" Margin="0,39,0,0">
+                              AutoGenerateColumns="False" ScrollViewer.CanContentScroll="True" Margin="1,39,-1,0">
                         <DataGrid.Columns>
-                            <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding Path=AccNumber}" ClipboardContentBinding="{x:Null}" Header="# Данс" IsReadOnly="True"/>
-                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding Path=FisrtBalance}" ClipboardContentBinding="{x:Null}" Header="Эхний үлдэгдэл ₮" IsReadOnly="True"/>
-                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding Path=FrozenBalance}" ClipboardContentBinding="{x:Null}" Header="Тусгаарласан ₮" IsReadOnly="True"/>
+                            <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="# Данс" IsReadOnly="True"/>
+                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding totalNumber}" ClipboardContentBinding="{x:Null}" Header="Эхний үлдэгдэл ₮" IsReadOnly="True"/>
+                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding freezeValue}" ClipboardContentBinding="{x:Null}" Header="Тусгаарласан ₮" IsReadOnly="True"/>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding Path=Recievable}" ClipboardContentBinding="{x:Null}" Header="Авлага ₮" IsReadOnly="True"/>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding Path=Payable}" ClipboardContentBinding="{x:Null}" Header="Өглөг ₮" IsReadOnly="True"/>
-                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding Path=AvBalance}" ClipboardContentBinding="{x:Null}" Header="Боломж.үлдэгдэл ₮" IsReadOnly="True"/>
+                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding үлд}" ClipboardContentBinding="{x:Null}" Header="Боломж.үлдэгдэл ₮" IsReadOnly="True"/>
                             <DataGridTextColumn MinWidth="100" Width ="*"  Binding="{Binding Path=Limit}" ClipboardContentBinding="{x:Null}" Header="Арилж.хязгаар ₮" IsReadOnly="False"/>
-                            <DataGridTextColumn MinWidth="60" Width ="*"  Binding="{Binding Path=Status}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
+                            <DataGridTextColumn MinWidth="60" Width ="*"  Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв" IsReadOnly="True"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button Content="Хязгаар шинэчлэх" Margin="0,10,0,0" HorizontalAlignment="Right" Width="130" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
@@ -150,10 +150,12 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="0,10,0,0" TextWrapping="Wrap" Text="Хуваарилах үлдэгдэл ₮" Width="133" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="138,10,0,0" TextWrapping="Wrap" Text="..." Width="109" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="252,10,0,0" TextWrapping="Wrap" Text="Хуваарилсан үлдэгдэл ₮" Width="145" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="24" Margin="402,10,0,0" TextWrapping="Wrap" Text="..." Width="109" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="215,10,0,0" TextWrapping="Wrap" Text="Хуваарилах үлдэгдэл ₮" Width="130" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="350,10,0,0" TextWrapping="Wrap" Text="..." Width="107" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="462,10,0,0" TextWrapping="Wrap" Text="Хуваарилсан үлдэгдэл ₮" Width="141" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="24" Margin="608,10,0,0" TextWrapping="Wrap" Text="..." Width="107" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <ComboBox SelectionChanged="linkedmem_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" Name="linkedmem" HorizontalAlignment="Left" Height="20" Margin="130,15,0,0" Text="Гүйлгээний төрөл" Width="72" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="19,14,0,0" Text="Linked member" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
         </TabControl>

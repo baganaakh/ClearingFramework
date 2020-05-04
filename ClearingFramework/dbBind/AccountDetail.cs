@@ -10,9 +10,9 @@ namespace ClearingFramework.dbBind
     {
         public int id { get; set; }
 
-        public decimal? freezeValue { get; set; }
+        public int? freezeValue { get; set; }
 
-        public decimal? totalNumber { get; set; }
+        public int? totalNumber { get; set; }
 
         public int? assetId { get; set; }
 

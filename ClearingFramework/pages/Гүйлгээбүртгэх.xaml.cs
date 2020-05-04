@@ -76,7 +76,7 @@ namespace Clearing.pages
                     };
                     AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accNum == accnum);
                     if (accdet != null)
-                        accdet.totalNumber += value;
+                        accdet.totalNumber += Convert.ToInt32(value);
                     context.transactions.Add(tran);
                     context.SaveChanges();
                 }
