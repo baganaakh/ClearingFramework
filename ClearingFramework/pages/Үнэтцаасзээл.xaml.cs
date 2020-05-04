@@ -137,7 +137,7 @@ namespace Clearing.pages
                     modified=DateTime.Now,
                     connect=membee.SelectedValue.ToString(),
                     interests=inter,
-                    dealType=5,
+                    dealType=4,
                     day=day,
                     totSum=totSum,
                     toPay=topay,

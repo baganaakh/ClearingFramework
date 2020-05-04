@@ -38,7 +38,6 @@ namespace Clearing.pages
         private void Хүлээгдэжбуйгүйлгээ(object sender, RoutedEventArgs e)
         {
             List<ForGrid> ToDisplay2 = new List<ForGrid>();
-            int asset1;
             Model1 ce = new Model1();
             List<AdminOrder> requs = ce.AdminOrders.Where(r=>r.state == 1 || r.state==0  && r.memberid==memId).ToList<AdminOrder>();
             var t = from tt in requs
@@ -150,8 +149,7 @@ namespace Clearing.pages
             #endregion
         #region Биржийн барьцаа
         private void Биржийнбарьца(object sender, RoutedEventArgs e)
-        {
-            int asset1;            
+        {             
             Model1 ce = new Model1();            
             List<ForGrid> Биржбарьцаа = new List<ForGrid>();
             

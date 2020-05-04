@@ -55,7 +55,8 @@ namespace Clearing.pages
                     state = 0,
                     toPay = toPay,
                     interests = inter,
-                    dealType=1,
+                    dealType=3,
+                    side=0,
                 };
                 context.AdminOrders.Add(order);
                 context.SaveChanges();
@@ -280,6 +281,11 @@ namespace Clearing.pages
             }
             int days1 = Convert.ToInt32(days.Content);
             var Interst = CE.AdminInterests.Where(s => s.assetid == assId).FirstOrDefault<AdminInterest>();
+            if(Interst == null)
+            {
+                MessageBox.Show("asset songoogui bna");
+                return;
+            }
             decimal Interst1 =Convert.ToDecimal(Interst.interest);
             inter = Convert.ToDecimal(TotalSum.Text) * days1 * Interst1;
             Inter.Text = inter.ToString("0.##");

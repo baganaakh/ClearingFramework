@@ -14,7 +14,7 @@ namespace ClearingFramework.dbBind
 
         public int? assetid { get; set; }
 
-        public decimal? qty { get; set; }
+        public int? qty { get; set; }
 
         public decimal? price { get; set; }
 
