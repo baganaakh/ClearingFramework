@@ -144,11 +144,12 @@
                               Margin="0,60,0,0" AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserReorderColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding accNum}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
-                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Эхний үлдэгдэл ₮"/>
-                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Тусгаарласан ₮"/>
+                            <DataGridTextColumn MinWidth="80" Width ="*" Binding="{Binding name}" ClipboardContentBinding="{x:Null}" Header="Asset"/>
+                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding totalNumber}" ClipboardContentBinding="{x:Null}" Header="Эхний үлдэгдэл ₮"/>
+                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding freezeValue}" ClipboardContentBinding="{x:Null}" Header="Тусгаарласан ₮"/>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Авлага ₮"/>
                             <DataGridTextColumn MinWidth="80" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Өглөг ₮"/>
-                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Боломжит ₮"/>
+                            <DataGridTextColumn MinWidth="100" Width ="*" Binding="{Binding боломжит}" ClipboardContentBinding="{x:Null}" Header="Боломжит ₮"/>
                             <DataGridTextColumn MinWidth="80" Width ="*"  Binding="{Binding state}" ClipboardContentBinding="{x:Null}" Header="Төлөв"/>
                         </DataGrid.Columns>
                     </DataGrid>

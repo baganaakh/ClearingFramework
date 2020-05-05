@@ -40,11 +40,25 @@ namespace Clearing.pages
         private void bindCombo()
         {
             assett.ItemsSource = CE.AdminAssets.ToList();
-            var ast2= CE.AdminAssets.SqlQuery("select * from AdminAssets" +
-                " where id= any (select assetId from model1.dbo.AccountDetails t1 " +
-                "inner join model1.dbo.account t2 on t1.accNum = t2.accNum " +
-                "where t2.memId = " + memid + " )").ToList<AdminAsset>();
-            asset2.ItemsSource = ast2;
+            List<Account> t1 = CE.Accounts.Where(s => s.memId == memid).ToList<Account>();
+            var t = from tt in t1
+                    join acde in CE.AccountDetails on tt.id equals acde.accountId
+                    join ass in CE.AdminAssets on acde.assetId equals ass.id
+                    select new
+                    {
+                        ass.id,
+                        ass.name,
+                    };
+            var t2 = t.Distinct();
+
+
+            //var ast2= CE.AdminAssets.SqlQuery("select * from AdminAssets" +
+            //    " where id= any (select assetId from model1.dbo.AccountDetails t1 " +
+            //    "inner join model1.dbo.account t2 on t1.accNum = t2.accNum " +
+            //    "where t2.memId = " + memid + " )").ToList<AdminAsset>();
+
+
+            asset2.ItemsSource = t2;
             var memlist = CE.AdminMembers.ToList();
             var rem = memlist.Find(x => x.id == memid);
             memlist.Remove(rem);
@@ -93,6 +107,12 @@ namespace Clearing.pages
             }
             catch (System.NullReferenceException)
             {
+                return;
+            }
+            catch (System.OverflowException)
+            {
+                MessageBox.Show("Хязгаар хэтэрлээ !!!");
+                qtyss.Text = null;
                 return;
             }
 
@@ -152,15 +172,26 @@ namespace Clearing.pages
         #region combos selections changed
         private void asset2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var ast2 = asset2.SelectedItem as AdminAsset;
-            asst2 = ast2.id;
-            price2 =Convert.ToDecimal(ast2.price);
+            var ast2 = asset2.SelectedValue;
+            asst2 = Convert.ToInt32(ast2);
+            //price2 =Convert.ToDecimal(ast2.price);
             ast2price.Text = price.ToString();
-            var ast = CE.AccountDetails.SqlQuery("" +
-                "select * from model1.dbo.AccountDetails t1 " +
-                "inner join model1.dbo.account t2 on t1.accNum =t2 .accNum " +
-                "where t2.memId = " + memid + " and t1.assetId=" + ast2.id + "").FirstOrDefault<AccountDetail>();
-            remain.Text = Convert.ToInt32(ast.totalNumber).ToString();
+            var t = from tt in CE.Accounts.Where(s => s.memId == memid)
+                    join acde in CE.AccountDetails on tt.id equals acde.accountId
+                    join ass in CE.AdminAssets.Where(s => s.id == asst2) on acde.assetId equals ass.id
+                    select new
+                    {
+                        ass.price,
+                        acde.totalNumber,
+                    };
+                  
+
+            //var ast = CE.AccountDetails.SqlQuery("" +
+            //    "select * from model1.dbo.AccountDetails t1 " +
+            //    "inner join model1.dbo.account t2 on t1.accNum =t2 .accNum " +
+            //    "where t2.memId = " + memid + " and t1.assetId=" + ast2.id + "").FirstOrDefault<AccountDetail>();
+
+            //remain.Text = Convert.ToInt32(t.totalNumber).ToString();
         }
         private void assett_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

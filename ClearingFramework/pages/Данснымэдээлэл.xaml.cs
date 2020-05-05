@@ -66,7 +66,6 @@ namespace Clearing.pages
         private void assets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Model1 ce = new Model1();
-            
             var item = assets.SelectedValue;
             int id = Convert.ToInt32(item);
             var acc = ce.AdminAccounts.Where(s => s.memberid == memid && s.accountType == 3).ToList();
@@ -88,6 +87,7 @@ namespace Clearing.pages
 
         private void assets2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            tuhBalance.ItemsSource = null;
             Model1 ce = new Model1();
             var item = assets.SelectedValue;
             int id = Convert.ToInt32(item);

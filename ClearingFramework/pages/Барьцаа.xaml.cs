@@ -238,15 +238,16 @@ namespace Clearing.pages
         private void accId_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             asset.IsEnabled = true;
+            asset.ItemsSource = null;
             var item = accId.SelectedItem as AdminAccount;
             try
             {
                 linkacs = item.id.ToString();
                 List<AdminAsset> assets = new List<AdminAsset>();
-                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.accNum).ToList();
+                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.id).ToList();
                 foreach (var i in acclist)
                 {
-                    var detail = CE.AccountDetails.Where(s => s.accNum == i).Select(s => s.assetId).ToArray();
+                    var detail = CE.AccountDetails.Where(s => s.id == i).Select(s => s.assetId).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
                     var asst = CE.AdminAssets.Where(s => s.id == ids).FirstOrDefault<AdminAsset>();
                     assets.Add(asst);

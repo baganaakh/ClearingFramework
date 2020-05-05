@@ -28,7 +28,7 @@ namespace Clearing.pages
             FillGrid();
         }
         string accountID, accnum;
-        int acid;
+        long acid;
         #region combos
         public List<Account> acct { get; set; }
         private void bindCombo()
@@ -45,7 +45,7 @@ namespace Clearing.pages
             {
                 accountID = item.id.ToString();
                 sname.Text = item.fname.ToString();
-                acid =Convert.ToInt64(item.id);
+                acid =item.id;
                 idnum.Text = item.idNum.ToString();
             }
             catch

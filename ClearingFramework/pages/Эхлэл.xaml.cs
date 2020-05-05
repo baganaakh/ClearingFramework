@@ -116,7 +116,7 @@ namespace Clearing.pages
             var item = linkedmem.SelectedItem as AdminMember;
             var acs = ce.Accounts.Where(r=>r.memId == item.id).ToList<Account>();
             var t = from tt in acs
-                    join de in ce.AccountDetails on tt.accNum equals de.accNum
+                    join de in ce.AccountDetails on tt.id equals de.accountId
                     select  new 
                     {
                         tt.accNum,
