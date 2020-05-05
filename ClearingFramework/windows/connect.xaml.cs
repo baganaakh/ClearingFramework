@@ -177,7 +177,7 @@ namespace ClearingFramework
                         freezeValue = 12,
                         totalNumber = 55,
                         assetId = 1,
-                        accNum = "1",
+                        accountId = 1,
                         linkAcc = "1",
                         modified = DateTime.Now,
                     };

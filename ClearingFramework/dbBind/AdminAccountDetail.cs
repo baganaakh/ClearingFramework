@@ -8,7 +8,7 @@ namespace ClearingFramework.dbBind
 
     public partial class AdminAccountDetail
     {
-        public int id { get; set; }
+        public long id { get; set; }
 
         public int? freezeValue { get; set; }
 

@@ -239,6 +239,21 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Grid Background="White" Margin="638,89,10,10" Grid.Row="2" >
+            <TextBox FontSize="12" HorizontalAlignment="Left" Height="20" Text="Банкны нэр" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Margin="19,10,0,0"/>
+            <TextBox FontSize="12" HorizontalAlignment="Left" Height="20" Text="Дансны нэр" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Margin="56,46,0,0"/>
+            <ComboBox SelectionChanged="BankNames" x:Name="bankCombo" HorizontalAlignment="Left" Height="20" Text="Гүйлгээний төрөл" Width="72" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top" Margin="127,10,0,0">
+                <ComboBoxItem Content="Капитрон Банк"/>
+                <ComboBoxItem Content="Хаан Банк"/>
+                <ComboBoxItem Content="Голомт Банк"/>
+                <ComboBoxItem Content="Төрийн Банк"/>
+                <ComboBoxItem Content="ХХБ"/>
+            </ComboBox>
+            <TextBox TextWrapping="Wrap" FontSize="12" Background="AliceBlue" x:Name="accountName" HorizontalAlignment="Left" Height="43" Text="..." Width="180" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Margin="19,71,0,0"/>
+            <TextBox FontSize="12" HorizontalAlignment="Left" Height="20" Text="Дансны Дугаар" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Margin="19,119,0,0"/>
+            <TextBox FontSize="12" x:Name="accountNumber" HorizontalAlignment="Left" Height="20" Text="..." Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Margin="112,119,0,0"/>
+
+        </Grid>
         <TabControl Grid.Row="4" Margin="10,20,10,10" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
             <TabItem Header="Биржийн бус захиалга" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White">
                 <Grid  Margin="0,0,-4,0">

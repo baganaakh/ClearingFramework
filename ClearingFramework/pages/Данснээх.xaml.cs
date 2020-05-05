@@ -141,7 +141,7 @@ namespace Clearing.pages
                     {
                         freezeValue = 10,
                         totalNumber = 0,
-                        accNum = accountn.Text,
+                        accountId = acct.id,
                         linkAcc = linkAc.SelectedValue.ToString(),
                     };
                     context.AccountDetails.Add(acd);                
@@ -167,11 +167,11 @@ namespace Clearing.pages
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             long iiid = (vwOmniAccBalance.SelectedItem as Account).id;
-            string accnu = (vwOmniAccBalance.SelectedItem as Account).accNum;
+            long accnu = (vwOmniAccBalance.SelectedItem as Account).id;
             using (Model1 context = new Model1())
             {
                 Account acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
-                var aacd = context.AccountDetails.Where(r => r.accNum == accnu);
+                var aacd = context.AccountDetails.Where(r => r.accountId == accnu);
                 foreach (var i in aacd)
                 {
                     context.AccountDetails.Remove(i);

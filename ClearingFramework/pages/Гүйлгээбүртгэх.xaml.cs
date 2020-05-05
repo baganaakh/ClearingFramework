@@ -28,6 +28,7 @@ namespace Clearing.pages
             FillGrid();
         }
         string accountID, accnum;
+        int acid;
         #region combos
         public List<Account> acct { get; set; }
         private void bindCombo()
@@ -44,7 +45,7 @@ namespace Clearing.pages
             {
                 accountID = item.id.ToString();
                 sname.Text = item.fname.ToString();
-                accnum = item.accNum.ToString();
+                acid =Convert.ToInt64(item.id);
                 idnum.Text = item.idNum.ToString();
             }
             catch
@@ -74,7 +75,7 @@ namespace Clearing.pages
                         note = trnote.Text,
                         side = s,
                     };
-                    AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accNum == accnum);
+                    AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accountId == acid);
                     if (accdet != null)
                         accdet.totalNumber += Convert.ToInt32(value);
                     context.transactions.Add(tran);

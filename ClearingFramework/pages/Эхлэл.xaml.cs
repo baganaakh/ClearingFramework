@@ -127,5 +127,35 @@ namespace Clearing.pages
                     };
             Нэгдсэнданснымэдээлэл.ItemsSource = t;
         }
+        private void BankNames(object sender, SelectionChangedEventArgs e)
+        {
+            int i= bankCombo.SelectedIndex;
+            switch (i)
+            {
+                case 0:
+                    accountName.Text = "МҮЦБ / MSX";
+                    accountNumber.Text = "3000028888";
+                    break;
+                case 1:
+                    accountName.Text = "Монголын үнэт цаасны бирж";
+                    accountNumber.Text = "5166542085";
+                    break;
+                case 2:
+                    accountName.Text = "Монголын үнэт цаасны бирж";
+                    accountNumber.Text = "1175119142";
+                    break;
+                case 3:
+                    accountName.Text = "Монголын үнэт цаасны бирж";
+                    accountNumber.Text = "343100225841";
+                    break;
+                case 4:
+                    accountName.Text = "Монголын үнэт цаасны бирж";
+                    accountNumber.Text = "495084513";
+                    break;
+                default:
+                    MessageBox.Show("Буруу өгөгдөл");
+                    break;
+            }
+        }
     }
 }

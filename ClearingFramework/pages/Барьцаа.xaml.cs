@@ -153,11 +153,11 @@ namespace Clearing.pages
             Model1 ce = new Model1();            
             List<ForGrid> Биржбарьцаа = new List<ForGrid>();
             
-            var accNums = ce.Accounts.Where(s => s.memId == memId).Select(s => s.accNum).ToArray();
+            var accNums = ce.Accounts.Where(s => s.memId == memId).Select(s => s.id).ToArray();
 
             foreach (var acnum in accNums)
             {
-                var adet = ce.AccountDetails.Where(s => s.accNum == acnum).FirstOrDefault<AccountDetail>();
+                var adet = ce.AccountDetails.Where(s => s.accountId== acnum).FirstOrDefault<AccountDetail>();
                 if (adet == null) {
                                     MessageBox.Show("Asset empty");
                                     return;
