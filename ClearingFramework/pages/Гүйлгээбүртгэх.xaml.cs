@@ -43,7 +43,7 @@ namespace Clearing.pages
             var item = accid.SelectedItem as Account;
             try
             {
-                accountID = item.id.ToString();
+                acid = item.id;
                 sname.Text = item.fname.ToString();
                 acid =item.id;
                 idnum.Text = item.idNum.ToString();
@@ -58,26 +58,37 @@ namespace Clearing.pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             decimal value = Decimal.Parse(trvalue.Text);
+            int val= Convert.ToInt32(value);
             Int16 s = Convert.ToInt16(side.SelectedIndex);
             if (s == 0)
             {
                 s = -1;
+                val *= -1;
             }
             using (Model1 context = new Model1())
             {
                 try
                 {
+                    AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accountId == acid && r.assetId == 1);
+                    if (accdet != null)
+                        accdet.totalNumber += val;
+                    if (accdet == null)
+                    {
+                        MessageBox.Show(acid+": tugurgiin dans neegdeegui bna");
+                        return;
+                    }
+                        
                     var tran = new transaction()
                     {
-                        accNum = accountID,
+                        last=accdet.totalNumber,
+                        accid = acid,
                         transType = Convert.ToInt16(transType.SelectedIndex),
                         value = Decimal.Parse(trvalue.Text),
                         note = trnote.Text,
                         side = s,
+                        modified=DateTime.Now,
+                        assetid=1,
                     };
-                    AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accountId == acid);
-                    if (accdet != null)
-                        accdet.totalNumber += Convert.ToInt32(value);
                     context.transactions.Add(tran);
                     context.SaveChanges();
                 }
@@ -159,7 +170,7 @@ namespace Clearing.pages
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     transaction acc = new transaction();
-                    acc.accNum = dt.Rows[i]["accNum"].ToString();
+                    acc.accid = Convert.ToInt64(dt.Rows[i]["accId"]);
                     acc.transType =Convert.ToInt16(dt.Rows[i]["transType"]);
                     acc.value = Convert.ToDecimal(dt.Rows[i]["value"]);
                     acc.note = dt.Rows[i]["note"].ToString();
@@ -174,7 +185,7 @@ namespace Clearing.pages
             {
                 yield return new transaction
                 {
-                    accNum = row["accNum"].ToString(),
+                    accid =Convert.ToInt64(row["accNum"]),
                     transType =Convert.ToInt16(row["transType"]),
                     value = Convert.ToDecimal(row["value"]),
                     note = row["note"].ToString(),
