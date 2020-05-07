@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,7 +30,7 @@ namespace Clearing.pages
         public Repo()
         {
             InitializeComponent();
-            FillGrid();
+            
             bindCombo();
         }
         string linkacs, toId="0";
@@ -60,39 +61,144 @@ namespace Clearing.pages
                 };
                 context.AdminOrders.Add(order);
                 context.SaveChanges();
-                FillGrid();
+                
             }
         }
         #endregion
         #region datagrid fill
-        private void FillGrid()
+            #region Нийтзахиалга
+            private void Нийтзахиалг(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
+                || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
+                Нийтзахиалга.ItemsSource = ord;
+                var t=from tt in ord
+                      join a1 in de.AdminAssets on tt.assetid equals a1.id
+                      select new
+                      {
+                          a1.id,
+                          a1.name,
+                      };
+                totalasset.ItemsSource = t.Distinct();
+            }
+            private void totalasset_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                int item =(int) totalasset.SelectedValue;
+                Model1 de = new Model1();
+                List<AdminOrder> ord = de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0 && s.assetid == item)
+                 || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0 && s.assetid == item)).ToList();
+                Нийтзахиалга.ItemsSource = null;
+                Нийтзахиалга.ItemsSource = ord;
+            }
+            #endregion
+            #region Өөрийнзахиалга
+        private void OwnAssetC(object sender, SelectionChangedEventArgs e)
+        {
+            int item =Convert.ToInt32(OwnAsset.SelectedValue);
+            Өөрийнзахиалга.ItemsSource = null;
+            Model1 de = new Model1();
+            List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memId && s.assetid==item).ToList();
+            Өөрийнзахиалга.ItemsSource = ords;
+            
+        }
+        private void Өөрийнзахиалг(object sender, RoutedEventArgs e)
         {
             Model1 de = new Model1();
-            List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
-            || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
-            totalOrder.ItemsSource = ord;
             List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memId).ToList();
-            //OwnAsset.ItemsSource=
-            OwnTable.ItemsSource = ords;
-            soldTable.ItemsSource= de.AdminDeals.Where(s => s.memberid == memId && s.side == -1).ToList();
-            boughtTable.ItemsSource= de.AdminDeals.Where(s => s.memberid != memId && s.side == 1).ToList();
-            repoHistory.ItemsSource = de.AdminDeals.Where(s=> s.memberid == memId).ToList();
+            Өөрийнзахиалга.ItemsSource = ords;
+            var t = from tt in ords
+                    join a1 in de.AdminAssets on tt.assetid equals a1.id
+                    select new
+                    {
+                        a1.id,
+                        a1.name,
+                    };
+            OwnAsset.ItemsSource = t.Distinct();
         }
+        #endregion
+            #region Зарсанхэлцэл
+            private void Зарсанхэлцэ(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminDeals.Where(s => s.memberid == memId && s.side == -1).ToList();
+                Зарсанхэлцэл.ItemsSource = data;
+                var t = from tt in data
+                        join a1 in de.AdminAssets on tt.assetid equals a1.id
+                        select new
+                        {
+                            a1.id,
+                            a1.name,
+                        };
+                soldre.ItemsSource = t.Distinct();
+            }
 
-        //public List<AdminAsset> AssetLists(List<class> data)
-        //{
+            private void soldre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                int item = (int)soldre.SelectedValue;
+                Model1 de = new Model1();
+                var data = de.AdminDeals.Where(s => s.memberid == memId && s.side == -1 && s.assetid == item).ToList();
+                Зарсанхэлцэл.ItemsSource = null;
+                Зарсанхэлцэл.ItemsSource = data;
+            }
 
-        //    return;
-        //}
-    private void OwnAssetC(object sender, SelectionChangedEventArgs e)
-        {
+            #endregion
+            #region Авсанхэлцэл
+            private void Авсанхэлц(object sender, SelectionChangedEventArgs e)
+            {
+                int item =Convert.ToInt32(ast.SelectedValue);
+                Model1 de = new Model1();
+                var data = de.AdminDeals.Where(s => s.memberid != memId && s.side == 1 && s.assetid == item).ToList();
+                Авсанхэлцэл.ItemsSource = null;
+                Авсанхэлцэл.ItemsSource = data;
 
-        }
+            }
+            private void Авсанхэлцэ(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminDeals.Where(s => s.memberid != memId && s.side == 1).ToList();
+                Авсанхэлцэл.ItemsSource = data;
+                var t = from tt in data
+                        join a1 in de.AdminAssets on tt.assetid equals a1.id
+                        select new
+                        {
+                            a1.id,
+                            a1.name,
+                        };
+                ast.ItemsSource = t.Distinct();
+            }
+
+            #endregion
+            #region Хэлцлийнтүүх
+            private void Хэлцлийнтүү(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminDeals.Where(s => s.memberid == memId).ToList();
+                Хэлцлийнтүүх.ItemsSource = data;
+                var t=from tt in data
+                      join a1 in de.AdminAssets on tt.assetid equals a1.id
+                      select new
+                      {
+                          a1.id,
+                          a1.name,
+                      };
+                histasst.ItemsSource = t.Distinct();
+            }
+
+            private void histasst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                int item = (int)histasst.SelectedValue;
+                Model1 de = new Model1();
+                var data = de.AdminDeals.Where(s => s.memberid == memId && s.assetid == item).ToList();
+                Хэлцлийнтүүх.ItemsSource = null;
+                Хэлцлийнтүүх.ItemsSource = data;
+            }
+            #endregion
         #endregion
         #region Нийт захиалга зөвшөөрөх
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AdminOrder value = (AdminOrder)totalOrder.SelectedItem;
+            AdminOrder value = (AdminOrder)Нийтзахиалга.SelectedItem;
             if (null == value) return;
             if(linkAc_Copy.SelectedItem == null)
             {
@@ -145,13 +251,13 @@ namespace Clearing.pages
             statss.state = 1;
             contx.SaveChanges();
             }
-            FillGrid();
+            
         }
         #endregion
         #region өөрийн захиалга Цуцлах Устгах
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            var value = OwnTable.SelectedItem as AdminOrder;
+            var value = Өөрийнзахиалга.SelectedItem as AdminOrder;
             if (value == null) return;
             using (Model1 conx = new Model1())
             {
@@ -177,7 +283,7 @@ namespace Clearing.pages
             //    contx.Orders.Remove(statss);
             //    contx.SaveChanges();
             //}
-            FillGrid();
+            
         }
         #endregion
         #region combos selection change                 
@@ -264,6 +370,11 @@ namespace Clearing.pages
             {
                 throw;
             }
+        }
+
+        private void TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+
         }
 
         #region number

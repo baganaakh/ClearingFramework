@@ -118,9 +118,9 @@ namespace Clearing.pages
                 {
                     accNum=i.accNum,
                     name=i.name,
-                    totalNumber=(int)i.totalNumber,
-                    freezeValue=(int)i.freezeValue,
-                    боломжит=(int)i.боломжит,
+                    totalNumber=(decimal)i.totalNumber,
+                    freezeValue=(decimal)i.freezeValue,
+                    боломжит=(decimal)i.боломжит,
                     state=(short)i.state,
                 };
                 forgrid.Add(data);
@@ -138,11 +138,11 @@ namespace Clearing.pages
         {            
             public string accNum { get; set; }
             public string name{ get; set; }
-            public int totalNumber { get; set; }
-            public int freezeValue { get; set; }
+            public decimal totalNumber { get; set; }
+            public decimal freezeValue { get; set; }
             public string авлага { get; set; }
             public string өглөг { get; set; }
-            public int боломжит { get; set; }
+            public decimal боломжит { get; set; }
             public short state { get; set; }            
         }
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)

@@ -369,8 +369,8 @@
             			CanUserDeleteRows="False" CanUserReorderColumns="False" BorderThickness="0,1,0,0" Grid.ColumnSpan="2" AutoGenerateColumns="False" >
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn/>
-                            <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding date}" ClipboardContentBinding="{x:Null}" Header="Огноо"/>
-                            <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding account}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
+                            <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding modified}" ClipboardContentBinding="{x:Null}" Header="Огноо"/>
+                            <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding accid}" ClipboardContentBinding="{x:Null}" Header="# Данс"/>
                             <DataGridTextColumn MinWidth="100" Width ="0.6*"  Binding="{Binding balance}" ClipboardContentBinding="{x:Null}" Header="Боломжит үлдэгдэл ₮"/>
                             <DataGridTextColumn MinWidth="60" Width ="0.6*"  Binding="{Binding remain}" ClipboardContentBinding="{x:Null}" Header="Буцаах дүн ₮"/>
                             <DataGridTextColumn MinWidth="60" Width ="0.3*" Binding="{Binding pendingDay}" ClipboardContentBinding="{x:Null}" Header="Хүлээсэн хоног"/>
