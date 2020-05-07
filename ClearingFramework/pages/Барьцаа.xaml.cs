@@ -11,6 +11,8 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Collateral.xaml
     /// </summary>
+    /// 
+
     public partial class Барьцаа : Page
     {
         Model1 CE = new Model1();
@@ -53,7 +55,6 @@ namespace Clearing.pages
                         tt.qty,
                         a1.price,
                     };
-            
             foreach (var items in t)
             {
                 decimal price = Convert.ToDecimal(items.price);                
@@ -75,9 +76,15 @@ namespace Clearing.pages
                 ToDisplay2.Add(data);
             }
             pendingColl.ItemsSource = ToDisplay2;
-
         }
-            #endregion
+        private void TextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            List<ForGrid> data= pendingColl.ItemsSource as List<ForGrid>;
+            List<ForGrid> filtered = data.Where(s => s.accNumber.StartsWith(srchacc1.Text)).ToList();
+            pendingColl.ItemsSource = null;
+            pendingColl.ItemsSource = filtered;
+        }
+        #endregion
         #region Барьцаа түүх
         private void БарьцааТүүх(object sender, RoutedEventArgs e)
         {
@@ -146,7 +153,15 @@ namespace Clearing.pages
             //}
             collHistory.ItemsSource = ToDisplay;
         }
-            #endregion
+
+        private void srchacc2_KeyUp(object sender, KeyEventArgs e)
+        {
+            List<ForGrid> data = collHistory.ItemsSource as List<ForGrid>;
+            List<ForGrid> filtered = data.Where(s => s.accNumber.StartsWith(srchacc2.Text)).ToList();
+            collHistory.ItemsSource = null;
+            collHistory.ItemsSource = filtered;
+        }
+        #endregion
         #region Биржийн барьцаа
         private void Биржийнбарьца(object sender, RoutedEventArgs e)
         {             
@@ -321,6 +336,7 @@ namespace Clearing.pages
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
-        #endregion        
+        #endregion
+
     }
 }

@@ -145,10 +145,6 @@ namespace Clearing.pages
             public decimal боломжит { get; set; }
             public short state { get; set; }            
         }
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            App.TextBox_PreviewTextInput(sender, e);
-        }
         private void Нэгдсэнданс_KeyUp(object sender, KeyEventArgs e)
         {
             var filtered = forgrid1.Where(s => s.accNum.StartsWith(Нэгдсэнданс.Text)).ToList();

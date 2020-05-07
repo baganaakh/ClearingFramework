@@ -167,13 +167,12 @@ namespace Clearing.pages
                         };
                 ast.ItemsSource = t.Distinct();
             }
-
-            #endregion
+        #endregion
             #region Хэлцлийнтүүх
-            private void Хэлцлийнтүү(object sender, RoutedEventArgs e)
+        private void Хэлцлийнтүү(object sender, RoutedEventArgs e)
             {
                 Model1 de = new Model1();
-                var data= de.AdminDeals.Where(s => s.memberid == memId).ToList();
+                var data= de.AdminDeals.Where(s => s.memberid == memId && s.dealType==3).ToList();
                 Хэлцлийнтүүх.ItemsSource = data;
                 var t=from tt in data
                       join a1 in de.AdminAssets on tt.assetid equals a1.id
@@ -193,7 +192,37 @@ namespace Clearing.pages
                 Хэлцлийнтүүх.ItemsSource = null;
                 Хэлцлийнтүүх.ItemsSource = data;
             }
-            #endregion
+        private void sdate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime time1, time2;
+            time1 = (DateTime)sdate.SelectedDate;
+            if (edate.SelectedDate == null)
+            {
+                time2 = DateTime.Now;
+            }
+            else
+            {
+                time2 = (DateTime)edate.SelectedDate;
+            }
+            List<AdminDeal> transs = Хэлцлийнтүүх.ItemsSource as List<AdminDeal>;
+            var t = transs.Where(s => s.modified > time1 && s.modified < time2).ToList();
+            Хэлцлийнтүүх.ItemsSource = null;
+            Хэлцлийнтүүх.ItemsSource = t;
+        }
+
+        private void edate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime time1, time2;
+            time2 = (DateTime)edate.SelectedDate;
+            if (sdate.SelectedDate == null)
+                return;
+            time1 = (DateTime)sdate.SelectedDate;
+            List<AdminDeal> transs = Хэлцлийнтүүх.ItemsSource as List<AdminDeal>;
+            var t = transs.Where(s => s.modified > time1 && s.modified < time2).ToList();
+            Хэлцлийнтүүх.ItemsSource = null;
+            Хэлцлийнтүүх.ItemsSource = t;
+        }
+        #endregion
         #endregion
         #region Нийт захиалга зөвшөөрөх
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -357,24 +386,19 @@ namespace Clearing.pages
                 sum += Convert.ToDecimal( i.totalNumber);
                 freezesum += Convert.ToDecimal(i.freezeValue);
             }
-            remainder.Text = sum.ToString("0.##");
+            remainder.Text = sum.ToString(".##");
             try
             {
                 int iid = item.id;
                 decimal ratio = Convert.ToDecimal(item.ratio);
                 decimal lastPrice = ratio * eprice;
-                possible.Text = (lastPrice * sum).ToString("0.##");
-                exPrice.Text = lastPrice.ToString("0.##");
+                possible.Text = (lastPrice * sum).ToString(".##");
+                exPrice.Text = lastPrice.ToString(".##");
             }
             catch
             {
                 throw;
             }
-        }
-
-        private void TextBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-
         }
 
         #region number

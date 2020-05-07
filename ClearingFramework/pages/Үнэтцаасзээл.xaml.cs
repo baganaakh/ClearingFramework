@@ -29,8 +29,7 @@ namespace Clearing.pages
         public Үнэтцаасзээл()
         {
             InitializeComponent();
-            bindCombo();
-            FillGrid();
+            bindCombo();            
         }
         int asst1, asst2,qty,qty2,day;
         decimal price,price2,inter,topay,totSum;
@@ -73,6 +72,7 @@ namespace Clearing.pages
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
+
         #endregion
         #region Цуцлах Clear
         private void ClearFields(object sender, RoutedEventArgs e)
@@ -90,6 +90,7 @@ namespace Clearing.pages
             TotalSum.Text = null;
             ToPay.Text = null;
         }
+
         #endregion
         #region textboxes changed
         private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
@@ -165,8 +166,7 @@ namespace Clearing.pages
                 conx.AdminOrders.Add(order);
                 conx.SaveChanges();
                 ClearFields(null, null);
-            }
-            FillGrid();
+            }            
         }
         #endregion
         #region combos selections changed
@@ -221,12 +221,38 @@ namespace Clearing.pages
             ToPay.Text = topay.ToString("0.#");
         }
         #endregion
-        #region FillGrid
-        private void FillGrid()
-        {
-            Model1 ce = new Model1();
-            НийтЗээл.ItemsSource = ce.AdminOrders.Where(s => s.dealType == 5).ToList();
-        }
+        #region fill
+            #region Зээлийн түүх
+            private void Зээлийнтүү(object sender, RoutedEventArgs e)
+            {
+                
+            }
+        #endregion
+        #region Нийт Зээл
+        private void НийтЗээ(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminOrders.Where(s => s.dealType == 4).ToList();
+                НийтЗээл.ItemsSource = data;
+                var t=from tt in data
+                      join a1 in de.AdminAssets on tt.assetid equals a1.id
+                      select new
+                      {
+                          a1.id,
+                          a1.name,
+                      };
+                НийтЗэ.ItemsSource = t.Distinct();
+            }
+
+            private void НийтЗэ_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                НийтЗээл.ItemsSource = null;
+                Model1 de = new Model1();
+                int item = (int)НийтЗэ.SelectedValue;
+                var data = de.AdminOrders.Where(s => s.dealType == 4 && s.assetid == item  ).ToList();
+                НийтЗээл.ItemsSource = data;
+            }
+            #endregion
         #endregion
     }
 }

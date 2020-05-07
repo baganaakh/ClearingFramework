@@ -220,7 +220,7 @@
     </Page.Resources>
     <Grid Background="#14501B4A">
         <TabControl Margin="10,10,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11" Height="123" VerticalAlignment="Top">
-            <TabItem Header="Барьцаа байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White" Margin="-2,0,2,0">
+            <TabItem Header="ҮЦ байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White" Margin="-2,0,2,0">
                 <Grid Background="White">
                     <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="53" Width="4" Background="#FF7B5477"/>
                     <Button Click="Илгээх_Click" Content="Илгээх" Margin="0,10,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
