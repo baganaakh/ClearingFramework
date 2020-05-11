@@ -70,10 +70,15 @@ namespace Clearing.pages
             private void Нийтзахиалг(object sender, RoutedEventArgs e)
             {
                 Model1 de = new Model1();
-                //List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
-                //|| (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
-            List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
-                || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
+            //List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
+            //|| (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
+
+            //dealtype=3   connect=0 || connect=memid state=0
+            List<AdminOrder> ord= de.AdminOrders.Where(s =>s.memberid != memId 
+                                                            && s.dealType == 3 
+                                                            && s.state == 0 
+                                                            && s.connect == "0" 
+                                                        ).ToList();
                 Нийтзахиалга.ItemsSource = ord;
                 var t=from tt in ord
                       join a1 in de.AdminAssets on tt.assetid equals a1.id

@@ -352,7 +352,6 @@
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
                               FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding assetid}" ClipboardContentBinding="{x:Null}" Header="Үнэт цаас"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding qty}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>

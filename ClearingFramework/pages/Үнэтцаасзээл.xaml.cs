@@ -253,7 +253,7 @@ namespace Clearing.pages
                 НийтЗээл.ItemsSource = data;
             }
         #endregion
-        #region 
+        #region Өөрийнзээл
         private void OwnAssetC(object sender, SelectionChangedEventArgs e)
         {
             int item = Convert.ToInt32(owncombo.SelectedValue);
