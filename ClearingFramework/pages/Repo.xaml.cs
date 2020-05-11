@@ -70,7 +70,9 @@ namespace Clearing.pages
             private void Нийтзахиалг(object sender, RoutedEventArgs e)
             {
                 Model1 de = new Model1();
-                List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
+                //List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
+                //|| (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
+            List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
                 || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
                 Нийтзахиалга.ItemsSource = ord;
                 var t=from tt in ord

@@ -252,7 +252,32 @@ namespace Clearing.pages
                 var data = de.AdminOrders.Where(s => s.dealType == 4 && s.assetid == item  ).ToList();
                 НийтЗээл.ItemsSource = data;
             }
-            #endregion
+        #endregion
+        #region 
+        private void OwnAssetC(object sender, SelectionChangedEventArgs e)
+        {
+            int item = Convert.ToInt32(owncombo.SelectedValue);
+            OwnTable.ItemsSource = null;
+            Model1 de = new Model1();
+            List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memid && s.assetid == item).ToList();
+            OwnTable.ItemsSource = ords;
+
+        }
+        private void Өөрийнзээл(object sender, RoutedEventArgs e)
+        {
+            Model1 de = new Model1();
+            List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memid).ToList();
+            OwnTable.ItemsSource = ords;
+            var t = from tt in ords
+                    join a1 in de.AdminAssets on tt.assetid equals a1.id
+                    select new
+                    {
+                        a1.id,
+                        a1.name,
+                    };
+            OwnTable.ItemsSource = t.Distinct();
+        }
+        #endregion
         #endregion
     }
 }
