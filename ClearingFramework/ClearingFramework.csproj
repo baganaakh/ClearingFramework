@@ -171,9 +171,9 @@
     <Compile Include="dbBind\pozit.cs" />
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
-    <Compile Include="Migrations\202004270720024_Initial.cs" />
-    <Compile Include="Migrations\202004270720024_Initial.designer.cs">
-      <DependentUpon>202004270720024_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\202005120221283_InitialCreate.cs" />
+    <Compile Include="Migrations\202005120221283_InitialCreate.designer.cs">
+      <DependentUpon>202005120221283_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="pages\Үнэтцаасзээл.xaml.cs">
@@ -289,8 +289,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="pics\mini2.png" />
-    <EmbeddedResource Include="Migrations\202004270720024_Initial.resx">
-      <DependentUpon>202004270720024_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202005120221283_InitialCreate.resx">
+      <DependentUpon>202005120221283_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
