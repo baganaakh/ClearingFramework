@@ -156,7 +156,7 @@ namespace Clearing.pages
                     qty2=qty2,
                     memberid=memid,
                     modified=DateTime.Now,
-                    connect=membee.SelectedValue.ToString(),
+                    connect=Convert.ToInt64(membee.SelectedValue),
                     interests=inter,
                     dealType=4,
                     day=day,

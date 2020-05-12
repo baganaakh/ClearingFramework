@@ -31,9 +31,8 @@ namespace ClearingFramework.dbBind
         public DateTime? modified { get; set; }
 
         public short? dealType { get; set; }
-
-        [StringLength(20)]
-        public string connect { get; set; }
+                
+        public long? connect { get; set; }
 
         public int? day { get; set; }
 

@@ -33,7 +33,8 @@ namespace Clearing.pages
             
             bindCombo();
         }
-        string linkacs, toId="0";
+        string linkacs;
+        long toId = 0;
         decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         Model1 CE = new Model1();
@@ -77,7 +78,7 @@ namespace Clearing.pages
             List<AdminOrder> ord= de.AdminOrders.Where(s =>s.memberid != memId 
                                                             && s.dealType == 3 
                                                             && s.state == 0 
-                                                            && s.connect == "0" 
+                                                            && s.connect == 0 
                                                         ).ToList();
                 Нийтзахиалга.ItemsSource = ord;
                 var t=from tt in ord
@@ -93,8 +94,8 @@ namespace Clearing.pages
             {
                 int item =(int) totalasset.SelectedValue;
                 Model1 de = new Model1();
-                List<AdminOrder> ord = de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0 && s.assetid == item)
-                 || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0 && s.assetid == item)).ToList();
+                List<AdminOrder> ord = de.AdminOrders.Where(s => (s.memberid != memId && s.connect == 0 && s.state == 0 && s.assetid == item)
+                 || (s.memberid != memId && s.connect == memId && s.state == 0 && s.assetid == item)).ToList();
                 Нийтзахиалга.ItemsSource = null;
                 Нийтзахиалга.ItemsSource = ord;
             }
@@ -439,7 +440,7 @@ namespace Clearing.pages
             var item = membee.SelectedItem as AdminMember;
             try
             {
-                toId = item.id.ToString();
+                toId = item.id;
             }
             catch(Exception ex)
             {

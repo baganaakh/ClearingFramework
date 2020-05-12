@@ -43,7 +43,7 @@ namespace ClearingFramework
                     var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
                     if (query == null)
                     {
-                        MessageBox.Show("Username doesn't match");
+                        MessageBox.Show("Username or password doesn't match");
                         return;
                     }
                     App.Current.Properties["User_id"] = query.id;

@@ -20,7 +20,7 @@
         {
             //  This method will be called after migrating to the latest version.
             context.AdminUsers.AddOrUpdate(x => x.id,
-                new AdminUser() { id = 1, uname = "baganaakh", password = "baganaakh", role = "done" , memId = 1}
+                new AdminUser() { id = 1, uname = "baganaakh", password = "baganaakh", role = "done" , memId = -1}
                 );
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
