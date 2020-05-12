@@ -30,8 +30,7 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<AdminInvoice> AdminInvoices { get; set; }
         public virtual DbSet<AdminMargin> AdminMargins { get; set; }
         public virtual DbSet<AdminMarketMaker> AdminMarketMakers { get; set; }
-        public virtual DbSet<AdminMember> AdminMembers { get; set; }
-        public virtual DbSet<Adminmtype> Adminmtypes { get; set; }
+        public virtual DbSet<AdminMember> AdminMembers { get; set; }        
         public virtual DbSet<AdminOrder> AdminOrders { get; set; }
         public virtual DbSet<AdminReason> AdminReasons { get; set; }
         public virtual DbSet<AdminRefPrice> AdminRefPrices { get; set; }
@@ -174,11 +173,6 @@ namespace ClearingFramework.dbBind
             modelBuilder.Entity<AdminMarketMaker>()
                 .Property(e => e.description)
                 .IsFixedLength();
-
-            modelBuilder.Entity<Adminmtype>()
-                .Property(e => e.minValue)
-                .HasPrecision(18, 4);
-
             modelBuilder.Entity<AdminOrder>()
                 .Property(e => e.price)
                 .HasPrecision(18, 4);

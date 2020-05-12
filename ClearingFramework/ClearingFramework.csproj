@@ -153,7 +153,6 @@
     <Compile Include="dbBind\AdminMargin.cs" />
     <Compile Include="dbBind\AdminMarketMaker.cs" />
     <Compile Include="dbBind\AdminMember.cs" />
-    <Compile Include="dbBind\Adminmtype.cs" />
     <Compile Include="dbBind\AdminOrder.cs" />
     <Compile Include="dbBind\AdminReason.cs" />
     <Compile Include="dbBind\AdminRefPrice.cs" />

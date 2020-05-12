@@ -2,6 +2,7 @@
 {
     using ClearingFramework.dbBind;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -22,6 +23,7 @@
             context.AdminUsers.AddOrUpdate(x => x.id,
                 new AdminUser() { id = 1, uname = "baganaakh", password = "baganaakh", role = "done" , memId = -1}
                 );
+            
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method
             //  to avoid creating duplicate seed data.
             base.Seed(context);

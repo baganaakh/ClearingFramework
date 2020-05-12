@@ -62,14 +62,14 @@
                 <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,45,0,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
                     <WrapPanel Height="48" Margin="0,0,0,0" Width="202" >
                         <Image Height="26" Width="26" Source="/pics/2.png" Margin="6,10,0,0" OpacityMask="Black" Opacity="0.6"/>
-                        <TextBox x:Name="txtLoginName" Text="Ericka Wilson" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="141" Tag="Нэвтрэх нэр" Margin="0,8,0,0"/>
+                        <TextBox x:Name="txtLoginName" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="141" Tag="Нэвтрэх нэр" Margin="0,8,0,0"/>
                         <!--<TextBox x:Name="txtLoginName" Height="32" TextWrapping="Wrap" Text="Нэвтрэх нэр" Width="141" BorderThickness="0" VerticalContentAlignment="Center" Background="{x:Null}" Margin="12,5,0,0" Padding="0" Foreground="#7F000000"/>-->
                     </WrapPanel>
                 </Border>
                 <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,105,0,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
                     <WrapPanel Height="48" Margin="0,0,0,0" Width="202">
                         <Image Height="24" Width="26" Source="/pics/5.png" Margin="6,10,0,0" OpacityMask="Black" Opacity="0.6"/>
-                        <PasswordBox x:Name="txtLoginPass" Password="3581747" Height="32" Width="141" BorderThickness="0" VerticalContentAlignment="Center" Background="{x:Null}" Margin="12,8,0,0" Padding="0" Foreground="#7F000000"/>
+                        <PasswordBox x:Name="txtLoginPass" Height="32" Width="141" BorderThickness="0" VerticalContentAlignment="Center" Background="{x:Null}" Margin="12,8,0,0" Padding="0" Foreground="#7F000000"/>
                         <!--<TextBox x:Name="txtLoginPass" Height="32" TextWrapping="Wrap" Text="Нууц үг" Width="141" BorderThickness="0" VerticalContentAlignment="Center" Background="{x:Null}" Margin="12,5,0,0" Padding="0" Foreground="#7F000000"/>-->
                     </WrapPanel>
                 </Border>

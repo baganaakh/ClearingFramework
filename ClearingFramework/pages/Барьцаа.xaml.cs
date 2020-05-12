@@ -9,7 +9,7 @@ using System.Windows.Input;
 namespace Clearing.pages
 {
     /// <summary>
-    /// Interaction logic for Collateral.xaml
+    /// Interaction logic for Барьцаа.xaml
     /// </summary>
     /// 
 
@@ -26,10 +26,21 @@ namespace Clearing.pages
             bindCombo();
             AdminMember memb = CE.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
             short type = Convert.ToInt16(memb.type);
-
-            Adminmtype mty = CE.Adminmtypes.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
+            List<Adminmtype> list = new List<Adminmtype>()
+            {
+                new Adminmtype(){id=0,minValue=50},
+                new Adminmtype(){id=1,minValue=100},
+                new Adminmtype(){id=3,minValue=150},
+            };
+            Adminmtype mty = list.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
             minval = Convert.ToInt32(mty.minValue);
             
+        }
+        public partial class Adminmtype
+        {
+            public short id { get; set; }
+            public string mtype { get; set; }
+            public decimal? minValue { get; set; }
         }
         #region fill
         private void Брокерийнбарьцаа(object sender, RoutedEventArgs e)
@@ -192,7 +203,7 @@ namespace Clearing.pages
                 {
                     id = adet.id,
                     Барьцаа = asst.name,
-                    Хэмжээ = Convert.ToInt32(adet.totalNumber),
+                    Хэмжээ = Convert.ToDecimal(adet.totalNumber),
                     ЖишигҮнэ = (jish).ToString("0.##"),
                     НийтДүн = (tot).ToString("0.##"),
                     ДоодДүн = minval.ToString("0.##"),
@@ -211,7 +222,7 @@ namespace Clearing.pages
             public long id { get; set; }
             public string accNumber { get; set; }
             public string Барьцаа { get; set; }
-            public int Хэмжээ { get; set; }
+            public decimal Хэмжээ { get; set; }
             public string ЖишигҮнэ { get; set; }
             public string НийтДүн { get; set; }
             public string ДоодДүн { get; set; }
