@@ -118,11 +118,22 @@ namespace ClearingFramework
             string userName = username.Text;
             string DBpassword = ssd.Text;
             string databaseName = databases.Text;
-            string entityBuilder= "Data source="+serverName+";" +
-                "initial catalog="+databaseName+";" +
-                "User Id="+userName+";" +
-                "Password="+DBpassword+";"+
+            string entityBuilder;
+            if ( string.IsNullOrEmpty(username.Text) && string.IsNullOrEmpty(ssd.Text))
+            {
+                entityBuilder = "Data source=" + serverName + ";" +
+                "initial catalog=" + databaseName + ";" +
+                "App=EntityFramework;Pooling=false;Persist Security Info = True;Integrated Security=true;";
+            }
+            else
+            {
+                entityBuilder = "Data source=" + serverName + ";" +
+                "initial catalog=" + databaseName + ";" +
+                "User Id=" + userName + ";" +
+                "Password=" + DBpassword + ";" +
                 "App=EntityFramework;Pooling=false;Persist Security Info = True";
+            }
+
             config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = entityBuilder;
             config.ConnectionStrings.ConnectionStrings["Model1"].ProviderName = "System.Data.SqlClient";
             config.Save(ConfigurationSaveMode.Modified);
