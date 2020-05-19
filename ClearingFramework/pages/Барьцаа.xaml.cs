@@ -25,6 +25,11 @@ namespace Clearing.pages
             InitializeComponent();
             bindCombo();
             AdminMember memb = CE.AdminMembers.Where(r => r.id == memId).FirstOrDefault<AdminMember>();
+            if (memb == null)
+            {
+                MessageBox.Show("There is no member has id : " + memId);
+                return;
+            }
             short type = Convert.ToInt16(memb.type);
             List<Adminmtype> list = new List<Adminmtype>()
             {
@@ -34,7 +39,7 @@ namespace Clearing.pages
             };
             Adminmtype mty = list.Where(r => r.id == type).FirstOrDefault<Adminmtype>();
             minval = Convert.ToInt32(mty.minValue);
-            
+
         }
         public partial class Adminmtype
         {
@@ -52,13 +57,13 @@ namespace Clearing.pages
         {
             List<ForGrid> ToDisplay2 = new List<ForGrid>();
             Model1 ce = new Model1();
-            List<AdminOrder> requs = ce.AdminOrders.Where(r=>r.state == 1 || r.state==0  && r.memberid==memId).ToList<AdminOrder>();
+            List<AdminOrder> requs = ce.AdminOrders.Where(r => r.state == 1 || r.state == 0 && r.memberid == memId).ToList<AdminOrder>();
             var t = from tt in requs
                     join a1 in ce.AdminAssets on tt.assetid equals a1.id
                     select new
                     {
                         tt.id,
-                        astprice=a1.price,
+                        astprice = a1.price,
                         tt.accountid,
                         tt.state,
                         a1.name,
@@ -68,7 +73,7 @@ namespace Clearing.pages
                     };
             foreach (var items in t)
             {
-                decimal price = Convert.ToDecimal(items.price);                
+                decimal price = Convert.ToDecimal(items.price);
                 decimal ratio = Convert.ToDecimal(items.ratio);
                 decimal qty = Convert.ToDecimal(items.qty);
                 decimal totval = qty * (ratio * price);
@@ -90,7 +95,7 @@ namespace Clearing.pages
         }
         private void TextBox_KeyUp(object sender, KeyEventArgs e)
         {
-            List<ForGrid> data= pendingColl.ItemsSource as List<ForGrid>;
+            List<ForGrid> data = pendingColl.ItemsSource as List<ForGrid>;
             List<ForGrid> filtered = data.Where(s => s.accNumber.StartsWith(srchacc1.Text)).ToList();
             pendingColl.ItemsSource = null;
             pendingColl.ItemsSource = filtered;
@@ -175,26 +180,27 @@ namespace Clearing.pages
         #endregion
         #region Биржийн барьцаа
         private void Биржийнбарьца(object sender, RoutedEventArgs e)
-        {             
-            Model1 ce = new Model1();            
+        {
+            Model1 ce = new Model1();
             List<ForGrid> Биржбарьцаа = new List<ForGrid>();
-            
+
             var accNums = ce.Accounts.Where(s => s.memId == memId).Select(s => s.id).ToArray();
 
             foreach (var acnum in accNums)
             {
-                var adet = ce.AccountDetails.Where(s => s.accountId== acnum).FirstOrDefault<AccountDetail>();
-                if (adet == null) {
-                                    MessageBox.Show("Asset empty");
-                                    return;
-                                  }
+                var adet = ce.AccountDetails.Where(s => s.accountId == acnum).FirstOrDefault<AccountDetail>();
+                if (adet == null)
+                {
+                    MessageBox.Show("Asset empty");
+                    return;
+                }
                 AdminAsset asst = ce.AdminAssets.Where(s => s.id == adet.assetId).FirstOrDefault<AdminAsset>();
-                if(asst == null)
+                if (asst == null)
                 {
                     MessageBox.Show("Дансны дугаарууд Үц байхгүй байна");
                     return;
                 }
-                decimal price= Convert.ToDecimal(asst.price);
+                decimal price = Convert.ToDecimal(asst.price);
                 decimal jish = Convert.ToDecimal(asst.ratio * price);
                 decimal tot = Convert.ToDecimal(adet.totalNumber * jish);
                 //Adminmtype mty = ce.Adminmtypes.Where(r => r.id == 1).FirstOrDefault<Adminmtype>();
@@ -213,7 +219,7 @@ namespace Clearing.pages
             }
             Биржийнбарьцаа.ItemsSource = Биржбарьцаа;
         }
-            #endregion
+        #endregion
         public class ForGrid
         {
             public ForGrid()
@@ -237,7 +243,7 @@ namespace Clearing.pages
             short mod = Convert.ToInt16(Types.SelectedIndex);
             int qtyy = Convert.ToInt32(qtyss.Text);
             if (mod == 1)
-                qtyy *=(-1);
+                qtyy *= (-1);
             using (Model1 contx = new Model1())
             {
                 AdminOrder order = new AdminOrder()
@@ -305,7 +311,7 @@ namespace Clearing.pages
             try
             {
                 int iid = item.id;
-                decimal eprice =Convert.ToDecimal(item.price)/ 100;
+                decimal eprice = Convert.ToDecimal(item.price) / 100;
                 decimal ratio = Convert.ToDecimal(item.ratio);
                 decimal lastPrice = ratio * eprice;
                 exPrice.Text = lastPrice.ToString("0.##");

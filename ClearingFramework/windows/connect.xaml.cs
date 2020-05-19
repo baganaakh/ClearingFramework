@@ -122,7 +122,7 @@ namespace ClearingFramework
                 "initial catalog="+databaseName+";" +
                 "User Id="+userName+";" +
                 "Password="+DBpassword+";"+
-                "App=EntityFramework;Pooling=false;";
+                "App=EntityFramework;Pooling=false;Persist Security Info = True";
             config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = entityBuilder;
             config.ConnectionStrings.ConnectionStrings["Model1"].ProviderName = "System.Data.SqlClient";
             config.Save(ConfigurationSaveMode.Modified);

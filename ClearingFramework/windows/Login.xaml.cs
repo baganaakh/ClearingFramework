@@ -30,6 +30,7 @@ namespace ClearingFramework
             {
                 using (Model1 context = new Model1())
                 {
+                    context.Database.CreateIfNotExists();
                     var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
                     if (query == null)
                     {

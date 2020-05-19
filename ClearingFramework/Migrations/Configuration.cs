@@ -19,6 +19,7 @@
 
         protected override void Seed(ClearingFramework.dbBind.Model1 context)
         {
+            context.Database.CreateIfNotExists();
             //  This method will be called after migrating to the latest version.
             context.AdminUsers.AddOrUpdate(x => x.id,
                 new AdminUser() { id = 1, uname = "baganaakh", password = "baganaakh", role = "done" , memId = -1}

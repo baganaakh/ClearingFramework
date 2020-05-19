@@ -9,7 +9,6 @@ namespace ClearingFramework.dbBind
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model1")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Model1, ClearingFramework.Migrations.Configuration>());
         }
