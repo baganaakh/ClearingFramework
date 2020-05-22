@@ -20,7 +20,12 @@ namespace ClearingFramework
         {
             e.Handled = Regex.IsMatch(e.Text, "[^0-9.-]+");
         }
-        
+        void Add_startup(object sender,StartupEventArgs e)
+        {
+            Login login = new Login();
+            login.Show();
+
+        }
 
     }
 }
