@@ -1,0 +1,88 @@
+﻿public class AppConfig
+{
+	private const string ConfigFileName = "main.v6.cfg";
+	public DbConfig DataBaseConfig;
+	public string DefaultTemplate = "DevExpress Style";
+	public string LastLoggedUser = "";
+
+	public static AppConfig Load()
+	{
+		var conf = GetConfigDataPath(ConfigFileName);
+
+		if (!File.Exists(conf))
+			return null;
+
+		AppConfig s;
+
+		var config = File.ReadAllText(conf);
+
+		var serializer = new XmlSerializer(typeof(AppConfig));
+
+		using (var reader = new StringReader(config))
+		{
+			s = (AppConfig)serializer.Deserialize(reader);
+		}
+
+		return s;
+	}
+
+	public void Save()
+	{
+		var xmlSerializer = new XmlSerializer(typeof(AppConfig));
+
+		string configXml;
+
+		using (var textWriter = new StringWriter())
+		{
+			xmlSerializer.Serialize(textWriter, this);
+
+			configXml = textWriter.ToString();
+		}
+
+		File.WriteAllText(GetConfigDataPath(ConfigFileName), configXml);
+	}
+
+	private static string GetConfigDataPath(string configFileName)
+	{
+		var userFilePath = FileManager.GetAppDataPath();
+
+		if (!Directory.Exists(userFilePath))
+			Directory.CreateDirectory(userFilePath);
+
+		var sourceFilePath = Path.Combine(Application.StartupPath, configFileName);
+
+		var destFilePath = Path.Combine(userFilePath, configFileName);
+
+		if (!File.Exists(destFilePath))
+			File.Copy(sourceFilePath, destFilePath);
+
+		return destFilePath;
+	}
+}
+
+public class DbConfig
+{
+	public string Database;
+	public string DbType;
+	public string Host;
+
+	[XmlIgnore] public string Password;
+
+	public string User;
+
+	public string EncPassword
+	{
+		get
+		{
+			var enc = new StringEncryptor();
+			return enc.EncryptToString(Password);
+		}
+		set
+		{
+			var enc = new StringEncryptor();
+			Password = enc.DecryptString(value);
+		}
+	}
+
+	public bool UseSsl { get; set; }
+}

@@ -31,7 +31,7 @@ namespace ClearingFramework.Properties {
             "esultSets=True;App=EntityFramework;Pooling=false;")]
         public string Model1 {
             get {
-                return ((string)(this["Model1"]));
+                return ((string)(this["ClearingFramework.Properties.Settings.Model1"]));
             }
         }
     }

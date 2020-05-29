@@ -1,18 +1,14 @@
-﻿namespace ClearingFramework.Migrations
-{
-    using ClearingFramework.dbBind;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
+﻿using ClearingFramework.dbBind;
+using System.Data.Entity.Migrations;
 
+namespace ClearingFramework.Migrations
+{
     internal sealed class Configuration : DbMigrationsConfiguration<ClearingFramework.dbBind.Model1>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "Model1";
+            ContextKey = "ClearingFramework.Properties.Settings.Model1";
             AutomaticMigrationDataLossAllowed = true;
             
         }

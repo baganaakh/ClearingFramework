@@ -134,8 +134,8 @@ namespace ClearingFramework
                 "App=EntityFramework;Pooling=false;Persist Security Info = True";
             }
 
-            config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = entityBuilder;
-            config.ConnectionStrings.ConnectionStrings["Model1"].ProviderName = "System.Data.SqlClient";
+            config.ConnectionStrings.ConnectionStrings["ClearingFramework.Properties.Settings.Model1"].ConnectionString = entityBuilder;
+            config.ConnectionStrings.ConnectionStrings["ClearingFramework.Properties.Settings.Model1"].ProviderName = "System.Data.SqlClient";
             config.Save(ConfigurationSaveMode.Modified);
             MessageBox.Show("done");
         }
@@ -149,7 +149,7 @@ namespace ClearingFramework
         }
         private void check_Click(object sender, RoutedEventArgs e)
         {
-            var connection = ConfigurationManager.ConnectionStrings["Model1"].ConnectionString;
+            var connection = ConfigurationManager.ConnectionStrings["ClearingFramework.Properties.Settings.Model1"].ConnectionString;
             MessageBox.Show(connection.ToString());
         }
         #endregion
@@ -160,8 +160,8 @@ namespace ClearingFramework
             {
                 string cons = "data source=(LocalDB)\\v11.0;Initial catalog=ClearingDataBase;Integrated security=True;" +
                     "MultipleActiveResultSets=True;App=EntityFramework;Pooling=false;";
-                config.ConnectionStrings.ConnectionStrings["Model1"].ConnectionString = cons;
-                config.ConnectionStrings.ConnectionStrings["Model1"].ProviderName = "System.Data.SqlClient";
+                config.ConnectionStrings.ConnectionStrings["ClearingFramework.Properties.Settings.Model1"].ConnectionString = cons;
+                config.ConnectionStrings.ConnectionStrings["ClearingFramework.Properties.Settings.Model1"].ProviderName = "System.Data.SqlClient";
                 config.Save(ConfigurationSaveMode.Modified);                
             }
             catch (Exception ex)
@@ -178,7 +178,7 @@ namespace ClearingFramework
             {
                 try
                 {
-                    using (var dbconx = new DbContext("Model1"))
+                    using (var dbconx = new DbContext("ClearingFramework.Properties.Settings.Model1"))
                     {
                         dbconx.Database.Delete();
                     };
