@@ -8,16 +8,15 @@ namespace ClearingFramework.dbBind
 
     public partial class AccountDetail
     {
-        public int id { get; set; }
+        public long id { get; set; }
 
-        public decimal? freezeValue { get; set; }
+        public int? freezeValue { get; set; }
 
         public decimal? totalNumber { get; set; }
 
         public int? assetId { get; set; }
-
-        [StringLength(20)]
-        public string accNum { get; set; }
+                
+        public long accountId { get; set; }
 
         [StringLength(20)]
         public string linkAcc { get; set; }

@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>ClearingFramework</RootNamespace>
     <AssemblyName>ClearingFramework</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -18,23 +18,26 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\192.168.1.109\Test\ClearingTest\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>C:\Users\altanbagana.n\source\repos\publishClearing\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\192.168.1.109\Test\ClearingTest\</InstallUrl>
-    <ApplicationRevision>26</ApplicationRevision>
+    <InstallUrl>https://raw.githubusercontent.com/baganaakh/publishClearing/master/</InstallUrl>
+    <PublisherName>baganaakh</PublisherName>
+    <MinimumRequiredVersion>1.0.0.1</MinimumRequiredVersion>
+    <ApplicationRevision>45</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <BootstrapperEnabled>false</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -95,9 +98,6 @@
     <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <EmbedInteropTypes>True</EmbedInteropTypes>
-    </Reference>
     <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
     </Reference>
@@ -107,10 +107,14 @@
     <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
       <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
     </Reference>
+    <Reference Include="ShowMeTheXAML, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShowMeTheXAML.1.0.12\lib\net45\ShowMeTheXAML.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -150,7 +154,6 @@
     <Compile Include="dbBind\AdminMargin.cs" />
     <Compile Include="dbBind\AdminMarketMaker.cs" />
     <Compile Include="dbBind\AdminMember.cs" />
-    <Compile Include="dbBind\Adminmtype.cs" />
     <Compile Include="dbBind\AdminOrder.cs" />
     <Compile Include="dbBind\AdminReason.cs" />
     <Compile Include="dbBind\AdminRefPrice.cs" />
@@ -168,18 +171,13 @@
     <Compile Include="dbBind\pozit.cs" />
     <Compile Include="dbBind\Request.cs" />
     <Compile Include="dbBind\transaction.cs" />
-    <Compile Include="StateItems.cs" />
-    <Compile Include="Migrations\202004080744057_initial.cs" />
-    <Compile Include="Migrations\202004080744057_initial.designer.cs">
-      <DependentUpon>202004080744057_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004080745553_account table add three more column.cs" />
-    <Compile Include="Migrations\202004080745553_account table add three more column.designer.cs">
-      <DependentUpon>202004080745553_account table add three more column.cs</DependentUpon>
+    <Compile Include="Migrations\202005120221283_InitialCreate.cs" />
+    <Compile Include="Migrations\202005120221283_InitialCreate.designer.cs">
+      <DependentUpon>202005120221283_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="pages\Repo2.xaml.cs">
-      <DependentUpon>Repo2.xaml</DependentUpon>
+    <Compile Include="pages\Үнэтцаасзээл.xaml.cs">
+      <DependentUpon>Үнэтцаасзээл.xaml</DependentUpon>
     </Compile>
     <Compile Include="windows\connect.xaml.cs">
       <DependentUpon>connect.xaml</DependentUpon>
@@ -187,7 +185,7 @@
     <Compile Include="windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Page Include="pages\Repo2.xaml">
+    <Page Include="pages\Үнэтцаасзээл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -207,35 +205,32 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="functions\Excel.cs" />
     <Compile Include="windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="pages\Acc_balance.xaml">
+    <Page Include="pages\Данснымэдээлэл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Collateral.xaml">
+    <Page Include="pages\Барьцаа.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Create.xaml">
+    <Page Include="pages\Данснээх.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Fee.xaml">
+    <Page Include="pages\Шимтгэл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Lend.xaml">
+    <Page Include="pages\ҮЦзээлийнсан.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Login.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="pages\PostTrade.xaml">
+    <Page Include="pages\Арилжааныдүн.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -243,45 +238,42 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Settlement.xaml">
+    <Page Include="pages\Гүйлгээбүртгэх.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="pages\Start.xaml">
+    <Page Include="pages\Эхлэл.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="pages\Acc_balance.xaml.cs">
-      <DependentUpon>Acc_balance.xaml</DependentUpon>
+    <Compile Include="pages\Данснымэдээлэл.xaml.cs">
+      <DependentUpon>Данснымэдээлэл.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Collateral.xaml.cs">
-      <DependentUpon>Collateral.xaml</DependentUpon>
+    <Compile Include="pages\Барьцаа.xaml.cs">
+      <DependentUpon>Барьцаа.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Create.xaml.cs">
-      <DependentUpon>Create.xaml</DependentUpon>
+    <Compile Include="pages\Данснээх.xaml.cs">
+      <DependentUpon>Данснээх.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Fee.xaml.cs">
-      <DependentUpon>Fee.xaml</DependentUpon>
+    <Compile Include="pages\Шимтгэл.xaml.cs">
+      <DependentUpon>Шимтгэл.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Lend.xaml.cs">
-      <DependentUpon>Lend.xaml</DependentUpon>
+    <Compile Include="pages\ҮЦзээлийнсан.xaml.cs">
+      <DependentUpon>ҮЦзээлийнсан.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="pages\PostTrade.xaml.cs">
-      <DependentUpon>PostTrade.xaml</DependentUpon>
+    <Compile Include="pages\Арилжааныдүн.xaml.cs">
+      <DependentUpon>Арилжааныдүн.xaml</DependentUpon>
     </Compile>
     <Compile Include="pages\Repo.xaml.cs">
       <DependentUpon>Repo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Settlement.xaml.cs">
-      <DependentUpon>Settlement.xaml</DependentUpon>
+    <Compile Include="pages\Гүйлгээбүртгэх.xaml.cs">
+      <DependentUpon>Гүйлгээбүртгэх.xaml</DependentUpon>
     </Compile>
-    <Compile Include="pages\Start.xaml.cs">
-      <DependentUpon>Start.xaml</DependentUpon>
+    <Compile Include="pages\Эхлэл.xaml.cs">
+      <DependentUpon>Эхлэл.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -296,19 +288,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202004080744057_initial.resx">
-      <DependentUpon>202004080744057_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004080745553_account table add three more column.resx">
-      <DependentUpon>202004080745553_account table add three more column.cs</DependentUpon>
+    <Resource Include="pics\mini2.png" />
+    <EmbeddedResource Include="Migrations\202005120221283_InitialCreate.resx">
+      <DependentUpon>202005120221283_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="functions\Гүйлгээ бүртгэх.xlsx" />
-    <None Include="functions\Данс.xlsx" />
+    <Content Include="dbBind\ClearingDataBase.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="dbBind\ClearingDataBase_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>ClearingDataBase.mdf</DependentUpon>
+    </Content>
+    <Content Include="functions\Гүйлгээ бүртгэх.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="functions\Данс.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
@@ -370,26 +371,37 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="keys\" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
-      <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.SqlServer.SqlLocalDB.11.1">
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="dbBind\ClearingDataBase.mdf">
       <Visible>False</Visible>
-      <ProductName>SQL Server 2012 Express LocalDB</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -398,6 +410,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.0\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.0\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.0\build\EntityFramework.targets')" />
+  <Import Project="..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets" Condition="Exists('..\packages\ShowMeTheXAML.MSBuild.1.0.12\build\net45\ShowMeTheXAML.MSBuild.targets')" />
 </Project>

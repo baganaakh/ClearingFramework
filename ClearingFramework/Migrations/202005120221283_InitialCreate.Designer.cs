@@ -7,13 +7,13 @@ namespace ClearingFramework.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class accounttableaddthreemorecolumn : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(accounttableaddthreemorecolumn));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202004080745553_account table add three more column"; }
+            get { return "202005120221283_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

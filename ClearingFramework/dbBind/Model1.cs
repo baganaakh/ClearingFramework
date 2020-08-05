@@ -4,16 +4,15 @@ namespace ClearingFramework.dbBind
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Windows;    
 
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model1")
         {
-            //Database.SetInitializer<Model1>(new CreateDatabaseIfNotExists<Model1>());
-
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Model1, ClearingFramework.Migrations.Configuration>());
         }
-
+        
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountDetail> AccountDetails { get; set; }
         public virtual DbSet<AdminAccount> AdminAccounts { get; set; }
@@ -30,8 +29,7 @@ namespace ClearingFramework.dbBind
         public virtual DbSet<AdminInvoice> AdminInvoices { get; set; }
         public virtual DbSet<AdminMargin> AdminMargins { get; set; }
         public virtual DbSet<AdminMarketMaker> AdminMarketMakers { get; set; }
-        public virtual DbSet<AdminMember> AdminMembers { get; set; }
-        public virtual DbSet<Adminmtype> Adminmtypes { get; set; }
+        public virtual DbSet<AdminMember> AdminMembers { get; set; }        
         public virtual DbSet<AdminOrder> AdminOrders { get; set; }
         public virtual DbSet<AdminReason> AdminReasons { get; set; }
         public virtual DbSet<AdminRefPrice> AdminRefPrices { get; set; }
@@ -67,28 +65,8 @@ namespace ClearingFramework.dbBind
                 .Property(e => e.pozFee)
                 .HasPrecision(18, 4);
 
-            modelBuilder.Entity<AccountDetail>()
-                .Property(e => e.freezeValue)
-                .HasPrecision(18, 4);
-
-            modelBuilder.Entity<AccountDetail>()
-                .Property(e => e.totalNumber)
-                .HasPrecision(18, 4);
-
-            modelBuilder.Entity<AdminAccountDetail>()
-                .Property(e => e.freezeValue)
-                .HasPrecision(18, 4);
-
-            modelBuilder.Entity<AdminAccountDetail>()
-                .Property(e => e.amount)
-                .HasPrecision(18, 4);
-
             modelBuilder.Entity<AdminActiveSession>()
                 .Property(e => e.isactive)
-                .IsFixedLength();
-
-            modelBuilder.Entity<AdminActiveSession>()
-                .Property(e => e.state)
                 .IsFixedLength();
 
             modelBuilder.Entity<AdminAsset>()
@@ -164,16 +142,8 @@ namespace ClearingFramework.dbBind
                 .HasPrecision(18, 4);
 
             modelBuilder.Entity<AdminInvoiceDetail>()
-                .Property(e => e.qty)
-                .HasPrecision(18, 4);
-
-            modelBuilder.Entity<AdminInvoiceDetail>()
                 .Property(e => e.price)
                 .HasPrecision(18, 6);
-
-            modelBuilder.Entity<AdminInvoice>()
-                .Property(e => e.qty)
-                .HasPrecision(18, 4);
 
             modelBuilder.Entity<AdminInvoice>()
                 .Property(e => e.totalPrice)
@@ -202,11 +172,6 @@ namespace ClearingFramework.dbBind
             modelBuilder.Entity<AdminMarketMaker>()
                 .Property(e => e.description)
                 .IsFixedLength();
-
-            modelBuilder.Entity<Adminmtype>()
-                .Property(e => e.minValue)
-                .HasPrecision(18, 4);
-
             modelBuilder.Entity<AdminOrder>()
                 .Property(e => e.price)
                 .HasPrecision(18, 4);
@@ -334,6 +299,7 @@ namespace ClearingFramework.dbBind
             modelBuilder.Entity<transaction>()
                 .Property(e => e.value)
                 .HasPrecision(18, 4);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

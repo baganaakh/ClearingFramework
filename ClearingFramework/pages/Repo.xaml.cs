@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,13 +30,14 @@ namespace Clearing.pages
         public Repo()
         {
             InitializeComponent();
-            FillGrid();
+            
             bindCombo();
         }
-        string linkacs, toId="0";
+        string linkacs;
+        long toId = 0;
         decimal assId,totSum,toPay,inter;
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
-        Model1 CE = new Model1();        
+        Model1 CE = new Model1();
         #region Илгээх
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -55,32 +57,185 @@ namespace Clearing.pages
                     state = 0,
                     toPay = toPay,
                     interests = inter,
-                    dealType=1,
+                    dealType=3,
+                    side=0,
                 };
                 context.AdminOrders.Add(order);
                 context.SaveChanges();
-                FillGrid();
+                
             }
         }
         #endregion
         #region datagrid fill
-        private void FillGrid()
+            #region Нийтзахиалга
+            private void Нийтзахиалг(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+            //List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
+            //|| (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
+
+            //dealtype=3   connect=0 || connect=memid state=0
+            List<AdminOrder> ord= de.AdminOrders.Where(s =>s.memberid != memId 
+                                                            && s.dealType == 3 
+                                                            && s.state == 0 
+                                                            && s.connect == 0 
+                                                        ).ToList();
+                Нийтзахиалга.ItemsSource = ord;
+                var t=from tt in ord
+                      join a1 in de.AdminAssets on tt.assetid equals a1.id
+                      select new
+                      {
+                          a1.id,
+                          a1.name,
+                      };
+                totalasset.ItemsSource = t.Distinct();
+            }
+            private void totalasset_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                int item =(int) totalasset.SelectedValue;
+                Model1 de = new Model1();
+                List<AdminOrder> ord = de.AdminOrders.Where(s => (s.memberid != memId && s.connect == 0 && s.state == 0 && s.assetid == item)
+                 || (s.memberid != memId && s.connect == memId && s.state == 0 && s.assetid == item)).ToList();
+                Нийтзахиалга.ItemsSource = null;
+                Нийтзахиалга.ItemsSource = ord;
+            }
+            #endregion
+            #region Өөрийнзахиалга
+        private void OwnAssetC(object sender, SelectionChangedEventArgs e)
+        {
+            int item =Convert.ToInt32(OwnAsset.SelectedValue);
+            Өөрийнзахиалга.ItemsSource = null;
+            Model1 de = new Model1();
+            List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memId && s.assetid==item).ToList();
+            Өөрийнзахиалга.ItemsSource = ords;
+            
+        }
+        private void Өөрийнзахиалг(object sender, RoutedEventArgs e)
         {
             Model1 de = new Model1();
-            List<AdminOrder> ord= de.AdminOrders.Where(s => (s.memberid != memId && s.connect == "0" && s.state == 0)
-            || (s.memberid != memId && s.connect == memId.ToString() && s.state == 0) ).ToList();
-            totalOrder.ItemsSource = ord;
             List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memId).ToList();
-            OwnTable.ItemsSource = ords;
-            soldTable.ItemsSource= de.AdminDeals.Where(s => s.memberid == memId && s.side == -1).ToList();
-            boughtTable.ItemsSource= de.AdminDeals.Where(s => s.memberid != memId && s.side == 1).ToList();
-            repoHistory.ItemsSource = de.AdminDeals.Where(s=> s.memberid == memId).ToList();
+            Өөрийнзахиалга.ItemsSource = ords;
+            var t = from tt in ords
+                    join a1 in de.AdminAssets on tt.assetid equals a1.id
+                    select new
+                    {
+                        a1.id,
+                        a1.name,
+                    };
+            OwnAsset.ItemsSource = t.Distinct();
         }
+        #endregion
+            #region Зарсанхэлцэл
+            private void Зарсанхэлцэ(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminDeals.Where(s => s.memberid == memId && s.side == -1).ToList();
+                Зарсанхэлцэл.ItemsSource = data;
+                var t = from tt in data
+                        join a1 in de.AdminAssets on tt.assetid equals a1.id
+                        select new
+                        {
+                            a1.id,
+                            a1.name,
+                        };
+                soldre.ItemsSource = t.Distinct();
+            }
+
+            private void soldre_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                int item = (int)soldre.SelectedValue;
+                Model1 de = new Model1();
+                var data = de.AdminDeals.Where(s => s.memberid == memId && s.side == -1 && s.assetid == item).ToList();
+                Зарсанхэлцэл.ItemsSource = null;
+                Зарсанхэлцэл.ItemsSource = data;
+            }
+
+            #endregion
+            #region Авсанхэлцэл
+            private void Авсанхэлц(object sender, SelectionChangedEventArgs e)
+            {
+                int item =Convert.ToInt32(ast.SelectedValue);
+                Model1 de = new Model1();
+                var data = de.AdminDeals.Where(s => s.memberid != memId && s.side == 1 && s.assetid == item).ToList();
+                Авсанхэлцэл.ItemsSource = null;
+                Авсанхэлцэл.ItemsSource = data;
+
+            }
+            private void Авсанхэлцэ(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminDeals.Where(s => s.memberid != memId && s.side == 1).ToList();
+                Авсанхэлцэл.ItemsSource = data;
+                var t = from tt in data
+                        join a1 in de.AdminAssets on tt.assetid equals a1.id
+                        select new
+                        {
+                            a1.id,
+                            a1.name,
+                        };
+                ast.ItemsSource = t.Distinct();
+            }
+        #endregion
+            #region Хэлцлийнтүүх
+        private void Хэлцлийнтүү(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminDeals.Where(s => s.memberid == memId && s.dealType==3).ToList();
+                Хэлцлийнтүүх.ItemsSource = data;
+                var t=from tt in data
+                      join a1 in de.AdminAssets on tt.assetid equals a1.id
+                      select new
+                      {
+                          a1.id,
+                          a1.name,
+                      };
+                histasst.ItemsSource = t.Distinct();
+            }
+
+            private void histasst_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                int item = (int)histasst.SelectedValue;
+                Model1 de = new Model1();
+                var data = de.AdminDeals.Where(s => s.memberid == memId && s.assetid == item).ToList();
+                Хэлцлийнтүүх.ItemsSource = null;
+                Хэлцлийнтүүх.ItemsSource = data;
+            }
+        private void sdate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime time1, time2;
+            time1 = (DateTime)sdate.SelectedDate;
+            if (edate.SelectedDate == null)
+            {
+                time2 = DateTime.Now;
+            }
+            else
+            {
+                time2 = (DateTime)edate.SelectedDate;
+            }
+            List<AdminDeal> transs = Хэлцлийнтүүх.ItemsSource as List<AdminDeal>;
+            var t = transs.Where(s => s.modified > time1 && s.modified < time2).ToList();
+            Хэлцлийнтүүх.ItemsSource = null;
+            Хэлцлийнтүүх.ItemsSource = t;
+        }
+
+        private void edate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DateTime time1, time2;
+            time2 = (DateTime)edate.SelectedDate;
+            if (sdate.SelectedDate == null)
+                return;
+            time1 = (DateTime)sdate.SelectedDate;
+            List<AdminDeal> transs = Хэлцлийнтүүх.ItemsSource as List<AdminDeal>;
+            var t = transs.Where(s => s.modified > time1 && s.modified < time2).ToList();
+            Хэлцлийнтүүх.ItemsSource = null;
+            Хэлцлийнтүүх.ItemsSource = t;
+        }
+        #endregion
         #endregion
         #region Нийт захиалга зөвшөөрөх
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            AdminOrder value = (AdminOrder)totalOrder.SelectedItem;
+            AdminOrder value = (AdminOrder)Нийтзахиалга.SelectedItem;
             if (null == value) return;
             if(linkAc_Copy.SelectedItem == null)
             {
@@ -133,13 +288,13 @@ namespace Clearing.pages
             statss.state = 1;
             contx.SaveChanges();
             }
-            FillGrid();
+            
         }
         #endregion
         #region өөрийн захиалга Цуцлах Устгах
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            var value = OwnTable.SelectedItem as AdminOrder;
+            var value = Өөрийнзахиалга.SelectedItem as AdminOrder;
             if (value == null) return;
             using (Model1 conx = new Model1())
             {
@@ -154,7 +309,7 @@ namespace Clearing.pages
             //foreach(var row in checkedRows)
             //{
             //    MessageBox.Show("dsdsd");
-            //}
+ 
 
             //Order value = (Order)OwnTable.SelectedItem;
             //if (null == value) return;
@@ -165,7 +320,7 @@ namespace Clearing.pages
             //    contx.Orders.Remove(statss);
             //    contx.SaveChanges();
             //}
-            FillGrid();
+            
         }
         #endregion
         #region combos selection change                 
@@ -197,10 +352,10 @@ namespace Clearing.pages
             {
                 linkacs = item.id.ToString();
                 List<AdminAsset> assets = new List<AdminAsset>();
-                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.accNum).ToList();
+                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.id).ToList();
                 foreach(var i in acclist)
                 {
-                    var detail = CE.AccountDetails.Where(s=>s.accNum == i).Select(s=> s.assetId).ToArray();
+                    var detail = CE.AccountDetails.Where(s=>s.id == i).Select(s=> s.assetId).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
                     var asst = CE.AdminAssets.Where(s => s.id == ids).FirstOrDefault<AdminAsset>();
                     assets.Add(asst);
@@ -214,7 +369,7 @@ namespace Clearing.pages
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
                 //throw;
             }
@@ -239,20 +394,21 @@ namespace Clearing.pages
                 sum += Convert.ToDecimal( i.totalNumber);
                 freezesum += Convert.ToDecimal(i.freezeValue);
             }
-            remainder.Text = sum.ToString("0.##");
+            remainder.Text = sum.ToString(".##");
             try
             {
                 int iid = item.id;
-                decimal ratio = item.ratio;
+                decimal ratio = Convert.ToDecimal(item.ratio);
                 decimal lastPrice = ratio * eprice;
-                possible.Text = (lastPrice * sum).ToString("0.##");
-                exPrice.Text = lastPrice.ToString("0.##");
+                possible.Text = (lastPrice * sum).ToString(".##");
+                exPrice.Text = lastPrice.ToString(".##");
             }
             catch
             {
                 throw;
             }
         }
+
         #region number
         private void qtyss_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -268,7 +424,12 @@ namespace Clearing.pages
             }
             int days1 = Convert.ToInt32(days.Content);
             var Interst = CE.AdminInterests.Where(s => s.assetid == assId).FirstOrDefault<AdminInterest>();
-            decimal Interst1 =Convert.ToDecimal( Interst.interest);
+            if(Interst == null)
+            {
+                MessageBox.Show("asset songoogui bna");
+                return;
+            }
+            decimal Interst1 =Convert.ToDecimal(Interst.interest);
             inter = Convert.ToDecimal(TotalSum.Text) * days1 * Interst1;
             Inter.Text = inter.ToString("0.##");
             toPay = Convert.ToDecimal(TotalSum.Text) + Convert.ToDecimal(Inter.Text);
@@ -279,11 +440,11 @@ namespace Clearing.pages
             var item = membee.SelectedItem as AdminMember;
             try
             {
-                toId = item.id.ToString();
+                toId = item.id;
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
             }
         }
@@ -317,7 +478,7 @@ namespace Clearing.pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
             }
         }

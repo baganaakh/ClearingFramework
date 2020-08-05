@@ -1,4 +1,4 @@
-﻿<Page x:Class="Clearing.pages.Repo2"
+﻿<Page x:Class="Clearing.pages.Үнэтцаасзээл"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -219,8 +219,8 @@
         </Style>
     </Page.Resources>
     <Grid Background="#14501B4A">
-        <TabControl Margin="10,10,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11" Height="158" VerticalAlignment="Top">
-            <TabItem Header="ҮЦ зээлэх захиалга" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White" Margin="-2,0,2,0">
+        <TabControl Margin="10,10,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" Height="158" VerticalAlignment="Top">
+            <TabItem Header="ҮЦ зээлэх захиалга" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White" Margin="-2,0,2,0">
                 <Grid Background="White">
                     <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="72" Width="4" Background="#FF7B5477"/>
                     <Button Click="Button_Click" Content="Илгээх" Margin="0,29,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
@@ -237,7 +237,7 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <Button Click="Button_Click_1" Content="Шинэ" Margin="0,58,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White">
+                    <Button Click="ClearFields" Content="Шинэ" Margin="0,58,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="6,6,6,6"/>
@@ -254,7 +254,7 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="43,10,0,0" TextWrapping="Wrap" Text="Үнэ цаас" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <ComboBox SelectionChanged="assett_SelectionChanged" DisplayMemberPath="name" SelectedValuePath="id" Name="assett" HorizontalAlignment="Left" Height="20" Margin="118,10,0,0"  Text="Гүйлгээний төрөл" Width="80" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="43,35,0,0" TextWrapping="Wrap" Text="Хэмжээ" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="212,35,0,0" TextWrapping="Wrap" Text="Жишиг үнэ ₮" Width="123" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox FontSize="10" HorizontalAlignment="Left" Height="20" Margin="212,35,0,0" TextWrapping="Wrap" Text="Жишиг үнэ ₮" Width="123" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <Label Content="Label" Margin="0,10,129,0" VerticalAlignment="Top" Height="72" HorizontalAlignment="Right" Width="4" Background="#FF7B5477"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="20,60,0,0" TextWrapping="Wrap" Text="Барьцааны дүн" Width="93" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="212,10,0,0" TextWrapping="Wrap" Text="Барьцааны хөрөнгө" Width="123" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
@@ -301,7 +301,7 @@
             </TabItem>
         </TabControl>
         <TabControl Margin="10,173,10,10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
-            <TabItem Header="Нийт Зээл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="НийтЗээ" Header="Нийт Зээл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="30*"/>
@@ -338,11 +338,11 @@
                         </Button.ToolTip>
                     </Button>
                     <ComboBox x:Name="linkAc_Copy" DisplayMemberPath="accNum" SelectedValuePath="id"  HorizontalAlignment="Left" Height="20" Margin="560,10,0,0"  Text="Гүйлгээний төрөл" Width="111" BorderBrush="{x:Null}" Foreground="#FF212121" VerticalContentAlignment="Center" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
-                    <ComboBox HorizontalAlignment="Left" Height="20" Margin="41,10,0,0"  Text="Гүйлгээний төрөл" Width="50" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <ComboBox DisplayMemberPath="name" SelectedValuePath="id" Name="НийтЗэ" SelectionChanged="НийтЗэ_SelectionChanged" HorizontalAlignment="Left" Height="20" Margin="41,11,0,0"  Text="Гүйлгээний төрөл" Width="50" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="ҮЦ" Width="26" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Өөрийн зээл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Өөрийнзээл" Header="Өөрийн зээл" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="132*"/>
@@ -352,7 +352,6 @@
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
                               FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,35,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
-                            <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding assetid}" ClipboardContentBinding="{x:Null}" Header="Үнэт цаас"/>
                             <DataGridTextColumn MinWidth="60" Width ="*" Binding="{Binding qty}" ClipboardContentBinding="{x:Null}" Header="Хэмжээ"/>
@@ -378,7 +377,7 @@
                             </ToolTip>
                         </Button.ToolTip>
                     </Button>
-                    <ComboBox HorizontalAlignment="Left" Height="20" Margin="41,10,0,0"  Text="Гүйлгээний төрөл" Width="50" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <ComboBox Name="owncombo" HorizontalAlignment="Left" Height="20" Margin="41,10,0,0"  Text="Гүйлгээний төрөл" Width="50" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="ҮЦ" Width="26" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
@@ -462,7 +461,7 @@
                     <ComboBox HorizontalAlignment="Left" Height="20" Margin="41,10,0,0"  Text="Гүйлгээний төрөл" Width="50" Background="Black" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" IsReadOnly="True" VerticalAlignment="Top"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Зээлийн түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Зээлийнтүү" Header="Зээлийн түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <DataGrid x:Name="repoHistory" Background="White" AutoGenerateColumns="False" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
@@ -504,41 +503,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Height="26" Margin="0,10,80,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/XLS.png" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Xls-ээр хадгалах"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
-        <Button Height="26" Margin="0,10,45,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/PDF.ico" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Pdf-ээр хадгалах"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
-        <Button Height="26" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/Print.png" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Хэвлэх"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
     </Grid>
 </Page>

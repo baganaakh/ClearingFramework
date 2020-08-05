@@ -17,9 +17,9 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Fee.xaml
     /// </summary>
-    public partial class Fee : Page
+    public partial class Шимтгэл : Page
     {
-        public Fee()
+        public Шимтгэл()
         {
             InitializeComponent();
             LoadData();

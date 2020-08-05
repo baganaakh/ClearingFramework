@@ -56,33 +56,95 @@
     </Window.Resources>
     <Grid Background="#FF501B4A" >
         <StackPanel Height="730" VerticalAlignment="Top" HorizontalAlignment="Center" MinWidth="874">
-            <Grid Height="500" Width="414" Margin="0,15,0,0" Background="#33FFFFFF">
-                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="106,243,106,0" BorderThickness="0" Height="53" Width="202" CornerRadius="4,4,4,4" Background="White" >
-                    <TextBox x:Name="databases" Text="test" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="162" Tag="database" Margin="10,10,30,11"/>
+            <Grid Height="659" Width="635" Margin="0,15,0,0" Background="#33FFFFFF">
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="362,39,71,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
+                    <TextBox x:Name="databases" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="162" Tag="database" Margin="10,7,30,11"/>
                 </Border>
-                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="106,112,106,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="362,110,71,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
                     <TextBox x:Name="username" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="162" Tag="user" Margin="10,3,30,10"/>
                 </Border>
-                <Button x:Name="button1" Click="button1_Click" Content="Change" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="106,321,106,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                <Button x:Name="button1" Click="Change" Content="Change" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="70,179,363,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="4,4,4,4"/>
                         </Style>
                     </Button.Resources>
                 </Button>
-                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="106,180,106,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="70,110,363,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
                     <TextBox x:Name="ssd" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="162" Tag="password" Margin="10,3,30,10"/>
                 </Border>
-                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="106,42,106,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
-                    <TextBox x:Name="server" Text="msx-1003\test" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="162" Tag="server" Margin="10,3,30,10"/>
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="70,39,363,0" BorderThickness="0" Height="45" Width="202" CornerRadius="4,4,4,4" Background="White" >
+                    <TextBox x:Name="server" Style="{StaticResource MyWaterMarkStyle}" Height="32" Width="162" Tag="server" Margin="10,3,30,10"/>
                 </Border>
-                <Button x:Name="button1_Copy" Click="button1_Copy_Click" Content="exit" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="106,377,106,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                <Button x:Name="button1_Copy1" Click="Exit" Content="exit" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="216,572,217,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
                     <Button.Resources>
                         <Style TargetType="{x:Type Border}">
                             <Setter Property="CornerRadius" Value="4,4,4,4"/>
                         </Style>
                     </Button.Resources>
                 </Button>
+                <Button x:Name="uselocal" Click="uselocal_Click" Content="Use Local" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="362,179,71,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="DeleteDB" Click="DeleteDB_Click" Content="Delete local Db" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="70,250,363,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="check" Click="check_Click" Content="check" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="362,250,71,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="browseBackup" Click="browse_Click" Content="Browse" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="411,332,168,0" Width="56" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="70,332,272,0" BorderThickness="0" Height="40" Width="293" CornerRadius="4,4,4,4" Background="White" >
+                    <TextBox x:Name="ssd1" Style="{StaticResource MyWaterMarkStyle}" Height="32" Tag="Location" Margin="10,1,10,7"/>
+                </Border>
+                <Button x:Name="Backup" Click="Backup_Click" Content="Backup" VerticalAlignment="Top" IsEnabled="False" HorizontalAlignment="Center" Height="40" Margin="508,332,71,0" Width="56" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="browseRestore" Click="Browse2_Click" Content="Browse" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="411,393,168,0" Width="56" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Border BorderBrush="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="70,393,272,0" BorderThickness="0" Height="40" Width="293" CornerRadius="4,4,4,4" Background="White" >
+                    <TextBox x:Name="ssd2" Style="{StaticResource MyWaterMarkStyle}" Height="32" Tag="Location" Margin="10,1,10,7"/>
+                </Border>
+                <Button x:Name="Restore" Click="Restore_Click" Content="Restore" IsEnabled="False" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="508,393,71,0" Width="56" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <!--<Button Click="Backup" Content="Backup" VerticalAlignment="Top" HorizontalAlignment="Center" Height="40" Margin="106,555,106,0" Width="202" BorderThickness="0" Background="#FF3EB9BB" FontSize="14" Foreground="White">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="4,4,4,4"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>-->
             </Grid>
             <Label x:Name="lblMessage" Content="" Margin="0,100,0,0" Foreground="WhiteSmoke"  Padding="30,0,0,0" />
         </StackPanel>

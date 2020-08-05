@@ -24,13 +24,12 @@ namespace Clearing.pages
     /// Interaction logic for Repo.xaml
     /// interst, refPrice, account-totalsum
     /// </summary>
-    public partial class Repo2 : Page
+    public partial class Үнэтцаасзээл : Page
     {
-        public Repo2()
+        public Үнэтцаасзээл()
         {
             InitializeComponent();
-            bindCombo();
-            FillGrid();
+            bindCombo();            
         }
         int asst1, asst2,qty,qty2,day;
         decimal price,price2,inter,topay,totSum;
@@ -40,10 +39,25 @@ namespace Clearing.pages
         private void bindCombo()
         {
             assett.ItemsSource = CE.AdminAssets.ToList();
-            asset2.ItemsSource = CE.AdminAssets.SqlQuery("select * from AdminAssets" +
-                " where id= any (select assetId from Clearing.dbo.AccountDetails t1 " +
-                "inner join Clearing.dbo.account t2 on t1.accNum = t2.accNum " +
-                "where t2.memId = "+memid+" )").ToList<AdminAsset>();
+            List<Account> t1 = CE.Accounts.Where(s => s.memId == memid).ToList<Account>();
+            var t = from tt in t1
+                    join acde in CE.AccountDetails on tt.id equals acde.accountId
+                    join ass in CE.AdminAssets on acde.assetId equals ass.id
+                    select new
+                    {
+                        ass.id,
+                        ass.name,
+                    };
+            var t2 = t.Distinct();
+
+
+            //var ast2= CE.AdminAssets.SqlQuery("select * from AdminAssets" +
+            //    " where id= any (select assetId from model1.dbo.AccountDetails t1 " +
+            //    "inner join model1.dbo.account t2 on t1.accNum = t2.accNum " +
+            //    "where t2.memId = " + memid + " )").ToList<AdminAsset>();
+
+
+            asset2.ItemsSource = t2;
             var memlist = CE.AdminMembers.ToList();
             var rem = memlist.Find(x => x.id == memid);
             memlist.Remove(rem);
@@ -58,9 +72,10 @@ namespace Clearing.pages
         {
             App.TextBox_PreviewTextInput(sender, e);
         }
+
         #endregion
         #region Цуцлах Clear
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void ClearFields(object sender, RoutedEventArgs e)
         {
             assett.SelectedItem = null;
             qtyss.Text = null;
@@ -75,6 +90,7 @@ namespace Clearing.pages
             TotalSum.Text = null;
             ToPay.Text = null;
         }
+
         #endregion
         #region textboxes changed
         private void qtyss_TextChanged(object sender, TextChangedEventArgs e)
@@ -92,6 +108,12 @@ namespace Clearing.pages
             }
             catch (System.NullReferenceException)
             {
+                return;
+            }
+            catch (System.OverflowException)
+            {
+                MessageBox.Show("Хязгаар хэтэрлээ !!!");
+                qtyss.Text = null;
                 return;
             }
 
@@ -134,31 +156,42 @@ namespace Clearing.pages
                     qty2=qty2,
                     memberid=memid,
                     modified=DateTime.Now,
-                    connect=membee.SelectedValue.ToString(),
+                    connect=Convert.ToInt64(membee.SelectedValue),
                     interests=inter,
-                    dealType=5,
+                    dealType=4,
                     day=day,
                     totSum=totSum,
                     toPay=topay,
                 };
                 conx.AdminOrders.Add(order);
                 conx.SaveChanges();
-            }
-            
+                ClearFields(null, null);
+            }            
         }
         #endregion
         #region combos selections changed
         private void asset2_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var ast2 = asset2.SelectedItem as AdminAsset;
-            asst2 = ast2.id;
-            price2 =Convert.ToDecimal(ast2.price);
+            var ast2 = asset2.SelectedValue;
+            asst2 = Convert.ToInt32(ast2);
+            //price2 =Convert.ToDecimal(ast2.price);
             ast2price.Text = price.ToString();
-            var ast = CE.AccountDetails.SqlQuery("" +
-                "select * from Clearing.dbo.AccountDetails t1 " +
-                "inner join Clearing.dbo.account t2 on t1.accNum =t2 .accNum " +
-                "where t2.memId = " + memid + " and t1.assetId=" + ast2.id + "").FirstOrDefault<AccountDetail>();
-            remain.Text = Convert.ToInt32(ast.totalNumber).ToString();
+            var t = from tt in CE.Accounts.Where(s => s.memId == memid)
+                    join acde in CE.AccountDetails on tt.id equals acde.accountId
+                    join ass in CE.AdminAssets.Where(s => s.id == asst2) on acde.assetId equals ass.id
+                    select new
+                    {
+                        ass.price,
+                        acde.totalNumber,
+                    };
+                  
+
+            //var ast = CE.AccountDetails.SqlQuery("" +
+            //    "select * from model1.dbo.AccountDetails t1 " +
+            //    "inner join model1.dbo.account t2 on t1.accNum =t2 .accNum " +
+            //    "where t2.memId = " + memid + " and t1.assetId=" + ast2.id + "").FirstOrDefault<AccountDetail>();
+
+            //remain.Text = Convert.ToInt32(t.totalNumber).ToString();
         }
         private void assett_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -173,19 +206,78 @@ namespace Clearing.pages
                 return;
             day = Convert.ToInt32(days.Content);            
             var Interst = CE.AdminInterests.Where(s => s.assetid == asst2).FirstOrDefault<AdminInterest>();
-            decimal interest= Convert.ToDecimal(Interst.interest);
+            decimal interest;
+            try
+            {
+                 interest = Convert.ToDecimal(Interst.interest);
+            }
+            catch (System.NullReferenceException)
+            {
+                return;                
+            }
             inter = totSum * day * interest;
             Inter.Text = inter.ToString("0.#");
             topay = totSum + inter;
             ToPay.Text = topay.ToString("0.#");
         }
         #endregion
-        #region FillGrid
-        private void FillGrid()
+        #region fill
+            #region Зээлийн түүх
+            private void Зээлийнтүү(object sender, RoutedEventArgs e)
+            {
+                
+            }
+        #endregion
+        #region Нийт Зээл
+        private void НийтЗээ(object sender, RoutedEventArgs e)
+            {
+                Model1 de = new Model1();
+                var data= de.AdminOrders.Where(s => s.dealType == 4).ToList();
+                НийтЗээл.ItemsSource = data;
+                var t=from tt in data
+                      join a1 in de.AdminAssets on tt.assetid equals a1.id
+                      select new
+                      {
+                          a1.id,
+                          a1.name,
+                      };
+                НийтЗэ.ItemsSource = t.Distinct();
+            }
+
+            private void НийтЗэ_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                НийтЗээл.ItemsSource = null;
+                Model1 de = new Model1();
+                int item = (int)НийтЗэ.SelectedValue;
+                var data = de.AdminOrders.Where(s => s.dealType == 4 && s.assetid == item  ).ToList();
+                НийтЗээл.ItemsSource = data;
+            }
+        #endregion
+        #region Өөрийнзээл
+        private void OwnAssetC(object sender, SelectionChangedEventArgs e)
         {
-            Model1 ce = new Model1();
-            НийтЗээл.ItemsSource = ce.AdminOrders.Where(s => s.dealType == 5).ToList();
+            int item = Convert.ToInt32(owncombo.SelectedValue);
+            OwnTable.ItemsSource = null;
+            Model1 de = new Model1();
+            List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memid && s.assetid == item).ToList();
+            OwnTable.ItemsSource = ords;
+
         }
+        private void Өөрийнзээл(object sender, RoutedEventArgs e)
+        {
+            Model1 de = new Model1();
+            List<AdminOrder> ords = de.AdminOrders.Where(s => s.memberid == memid).ToList();
+            OwnTable.ItemsSource = ords;
+            var t = from tt in ords
+                    join a1 in de.AdminAssets on tt.assetid equals a1.id
+                    select new
+                    {
+                        a1.id,
+                        a1.name,
+                    };
+            OwnTable.ItemsSource = t.Distinct();
+        }
+        #endregion
         #endregion
     }
 }

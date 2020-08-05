@@ -10,18 +10,14 @@
     public partial class Account
     {
         public long id { get; set; }
-
         [Required]
         [StringLength(20)]
         public string accNum { get; set; }
-
         [Required]
         [StringLength(10)]
         public string idNum { get; set; }
-
         [StringLength(30)]
         public string lname { get; set; }
-
         [StringLength(30)]
         public string fname { get; set; }
 
@@ -41,12 +37,9 @@
 
         [Column(TypeName = "datetime2")]
         public DateTime modified { get; set; }
-
         [StringLength(20)]
         public string secAcc { get; set; }
-
         public decimal? fee { get; set; }
-
         public decimal? denchinPercent { get; set; }
 
         public decimal? contractFee { get; set; }
@@ -54,7 +47,7 @@
         public decimal? pozFee { get; set; }
 
         public int? memId { get; set; }
-        public int bank { get; set; }
+        public int? bank { get; set; }
         public string bankName { get 
             {
                 string bname;

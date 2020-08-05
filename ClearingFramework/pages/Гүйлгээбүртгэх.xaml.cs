@@ -19,15 +19,16 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Settlement.xaml
     /// </summary>
-    public partial class Settlement : Page
+    public partial class Гүйлгээбүртгэх : Page
     {
-        public Settlement()
+        public Гүйлгээбүртгэх()
         {
             InitializeComponent();
             bindCombo();
             FillGrid();
         }
         string accountID, accnum;
+        long acid;
         #region combos
         public List<Account> acct { get; set; }
         private void bindCombo()
@@ -42,9 +43,9 @@ namespace Clearing.pages
             var item = accid.SelectedItem as Account;
             try
             {
-                accountID = item.id.ToString();
+                acid = item.id;
                 sname.Text = item.fname.ToString();
-                accnum = item.accNum.ToString();
+                acid =item.id;
                 idnum.Text = item.idNum.ToString();
             }
             catch
@@ -57,26 +58,45 @@ namespace Clearing.pages
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             decimal value = Decimal.Parse(trvalue.Text);
+            int val= Convert.ToInt32(value);
             Int16 s = Convert.ToInt16(side.SelectedIndex);
             if (s == 0)
             {
                 s = -1;
+                val *= -1;
             }
             using (Model1 context = new Model1())
             {
-                var tran = new transaction()
+                try
                 {
-                    accNum = accountID,
-                    transType = Convert.ToInt16(transType.SelectedIndex),
-                    value = Decimal.Parse(trvalue.Text),
-                    note = trnote.Text,
-                    side = s,
-                };
-                AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accNum == accnum);
-                if (accdet != null)
-                    accdet.totalNumber += value;
-                context.transactions.Add(tran);
-                context.SaveChanges();
+                    AccountDetail accdet = context.AccountDetails.FirstOrDefault(r => r.accountId == acid && r.assetId == 1);
+                    if (accdet != null)
+                        accdet.totalNumber += val;
+                    if (accdet == null)
+                    {
+                        MessageBox.Show(acid+": tugurgiin dans neegdeegui bna");
+                        return;
+                    }
+                        
+                    var tran = new transaction()
+                    {
+                        last=accdet.totalNumber,
+                        accid = acid,
+                        transType = Convert.ToInt16(transType.SelectedIndex),
+                        value = Decimal.Parse(trvalue.Text),
+                        note = trnote.Text,
+                        side = s,
+                        modified=DateTime.Now,
+                        assetid=1,
+                    };
+                    context.transactions.Add(tran);
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                    throw;
+                }
             }
             FillGrid();
         }
@@ -150,7 +170,7 @@ namespace Clearing.pages
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     transaction acc = new transaction();
-                    acc.accNum = dt.Rows[i]["accNum"].ToString();
+                    acc.accid = Convert.ToInt64(dt.Rows[i]["accId"]);
                     acc.transType =Convert.ToInt16(dt.Rows[i]["transType"]);
                     acc.value = Convert.ToDecimal(dt.Rows[i]["value"]);
                     acc.note = dt.Rows[i]["note"].ToString();
@@ -165,7 +185,7 @@ namespace Clearing.pages
             {
                 yield return new transaction
                 {
-                    accNum = row["accNum"].ToString(),
+                    accid =Convert.ToInt64(row["accNum"]),
                     transType =Convert.ToInt16(row["transType"]),
                     value = Convert.ToDecimal(row["value"]),
                     note = row["note"].ToString(),
@@ -178,7 +198,10 @@ namespace Clearing.pages
         #region xls хуулах
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            string paths = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @".\\functions\\Гүйлгээ бүртгэх.xlsx");
+            string paths = Path.Combine(
+                Path.GetDirectoryName(
+                    Assembly.GetExecutingAssembly().Location),
+                @".\functions\Гүйлгээ бүртгэх.xlsx");
             string filePath = "";
             using (FolderBrowserDialog fbd = new FolderBrowserDialog() )
             {
@@ -186,19 +209,17 @@ namespace Clearing.pages
                 if(result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     filePath = fbd.SelectedPath;
-                    file.Text = filePath;
                     try { 
-                System.IO.File.Move(paths, filePath);
+                System.IO.File.Move(paths, filePath + "\\Гүйлгээ бүртгэх.xlsx");
                     }
                     catch(Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show(ex.Message.ToString());
                     }
                 }
             }
         }
         #endregion
-
         #region bulk insert from datatable
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {

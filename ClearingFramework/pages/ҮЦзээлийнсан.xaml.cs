@@ -3,25 +3,18 @@ using ClearingFramework.dbBind;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Clearing.pages
 {
     /// <summary>
     /// Interaction logic for Lend.xaml
     /// </summary>
-    public partial class Lend : Page
+    public partial class ҮЦзээлийнсан : Page
     {
-        public Lend()
+        public ҮЦзээлийнсан()
         {
             InitializeComponent();
             bindCombo();
@@ -44,10 +37,10 @@ namespace Clearing.pages
             {
                 linkacs = item.id.ToString();
                 List<AdminAsset> assets = new List<AdminAsset>();
-                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.accNum).ToList();
+                var acclist = CE.Accounts.Where(s => s.linkAcc == linkacs).Select(s => s.id).ToList();
                 foreach (var i in acclist)
                 {
-                    var detail = CE.AccountDetails.Where(s => s.accNum == i).Select(s => s.assetId).ToArray();
+                    var detail = CE.AccountDetails.Where(s => s.accountId== i).Select(s => s.assetId).ToArray();
                     int ids = Convert.ToInt32(detail[0]);
                     var asst = CE.AdminAssets.Where(s => s.id == ids).FirstOrDefault<AdminAsset>();
                     assets.Add(asst);
@@ -56,7 +49,7 @@ namespace Clearing.pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
             }
         }
@@ -80,13 +73,13 @@ namespace Clearing.pages
             {
                 int iid = item.id;
                 decimal eprice = Convert.ToDecimal(item.price) / 100;
-                decimal ratio = item.ratio;
+                decimal ratio =Convert.ToDecimal(item.ratio);
                 decimal lastPrice = ratio * eprice;
                 exPrice.Text = lastPrice.ToString("0.##");
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
             }
         }
@@ -114,7 +107,7 @@ namespace Clearing.pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message.ToString());
                 return;
             }
         }

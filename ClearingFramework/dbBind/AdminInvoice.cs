@@ -9,8 +9,9 @@ namespace ClearingFramework.dbBind
     public partial class AdminInvoice
     {
         [Key]
-        [Column(Order = 0)]
         public long id { get; set; }
+
+        public int memberid{ get; set; }
 
         public long? boardid { get; set; }
 
@@ -24,7 +25,7 @@ namespace ClearingFramework.dbBind
 
         public short? dealType { get; set; }
 
-        public decimal? qty { get; set; }
+        public int? qty { get; set; }
 
         public decimal? totalPrice { get; set; }
 
@@ -33,10 +34,6 @@ namespace ClearingFramework.dbBind
         public decimal? fee { get; set; }
 
         public DateTime? modified { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        public DateTime invoiceno { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime? invoicedate { get; set; }

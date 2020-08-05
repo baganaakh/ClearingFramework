@@ -1,4 +1,4 @@
-﻿<Page x:Class="Clearing.pages.Collateral"
+﻿<Page x:Class="Clearing.pages.Барьцаа"
        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -220,7 +220,7 @@
     </Page.Resources>
     <Grid Background="#14501B4A">
         <TabControl Margin="10,10,10,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11" Height="102" VerticalAlignment="Top">
-            <TabItem Header="Барьцаа байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" FontSize="12" Foreground="White" Margin="-2,0,2,0">
+            <TabItem Header="Барьцаа байршуулах" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Foreground="White" Margin="-2,0,2,0">
                 <Grid Background="White">
                     <Label Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="53" Width="4" Background="#FF7B5477"/>
                     <Button Click="Button_Click" Content="Илгээх" Margin="0,10,16,0" HorizontalAlignment="Right" Width="90" Height="24" VerticalAlignment="Top" Background="#FF3EB9BB" Foreground="White">
@@ -297,11 +297,15 @@
             </TabItem>
         </TabControl>
         <TabControl Margin="10,117,10,10" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" BorderThickness="0" FontSize="11">
-            <TabItem Header="Биржийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Биржийнбарьца" Header="Биржийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
-                    <DataGrid x:Name="Биржийнбарьцаа" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="419*"/>
+                        <ColumnDefinition Width="435*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="Биржийнбарьцаа" ItemsSource="{Binding ForGrid}" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
-                              FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,60,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False">
+                              FontSize="10" RenderTransformOrigin="0.5,0.5" Margin="0,60,0,0" CanUserDeleteRows="False" CanUserReorderColumns="False" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
                             <DataGridCheckBoxColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}"/>
                             <DataGridTextColumn Binding="{Binding  id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
@@ -315,13 +319,13 @@
                     </DataGrid>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Барьцааны дүн ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="150,10,0,0" TextWrapping="Wrap" Text="Тусгаарласан дэнчин ₮" Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="289,10,0,0" TextWrapping="Wrap" Text="Боломжит үлдэгдэл ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="289,10,0,0" TextWrapping="Wrap" Text="Боломжит үлдэгдэл ₮" Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="150,35,0,0" TextWrapping="Wrap" Text="..." Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="289,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" Height="20" Margin="289,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Брокерийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Брокерийнбарьцаа"  Header="Брокерийн барьцаа" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <DataGrid Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
@@ -344,15 +348,7 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="341,35,0,0" TextWrapping="Wrap" Text="..." Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="480,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Нэгдсэн данс #" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="27,35,0,0" TextWrapping="Wrap" Text="Брокер" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
-                        <TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4,4,4,4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -392,14 +388,6 @@
                             </Style>
                         </TextBox.Resources>
                     </TextBox>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="27,35,0,0" TextWrapping="Wrap" Text="Брокер" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
-                        <TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4,4,4,4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
                     <Button Content="Барьцаа буцаах" Margin="0,10,10,0" HorizontalAlignment="Right" Width="110" Height="24" VerticalAlignment="Top" Background="#FF501B4A" Foreground="White">
                         <Button.Resources>
                             <Style TargetType="{x:Type Border}">
@@ -416,7 +404,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Барьцаа Түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="БарьцааТүүх" Header="Барьцаа Түүх" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <DataGrid x:Name="collHistory" AutoGenerateColumns="False" Background="White" BorderBrush="White" CanUserResizeColumns="False" GridLinesVisibility="None" 
                               HorizontalGridLinesBrush="White" AlternatingRowBackground="White" CanUserResizeRows="False" HorizontalContentAlignment="Stretch" 
@@ -441,15 +429,7 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="341,35,0,0" TextWrapping="Wrap" Text="..." Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="480,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Нэгдсэн данс #" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
-                        <TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4,4,4,4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="27,35,0,0" TextWrapping="Wrap" Text="Брокер" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                    <TextBox x:Name="srchacc2" KeyUp="srchacc2_KeyUp" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -472,7 +452,7 @@
                     </Button>
                 </Grid>
             </TabItem>
-            <TabItem Header="Хүлээгдэж буй гүйлгээ" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
+            <TabItem Selector.Selected="Хүлээгдэжбуйгүйлгээ" Header="Хүлээгдэж буй гүйлгээ" BorderThickness="0,0,0,0" RenderTransformOrigin="0.5,0.5" Margin="0,0,-4,-2" Foreground="White">
                 <Grid Margin="0,0,-4,0" Background="White">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="431*"/>
@@ -501,15 +481,7 @@
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="341,35,0,0" TextWrapping="Wrap" Text="..." Width="134" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="49.333,35,0,0" TextWrapping="Wrap" Text="..." Width="135" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top" Grid.Column="1"/>
                     <TextBox HorizontalAlignment="Left" Height="20" Margin="10,10,0,0" TextWrapping="Wrap" Text="Нэгдсэн данс #" Width="87" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
-                        <TextBox.Resources>
-                            <Style TargetType="{x:Type Border}">
-                                <Setter Property="CornerRadius" Value="4,4,4,4"/>
-                            </Style>
-                        </TextBox.Resources>
-                    </TextBox>
-                    <TextBox HorizontalAlignment="Left" Height="20" Margin="27,35,0,0" TextWrapping="Wrap" Text="Брокер" Width="70" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF212121" SelectionBrush="{x:Null}" BorderThickness="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" IsReadOnly="True" VerticalAlignment="Top"/>
-                    <TextBox Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
+                    <TextBox x:Name="srchacc1" KeyUp="TextBox_KeyUp" Background="#FFE9E5E9" HorizontalAlignment="Left" Height="20" Margin="102,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="94" BorderBrush="{x:Null}" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" BorderThickness="0">
                         <TextBox.Resources>
                             <Style TargetType="{x:Type Border}">
                                 <Setter Property="CornerRadius" Value="4,4,4,4"/>
@@ -533,41 +505,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-        <Button Height="26" Margin="0,10,80,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/XLS.png" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Xls-ээр хадгалах"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
-        <Button Height="26" Margin="0,10,45,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/PDF.ico" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Pdf-ээр хадгалах"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
-        <Button Height="26" Margin="0,10,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="30">
-            <Button.Background>
-                <ImageBrush ImageSource="/pics/Print.png" Stretch="Uniform" Opacity="0.8"/>
-            </Button.Background>
-            <Button.ToolTip>
-                <ToolTip>
-                    <StackPanel>
-                        <TextBlock><Run Text="Хэвлэх"/></TextBlock>
-                    </StackPanel>
-                </ToolTip>
-            </Button.ToolTip>
-        </Button>
     </Grid>
 </Page>

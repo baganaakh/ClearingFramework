@@ -8,11 +8,11 @@ namespace ClearingFramework.dbBind
 
     public partial class AdminAccountDetail
     {
-        public int id { get; set; }
+        public long id { get; set; }
 
-        public decimal? freezeValue { get; set; }
+        public int? freezeValue { get; set; }
 
-        public decimal? amount { get; set; }
+        public int? amount { get; set; }
 
         public int? assetId { get; set; }
 

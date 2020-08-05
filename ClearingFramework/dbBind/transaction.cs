@@ -9,14 +9,13 @@ namespace ClearingFramework.dbBind
     [Table("transaction")]
     public partial class transaction
     {
-        public int id { get; set; }
-
-        [StringLength(20)]
-        public string accNum { get; set; }
+        public int id { get; set; }                
+        public long accid{ get; set; }
 
         public short? transType { get; set; }
 
         public decimal? value { get; set; }
+        public decimal? last { get; set; }
 
         [StringLength(255)]
         public string note { get; set; }

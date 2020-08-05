@@ -1,17 +1,9 @@
 ﻿using ClearingFramework.dbBind;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Deployment.Application;
+using System.Reflection;
 
 namespace ClearingFramework
 {
@@ -22,38 +14,48 @@ namespace ClearingFramework
     {
         public Login()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            string vers="";
+            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                vers = ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            var ver = Assembly.GetExecutingAssembly().GetName().Version;
+            string version ="Login  Version: "+ ver.Major + "." + ver.Minor + "." + ver.Build + "." + ver.Revision;
+            this.Title = vers;
         }
+            
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            using (Model1 context = new Model1())
+            try
             {
-                var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
-                if(query == null)
+                using (Model1 context = new Model1())
                 {
-                    MessageBox.Show("Username doesn't match");
-                    return;
+                    context.Database.CreateIfNotExists();
+                    var query = context.AdminUsers.Where(s => s.uname == txtLoginName.Text).FirstOrDefault<AdminUser>();
+                    if (query == null)
+                    {
+                        MessageBox.Show("Username or password doesn't match");
+                        return;
+                    }
+                    App.Current.Properties["User_id"] = query.id;
+                    App.Current.Properties["member_id"] = query.memId;
+                    if (query.password == txtLoginPass.Password)
+                    {
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.topPanel.Content = "MSX Clearing Workstation   " + query.uname + " ID : " + query.memId;
+                        mainWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Password doesn't match");
+                    }
                 }
-                App.Current.Properties["User_id"] = query.id;
-                //var id = App.Current.Properties["User_id"];
-                App.Current.Properties["member_id"] = query.memId;
-                if (query.password == txtLoginPass.Password)
-                {
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.topPanel.Content = "MSX Clearing Workstation   " +query.uname +" ID : "+ query.memId;
-                    mainWindow.Show();
-                    this.Close();
-                    //Window parentWindow = Window.GetWindow(this).Button;
-
-                    //((this.Parent) as Window).Content.Bu;
-                    //parentWindow.
-                    //dashboard.start.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
-                }
-                else
-                {
-                    MessageBox.Show("Password doesn't match");
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+                return;
             }
         }
 

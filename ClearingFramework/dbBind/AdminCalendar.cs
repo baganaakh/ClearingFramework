@@ -12,16 +12,15 @@ namespace ClearingFramework.dbBind
         public short id { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime tdate { get; set; }
+        public DateTime? tdate { get; set; }
 
-        public short type { get; set; }
+        public short? type { get; set; }
 
-        [Required]
         [StringLength(1024)]
         public string note { get; set; }
 
-        public short state { get; set; }
+        public short? state { get; set; }
 
-        public DateTime modified { get; set; }
+        public DateTime? modified { get; set; }
     }
 }

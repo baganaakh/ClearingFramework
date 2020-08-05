@@ -19,9 +19,9 @@ namespace Clearing.pages
     /// <summary>
     /// Interaction logic for Create.xaml
     /// </summary>
-    public partial class Create : Page
+    public partial class Данснээх : Page
     {
-        public Create()
+        public Данснээх()
         {
             InitializeComponent();
             bindCombo();
@@ -31,7 +31,7 @@ namespace Clearing.pages
         int memId = Convert.ToInt32(App.Current.Properties["member_id"]);
         string pcode;
         #region fill, new & refresh
-        private void Button_Click_4(object sender, RoutedEventArgs e)
+        private void ClearFields(object sender, RoutedEventArgs e)
         {
             lName.Text = null;
             fName.Text = null;
@@ -96,6 +96,7 @@ namespace Clearing.pages
                 && linkAc.SelectedValue == null)
             {
                 MessageBox.Show("Combos are empty Please fill them");
+                return;
             }
             using (Model1 context = new Model1())
             {
@@ -109,54 +110,68 @@ namespace Clearing.pages
                 else
                 if (exist != 0)
                 {
-                    MessageBox.Show("Account number exists " + accountn.Text.ToString() + " !!!");
+                    MessageBox.Show("Дансны дугаар давтагдсан байна " + accountn.Text.ToString() + " !!!");
                     return;
                 }
-                Account acct = new Account
+                try
                 {
-                    accNum = accountn.Text,
-                    idNum = idNumber.Text,
-                    lname = lName.Text,
-                    fname = fName.Text,
-                    phone = phonee.Text,
-                    mail = email.Text,
-                    linkAcc = linkAc.SelectedValue.ToString(),
-                    brokerCode = pcode,
-                    state = Convert.ToInt16(stat.SelectedIndex),
-                    modified = DateTime.Now,
-                    secAcc = secAc.Text,
-                    fee = Convert.ToDecimal(fee.Text),
-                    denchinPercent = Convert.ToDecimal(denchinPercent.Text),
-                    contractFee = Convert.ToDecimal(contractFee.Text),
-                    pozFee = Convert.ToDecimal(pozfee.Text),
-                    memId = memId,
-                    bank=banks.SelectedIndex,
-                    bankAccount=bankaccount.Text,
-                    bankAccName=bankaccname.Text,
-                };
-                AccountDetail acd = new AccountDetail
+                    Account acct = new Account
+                    {
+                        accNum = accountn.Text,
+                        idNum = idNumber.Text,
+                        lname = lName.Text,
+                        fname = fName.Text,
+                        phone = phonee.Text,
+                        mail = email.Text,
+                        linkAcc = linkAc.SelectedValue.ToString(),
+                        brokerCode = pcode,
+                        state = Convert.ToInt16(stat.SelectedIndex),
+                        modified = DateTime.Now,
+                        secAcc = secAc.Text,
+                        fee = Convert.ToDecimal(fee.Text),
+                        denchinPercent = Convert.ToDecimal(denchinPercent.Text),
+                        contractFee = Convert.ToDecimal(contractFee.Text),
+                        pozFee = Convert.ToDecimal(pozfee.Text),
+                        memId = memId,
+                        bank = banks.SelectedIndex,
+                        bankAccount = bankaccount.Text,
+                        bankAccName = bankaccname.Text,
+                    };
+                    AccountDetail acd = new AccountDetail
+                    {
+                        freezeValue = 10,
+                        totalNumber = 0,
+                        accountId = acct.id,
+                        linkAcc = linkAc.SelectedValue.ToString(),
+                    };
+                    context.AccountDetails.Add(acd);                
+                    context.Accounts.Add(acct);
+                    context.SaveChanges();
+                }
+                catch (System.NullReferenceException)
                 {
-                    freezeValue = 10,
-                    totalNumber = 0,
-                    accNum = accountn.Text,
-                    linkAcc = linkAc.SelectedValue.ToString(),
-                };
-                context.AccountDetails.Add(acd);                
-                context.Accounts.Add(acct);
-                context.SaveChanges();
+                    MessageBox.Show("Талбар гүйцэд бөглөнө үү");
+                    return;
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                    return;
+                }
                 FillGrid();
             }
+            ClearFields(null,null);
         }
         #endregion
         #region delete
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             long iiid = (vwOmniAccBalance.SelectedItem as Account).id;
-            string accnu = (vwOmniAccBalance.SelectedItem as Account).accNum;
+            long accnu = (vwOmniAccBalance.SelectedItem as Account).id;
             using (Model1 context = new Model1())
             {
                 Account acc = context.Accounts.FirstOrDefault(r => r.id == iiid);
-                var aacd = context.AccountDetails.Where(r => r.accNum == accnu);
+                var aacd = context.AccountDetails.Where(r => r.accountId == accnu);
                 foreach (var i in aacd)
                 {
                     context.AccountDetails.Remove(i);
@@ -296,7 +311,7 @@ namespace Clearing.pages
                 }
                 catch (Exception exx)
                 {
-                    MessageBox.Show(exx.ToString());
+                    MessageBox.Show(exx.Message.ToString());
                     throw;
                 }
                 var exist = (from s in CE.Accounts where s.accNum == accNumber select s).FirstOrDefault<Account>();
@@ -327,7 +342,7 @@ namespace Clearing.pages
             }
         }
         #endregion
-         #region combos        
+        #region combos        
         public List<AdminAccount> acc { get; set; }
         private void bindCombo()
         {
@@ -359,8 +374,9 @@ namespace Clearing.pages
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
             string paths = Path.Combine(
-                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
-                @".\\functions\\Данс.xlsx");
+                Path.GetDirectoryName(
+                    Assembly.GetExecutingAssembly().Location),
+                @".\functions\Данс.xlsx");
             string filePath = "";
             using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
@@ -374,7 +390,7 @@ namespace Clearing.pages
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.ToString());
+                        MessageBox.Show(ex.Message.ToString());
                     }
                 }
             }

@@ -47,7 +47,6 @@ namespace ClearingFramework.dbBind
 
         public decimal? toPay { get; set; }
 
-        [StringLength(16)]
-        public string connect { get; set; }
+        public long? connect { get; set; }
     }
 }

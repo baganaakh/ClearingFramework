@@ -12,7 +12,6 @@ namespace ClearingFramework.dbBind
 
         public short? type { get; set; }
 
-        [Required]
         [StringLength(2)]
         public string code { get; set; }
 
@@ -31,17 +30,13 @@ namespace ClearingFramework.dbBind
         [Column(TypeName = "date")]
         public DateTime? enddate { get; set; }
 
-        [StringLength(20)]
-        public string broker { get; set; }
+        public bool? broker { get; set; }
 
-        [StringLength(20)]
-        public string dealer { get; set; }
+        public bool? dealer { get; set; }
 
-        [StringLength(20)]
-        public string ander { get; set; }
+        public bool? ander { get; set; }
 
-        [StringLength(20)]
-        public string nominal { get; set; }
+        public bool? nominal { get; set; }
 
         public int? linkMember { get; set; }
 

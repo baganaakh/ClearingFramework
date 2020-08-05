@@ -1,19 +1,6 @@
 ﻿using Clearing.pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ClearingFramework
 {
@@ -25,7 +12,7 @@ namespace ClearingFramework
         public MainWindow()
         {
             InitializeComponent();
-            MainFrame.Content = new Start();
+            MainFrame.Content = new Эхлэл();
         }
         #region DocPanel
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -42,9 +29,12 @@ namespace ClearingFramework
             if (this.WindowState == WindowState.Maximized)
             {
                 this.WindowState = WindowState.Normal;
+                resizebtn.Content = FindResource("mini");
             }
             else
             {
+                resizebtn.Background = null;
+                resizebtn.Content = FindResource("maxi");
                 this.WindowState = WindowState.Maximized;
             }
         }
@@ -55,32 +45,32 @@ namespace ClearingFramework
         #endregion
         public void Button_Click_1(object sender, RoutedEventArgs e)    // Эхлэл 
         {
-            MainFrame.Content = new Start();
+            MainFrame.Content = new Эхлэл();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)     // Данс нээх
         {
-            MainFrame.Content = new Create();
+            MainFrame.Content = new Данснээх();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)    // гүйлгээ Бүртгэх
         {
-            MainFrame.Content = new Settlement();
+            MainFrame.Content = new Гүйлгээбүртгэх();
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)    // Дансны мэдээлэл
         {
-            MainFrame.Content = new Acc_balance();
+            MainFrame.Content = new Данснымэдээлэл();
         }
 
         private void Button_Click_5(object sender, RoutedEventArgs e)    // Арилжааны дүн
         {
-            MainFrame.Content = new PostTrade();
+            MainFrame.Content = new Арилжааныдүн();
         }
 
         private void Button_Click_6(object sender, RoutedEventArgs e)    // Шимтгэл
         {
-            MainFrame.Content = new Fee();
+            MainFrame.Content = new Шимтгэл();
         }
 
         private void Button_Click_7(object sender, RoutedEventArgs e)    // Рэпо
@@ -90,12 +80,12 @@ namespace ClearingFramework
 
         private void Button_Click_8(object sender, RoutedEventArgs e)     // ҮЦ зээл
         {
-            MainFrame.Content = new Lend();
+            MainFrame.Content = new ҮЦзээлийнсан();
         }
 
         private void Button_Click_9(object sender, RoutedEventArgs e)    // Барьцаа
         {
-            MainFrame.Content = new Collateral();
+            MainFrame.Content = new Барьцаа();
         }
 
         private void Button_Click_10(object sender, RoutedEventArgs e)     // Гарах
@@ -108,7 +98,7 @@ namespace ClearingFramework
 
         private void Button_Click_13(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new Repo2();
+            MainFrame.Content = new Үнэтцаасзээл();
         }
     }
 }

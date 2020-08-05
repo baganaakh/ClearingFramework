@@ -43,10 +43,12 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Image x:Key="mini" Source="..\pics\maximize_.png"/>
+        <Image x:Key="maxi" Source="..\pics\mini2.png"/>
     </Window.Resources>
     <Grid>
         <Frame x:Name="MainFrame" Margin="146,30,-4,-4" NavigationUIVisibility="Hidden" Background="White"/>
-        <DockPanel Height="30" VerticalAlignment="Top" Margin="-4,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" MouseDown="rectangle2_MouseDown">
+        <DockPanel Height="30" VerticalAlignment="Top" Margin="-4,0" ScrollViewer.VerticalScrollBarVisibility="Disabled" MouseDown="rectangle2_MouseDown">            
             <DockPanel.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <LinearGradientBrush.RelativeTransform>
@@ -66,7 +68,8 @@
                     <ImageBrush ImageSource="..\pics\close_.png"/>
                 </Button.Background>
             </Button>
-            <Button Height="16" Margin="0,7,2,7" Width="16" DockPanel.Dock="Right" HorizontalAlignment="Right" BorderThickness="0" Click="Button_Click_12">
+            <Button Height="16" Margin="0,7,2,7" Width="16" DockPanel.Dock="Right" HorizontalAlignment="Right" Name="resizebtn" BorderThickness="0" Click="Button_Click_12">
+                <!--<DynamicResource ResourceKey="mini"/>-->
                 <Button.Background>
                     <ImageBrush ImageSource="..\pics\maximize_.png"/>
                 </Button.Background>

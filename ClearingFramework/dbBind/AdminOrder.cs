@@ -28,12 +28,11 @@ namespace ClearingFramework.dbBind
         public short? state { get; set; }
 
         [Column(TypeName = "datetime2")]
-        public DateTime modified { get; set; }
+        public DateTime? modified { get; set; }
 
         public short? dealType { get; set; }
-
-        [StringLength(20)]
-        public string connect { get; set; }
+                
+        public long? connect { get; set; }
 
         public int? day { get; set; }
 
